@@ -6,8 +6,11 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
 
 from app.adapters import AdapterError, build_adapters, get_adapter
+from app.agents import PlannerAgent, UnsupportedGoalTypeError
 from app.config import settings
 from app.models.capability import Capability
+from app.models.goal import Goal
+from app.models.plan import Plan
 from app.registry.loader import get_capability_by_name, load_capabilities
 
 app = FastAPI(
@@ -78,4 +81,15 @@ async def invoke_adapter(request: AdapterInvocationRequest) -> dict[str, Any]:
         adapter = get_adapter(request.adapter_name)
         return adapter.invoke(request.capability_name, request.payload)
     except AdapterError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+
+@app.post("/planner/plan", response_model=Plan)
+async def create_plan(goal: Goal) -> Plan:
+    """Create a deterministic ordered plan from a high-level goal."""
+
+    planner = PlannerAgent()
+    try:
+        return planner.plan(goal)
+    except UnsupportedGoalTypeError as exc:
         raise HTTPException(status_code=400, detail=str(exc)) from exc
