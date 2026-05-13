@@ -1,7 +1,11 @@
 """FastAPI entrypoint for the industrial orchestrator research prototype."""
 
-from fastapi import FastAPI, HTTPException
+from typing import Any
 
+from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel, Field
+
+from app.adapters import AdapterError, build_adapters, get_adapter
 from app.config import settings
 from app.models.capability import Capability
 from app.registry.loader import get_capability_by_name, load_capabilities
@@ -14,6 +18,14 @@ app = FastAPI(
         "orchestrator for industrial operations."
     ),
 )
+
+
+class AdapterInvocationRequest(BaseModel):
+    """Request body for manual adapter invocation."""
+
+    adapter_name: str
+    capability_name: str
+    payload: dict[str, Any] = Field(default_factory=dict)
 
 
 @app.get("/health")
@@ -43,3 +55,27 @@ async def read_capability(name: str) -> Capability:
         raise HTTPException(status_code=404, detail="Capability not found")
 
     return capability
+
+
+@app.get("/adapters")
+async def list_adapters() -> list[dict[str, Any]]:
+    """Return available mock adapters and their supported capabilities."""
+
+    return [
+        {
+            "adapter_name": adapter.adapter_name,
+            "supported_capabilities": sorted(adapter.supported_capabilities),
+        }
+        for adapter in build_adapters().values()
+    ]
+
+
+@app.post("/adapters/invoke")
+async def invoke_adapter(request: AdapterInvocationRequest) -> dict[str, Any]:
+    """Invoke a mock adapter capability through the unified interface."""
+
+    try:
+        adapter = get_adapter(request.adapter_name)
+        return adapter.invoke(request.capability_name, request.payload)
+    except AdapterError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
