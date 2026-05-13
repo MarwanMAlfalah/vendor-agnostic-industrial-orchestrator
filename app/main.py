@@ -6,11 +6,19 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
 
 from app.adapters import AdapterError, build_adapters, get_adapter
-from app.agents import PlannerAgent, UnsupportedGoalTypeError
+from app.agents import (
+    CapabilityMatchingAgent,
+    ExecutionAgent,
+    PlannerAgent,
+    UnsupportedGoalTypeError,
+)
 from app.config import settings
 from app.models.capability import Capability
+from app.models.execution_result import ExecutionResult
 from app.models.goal import Goal
+from app.models.mapped_plan import MappedPlan
 from app.models.plan import Plan
+from app.registry import CapabilityRegistryError
 from app.registry.loader import get_capability_by_name, load_capabilities
 
 app = FastAPI(
@@ -93,3 +101,22 @@ async def create_plan(goal: Goal) -> Plan:
         return planner.plan(goal)
     except UnsupportedGoalTypeError as exc:
         raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+
+@app.post("/matcher/match", response_model=MappedPlan)
+async def match_plan(plan: Plan) -> MappedPlan:
+    """Map a planner-produced plan to registered capabilities."""
+
+    try:
+        matcher = CapabilityMatchingAgent()
+        return matcher.match_plan(plan)
+    except CapabilityRegistryError as exc:
+        raise HTTPException(status_code=500, detail=str(exc)) from exc
+
+
+@app.post("/execute/run", response_model=ExecutionResult)
+async def run_execution(mapped_plan: MappedPlan) -> ExecutionResult:
+    """Execute a mapped plan through selected mock adapters."""
+
+    executor = ExecutionAgent()
+    return executor.run(mapped_plan)
