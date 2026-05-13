@@ -24,6 +24,7 @@ class PlannerAgent:
             return Plan(
                 goal_id=goal.goal_id,
                 goal_type=goal.goal_type,
+                payload=goal.payload,
                 steps=self._alarm_handling_steps(),
             )
 
@@ -31,6 +32,7 @@ class PlannerAgent:
             return Plan(
                 goal_id=goal.goal_id,
                 goal_type=goal.goal_type,
+                payload=goal.payload,
                 steps=self._governed_action_steps(),
             )
 
@@ -38,6 +40,7 @@ class PlannerAgent:
             return Plan(
                 goal_id=goal.goal_id,
                 goal_type=goal.goal_type,
+                payload=goal.payload,
                 steps=self._failure_recovery_steps(),
             )
 

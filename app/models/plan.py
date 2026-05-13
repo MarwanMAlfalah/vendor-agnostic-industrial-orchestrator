@@ -1,6 +1,8 @@
 """Planning contracts for deterministic supervisory plans."""
 
-from pydantic import BaseModel
+from typing import Any
+
+from pydantic import BaseModel, Field
 
 
 class PlanStep(BaseModel):
@@ -19,4 +21,5 @@ class Plan(BaseModel):
 
     goal_id: str
     goal_type: str
+    payload: dict[str, Any] = Field(default_factory=dict)
     steps: list[PlanStep]

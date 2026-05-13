@@ -33,6 +33,7 @@ class CapabilityMatchingAgent:
         return MappedPlan(
             goal_id=plan.goal_id,
             goal_type=plan.goal_type,
+            payload=plan.payload,
             steps=[self._match_step(step) for step in plan.steps],
         )
 
