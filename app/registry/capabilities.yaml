@@ -1,0 +1,145 @@
+- capability_name: read_machine_status
+  description: Read current machine status from an OPC UA endpoint.
+  adapter_name: opcua_adapter
+  input_schema:
+    type: object
+    required:
+      - machine_id
+    properties:
+      machine_id:
+        type: string
+  output_schema:
+    type: object
+    properties:
+      status:
+        type: string
+      last_updated:
+        type: string
+  policy_tags:
+    - read_only
+    - plant_floor
+  availability: true
+
+- capability_name: read_alarm_code
+  description: Read the active alarm code for a machine from OPC UA.
+  adapter_name: opcua_adapter
+  input_schema:
+    type: object
+    required:
+      - machine_id
+    properties:
+      machine_id:
+        type: string
+  output_schema:
+    type: object
+    properties:
+      alarm_code:
+        type: string
+      severity:
+        type: string
+  policy_tags:
+    - read_only
+    - alarms
+  availability: true
+
+- capability_name: create_maintenance_ticket
+  description: Create a maintenance ticket through an HTTP service.
+  adapter_name: rest_adapter
+  input_schema:
+    type: object
+    required:
+      - machine_id
+      - summary
+    properties:
+      machine_id:
+        type: string
+      summary:
+        type: string
+      priority:
+        type: string
+  output_schema:
+    type: object
+    properties:
+      ticket_id:
+        type: string
+      status:
+        type: string
+  policy_tags:
+    - write_action
+    - maintenance
+  availability: true
+
+- capability_name: query_ticket_status
+  description: Query the current status of a maintenance ticket.
+  adapter_name: rest_adapter
+  input_schema:
+    type: object
+    required:
+      - ticket_id
+    properties:
+      ticket_id:
+        type: string
+  output_schema:
+    type: object
+    properties:
+      ticket_id:
+        type: string
+      status:
+        type: string
+      owner:
+        type: string
+  policy_tags:
+    - read_only
+    - maintenance
+  availability: true
+
+- capability_name: run_legacy_command
+  description: Run an approved command against a legacy industrial system.
+  adapter_name: legacy_adapter
+  input_schema:
+    type: object
+    required:
+      - command_name
+    properties:
+      command_name:
+        type: string
+      parameters:
+        type: object
+  output_schema:
+    type: object
+    properties:
+      accepted:
+        type: boolean
+      message:
+        type: string
+  policy_tags:
+    - controlled_action
+    - legacy_system
+  availability: true
+
+- capability_name: validate_vendor_action
+  description: Validate a proposed vendor-specific action before execution.
+  adapter_name: legacy_adapter
+  input_schema:
+    type: object
+    required:
+      - action_name
+      - vendor
+    properties:
+      action_name:
+        type: string
+      vendor:
+        type: string
+      payload:
+        type: object
+  output_schema:
+    type: object
+    properties:
+      valid:
+        type: boolean
+      reason:
+        type: string
+  policy_tags:
+    - governance
+    - validation
+  availability: true
