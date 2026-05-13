@@ -1,0 +1,23 @@
+[project]
+name = "vendor-agnostic-industrial-orchestrator"
+version = "0.1.0"
+description = "Research prototype for a vendor-agnostic multi-agent LLM orchestrator for industrial operations."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.115.0",
+    "pydantic-settings>=2.6.0",
+    "uvicorn[standard]>=0.30.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+]
+
+[build-system]
+requires = ["setuptools>=69.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
