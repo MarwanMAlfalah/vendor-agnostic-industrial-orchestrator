@@ -117,11 +117,11 @@ async def match_plan(plan: Plan) -> MappedPlan:
 
 
 @app.post("/execute/run", response_model=ExecutionResult)
-async def run_execution(mapped_plan: MappedPlan) -> ExecutionResult:
-    """Execute a mapped plan through selected mock adapters."""
+async def run_execution(governance_plan: GovernanceEvaluation) -> ExecutionResult:
+    """Execute a governance-evaluated plan through selected mock adapters."""
 
     executor = ExecutionAgent()
-    return executor.run(mapped_plan)
+    return executor.run(governance_plan)
 
 
 @app.post("/governance/evaluate", response_model=GovernanceEvaluation)
