@@ -9,6 +9,7 @@ from app.adapters import AdapterError, build_adapters, get_adapter
 from app.agents import (
     CapabilityMatchingAgent,
     ExecutionAgent,
+    GovernanceAgent,
     PlannerAgent,
     UnsupportedGoalTypeError,
 )
@@ -16,6 +17,7 @@ from app.config import settings
 from app.models.capability import Capability
 from app.models.execution_result import ExecutionResult
 from app.models.goal import Goal
+from app.models.governance import GovernanceEvaluation
 from app.models.mapped_plan import MappedPlan
 from app.models.plan import Plan
 from app.registry import CapabilityRegistryError
@@ -120,3 +122,14 @@ async def run_execution(mapped_plan: MappedPlan) -> ExecutionResult:
 
     executor = ExecutionAgent()
     return executor.run(mapped_plan)
+
+
+@app.post("/governance/evaluate", response_model=GovernanceEvaluation)
+async def evaluate_governance(mapped_plan: MappedPlan) -> GovernanceEvaluation:
+    """Evaluate mapped plan steps against deterministic governance rules."""
+
+    try:
+        governance = GovernanceAgent()
+        return governance.evaluate(mapped_plan)
+    except CapabilityRegistryError as exc:
+        raise HTTPException(status_code=500, detail=str(exc)) from exc
