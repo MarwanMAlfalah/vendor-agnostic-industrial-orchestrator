@@ -1,0 +1,131 @@
+adapter_mix,approval_condition,failure_condition,governance_pattern,scenario_count,workflow_length
+Legacy only,no approval required,blocked action condition,allow_then_block,3,long
+OPC UA + Legacy,no approval required,blocked action condition,allow_then_block,3,long
+OPC UA + REST,no approval required,blocked action condition,allow_then_block,3,long
+OPC UA + REST + Legacy,no approval required,blocked action condition,allow_then_block,3,long
+OPC UA only,no approval required,blocked action condition,allow_then_block,3,long
+REST + Legacy,no approval required,blocked action condition,allow_then_block,2,long
+REST only,no approval required,blocked action condition,allow_then_block,3,long
+Legacy only,no approval required,malformed payload,malformed_payload,3,long
+OPC UA + Legacy,no approval required,malformed payload,malformed_payload,2,long
+OPC UA + REST,no approval required,malformed payload,malformed_payload,3,long
+OPC UA + REST + Legacy,no approval required,malformed payload,malformed_payload,3,long
+OPC UA only,no approval required,malformed payload,malformed_payload,3,long
+REST + Legacy,no approval required,malformed payload,malformed_payload,3,long
+REST only,no approval required,malformed payload,malformed_payload,3,long
+Legacy only,approval with invalidated mapping,safe abort condition,mixed_allow_approval_safe_abort,1,long
+Legacy only,invalid approval,safe abort condition,mixed_allow_approval_safe_abort,1,long
+Legacy only,valid approval,safe abort condition,mixed_allow_approval_safe_abort,1,long
+OPC UA + Legacy,approval with invalidated mapping,safe abort condition,mixed_allow_approval_safe_abort,1,long
+OPC UA + Legacy,invalid approval,safe abort condition,mixed_allow_approval_safe_abort,1,long
+OPC UA + Legacy,missing approval,safe abort condition,mixed_allow_approval_safe_abort,1,long
+OPC UA + REST,invalid approval,safe abort condition,mixed_allow_approval_safe_abort,1,long
+OPC UA + REST,missing approval,safe abort condition,mixed_allow_approval_safe_abort,1,long
+OPC UA + REST,valid approval,safe abort condition,mixed_allow_approval_safe_abort,1,long
+OPC UA + REST + Legacy,approval with invalidated mapping,safe abort condition,mixed_allow_approval_safe_abort,1,long
+OPC UA + REST + Legacy,invalid approval,safe abort condition,mixed_allow_approval_safe_abort,1,long
+OPC UA + REST + Legacy,valid approval,safe abort condition,mixed_allow_approval_safe_abort,1,long
+OPC UA only,invalid approval,safe abort condition,mixed_allow_approval_safe_abort,1,long
+OPC UA only,missing approval,safe abort condition,mixed_allow_approval_safe_abort,1,long
+REST + Legacy,approval with invalidated mapping,safe abort condition,mixed_allow_approval_safe_abort,1,long
+REST + Legacy,missing approval,safe abort condition,mixed_allow_approval_safe_abort,1,long
+REST + Legacy,valid approval,safe abort condition,mixed_allow_approval_safe_abort,1,long
+REST only,approval with invalidated mapping,safe abort condition,mixed_allow_approval_safe_abort,1,long
+REST only,missing approval,safe abort condition,mixed_allow_approval_safe_abort,1,long
+REST only,valid approval,safe abort condition,mixed_allow_approval_safe_abort,1,long
+Legacy only,missing approval,none,post_approval_missing,2,long
+OPC UA + Legacy,missing approval,none,post_approval_missing,3,long
+OPC UA + REST,missing approval,none,post_approval_missing,3,long
+OPC UA + REST + Legacy,missing approval,none,post_approval_missing,3,long
+OPC UA only,missing approval,none,post_approval_missing,3,long
+REST + Legacy,missing approval,none,post_approval_missing,3,long
+REST only,missing approval,none,post_approval_missing,3,long
+Legacy only,invalid approval,none,allow_then_require_approval,1,medium
+Legacy only,missing approval,none,allow_then_require_approval,1,medium
+OPC UA + Legacy,approval with invalidated mapping,none,allow_then_require_approval,1,medium
+OPC UA + Legacy,invalid approval,none,allow_then_require_approval,1,medium
+OPC UA + Legacy,valid approval,none,allow_then_require_approval,1,medium
+OPC UA + REST,approval with invalidated mapping,none,allow_then_require_approval,1,medium
+OPC UA + REST,missing approval,none,allow_then_require_approval,1,medium
+OPC UA + REST,valid approval,none,allow_then_require_approval,1,medium
+OPC UA + REST + Legacy,approval with invalidated mapping,none,allow_then_require_approval,1,medium
+OPC UA + REST + Legacy,invalid approval,none,allow_then_require_approval,1,medium
+OPC UA + REST + Legacy,missing approval,none,allow_then_require_approval,1,medium
+OPC UA only,approval with invalidated mapping,none,allow_then_require_approval,1,medium
+OPC UA only,missing approval,none,allow_then_require_approval,1,medium
+OPC UA only,valid approval,none,allow_then_require_approval,1,medium
+REST + Legacy,invalid approval,none,allow_then_require_approval,1,medium
+REST + Legacy,missing approval,none,allow_then_require_approval,1,medium
+REST + Legacy,valid approval,none,allow_then_require_approval,1,medium
+REST only,approval with invalidated mapping,none,allow_then_require_approval,1,medium
+REST only,invalid approval,none,allow_then_require_approval,1,medium
+REST only,valid approval,none,allow_then_require_approval,1,medium
+Legacy only,approval with invalidated mapping,blocked action condition,mixed_allow_approval_block,1,medium
+Legacy only,missing approval,blocked action condition,mixed_allow_approval_block,1,medium
+Legacy only,valid approval,blocked action condition,mixed_allow_approval_block,1,medium
+OPC UA + Legacy,invalid approval,blocked action condition,mixed_allow_approval_block,1,medium
+OPC UA + Legacy,missing approval,blocked action condition,mixed_allow_approval_block,1,medium
+OPC UA + REST,approval with invalidated mapping,blocked action condition,mixed_allow_approval_block,1,medium
+OPC UA + REST,invalid approval,blocked action condition,mixed_allow_approval_block,1,medium
+OPC UA + REST,valid approval,blocked action condition,mixed_allow_approval_block,1,medium
+OPC UA + REST + Legacy,approval with invalidated mapping,blocked action condition,mixed_allow_approval_block,1,medium
+OPC UA + REST + Legacy,invalid approval,blocked action condition,mixed_allow_approval_block,1,medium
+OPC UA + REST + Legacy,valid approval,blocked action condition,mixed_allow_approval_block,1,medium
+OPC UA only,invalid approval,blocked action condition,mixed_allow_approval_block,1,medium
+OPC UA only,missing approval,blocked action condition,mixed_allow_approval_block,1,medium
+OPC UA only,valid approval,blocked action condition,mixed_allow_approval_block,1,medium
+REST + Legacy,approval with invalidated mapping,blocked action condition,mixed_allow_approval_block,1,medium
+REST + Legacy,missing approval,blocked action condition,mixed_allow_approval_block,1,medium
+REST + Legacy,valid approval,blocked action condition,mixed_allow_approval_block,1,medium
+REST only,approval with invalidated mapping,blocked action condition,mixed_allow_approval_block,1,medium
+REST only,invalid approval,blocked action condition,mixed_allow_approval_block,1,medium
+REST only,missing approval,blocked action condition,mixed_allow_approval_block,1,medium
+Legacy only,invalid approval,none,post_approval_invalid,3,medium
+OPC UA + Legacy,invalid approval,none,post_approval_invalid,3,medium
+OPC UA + REST,invalid approval,none,post_approval_invalid,3,medium
+OPC UA + REST + Legacy,invalid approval,none,post_approval_invalid,2,medium
+OPC UA only,invalid approval,none,post_approval_invalid,3,medium
+REST + Legacy,invalid approval,none,post_approval_invalid,3,medium
+REST only,invalid approval,none,post_approval_invalid,3,medium
+Legacy only,no approval required,unavailable capability,unavailable_capability,2,medium
+Legacy only,no approval required,unsupported capability,unavailable_capability,1,medium
+OPC UA + Legacy,no approval required,unavailable capability,unavailable_capability,2,medium
+OPC UA + Legacy,no approval required,unsupported capability,unavailable_capability,1,medium
+OPC UA + REST,no approval required,unavailable capability,unavailable_capability,1,medium
+OPC UA + REST,no approval required,unsupported capability,unavailable_capability,2,medium
+OPC UA + REST + Legacy,no approval required,unavailable capability,unavailable_capability,2,medium
+OPC UA + REST + Legacy,no approval required,unsupported capability,unavailable_capability,1,medium
+OPC UA only,no approval required,unavailable capability,unavailable_capability,1,medium
+OPC UA only,no approval required,unsupported capability,unavailable_capability,2,medium
+REST + Legacy,no approval required,unavailable capability,unavailable_capability,1,medium
+REST + Legacy,no approval required,unsupported capability,unavailable_capability,2,medium
+REST only,no approval required,unavailable capability,unavailable_capability,1,medium
+REST only,no approval required,unsupported capability,unavailable_capability,1,medium
+Legacy only,no approval required,none,all_allow,3,short
+OPC UA + Legacy,no approval required,none,all_allow,3,short
+OPC UA + REST,no approval required,none,all_allow,3,short
+OPC UA + REST + Legacy,no approval required,none,all_allow,2,short
+OPC UA only,no approval required,none,all_allow,3,short
+REST + Legacy,no approval required,none,all_allow,3,short
+REST only,no approval required,none,all_allow,3,short
+Legacy only,no approval required,safe abort condition,allow_then_safe_abort,3,short
+OPC UA + Legacy,no approval required,safe abort condition,allow_then_safe_abort,3,short
+OPC UA + REST,no approval required,safe abort condition,allow_then_safe_abort,3,short
+OPC UA + REST + Legacy,no approval required,safe abort condition,allow_then_safe_abort,3,short
+OPC UA only,no approval required,safe abort condition,allow_then_safe_abort,3,short
+REST + Legacy,no approval required,safe abort condition,allow_then_safe_abort,3,short
+REST only,no approval required,safe abort condition,allow_then_safe_abort,2,short
+Legacy only,no approval required,invalid adapter mapping,invalid_mapping,3,short
+OPC UA + Legacy,no approval required,invalid adapter mapping,invalid_mapping,3,short
+OPC UA + REST,no approval required,invalid adapter mapping,invalid_mapping,3,short
+OPC UA + REST + Legacy,no approval required,invalid adapter mapping,invalid_mapping,3,short
+OPC UA only,no approval required,invalid adapter mapping,invalid_mapping,3,short
+REST + Legacy,no approval required,invalid adapter mapping,invalid_mapping,2,short
+REST only,no approval required,invalid adapter mapping,invalid_mapping,3,short
+Legacy only,valid approval,none,post_approval_valid,3,short
+OPC UA + Legacy,valid approval,none,post_approval_valid,3,short
+OPC UA + REST,valid approval,none,post_approval_valid,2,short
+OPC UA + REST + Legacy,valid approval,none,post_approval_valid,3,short
+OPC UA only,valid approval,none,post_approval_valid,3,short
+REST + Legacy,valid approval,none,post_approval_valid,3,short
+REST only,valid approval,none,post_approval_valid,3,short

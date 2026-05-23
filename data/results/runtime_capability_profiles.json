@@ -1,0 +1,84 @@
+{
+  "baseline_a_direct_without_governance": {
+    "description": "Direct adapter execution baseline without governance enforcement.",
+    "does_not_support": [
+      "policy filtering",
+      "approval validation",
+      "approval interrupt/resume",
+      "governance trace completeness"
+    ],
+    "interpretation_note": "Unsafe or policy-bypassing success remains non-compliant.",
+    "runtime_id": "baseline_a_direct_without_governance",
+    "supports": [
+      "direct mapped adapter invocation"
+    ]
+  },
+  "baseline_b_single_stage_execution": {
+    "description": "Single-stage heuristic baseline without planner/matcher separation.",
+    "does_not_support": [
+      "explicit capability matching",
+      "full workflow preservation",
+      "approval continuation",
+      "governance trace completeness"
+    ],
+    "interpretation_note": "Reduced architecture is expected to miss many gold outcomes.",
+    "runtime_id": "baseline_b_single_stage_execution",
+    "supports": [
+      "single-stage deterministic execution heuristic"
+    ]
+  },
+  "baseline_c_without_policy_filtering": {
+    "description": "Baseline that removes policy filtering from matched plans.",
+    "does_not_support": [
+      "blocking unsafe actions",
+      "approval gating",
+      "policy-compliant governance enforcement",
+      "governance trace completeness"
+    ],
+    "interpretation_note": "Policy-bypassing execution remains non-compliant.",
+    "runtime_id": "baseline_c_without_policy_filtering",
+    "supports": [
+      "matched adapter execution without policy filtering"
+    ]
+  },
+  "langgraph_runtime": {
+    "description": "Graph runtime wrapping the deterministic stages with approval continuation.",
+    "does_not_support": [
+      "live PLC execution",
+      "certified safety enforcement"
+    ],
+    "interpretation_note": "Valid approvals may produce success when validation and revalidation pass.",
+    "runtime_id": "langgraph_runtime",
+    "supports": [
+      "deterministic planning",
+      "capability matching",
+      "governance evaluation",
+      "governance-aware execution",
+      "controlled post-approval continuation",
+      "approval interrupt/resume",
+      "checkpoint persistence",
+      "restart-safe continuation",
+      "graph-native trace markers"
+    ]
+  },
+  "reference_v1": {
+    "description": "Reference deterministic governance-aware runtime.",
+    "does_not_support": [
+      "controlled post-approval execution",
+      "graph-native interrupt/resume",
+      "checkpoint persistence",
+      "restart-safe continuation"
+    ],
+    "interpretation_note": "Approval-required steps are expected to stop automatic governed execution rather than continue through a controlled approval resume.",
+    "runtime_id": "reference_v1",
+    "supports": [
+      "deterministic planning",
+      "capability matching",
+      "governance evaluation",
+      "governance-aware execution",
+      "blocking unsafe actions",
+      "safe abort behavior",
+      "approval_required stopping behavior"
+    ]
+  }
+}

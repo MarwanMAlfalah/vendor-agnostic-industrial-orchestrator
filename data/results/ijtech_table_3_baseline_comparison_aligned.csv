@@ -1,0 +1,7 @@
+baseline_aligned_policy_compliance_rate,baseline_runtime,baseline_unsafe_execution_rate,delta_aligned_policy_compliance,delta_unsafe_execution,proposed_aligned_policy_compliance_rate,proposed_runtime,proposed_unsafe_execution_rate
+0.0,baseline_a_direct_without_governance,0.583333,1.0,0.583333,1.0,reference_v1,0.0
+0.083333,baseline_b_single_stage_execution,0.0,0.916667,0.0,1.0,reference_v1,0.0
+0.416667,baseline_c_without_policy_filtering,0.583333,0.583333,0.583333,1.0,reference_v1,0.0
+0.0,baseline_a_direct_without_governance,0.583333,1.0,0.583333,1.0,langgraph_runtime,0.0
+0.083333,baseline_b_single_stage_execution,0.0,0.916667,0.0,1.0,langgraph_runtime,0.0
+0.416667,baseline_c_without_policy_filtering,0.583333,0.583333,0.583333,1.0,langgraph_runtime,0.0

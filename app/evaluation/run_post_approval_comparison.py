@@ -12,6 +12,7 @@ from app.evaluation.scenario_cases import (
     load_post_approval_evaluation_cases,
 )
 from app.langgraph_runtime import LangGraphRuntime
+from app.observability.summaries import comparison_summary
 from app.observability.tracing import trace_experiment
 
 RESULTS_DIR = Path("data/results")
@@ -44,7 +45,7 @@ def run_post_approval_comparison() -> tuple[list[dict[str, Any]], dict[str, Any]
         inputs={"case_count": len(cases)},
         metadata={"runtime_id": "post_approval_runner", "approval_case": True},
         tags=["evaluation", "post_approval"],
-    ):
+    ) as trace_handle:
         reference_runs = [GovernanceAwareReference().run_with_timing(case) for case in cases]
         langgraph_raw_runs = [
             LangGraphRuntime().run_case(
@@ -54,32 +55,33 @@ def run_post_approval_comparison() -> tuple[list[dict[str, Any]], dict[str, Any]
             )
             for case in cases
         ]
-    langgraph_runs = [
-        MethodRunResult(
-            case=run["case"],
-            result=run["result"],
-            stage_latencies_ms=run["stage_latencies_ms"],
-        )
-        for run in langgraph_raw_runs
-    ]
+        langgraph_runs = [
+            MethodRunResult(
+                case=run["case"],
+                result=run["result"],
+                stage_latencies_ms=run["stage_latencies_ms"],
+            )
+            for run in langgraph_raw_runs
+        ]
 
-    reference_records = _reference_records(reference_runs)
-    rows = [
-        _runtime_row(
-            "reference_v1",
-            "Reference v1 custom deterministic orchestration",
-            reference_runs,
-            reference_records,
-            graph_runtime=False,
-        ),
-        _runtime_row(
-            "langgraph_runtime",
-            "Experimental LangGraph controlled approval continuation",
-            langgraph_runs,
-            langgraph_raw_runs,
-            graph_runtime=True,
-        ),
-    ]
+        reference_records = _reference_records(reference_runs)
+        rows = [
+            _runtime_row(
+                "reference_v1",
+                "Reference v1 custom deterministic orchestration",
+                reference_runs,
+                reference_records,
+                graph_runtime=False,
+            ),
+            _runtime_row(
+                "langgraph_runtime",
+                "Experimental LangGraph controlled approval continuation",
+                langgraph_runs,
+                langgraph_raw_runs,
+                graph_runtime=True,
+            ),
+        ]
+        trace_handle.add_outputs(comparison_summary(rows))
 
     summary = {
         "evaluation_design": {

@@ -2,7 +2,7 @@
 
 ## Extension Thesis
 
-The IJTech manuscript should be framed as a journal-first article on governance-aware vendor-agnostic industrial orchestration. The SEDM-style material is useful as a seed, but the journal contribution is broader: it adds scaled deterministic evaluation, runtime-specific expectation alignment, supported-versus-stress analysis, richer table/figure packaging, and clearer industrial validity boundaries.
+The IJTech manuscript should be framed as a journal article on governance-aware vendor-agnostic industrial orchestration. The SEDM-style material is useful as a seed, but the journal contribution is broader: it adds scaled deterministic evaluation, runtime-specific expectation alignment, supported-versus-stress analysis, richer table/figure packaging, and clearer industrial validity boundaries.
 
 ## What Carries Over From The SEDM Draft
 

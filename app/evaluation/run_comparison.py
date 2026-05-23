@@ -8,6 +8,7 @@ from typing import Any
 from app.evaluation.baselines import EvaluationMethod, MethodRunResult, comparison_methods
 from app.evaluation.metrics import compute_metrics, flatten_metrics
 from app.evaluation.scenario_cases import EvaluationCase, load_evaluation_cases
+from app.observability.summaries import comparison_summary
 from app.observability.tracing import trace_experiment
 
 RESULTS_DIR = Path("data/results")
@@ -49,7 +50,7 @@ def run_comparison() -> tuple[list[dict[str, Any]], dict[str, Any]]:
         inputs={"case_count": len(cases)},
         metadata={"runtime_id": "comparison_runner"},
         tags=["evaluation", "comparison"],
-    ):
+    ) as trace_handle:
         for method in comparison_methods():
             method_results = _run_method(method, cases)
             metrics = compute_metrics(method_results)
@@ -69,6 +70,7 @@ def run_comparison() -> tuple[list[dict[str, Any]], dict[str, Any]]:
                     for method_result in method_results
                 ],
             }
+        trace_handle.add_outputs(comparison_summary(aggregate_rows))
 
     _write_comparison_csv(COMPARISON_CSV, aggregate_rows)
     BASELINE_SUMMARY_JSON.write_text(

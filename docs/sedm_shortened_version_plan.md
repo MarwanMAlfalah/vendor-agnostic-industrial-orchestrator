@@ -2,7 +2,7 @@
 
 ## Purpose
 
-The SEDM version should be a shorter conference-style derivative of the IJTech-first manuscript, not the primary manuscript. It should focus on the core architecture and a compact empirical story while pointing to the journal package for the expanded deterministic evaluation.
+The SEDM version should be a shorter conference-style derivative of the journal manuscript, not the primary manuscript. It should focus on the core architecture and a compact empirical story while pointing to the journal version for the expanded deterministic evaluation.
 
 ## Recommended Short Title
 
@@ -62,10 +62,10 @@ Industrial workflows often span OPC UA interfaces, REST services, and legacy ven
 ## Shortened Results To Retain
 
 - Canonical governance reference runtime: policy compliance 1.0, unsafe execution 0.0, governance decision accuracy 1.0, final outcome accuracy 1.0.
-- Aligned 240-scenario journal profile: `reference_v1` and `langgraph_runtime` both reach aligned policy compliance 1.0, final outcome accuracy 1.0, unsafe execution 0.0, approval bypass 0.0, invalid mapping containment 1.0, and trace completeness 1.0.
+- Aligned 240-scenario journal profile: under original labels, `reference_v1` reports policy compliance of 0.854167 and final outcome accuracy of 0.875, while `langgraph_runtime` reports 0.979167 for both metrics; under documented aligned expectations within the deterministic mock-adapter scope, both report aligned policy compliance 1.0, final outcome accuracy 1.0, unsafe execution 0.0, approval bypass 0.0, invalid mapping containment 1.0, and trace completeness 1.0.
 - Baseline A and Baseline C: unsafe execution 0.583333 in the aligned journal profile.
 - Baseline B: aligned policy compliance 0.083333 and final outcome accuracy 0.166667.
-- LangGraph post-approval continuation: approval validation, approved step execution, post-resume final outcome accuracy, gated step policy compliance, and approved execution trace completeness all reported as 1.0 in the unified report.
+- LangGraph post-approval continuation: approval validation, approved step execution, post-resume final outcome accuracy, gated step policy compliance, and approved execution trace completeness are reported as 1.0 in the local deterministic continuation tests.
 
 ## Shortened Limitations To Retain
 

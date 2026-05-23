@@ -2,7 +2,7 @@
 
 ## Reference Architecture
 
-The prototype is organized as a supervisory orchestration stack. A goal is converted into a deterministic plan. Plan steps are matched to a capability registry that maps required capabilities to available adapter implementations. A governance layer evaluates each mapped step and assigns one of the supported decisions: `ALLOW`, `REQUIRE_APPROVAL`, `BLOCK`, `FALLBACK`, or `SAFE_ABORT`. The execution layer invokes only governance-compatible adapter calls and records step-level outcomes, final status, skipped steps, failed steps, latency, and trace markers.
+The prototype is organized as a supervisory orchestration stack. A goal is converted into a deterministic plan. Plan steps are matched to a capability registry that maps required capabilities to available adapter implementations. A governance layer evaluates each mapped step and assigns one of the supported decisions: `ALLOW`, `REQUIRE_APPROVAL`, `BLOCK`, `FALLBACK`, or `SAFE_ABORT` (Author, year). The execution layer invokes only governance-compatible adapter calls and records step-level outcomes, final status, skipped steps, failed steps, latency, and trace markers.
 
 The adapter layer contains mock OPC UA, REST, and legacy vendor-style capabilities. These adapters provide deterministic responses and are used for controlled evaluation only. They do not demonstrate live PLC integration, vendor certification, network behavior, device-level control, or production safety.
 
@@ -16,7 +16,7 @@ Three baselines are included. Baseline A executes mapped adapter steps directly 
 
 ## Scenario Generator
 
-The scaled evaluation uses a deterministic scenario generator with fixed configuration. It balances scenarios across workflow length, governance pattern, adapter mix, approval condition, and failure or containment condition. Workflow lengths include short, medium, and long workflows. Governance patterns include all-allow workflows, approval gates, blocked actions, safe aborts, mixed workflows, post-approval cases, invalid mappings, unavailable capabilities, and malformed payload conditions.
+The scaled evaluation uses a deterministic scenario generator with fixed configuration. It balances scenarios across workflow length, governance pattern, adapter mix, approval condition, and failure or containment condition (Author, year). Workflow lengths include short, medium, and long workflows. Governance patterns include all-allow workflows, approval gates, blocked actions, safe aborts, mixed workflows, post-approval cases, invalid mappings, unavailable capabilities, and malformed payload conditions.
 
 Three profiles are available:
 
@@ -30,7 +30,7 @@ The 240-scenario journal profile is the main source for the manuscript tables. T
 
 ## Metrics
 
-The evaluation reports policy compliance, unsafe execution, approval bypass, final outcome accuracy, governance decision accuracy, invalid mapping containment, trace completeness, restart recovery where applicable, and latency summaries. Wilson 95% confidence intervals are used for proportion metrics. Since the benchmark is deterministic, these intervals are interpreted as scenario-distribution intervals over a finite generated benchmark, not as stochastic model uncertainty.
+The evaluation reports policy compliance, unsafe execution, approval bypass, final outcome accuracy, governance decision accuracy, invalid mapping containment, trace completeness, restart recovery where applicable, and latency summaries. Wilson 95% confidence intervals are used for proportion metrics. Since the benchmark is deterministic, these intervals are interpreted as scenario-distribution intervals over a finite generated benchmark, not as stochastic model uncertainty (Author, year).
 
 The main manuscript emphasizes policy-centric metrics. In governed industrial workflows, the correct outcome may be non-execution: a workflow can be correct when it stops for approval, blocks a prohibited step, or safe-aborts after invalid mapping or malformed payload detection. Therefore, raw execution coverage or apparent task completion is insufficient.
 
@@ -39,6 +39,10 @@ The main manuscript emphasizes policy-centric metrics. In governed industrial wo
 The original scaled evaluation used one global expected final status per scenario. The error audit showed that this can unfairly penalize runtimes with different supported capabilities. For example, `reference_v1` intentionally stops at `approval_required` and does not perform controlled post-approval continuation. Conversely, `langgraph_runtime` may correctly reach `success` after valid approval and revalidation.
 
 The aligned evaluation keeps original scenario labels as descriptive labels but adds runtime-specific expected outcomes. Alignment does not remove scenarios, hide negative results, or excuse unsafe behavior. Unsafe execution and approval bypass remain non-compliant for all runtimes. Each aligned result row includes the original expected label, aligned expected label, and the documented rule used for alignment.
+
+## Reproducibility
+
+For reproducibility, the evaluation artifacts are organized around deterministic scenario profiles and generated result tables. The main manuscript uses the current 240-scenario journal profile, the 500-scenario extended profile, and the existing CSV/JSON summaries for baseline comparison, aligned metrics, latency, supported-versus-stress scope, and figure data. Reproduction should preserve the same deterministic scenario configuration, runtime profiles, and mock-adapter setting; regenerated outputs should be compared against the provided result summaries before being used in a revised manuscript.
 
 ## Supported And Stress Scope
 

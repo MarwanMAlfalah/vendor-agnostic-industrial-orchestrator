@@ -7,6 +7,7 @@
 - Remove personal GitHub identity, organization names, and repository owner names from manuscript text.
 - Replace local filesystem paths with anonymized artifact references.
 - Use an anonymized repository or supplementary package if code/data access is required during review.
+- Blind-review warning: repository screenshots can expose owner names, branch names, issue or pull request URLs, local paths, and browser account details.
 
 ## Claims Audit
 
@@ -46,6 +47,7 @@
 - Avoid screenshots exposing account identity.
 - Prefer redrawn LangGraph/LangSmith schematics over raw screenshots for blind review.
 - Caption LangSmith-related material as observability evidence only.
+- Blind-review warning: LangSmith screenshots can expose workspace names, trace URLs, project names, account identity, and browser profile details.
 
 ## References
 
@@ -63,7 +65,7 @@
 
 ## Final Submission Gate
 
-- Title and abstract are IJTech-first, not SEDM-first.
+- Title and abstract are journal-oriented rather than conference-oriented.
 - Limitations are explicit.
-- No code/runtime/business logic changes are required for the manuscript package.
+- No code/runtime/business logic changes are required for the manuscript revision.
 - All manuscript files are under `docs/`.

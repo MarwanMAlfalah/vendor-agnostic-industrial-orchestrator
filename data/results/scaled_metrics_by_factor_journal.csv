@@ -1,0 +1,231 @@
+approval_bypass_rate,count,factor_name,factor_value,final_outcome_accuracy,invalid_mapping_containment_rate,mean_latency_ms,p95_latency_ms,policy_compliance_rate,runtime_id,trace_completeness,unsafe_execution_rate
+0.0,20,scenario_family,all_allow,1.0,1.0,0.010579,0.011402,0.0,baseline_a_direct_without_governance,0.0,0.0
+0.0,20,scenario_family,allow_then_block,0.0,1.0,0.025383,0.028277,0.0,baseline_a_direct_without_governance,0.0,1.0
+1.0,20,scenario_family,allow_then_require_approval,0.0,1.0,0.017056,0.018271,0.0,baseline_a_direct_without_governance,0.0,1.0
+0.0,20,scenario_family,allow_then_safe_abort,0.0,0.0,0.009867,0.011442,0.0,baseline_a_direct_without_governance,0.0,0.0
+0.0,20,scenario_family,invalid_mapping,0.0,0.0,0.0099,0.011381,0.0,baseline_a_direct_without_governance,0.0,0.0
+0.0,20,scenario_family,malformed_payload,0.0,0.0,0.026958,0.028756,0.0,baseline_a_direct_without_governance,0.0,0.0
+1.0,20,scenario_family,mixed_allow_approval_block,0.0,1.0,0.015804,0.019685,0.0,baseline_a_direct_without_governance,0.0,1.0
+1.0,20,scenario_family,mixed_allow_approval_safe_abort,0.0,0.0,0.022204,0.023549,0.0,baseline_a_direct_without_governance,0.0,1.0
+1.0,20,scenario_family,post_approval_invalid,0.0,1.0,0.017427,0.022202,0.0,baseline_a_direct_without_governance,0.0,1.0
+1.0,20,scenario_family,post_approval_missing,0.0,1.0,0.021208,0.022413,0.0,baseline_a_direct_without_governance,0.0,1.0
+1.0,20,scenario_family,post_approval_valid,1.0,1.0,0.010842,0.013419,0.0,baseline_a_direct_without_governance,0.0,1.0
+0.0,20,scenario_family,unavailable_capability,0.0,0.0,0.016298,0.017129,0.0,baseline_a_direct_without_governance,0.0,0.0
+0.0,20,scenario_family,all_allow,1.0,1.0,0.009398,0.010084,1.0,baseline_b_single_stage_execution,0.0,0.0
+0.0,20,scenario_family,allow_then_block,0.0,1.0,0.009812,0.010292,0.0,baseline_b_single_stage_execution,0.0,0.0
+0.0,20,scenario_family,allow_then_require_approval,0.0,1.0,0.009846,0.011259,0.0,baseline_b_single_stage_execution,0.0,0.0
+0.0,20,scenario_family,allow_then_safe_abort,0.0,0.0,0.00955,0.010304,0.0,baseline_b_single_stage_execution,0.0,0.0
+0.0,20,scenario_family,invalid_mapping,0.0,0.0,0.010173,0.015335,0.0,baseline_b_single_stage_execution,0.0,0.0
+0.0,20,scenario_family,malformed_payload,0.0,0.0,0.009792,0.010275,0.0,baseline_b_single_stage_execution,0.0,0.0
+0.0,20,scenario_family,mixed_allow_approval_block,0.0,1.0,0.01011,0.012807,0.0,baseline_b_single_stage_execution,0.0,0.0
+0.0,20,scenario_family,mixed_allow_approval_safe_abort,0.0,0.0,0.009567,0.010294,0.0,baseline_b_single_stage_execution,0.0,0.0
+0.0,20,scenario_family,post_approval_invalid,0.0,1.0,0.010177,0.013502,0.0,baseline_b_single_stage_execution,0.0,0.0
+0.0,20,scenario_family,post_approval_missing,0.0,1.0,0.0097,0.010691,0.0,baseline_b_single_stage_execution,0.0,0.0
+0.0,20,scenario_family,post_approval_valid,1.0,1.0,0.009867,0.011368,0.0,baseline_b_single_stage_execution,0.0,0.0
+0.0,20,scenario_family,unavailable_capability,0.0,0.0,0.009989,0.011408,0.0,baseline_b_single_stage_execution,0.0,0.0
+0.0,20,scenario_family,all_allow,1.0,1.0,0.010689,0.012337,1.0,baseline_c_without_policy_filtering,0.0,0.0
+0.0,20,scenario_family,allow_then_block,0.0,1.0,0.028544,0.029594,0.0,baseline_c_without_policy_filtering,0.0,1.0
+1.0,20,scenario_family,allow_then_require_approval,0.0,1.0,0.020075,0.021388,0.0,baseline_c_without_policy_filtering,0.0,1.0
+0.0,20,scenario_family,allow_then_safe_abort,1.0,1.0,0.009938,0.010421,1.0,baseline_c_without_policy_filtering,0.0,0.0
+0.0,20,scenario_family,invalid_mapping,1.0,1.0,0.009836,0.010465,1.0,baseline_c_without_policy_filtering,0.0,0.0
+0.0,20,scenario_family,malformed_payload,1.0,1.0,0.028031,0.029346,1.0,baseline_c_without_policy_filtering,0.0,0.0
+1.0,20,scenario_family,mixed_allow_approval_block,0.0,1.0,0.019771,0.024784,0.0,baseline_c_without_policy_filtering,0.0,1.0
+1.0,20,scenario_family,mixed_allow_approval_safe_abort,1.0,1.0,0.025273,0.026342,1.0,baseline_c_without_policy_filtering,0.0,1.0
+1.0,20,scenario_family,post_approval_invalid,0.0,1.0,0.020575,0.024978,0.0,baseline_c_without_policy_filtering,0.0,1.0
+1.0,20,scenario_family,post_approval_missing,0.0,1.0,0.024704,0.030395,0.0,baseline_c_without_policy_filtering,0.0,1.0
+1.0,20,scenario_family,post_approval_valid,1.0,1.0,0.013094,0.013969,0.0,baseline_c_without_policy_filtering,0.0,1.0
+0.0,20,scenario_family,unavailable_capability,1.0,1.0,0.014544,0.014908,1.0,baseline_c_without_policy_filtering,0.0,0.0
+0.0,20,scenario_family,all_allow,1.0,1.0,1.027698,1.128428,1.0,langgraph_runtime,1.0,0.0
+0.0,20,scenario_family,allow_then_block,1.0,1.0,1.067902,1.153992,1.0,langgraph_runtime,1.0,0.0
+0.0,20,scenario_family,allow_then_require_approval,0.75,1.0,1.41829,1.575427,0.75,langgraph_runtime,1.0,0.0
+0.0,20,scenario_family,allow_then_safe_abort,1.0,1.0,1.015027,1.095673,1.0,langgraph_runtime,1.0,0.0
+0.0,20,scenario_family,invalid_mapping,1.0,1.0,1.003046,1.063164,1.0,langgraph_runtime,1.0,0.0
+0.0,20,scenario_family,malformed_payload,1.0,1.0,1.156621,1.227875,1.0,langgraph_runtime,1.0,0.0
+0.0,20,scenario_family,mixed_allow_approval_block,1.0,1.0,1.405375,1.503402,1.0,langgraph_runtime,1.0,0.0
+0.0,20,scenario_family,mixed_allow_approval_safe_abort,1.0,1.0,1.418521,1.471663,1.0,langgraph_runtime,1.0,0.0
+0.0,20,scenario_family,post_approval_invalid,1.0,1.0,1.412571,1.517706,1.0,langgraph_runtime,1.0,0.0
+0.0,20,scenario_family,post_approval_missing,1.0,1.0,1.39575,1.440821,1.0,langgraph_runtime,1.0,0.0
+0.0,20,scenario_family,post_approval_valid,1.0,1.0,1.868775,2.373048,1.0,langgraph_runtime,1.0,0.0
+0.0,20,scenario_family,unavailable_capability,1.0,1.0,1.040429,1.097855,1.0,langgraph_runtime,1.0,0.0
+0.0,20,scenario_family,all_allow,1.0,1.0,0.013604,0.014716,1.0,reference_v1,1.0,0.0
+0.0,20,scenario_family,allow_then_block,1.0,1.0,0.02849,0.030319,1.0,reference_v1,1.0,0.0
+0.0,20,scenario_family,allow_then_require_approval,0.75,1.0,0.019867,0.020748,0.5,reference_v1,1.0,0.0
+0.0,20,scenario_family,allow_then_safe_abort,1.0,1.0,0.013335,0.017334,1.0,reference_v1,1.0,0.0
+0.0,20,scenario_family,invalid_mapping,1.0,1.0,0.012565,0.01322,1.0,reference_v1,1.0,0.0
+0.0,20,scenario_family,malformed_payload,1.0,1.0,0.032252,0.038515,1.0,reference_v1,1.0,0.0
+0.0,20,scenario_family,mixed_allow_approval_block,0.75,1.0,0.017256,0.018161,0.75,reference_v1,1.0,0.0
+0.0,20,scenario_family,mixed_allow_approval_safe_abort,1.0,1.0,0.025915,0.03054,1.0,reference_v1,1.0,0.0
+0.0,20,scenario_family,post_approval_invalid,1.0,1.0,0.019977,0.021593,1.0,reference_v1,1.0,0.0
+0.0,20,scenario_family,post_approval_missing,1.0,1.0,0.024298,0.027135,1.0,reference_v1,1.0,0.0
+0.0,20,scenario_family,post_approval_valid,0.0,1.0,0.013285,0.013855,0.0,reference_v1,1.0,0.0
+0.0,20,scenario_family,unavailable_capability,1.0,1.0,0.017198,0.01809,1.0,reference_v1,1.0,0.0
+0.5,80,workflow_length,long,0.0,0.5,0.023939,0.028125,0.0,baseline_a_direct_without_governance,0.0,0.75
+0.75,80,workflow_length,medium,0.0,0.75,0.016646,0.019585,0.0,baseline_a_direct_without_governance,0.0,0.75
+0.25,80,workflow_length,short,0.5,0.5,0.010297,0.012728,0.0,baseline_a_direct_without_governance,0.0,0.25
+0.0,80,workflow_length,long,0.0,0.5,0.009718,0.01035,0.0,baseline_b_single_stage_execution,0.0,0.0
+0.0,80,workflow_length,medium,0.0,0.75,0.010031,0.012807,0.0,baseline_b_single_stage_execution,0.0,0.0
+0.0,80,workflow_length,short,0.5,0.5,0.009747,0.010896,0.25,baseline_b_single_stage_execution,0.0,0.0
+0.5,80,workflow_length,long,0.5,1.0,0.026638,0.029535,0.5,baseline_c_without_policy_filtering,0.0,0.75
+0.75,80,workflow_length,medium,0.25,1.0,0.018741,0.024675,0.25,baseline_c_without_policy_filtering,0.0,0.75
+0.25,80,workflow_length,short,1.0,1.0,0.010889,0.013337,0.75,baseline_c_without_policy_filtering,0.0,0.25
+0.0,80,workflow_length,long,1.0,1.0,1.259698,1.466165,1.0,langgraph_runtime,1.0,0.0
+0.0,80,workflow_length,medium,0.9375,1.0,1.319166,1.517785,0.9375,langgraph_runtime,1.0,0.0
+0.0,80,workflow_length,short,1.0,1.0,1.228636,1.440215,1.0,langgraph_runtime,1.0,0.0
+0.0,80,workflow_length,long,1.0,1.0,0.027739,0.032852,1.0,reference_v1,1.0,0.0
+0.0,80,workflow_length,medium,0.875,1.0,0.018575,0.020598,0.8125,reference_v1,1.0,0.0
+0.0,80,workflow_length,short,0.75,1.0,0.013197,0.014716,0.75,reference_v1,1.0,0.0
+0.0,20,governance_pattern,all_allow,1.0,1.0,0.010579,0.011402,0.0,baseline_a_direct_without_governance,0.0,0.0
+0.0,20,governance_pattern,allow_then_block,0.0,1.0,0.025383,0.028277,0.0,baseline_a_direct_without_governance,0.0,1.0
+1.0,20,governance_pattern,allow_then_require_approval,0.0,1.0,0.017056,0.018271,0.0,baseline_a_direct_without_governance,0.0,1.0
+0.0,20,governance_pattern,allow_then_safe_abort,0.0,0.0,0.009867,0.011442,0.0,baseline_a_direct_without_governance,0.0,0.0
+0.0,20,governance_pattern,invalid_mapping,0.0,0.0,0.0099,0.011381,0.0,baseline_a_direct_without_governance,0.0,0.0
+0.0,20,governance_pattern,malformed_payload,0.0,0.0,0.026958,0.028756,0.0,baseline_a_direct_without_governance,0.0,0.0
+1.0,20,governance_pattern,mixed_allow_approval_block,0.0,1.0,0.015804,0.019685,0.0,baseline_a_direct_without_governance,0.0,1.0
+1.0,20,governance_pattern,mixed_allow_approval_safe_abort,0.0,0.0,0.022204,0.023549,0.0,baseline_a_direct_without_governance,0.0,1.0
+1.0,20,governance_pattern,post_approval_invalid,0.0,1.0,0.017427,0.022202,0.0,baseline_a_direct_without_governance,0.0,1.0
+1.0,20,governance_pattern,post_approval_missing,0.0,1.0,0.021208,0.022413,0.0,baseline_a_direct_without_governance,0.0,1.0
+1.0,20,governance_pattern,post_approval_valid,1.0,1.0,0.010842,0.013419,0.0,baseline_a_direct_without_governance,0.0,1.0
+0.0,20,governance_pattern,unavailable_capability,0.0,0.0,0.016298,0.017129,0.0,baseline_a_direct_without_governance,0.0,0.0
+0.0,20,governance_pattern,all_allow,1.0,1.0,0.009398,0.010084,1.0,baseline_b_single_stage_execution,0.0,0.0
+0.0,20,governance_pattern,allow_then_block,0.0,1.0,0.009812,0.010292,0.0,baseline_b_single_stage_execution,0.0,0.0
+0.0,20,governance_pattern,allow_then_require_approval,0.0,1.0,0.009846,0.011259,0.0,baseline_b_single_stage_execution,0.0,0.0
+0.0,20,governance_pattern,allow_then_safe_abort,0.0,0.0,0.00955,0.010304,0.0,baseline_b_single_stage_execution,0.0,0.0
+0.0,20,governance_pattern,invalid_mapping,0.0,0.0,0.010173,0.015335,0.0,baseline_b_single_stage_execution,0.0,0.0
+0.0,20,governance_pattern,malformed_payload,0.0,0.0,0.009792,0.010275,0.0,baseline_b_single_stage_execution,0.0,0.0
+0.0,20,governance_pattern,mixed_allow_approval_block,0.0,1.0,0.01011,0.012807,0.0,baseline_b_single_stage_execution,0.0,0.0
+0.0,20,governance_pattern,mixed_allow_approval_safe_abort,0.0,0.0,0.009567,0.010294,0.0,baseline_b_single_stage_execution,0.0,0.0
+0.0,20,governance_pattern,post_approval_invalid,0.0,1.0,0.010177,0.013502,0.0,baseline_b_single_stage_execution,0.0,0.0
+0.0,20,governance_pattern,post_approval_missing,0.0,1.0,0.0097,0.010691,0.0,baseline_b_single_stage_execution,0.0,0.0
+0.0,20,governance_pattern,post_approval_valid,1.0,1.0,0.009867,0.011368,0.0,baseline_b_single_stage_execution,0.0,0.0
+0.0,20,governance_pattern,unavailable_capability,0.0,0.0,0.009989,0.011408,0.0,baseline_b_single_stage_execution,0.0,0.0
+0.0,20,governance_pattern,all_allow,1.0,1.0,0.010689,0.012337,1.0,baseline_c_without_policy_filtering,0.0,0.0
+0.0,20,governance_pattern,allow_then_block,0.0,1.0,0.028544,0.029594,0.0,baseline_c_without_policy_filtering,0.0,1.0
+1.0,20,governance_pattern,allow_then_require_approval,0.0,1.0,0.020075,0.021388,0.0,baseline_c_without_policy_filtering,0.0,1.0
+0.0,20,governance_pattern,allow_then_safe_abort,1.0,1.0,0.009938,0.010421,1.0,baseline_c_without_policy_filtering,0.0,0.0
+0.0,20,governance_pattern,invalid_mapping,1.0,1.0,0.009836,0.010465,1.0,baseline_c_without_policy_filtering,0.0,0.0
+0.0,20,governance_pattern,malformed_payload,1.0,1.0,0.028031,0.029346,1.0,baseline_c_without_policy_filtering,0.0,0.0
+1.0,20,governance_pattern,mixed_allow_approval_block,0.0,1.0,0.019771,0.024784,0.0,baseline_c_without_policy_filtering,0.0,1.0
+1.0,20,governance_pattern,mixed_allow_approval_safe_abort,1.0,1.0,0.025273,0.026342,1.0,baseline_c_without_policy_filtering,0.0,1.0
+1.0,20,governance_pattern,post_approval_invalid,0.0,1.0,0.020575,0.024978,0.0,baseline_c_without_policy_filtering,0.0,1.0
+1.0,20,governance_pattern,post_approval_missing,0.0,1.0,0.024704,0.030395,0.0,baseline_c_without_policy_filtering,0.0,1.0
+1.0,20,governance_pattern,post_approval_valid,1.0,1.0,0.013094,0.013969,0.0,baseline_c_without_policy_filtering,0.0,1.0
+0.0,20,governance_pattern,unavailable_capability,1.0,1.0,0.014544,0.014908,1.0,baseline_c_without_policy_filtering,0.0,0.0
+0.0,20,governance_pattern,all_allow,1.0,1.0,1.027698,1.128428,1.0,langgraph_runtime,1.0,0.0
+0.0,20,governance_pattern,allow_then_block,1.0,1.0,1.067902,1.153992,1.0,langgraph_runtime,1.0,0.0
+0.0,20,governance_pattern,allow_then_require_approval,0.75,1.0,1.41829,1.575427,0.75,langgraph_runtime,1.0,0.0
+0.0,20,governance_pattern,allow_then_safe_abort,1.0,1.0,1.015027,1.095673,1.0,langgraph_runtime,1.0,0.0
+0.0,20,governance_pattern,invalid_mapping,1.0,1.0,1.003046,1.063164,1.0,langgraph_runtime,1.0,0.0
+0.0,20,governance_pattern,malformed_payload,1.0,1.0,1.156621,1.227875,1.0,langgraph_runtime,1.0,0.0
+0.0,20,governance_pattern,mixed_allow_approval_block,1.0,1.0,1.405375,1.503402,1.0,langgraph_runtime,1.0,0.0
+0.0,20,governance_pattern,mixed_allow_approval_safe_abort,1.0,1.0,1.418521,1.471663,1.0,langgraph_runtime,1.0,0.0
+0.0,20,governance_pattern,post_approval_invalid,1.0,1.0,1.412571,1.517706,1.0,langgraph_runtime,1.0,0.0
+0.0,20,governance_pattern,post_approval_missing,1.0,1.0,1.39575,1.440821,1.0,langgraph_runtime,1.0,0.0
+0.0,20,governance_pattern,post_approval_valid,1.0,1.0,1.868775,2.373048,1.0,langgraph_runtime,1.0,0.0
+0.0,20,governance_pattern,unavailable_capability,1.0,1.0,1.040429,1.097855,1.0,langgraph_runtime,1.0,0.0
+0.0,20,governance_pattern,all_allow,1.0,1.0,0.013604,0.014716,1.0,reference_v1,1.0,0.0
+0.0,20,governance_pattern,allow_then_block,1.0,1.0,0.02849,0.030319,1.0,reference_v1,1.0,0.0
+0.0,20,governance_pattern,allow_then_require_approval,0.75,1.0,0.019867,0.020748,0.5,reference_v1,1.0,0.0
+0.0,20,governance_pattern,allow_then_safe_abort,1.0,1.0,0.013335,0.017334,1.0,reference_v1,1.0,0.0
+0.0,20,governance_pattern,invalid_mapping,1.0,1.0,0.012565,0.01322,1.0,reference_v1,1.0,0.0
+0.0,20,governance_pattern,malformed_payload,1.0,1.0,0.032252,0.038515,1.0,reference_v1,1.0,0.0
+0.0,20,governance_pattern,mixed_allow_approval_block,0.75,1.0,0.017256,0.018161,0.75,reference_v1,1.0,0.0
+0.0,20,governance_pattern,mixed_allow_approval_safe_abort,1.0,1.0,0.025915,0.03054,1.0,reference_v1,1.0,0.0
+0.0,20,governance_pattern,post_approval_invalid,1.0,1.0,0.019977,0.021593,1.0,reference_v1,1.0,0.0
+0.0,20,governance_pattern,post_approval_missing,1.0,1.0,0.024298,0.027135,1.0,reference_v1,1.0,0.0
+0.0,20,governance_pattern,post_approval_valid,0.0,1.0,0.013285,0.013855,0.0,reference_v1,1.0,0.0
+0.0,20,governance_pattern,unavailable_capability,1.0,1.0,0.017198,0.01809,1.0,reference_v1,1.0,0.0
+0.470588,34,adapter_mix,Legacy only,0.176471,0.558824,0.016401,0.02631,0.0,baseline_a_direct_without_governance,0.0,0.558824
+0.5,34,adapter_mix,OPC UA + Legacy,0.176471,0.588235,0.017229,0.02799,0.0,baseline_a_direct_without_governance,0.0,0.588235
+0.485714,35,adapter_mix,OPC UA + REST,0.142857,0.571429,0.016794,0.025591,0.0,baseline_a_direct_without_governance,0.0,0.571429
+0.5,34,adapter_mix,OPC UA + REST + Legacy,0.147059,0.558824,0.017768,0.028125,0.0,baseline_a_direct_without_governance,0.0,0.588235
+0.485714,35,adapter_mix,OPC UA only,0.171429,0.6,0.016407,0.025387,0.0,baseline_a_direct_without_governance,0.0,0.571429
+0.529412,34,adapter_mix,REST + Legacy,0.176471,0.588235,0.016991,0.025849,0.0,baseline_a_direct_without_governance,0.0,0.588235
+0.529412,34,adapter_mix,REST only,0.176471,0.617647,0.017154,0.025227,0.0,baseline_a_direct_without_governance,0.0,0.617647
+0.0,34,adapter_mix,Legacy only,0.176471,0.558824,0.009536,0.01007,0.088235,baseline_b_single_stage_execution,0.0,0.0
+0.0,34,adapter_mix,OPC UA + Legacy,0.176471,0.588235,0.009837,0.011291,0.088235,baseline_b_single_stage_execution,0.0,0.0
+0.0,35,adapter_mix,OPC UA + REST,0.142857,0.571429,0.009695,0.010363,0.085714,baseline_b_single_stage_execution,0.0,0.0
+0.0,34,adapter_mix,OPC UA + REST + Legacy,0.147059,0.558824,0.009895,0.011783,0.058824,baseline_b_single_stage_execution,0.0,0.0
+0.0,35,adapter_mix,OPC UA only,0.171429,0.6,0.010231,0.014667,0.085714,baseline_b_single_stage_execution,0.0,0.0
+0.0,34,adapter_mix,REST + Legacy,0.176471,0.588235,0.009969,0.012671,0.088235,baseline_b_single_stage_execution,0.0,0.0
+0.0,34,adapter_mix,REST only,0.176471,0.617647,0.009652,0.010156,0.088235,baseline_b_single_stage_execution,0.0,0.0
+0.470588,34,adapter_mix,Legacy only,0.617647,1.0,0.018441,0.02866,0.529412,baseline_c_without_policy_filtering,0.0,0.558824
+0.5,34,adapter_mix,OPC UA + Legacy,0.588235,1.0,0.018737,0.028954,0.5,baseline_c_without_policy_filtering,0.0,0.588235
+0.485714,35,adapter_mix,OPC UA + REST,0.571429,1.0,0.018449,0.028208,0.514286,baseline_c_without_policy_filtering,0.0,0.571429
+0.5,34,adapter_mix,OPC UA + REST + Legacy,0.588235,1.0,0.019748,0.032279,0.5,baseline_c_without_policy_filtering,0.0,0.588235
+0.485714,35,adapter_mix,OPC UA only,0.571429,1.0,0.01828,0.028121,0.485714,baseline_c_without_policy_filtering,0.0,0.571429
+0.529412,34,adapter_mix,REST + Legacy,0.588235,1.0,0.019092,0.028102,0.5,baseline_c_without_policy_filtering,0.0,0.588235
+0.529412,34,adapter_mix,REST only,0.558824,1.0,0.01857,0.027838,0.470588,baseline_c_without_policy_filtering,0.0,0.617647
+0.0,34,adapter_mix,Legacy only,1.0,1.0,1.220988,1.447979,1.0,langgraph_runtime,1.0,0.0
+0.0,34,adapter_mix,OPC UA + Legacy,0.970588,1.0,1.484771,1.453638,0.970588,langgraph_runtime,1.0,0.0
+0.0,35,adapter_mix,OPC UA + REST,0.971429,1.0,1.222701,1.486938,0.971429,langgraph_runtime,1.0,0.0
+0.0,34,adapter_mix,OPC UA + REST + Legacy,1.0,1.0,1.2579,1.4734,1.0,langgraph_runtime,1.0,0.0
+0.0,35,adapter_mix,OPC UA only,0.971429,1.0,1.212382,1.451129,0.971429,langgraph_runtime,1.0,0.0
+0.0,34,adapter_mix,REST + Legacy,0.970588,1.0,1.257704,1.568938,0.970588,langgraph_runtime,1.0,0.0
+0.0,34,adapter_mix,REST only,0.970588,1.0,1.230761,1.500114,0.970588,langgraph_runtime,1.0,0.0
+0.0,34,adapter_mix,Legacy only,0.882353,1.0,0.019322,0.029606,0.882353,reference_v1,1.0,0.0
+0.0,34,adapter_mix,OPC UA + Legacy,0.882353,1.0,0.019294,0.028955,0.852941,reference_v1,1.0,0.0
+0.0,35,adapter_mix,OPC UA + REST,0.885714,1.0,0.019856,0.029159,0.857143,reference_v1,1.0,0.0
+0.0,34,adapter_mix,OPC UA + REST + Legacy,0.852941,1.0,0.021209,0.031773,0.852941,reference_v1,1.0,0.0
+0.0,35,adapter_mix,OPC UA only,0.885714,1.0,0.018995,0.028563,0.857143,reference_v1,1.0,0.0
+0.0,34,adapter_mix,REST + Legacy,0.882353,1.0,0.019737,0.02978,0.852941,reference_v1,1.0,0.0
+0.0,34,adapter_mix,REST only,0.852941,1.0,0.020468,0.033125,0.823529,reference_v1,1.0,0.0
+1.0,15,approval_condition,approval with invalidated mapping,0.0,0.666667,0.018139,0.023591,0.0,baseline_a_direct_without_governance,0.0,1.0
+1.0,35,approval_condition,invalid approval,0.0,0.857143,0.018024,0.022387,0.0,baseline_a_direct_without_governance,0.0,1.0
+1.0,35,approval_condition,missing approval,0.0,0.857143,0.020001,0.022316,0.0,baseline_a_direct_without_governance,0.0,1.0
+0.0,120,approval_condition,no approval required,0.166667,0.333333,0.016497,0.027466,0.0,baseline_a_direct_without_governance,0.0,0.166667
+1.0,35,approval_condition,valid approval,0.571429,0.857143,0.013939,0.022,0.0,baseline_a_direct_without_governance,0.0,1.0
+0.0,15,approval_condition,approval with invalidated mapping,0.0,0.666667,0.009683,0.010304,0.0,baseline_b_single_stage_execution,0.0,0.0
+0.0,35,approval_condition,invalid approval,0.0,0.857143,0.00998,0.012979,0.0,baseline_b_single_stage_execution,0.0,0.0
+0.0,35,approval_condition,missing approval,0.0,0.857143,0.009805,0.01118,0.0,baseline_b_single_stage_execution,0.0,0.0
+0.0,120,approval_condition,no approval required,0.166667,0.333333,0.009786,0.010885,0.166667,baseline_b_single_stage_execution,0.0,0.0
+0.0,35,approval_condition,valid approval,0.571429,0.857143,0.009932,0.012395,0.0,baseline_b_single_stage_execution,0.0,0.0
+1.0,15,approval_condition,approval with invalidated mapping,0.333333,1.0,0.021595,0.026384,0.333333,baseline_c_without_policy_filtering,0.0,1.0
+1.0,35,approval_condition,invalid approval,0.142857,1.0,0.021007,0.026008,0.142857,baseline_c_without_policy_filtering,0.0,1.0
+1.0,35,approval_condition,missing approval,0.142857,1.0,0.023451,0.028312,0.142857,baseline_c_without_policy_filtering,0.0,1.0
+0.0,120,approval_condition,no approval required,0.833333,1.0,0.01693,0.02896,0.833333,baseline_c_without_policy_filtering,0.0,0.166667
+1.0,35,approval_condition,valid approval,0.714286,1.0,0.016854,0.02545,0.142857,baseline_c_without_policy_filtering,0.0,1.0
+0.0,15,approval_condition,approval with invalidated mapping,1.0,1.0,1.414547,1.503429,1.0,langgraph_runtime,1.0,0.0
+0.0,35,approval_condition,invalid approval,1.0,1.0,1.400408,1.516441,1.0,langgraph_runtime,1.0,0.0
+0.0,35,approval_condition,missing approval,1.0,1.0,1.418381,1.568584,1.0,langgraph_runtime,1.0,0.0
+0.0,120,approval_condition,no approval required,1.0,1.0,1.051787,1.153879,1.0,langgraph_runtime,1.0,0.0
+0.0,35,approval_condition,valid approval,0.857143,1.0,1.671708,1.631946,0.857143,langgraph_runtime,1.0,0.0
+0.0,15,approval_condition,approval with invalidated mapping,0.333333,1.0,0.021097,0.026854,0.333333,reference_v1,1.0,0.0
+0.0,35,approval_condition,invalid approval,1.0,1.0,0.020164,0.025166,1.0,reference_v1,1.0,0.0
+0.0,35,approval_condition,missing approval,1.0,1.0,0.023244,0.027603,1.0,reference_v1,1.0,0.0
+0.0,120,approval_condition,no approval required,1.0,1.0,0.019574,0.031052,1.0,reference_v1,1.0,0.0
+0.0,35,approval_condition,valid approval,0.428571,1.0,0.016463,0.024917,0.285714,reference_v1,1.0,0.0
+0.5,40,failure_condition,blocked action condition,0.0,1.0,0.020594,0.02571,0.0,baseline_a_direct_without_governance,0.0,1.0
+0.0,20,failure_condition,invalid adapter mapping,0.0,0.0,0.0099,0.011381,0.0,baseline_a_direct_without_governance,0.0,0.0
+0.0,20,failure_condition,malformed payload,0.0,0.0,0.026958,0.028756,0.0,baseline_a_direct_without_governance,0.0,0.0
+0.8,100,failure_condition,none,0.4,1.0,0.015423,0.021879,0.0,baseline_a_direct_without_governance,0.0,0.8
+0.5,40,failure_condition,safe abort condition,0.0,0.0,0.016035,0.023265,0.0,baseline_a_direct_without_governance,0.0,0.5
+0.0,10,failure_condition,unavailable capability,0.0,0.0,0.016471,0.018421,0.0,baseline_a_direct_without_governance,0.0,0.0
+0.0,10,failure_condition,unsupported capability,0.0,0.0,0.016125,0.016675,0.0,baseline_a_direct_without_governance,0.0,0.0
+0.0,40,failure_condition,blocked action condition,0.0,1.0,0.009961,0.012593,0.0,baseline_b_single_stage_execution,0.0,0.0
+0.0,20,failure_condition,invalid adapter mapping,0.0,0.0,0.010173,0.015335,0.0,baseline_b_single_stage_execution,0.0,0.0
+0.0,20,failure_condition,malformed payload,0.0,0.0,0.009792,0.010275,0.0,baseline_b_single_stage_execution,0.0,0.0
+0.0,100,failure_condition,none,0.4,1.0,0.009798,0.011291,0.2,baseline_b_single_stage_execution,0.0,0.0
+0.0,40,failure_condition,safe abort condition,0.0,0.0,0.009558,0.010294,0.0,baseline_b_single_stage_execution,0.0,0.0
+0.0,10,failure_condition,unavailable capability,0.0,0.0,0.009683,0.010502,0.0,baseline_b_single_stage_execution,0.0,0.0
+0.0,10,failure_condition,unsupported capability,0.0,0.0,0.010296,0.014096,0.0,baseline_b_single_stage_execution,0.0,0.0
+0.5,40,failure_condition,blocked action condition,0.0,1.0,0.024157,0.029461,0.0,baseline_c_without_policy_filtering,0.0,1.0
+0.0,20,failure_condition,invalid adapter mapping,1.0,1.0,0.009836,0.010465,1.0,baseline_c_without_policy_filtering,0.0,0.0
+0.0,20,failure_condition,malformed payload,1.0,1.0,0.028031,0.029346,1.0,baseline_c_without_policy_filtering,0.0,0.0
+0.8,100,failure_condition,none,0.4,1.0,0.017827,0.025069,0.2,baseline_c_without_policy_filtering,0.0,0.8
+0.5,40,failure_condition,safe abort condition,1.0,1.0,0.017605,0.026254,1.0,baseline_c_without_policy_filtering,0.0,0.5
+0.0,10,failure_condition,unavailable capability,1.0,1.0,0.014637,0.015242,1.0,baseline_c_without_policy_filtering,0.0,0.0
+0.0,10,failure_condition,unsupported capability,1.0,1.0,0.01445,0.014731,1.0,baseline_c_without_policy_filtering,0.0,0.0
+0.0,40,failure_condition,blocked action condition,1.0,1.0,1.236638,1.466754,1.0,langgraph_runtime,1.0,0.0
+0.0,20,failure_condition,invalid adapter mapping,1.0,1.0,1.003046,1.063164,1.0,langgraph_runtime,1.0,0.0
+0.0,20,failure_condition,malformed payload,1.0,1.0,1.156621,1.227875,1.0,langgraph_runtime,1.0,0.0
+0.0,100,failure_condition,none,0.95,1.0,1.424617,1.543065,0.95,langgraph_runtime,1.0,0.0
+0.0,40,failure_condition,safe abort condition,1.0,1.0,1.216774,1.466165,1.0,langgraph_runtime,1.0,0.0
+0.0,10,failure_condition,unavailable capability,1.0,1.0,1.039454,1.150338,1.0,langgraph_runtime,1.0,0.0
+0.0,10,failure_condition,unsupported capability,1.0,1.0,1.041404,1.081578,1.0,langgraph_runtime,1.0,0.0
+0.0,40,failure_condition,blocked action condition,0.875,1.0,0.022873,0.029216,0.875,reference_v1,1.0,0.0
+0.0,20,failure_condition,invalid adapter mapping,1.0,1.0,0.012565,0.01322,1.0,reference_v1,1.0,0.0
+0.0,20,failure_condition,malformed payload,1.0,1.0,0.032252,0.038515,1.0,reference_v1,1.0,0.0
+0.0,100,failure_condition,none,0.75,1.0,0.018206,0.024219,0.7,reference_v1,1.0,0.0
+0.0,40,failure_condition,safe abort condition,1.0,1.0,0.019625,0.027723,1.0,reference_v1,1.0,0.0
+0.0,10,failure_condition,unavailable capability,1.0,1.0,0.017171,0.018028,1.0,reference_v1,1.0,0.0
+0.0,10,failure_condition,unsupported capability,1.0,1.0,0.017225,0.017984,1.0,reference_v1,1.0,0.0

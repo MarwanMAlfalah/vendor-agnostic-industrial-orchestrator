@@ -1,0 +1,95 @@
+{
+  "deterministic": true,
+  "limitations": [
+    "Conceptual ablations are not simulated.",
+    "Implemented ablations reuse existing deterministic baselines.",
+    "No core runtime behavior is modified by the ablation runner."
+  ],
+  "profile": "default",
+  "variants": {
+    "full_system": {
+      "description": "Reference deterministic governance-aware runtime.",
+      "final_outcome_accuracy": 0.883333,
+      "implemented": true,
+      "mean_latency_ms": 0.019668,
+      "not_implemented_reason": "",
+      "policy_compliance_rate": 0.858333,
+      "recovery_success_rate": 0.0,
+      "run_count": 120,
+      "runtime_id": "reference_v1",
+      "trace_completeness": 1.0,
+      "unsafe_execution_rate": 0.0,
+      "variant_id": "full_system"
+    },
+    "without_approval_revalidation": {
+      "description": "Conceptual ablation only; no implemented runtime removes approval revalidation while preserving continuation.",
+      "final_outcome_accuracy": "",
+      "implemented": false,
+      "mean_latency_ms": "",
+      "not_implemented_reason": "No supported runtime variant exists; reported as conceptual only.",
+      "policy_compliance_rate": "",
+      "recovery_success_rate": "",
+      "run_count": 0,
+      "runtime_id": "",
+      "trace_completeness": "",
+      "unsafe_execution_rate": "",
+      "variant_id": "without_approval_revalidation"
+    },
+    "without_capability_matching": {
+      "description": "Existing single-stage baseline bypasses the planner/matcher separation.",
+      "final_outcome_accuracy": 0.166667,
+      "implemented": true,
+      "mean_latency_ms": 0.009672,
+      "not_implemented_reason": "",
+      "policy_compliance_rate": 0.083333,
+      "recovery_success_rate": 0.0,
+      "run_count": 120,
+      "runtime_id": "baseline_b_single_stage_execution",
+      "trace_completeness": 0.0,
+      "unsafe_execution_rate": 0.0,
+      "variant_id": "without_capability_matching"
+    },
+    "without_governance": {
+      "description": "Existing direct execution baseline reuses mapped steps without governance enforcement.",
+      "final_outcome_accuracy": 0.166667,
+      "implemented": true,
+      "mean_latency_ms": 0.016658,
+      "not_implemented_reason": "",
+      "policy_compliance_rate": 0.0,
+      "recovery_success_rate": 0.0,
+      "run_count": 120,
+      "runtime_id": "baseline_a_direct_without_governance",
+      "trace_completeness": 0.0,
+      "unsafe_execution_rate": 0.583333,
+      "variant_id": "without_governance"
+    },
+    "without_langgraph_persistence": {
+      "description": "Conceptual ablation only in this package; scaled runs use in-memory LangGraph rather than restart persistence.",
+      "final_outcome_accuracy": "",
+      "implemented": false,
+      "mean_latency_ms": "",
+      "not_implemented_reason": "No supported runtime variant exists; reported as conceptual only.",
+      "policy_compliance_rate": "",
+      "recovery_success_rate": "",
+      "run_count": 0,
+      "runtime_id": "",
+      "trace_completeness": "",
+      "unsafe_execution_rate": "",
+      "variant_id": "without_langgraph_persistence"
+    },
+    "without_trace_observability": {
+      "description": "Conceptual ablation only; trace observability is instrumentation, not a separate behavior runtime.",
+      "final_outcome_accuracy": "",
+      "implemented": false,
+      "mean_latency_ms": "",
+      "not_implemented_reason": "No supported runtime variant exists; reported as conceptual only.",
+      "policy_compliance_rate": "",
+      "recovery_success_rate": "",
+      "run_count": 0,
+      "runtime_id": "",
+      "trace_completeness": "",
+      "unsafe_execution_rate": "",
+      "variant_id": "without_trace_observability"
+    }
+  }
+}

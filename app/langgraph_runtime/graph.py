@@ -18,6 +18,7 @@ from app.langgraph_runtime.nodes import (
 )
 from app.langgraph_runtime.state import LangGraphRuntimeState
 from app.models.execution_result import ExecutionResult
+from app.observability.summaries import langgraph_run_summary
 from app.observability.tracing import run_metadata, trace_experiment
 
 
@@ -87,7 +88,7 @@ class LangGraphRuntime:
                 or "REQUIRE_APPROVAL" in (case.expected_governance_sequence or []),
             ),
             tags=["langgraph", "runtime"],
-        ):
+        ) as trace_handle:
             state = self.start_case(
                 case,
                 thread_id=thread_id,
@@ -107,7 +108,7 @@ class LangGraphRuntime:
                 state = self.resume_case(thread_id=thread_id, approval_payload=resume_payload)
                 resumed = True
 
-            return self._run_output(
+            output = self._run_output(
                 case=case,
                 state=state,
                 total_start=total_start,
@@ -115,6 +116,8 @@ class LangGraphRuntime:
                 resumed=resumed,
                 thread_id=thread_id,
             )
+            trace_handle.add_outputs(langgraph_run_summary(output))
+            return output
 
     def start_case(
         self,

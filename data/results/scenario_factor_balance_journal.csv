@@ -1,0 +1,35 @@
+count,factor_name,factor_value,percentage
+80,workflow_length,long,0.333333
+80,workflow_length,medium,0.333333
+80,workflow_length,short,0.333333
+20,governance_pattern,all_allow,0.083333
+20,governance_pattern,allow_then_block,0.083333
+20,governance_pattern,allow_then_require_approval,0.083333
+20,governance_pattern,allow_then_safe_abort,0.083333
+20,governance_pattern,invalid_mapping,0.083333
+20,governance_pattern,malformed_payload,0.083333
+20,governance_pattern,mixed_allow_approval_block,0.083333
+20,governance_pattern,mixed_allow_approval_safe_abort,0.083333
+20,governance_pattern,post_approval_invalid,0.083333
+20,governance_pattern,post_approval_missing,0.083333
+20,governance_pattern,post_approval_valid,0.083333
+20,governance_pattern,unavailable_capability,0.083333
+34,adapter_mix,Legacy only,0.141667
+34,adapter_mix,OPC UA + Legacy,0.141667
+35,adapter_mix,OPC UA + REST,0.145833
+34,adapter_mix,OPC UA + REST + Legacy,0.141667
+35,adapter_mix,OPC UA only,0.145833
+34,adapter_mix,REST + Legacy,0.141667
+34,adapter_mix,REST only,0.141667
+15,approval_condition,approval with invalidated mapping,0.0625
+35,approval_condition,invalid approval,0.145833
+35,approval_condition,missing approval,0.145833
+120,approval_condition,no approval required,0.5
+35,approval_condition,valid approval,0.145833
+40,failure_condition,blocked action condition,0.166667
+20,failure_condition,invalid adapter mapping,0.083333
+20,failure_condition,malformed payload,0.083333
+100,failure_condition,none,0.416667
+40,failure_condition,safe abort condition,0.166667
+10,failure_condition,unavailable capability,0.041667
+10,failure_condition,unsupported capability,0.041667

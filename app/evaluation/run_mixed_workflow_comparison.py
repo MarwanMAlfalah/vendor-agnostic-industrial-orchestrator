@@ -9,6 +9,7 @@ from app.evaluation.baselines import GovernanceAwareReference, MethodRunResult
 from app.evaluation.metrics import compute_metrics
 from app.evaluation.scenario_cases import EvaluationCase, load_mixed_evaluation_cases
 from app.langgraph_runtime import LangGraphRuntime
+from app.observability.summaries import comparison_summary
 from app.observability.tracing import trace_experiment
 
 RESULTS_DIR = Path("data/results")
@@ -32,35 +33,36 @@ def run_mixed_workflow_comparison() -> tuple[list[dict[str, Any]], dict[str, Any
         inputs={"case_count": len(cases)},
         metadata={"runtime_id": "mixed_workflow_runner", "mixed_workflow": True},
         tags=["evaluation", "mixed_workflow"],
-    ):
+    ) as trace_handle:
         reference_runs = [GovernanceAwareReference().run_with_timing(case) for case in cases]
         langgraph_raw_runs = [LangGraphRuntime().run_case(case) for case in cases]
-    langgraph_runs = [
-        MethodRunResult(
-            case=run["case"],
-            result=run["result"],
-            stage_latencies_ms=run["stage_latencies_ms"],
-        )
-        for run in langgraph_raw_runs
-    ]
+        langgraph_runs = [
+            MethodRunResult(
+                case=run["case"],
+                result=run["result"],
+                stage_latencies_ms=run["stage_latencies_ms"],
+            )
+            for run in langgraph_raw_runs
+        ]
 
-    reference_trace_records = _reference_trace_records(reference_runs)
-    rows = [
-        _comparison_row(
-            "reference_v1",
-            "Reference v1 custom deterministic orchestration",
-            reference_runs,
-            reference_trace_records,
-            graph_native_interrupts=False,
-        ),
-        _comparison_row(
-            "langgraph_runtime",
-            "Experimental LangGraph runtime",
-            langgraph_runs,
-            langgraph_raw_runs,
-            graph_native_interrupts=True,
-        ),
-    ]
+        reference_trace_records = _reference_trace_records(reference_runs)
+        rows = [
+            _comparison_row(
+                "reference_v1",
+                "Reference v1 custom deterministic orchestration",
+                reference_runs,
+                reference_trace_records,
+                graph_native_interrupts=False,
+            ),
+            _comparison_row(
+                "langgraph_runtime",
+                "Experimental LangGraph runtime",
+                langgraph_runs,
+                langgraph_raw_runs,
+                graph_native_interrupts=True,
+            ),
+        ]
+        trace_handle.add_outputs(comparison_summary(rows))
 
     summary = {
         "evaluation_design": {

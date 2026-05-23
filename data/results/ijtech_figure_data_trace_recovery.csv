@@ -1,0 +1,6 @@
+restart_recovery_success_rate,runtime_id,trace_completeness
+0.0,baseline_a_direct_without_governance,0.0
+0.0,baseline_b_single_stage_execution,0.0
+0.0,baseline_c_without_policy_filtering,0.0
+0.0,langgraph_runtime,1.0
+0.0,reference_v1,1.0

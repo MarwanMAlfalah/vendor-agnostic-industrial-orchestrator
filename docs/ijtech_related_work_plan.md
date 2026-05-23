@@ -10,7 +10,7 @@ The related work should position the manuscript as an industrial software and au
 
 ### Industrial Interoperability And Vendor Heterogeneity
 
-Discuss industrial systems that combine OPC UA, REST services, and legacy vendor interfaces. Emphasize that interoperability is not only a communication problem; orchestration must preserve operational constraints across different interface styles.
+Discuss industrial systems that combine OPC UA, REST services, and legacy vendor interfaces (Author, year; Author, year). Emphasize that interoperability is not only a communication problem; orchestration must preserve operational constraints across different interface styles.
 
 Evidence to connect back to this manuscript:
 
@@ -27,7 +27,7 @@ Citation targets to verify:
 
 ### Workflow Orchestration And Agentic Planning
 
-Review workflow orchestration, agent planning, and graph-based execution systems. The manuscript should distinguish task decomposition from governed industrial execution. The gap is that general workflow success does not necessarily imply policy compliance.
+Review workflow orchestration, agent planning, and graph-based execution systems (Author, year). The manuscript should distinguish task decomposition from governed industrial execution. The gap is that general workflow success does not necessarily imply policy compliance.
 
 Evidence to connect back:
 
@@ -43,7 +43,7 @@ Citation targets to verify:
 
 ### Governance, Approval Gates, And Safe Execution
 
-Discuss approval-gated workflows, policy enforcement, and fail-safe or safe-abort concepts in industrial or cyber-physical settings. Avoid claiming that this prototype is a safety-certified controller. Frame it as supervisory governance over mock adapter calls.
+Discuss approval-gated workflows, policy enforcement, and fail-safe or safe-abort concepts in industrial or cyber-physical settings (Author, year; Author, year). Avoid claiming that this prototype is a safety-certified controller. Frame it as supervisory governance over mock adapter calls.
 
 Evidence to connect back:
 
@@ -60,7 +60,7 @@ Citation targets to verify:
 
 ### Observability, Traceability, And Recovery
 
-Review traceability, audit logs, runtime observability, and checkpoint/restart mechanisms. The manuscript should frame LangSmith as observability evidence and LangGraph checkpointing as local recovery evidence.
+Review traceability, audit logs, runtime observability, and checkpoint/restart mechanisms (Author, year). The manuscript should frame LangSmith as observability evidence and LangGraph checkpointing as local recovery evidence.
 
 Evidence to connect back:
 
@@ -77,7 +77,7 @@ Citation targets to verify:
 
 ### Evaluation Methodology For Governed Orchestration
 
-Discuss why deterministic benchmarks, scenario generation, baselines, ablations, and supported-versus-stress splits are appropriate for prototype-level evidence. Explain that Wilson intervals are scenario-distribution intervals, not stochastic LLM uncertainty.
+Discuss why deterministic benchmarks, scenario generation, baselines, ablations, and supported-versus-stress splits are appropriate for prototype-level evidence (Author, year). Explain that Wilson intervals are scenario-distribution intervals, not stochastic LLM uncertainty.
 
 Evidence to connect back:
 

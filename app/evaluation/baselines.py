@@ -15,6 +15,7 @@ from app.agents import (
 from app.evaluation.scenario_cases import EvaluationCase
 from app.models.execution_result import ExecutionResult, StepExecutionResult
 from app.models.governance import GovernanceEvaluation, GovernanceStepDecision
+from app.observability.summaries import execution_summary
 from app.observability.tracing import run_metadata, trace_experiment
 
 
@@ -86,7 +87,7 @@ class GovernanceAwareReference(EvaluationMethod):
                 or "REQUIRE_APPROVAL" in (case.expected_governance_sequence or []),
             ),
             tags=["reference_v1", "runtime"],
-        ):
+        ) as trace_handle:
             planning_latency_ms, matching_latency_ms, governance_latency_ms = (
                 self._measure_structural_stages(case)
             )
@@ -104,6 +105,7 @@ class GovernanceAwareReference(EvaluationMethod):
                     "total": total_latency_ms,
                 }
             )
+            trace_handle.add_outputs(execution_summary(result))
 
         return MethodRunResult(
             case=case,

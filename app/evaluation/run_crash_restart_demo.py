@@ -10,6 +10,7 @@ from app.evaluation.scenario_cases import (
     load_post_approval_evaluation_cases,
 )
 from app.langgraph_runtime import LangGraphRuntime
+from app.observability.summaries import crash_restart_summary
 from app.observability.tracing import run_metadata, trace_experiment
 
 CHECKPOINT_DB = Path("data/langgraph/checkpoints.db")
@@ -36,17 +37,24 @@ def run_crash_restart_demo() -> dict[str, Any]:
     if CHECKPOINT_DB.exists():
         CHECKPOINT_DB.unlink()
 
-    cases = [
-        _case("CASE-POST-APPROVAL-VALID-001"),
-        _case("CASE-POST-APPROVAL-INVALID-PAYLOAD-001"),
-    ]
-    runs = [_run_restart_case(case) for case in cases]
-    summary = {
-        "checkpoint_db": str(CHECKPOINT_DB),
-        "deterministic": True,
-        "runs": runs,
-        "metrics": _metrics(runs),
-    }
+    with trace_experiment(
+        "evaluation.run_crash_restart_demo",
+        inputs={"checkpoint_db": str(CHECKPOINT_DB)},
+        metadata={"runtime_id": "crash_restart_demo", "approval_case": True},
+        tags=["evaluation", "crash-restart"],
+    ) as trace_handle:
+        cases = [
+            _case("CASE-POST-APPROVAL-VALID-001"),
+            _case("CASE-POST-APPROVAL-INVALID-PAYLOAD-001"),
+        ]
+        runs = [_run_restart_case(case) for case in cases]
+        summary = {
+            "checkpoint_db": str(CHECKPOINT_DB),
+            "deterministic": True,
+            "runs": runs,
+            "metrics": _metrics(runs),
+        }
+        trace_handle.add_outputs(crash_restart_summary(summary))
 
     RESULTS_PATH.write_text(json.dumps(summary, indent=2, sort_keys=True), encoding="utf-8")
     DOCS_PATH.write_text(_markdown(summary), encoding="utf-8")
@@ -69,7 +77,7 @@ def _run_restart_case(case: EvaluationCase) -> dict[str, Any]:
             approval_case=True,
         ),
         tags=["langgraph", "checkpoint", "crash-restart"],
-    ):
+    ) as trace_handle:
         runtime = LangGraphRuntime.with_sqlite_checkpointer(str(CHECKPOINT_DB))
         try:
             interrupted_state = runtime.start_case(
@@ -99,8 +107,8 @@ def _run_restart_case(case: EvaluationCase) -> dict[str, Any]:
         finally:
             restarted_runtime.close()
 
-    result = output["result"]
-    return {
+        result = output["result"]
+    run_summary = {
         "case_id": case.case_id,
         "thread_id": thread_id,
         "interrupt_reached": interrupt_reached,
@@ -115,6 +123,16 @@ def _run_restart_case(case: EvaluationCase) -> dict[str, Any]:
         "expected_final_status": case.expected_post_resume_final_status,
         "trace": output["trace"],
     }
+    trace_handle.add_outputs(
+        {
+            "case_id": run_summary["case_id"],
+            "approval_state": run_summary["approval_state"],
+            "gated_step_executed": run_summary["gated_step_executed"],
+            "final_status": run_summary["final_status"],
+            "resumed_from_checkpoint": run_summary["resumed_from_checkpoint"],
+        }
+    )
+    return run_summary
 
 
 def _metrics(runs: list[dict[str, Any]]) -> dict[str, float]:

@@ -1,6 +1,8 @@
 # IJTech Figures Ready For Manuscript
 
-This file defines the figure package for the IJTech-first manuscript. Figures should be redrawn cleanly for submission and should not expose repository paths, user accounts, email addresses, LangSmith workspace identity, or machine-specific details.
+This file defines the figure package for the journal manuscript. Figures should be redrawn cleanly for submission and should not expose repository paths, user accounts, email addresses, LangSmith workspace identity, or machine-specific details.
+
+Blind-review warning: repository screenshots and LangSmith screenshots can expose usernames, organization names, workspace identifiers, URLs, browser profiles, or local paths. Use anonymized redraws unless a screenshot can be fully sanitized.
 
 ## Figure 1. Graphical Abstract
 
@@ -82,7 +84,7 @@ Suggested content:
 
 `planner_node -> matcher_node -> governance_node -> approval_interrupt -> approval_resume -> approval_validated -> approved_execution -> final_result`
 
-Use LangSmith only if the screenshot can be fully anonymized. A redrawn schematic is safer for blind review.
+Blind-review warning: use LangSmith only if the screenshot can be fully anonymized. A redrawn schematic is safer for blind review because raw screenshots may expose account or workspace identity.
 
 Caption: LangGraph approval continuation path in the deterministic prototype. The trace demonstrates controlled interrupt/resume behavior after approval validation and revalidation.
 

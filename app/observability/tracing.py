@@ -1,9 +1,23 @@
 """Optional tracing context managers for experiments."""
 
 from contextlib import contextmanager, nullcontext
+from dataclasses import dataclass
 from typing import Any, Iterator
 
 from app.observability.bootstrap import configure_langsmith
+
+
+@dataclass
+class TraceHandle:
+    """Small adapter over LangSmith RunTree outputs."""
+
+    run_tree: Any | None = None
+
+    def add_outputs(self, outputs: dict[str, Any]) -> None:
+        """Attach structured outputs when tracing is active."""
+
+        if self.run_tree is not None:
+            self.run_tree.add_outputs(outputs)
 
 
 @contextmanager
@@ -13,13 +27,13 @@ def trace_experiment(
     inputs: dict[str, Any] | None = None,
     metadata: dict[str, Any] | None = None,
     tags: list[str] | None = None,
-) -> Iterator[None]:
+) -> Iterator[TraceHandle]:
     """Trace an experiment block when hosted LangSmith is configured."""
 
     config = configure_langsmith()
     if not config.enabled:
         with nullcontext():
-            yield
+            yield TraceHandle()
         return
 
     from langsmith.run_helpers import trace
@@ -35,8 +49,8 @@ def trace_experiment(
         },
         tags=tags or [],
         project_name=config.project,
-    ):
-        yield
+    ) as run_tree:
+        yield TraceHandle(run_tree)
 
 
 def run_metadata(
