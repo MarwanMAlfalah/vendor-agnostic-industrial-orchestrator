@@ -69,3 +69,29 @@ For rejected approval cases, `approval_rejected` replaces
   ]
 }
 ```
+## Scaled Evaluation Screenshot Guidance
+
+For the scaled empirical package, use LangSmith traces as observability
+evidence only. They support debugging, reproducibility, and manuscript
+illustration; they do not demonstrate industrial deployment, live PLC
+operation, or certified safety.
+
+Recommended screenshot candidates:
+
+- Policy compliance: choose a `reference_v1.run_case` trace for a scaled
+  `allow_then_block` or `invalid_mapping` scenario and show the governance
+  decision plus final execution summary.
+- Approval continuation: choose a `langgraph_runtime.run_case` trace for a
+  `post_approval_valid` scenario and show `approval_interrupt`,
+  `approval_resume`, `approval_validated`, and `approved_execution`.
+- Invalid approval containment: choose a `post_approval_invalid` or
+  `post_approval_missing` scenario and show `approval_rejected` plus the
+  non-executed gated step.
+- Restart recovery: use the existing crash/restart demo trace, not the scaled
+  in-memory evaluation, and show checkpoint resume evidence alongside the
+  final result.
+
+Dashboard screenshots should include the run name, case identifier,
+runtime identifier, tags, span tree, and outputs panel. Captions should state
+that LangSmith provides observability evidence for deterministic prototype
+runs.
