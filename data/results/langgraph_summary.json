@@ -2,97 +2,224 @@
   "evaluation_design": {
     "case_count": 12,
     "case_ids": [
-      "CASE-ALLOW-001",
-      "CASE-ALLOW-002",
-      "CASE-ALLOW-003",
-      "CASE-APPROVAL-001",
-      "CASE-APPROVAL-002",
-      "CASE-APPROVAL-003",
-      "CASE-BLOCK-001",
-      "CASE-BLOCK-002",
-      "CASE-BLOCK-003",
-      "CASE-SAFE-ABORT-001",
-      "CASE-SAFE-ABORT-002",
-      "CASE-SAFE-ABORT-003"
+      "CASE-MIXED-ALLOW-APPROVAL-001",
+      "CASE-MIXED-ALLOW-APPROVAL-002",
+      "CASE-MIXED-ALLOW-APPROVAL-003",
+      "CASE-MIXED-ALLOW-BLOCK-001",
+      "CASE-MIXED-ALLOW-BLOCK-002",
+      "CASE-MIXED-ALLOW-BLOCK-003",
+      "CASE-MIXED-ALLOW-SAFE-ABORT-001",
+      "CASE-MIXED-ALLOW-SAFE-ABORT-002",
+      "CASE-MIXED-APPROVAL-ALLOW-001",
+      "CASE-MIXED-APPROVAL-ALLOW-002",
+      "CASE-MIXED-ALLOW-ALLOW-BLOCK-001",
+      "CASE-MIXED-ALLOW-ALLOW-BLOCK-002"
     ],
     "deterministic": true,
     "langgraph_optional_runtime": true,
-    "stochastic_llm_logic": false
+    "mixed_workflows": true
   },
+  "mixed_cases": [
+    {
+      "case_id": "CASE-MIXED-ALLOW-APPROVAL-001",
+      "expected_final_status": "partial_success",
+      "expected_governance_sequence": [
+        "ALLOW",
+        "REQUIRE_APPROVAL"
+      ],
+      "expected_post_resume_final_status": null,
+      "industrial_context": {
+        "interoperability_role": "monitor_then_control_gate",
+        "rami_alignment": "IEC 62264 operations layer / RAMI 4.0 functional layer",
+        "system_level": "supervisory_control"
+      },
+      "scenario_category": "MIXED_ALLOW_REQUIRE_APPROVAL"
+    },
+    {
+      "case_id": "CASE-MIXED-ALLOW-APPROVAL-002",
+      "expected_final_status": "partial_success",
+      "expected_governance_sequence": [
+        "ALLOW",
+        "REQUIRE_APPROVAL"
+      ],
+      "expected_post_resume_final_status": null,
+      "industrial_context": {
+        "interoperability_role": "monitor_then_control_gate",
+        "rami_alignment": "IEC 62264 operations layer / RAMI 4.0 functional layer",
+        "system_level": "supervisory_control"
+      },
+      "scenario_category": "MIXED_ALLOW_REQUIRE_APPROVAL"
+    },
+    {
+      "case_id": "CASE-MIXED-ALLOW-APPROVAL-003",
+      "expected_final_status": "partial_success",
+      "expected_governance_sequence": [
+        "ALLOW",
+        "REQUIRE_APPROVAL"
+      ],
+      "expected_post_resume_final_status": null,
+      "industrial_context": {
+        "interoperability_role": "monitor_then_control_gate",
+        "rami_alignment": "IEC 62264 operations layer / RAMI 4.0 functional layer",
+        "system_level": "supervisory_control"
+      },
+      "scenario_category": "MIXED_ALLOW_REQUIRE_APPROVAL"
+    },
+    {
+      "case_id": "CASE-MIXED-ALLOW-BLOCK-001",
+      "expected_final_status": "partial_success",
+      "expected_governance_sequence": [
+        "ALLOW",
+        "BLOCK"
+      ],
+      "expected_post_resume_final_status": null,
+      "industrial_context": {
+        "interoperability_role": "monitor_then_safety_block",
+        "rami_alignment": "IEC 62264 operations layer / RAMI 4.0 functional layer",
+        "system_level": "supervisory_control"
+      },
+      "scenario_category": "MIXED_ALLOW_BLOCK"
+    },
+    {
+      "case_id": "CASE-MIXED-ALLOW-BLOCK-002",
+      "expected_final_status": "partial_success",
+      "expected_governance_sequence": [
+        "ALLOW",
+        "BLOCK"
+      ],
+      "expected_post_resume_final_status": null,
+      "industrial_context": {
+        "interoperability_role": "monitor_then_safety_block",
+        "rami_alignment": "IEC 62264 operations layer / RAMI 4.0 functional layer",
+        "system_level": "supervisory_control"
+      },
+      "scenario_category": "MIXED_ALLOW_BLOCK"
+    },
+    {
+      "case_id": "CASE-MIXED-ALLOW-BLOCK-003",
+      "expected_final_status": "partial_success",
+      "expected_governance_sequence": [
+        "ALLOW",
+        "BLOCK"
+      ],
+      "expected_post_resume_final_status": null,
+      "industrial_context": {
+        "interoperability_role": "monitor_then_safety_block",
+        "rami_alignment": "IEC 62264 operations layer / RAMI 4.0 functional layer",
+        "system_level": "supervisory_control"
+      },
+      "scenario_category": "MIXED_ALLOW_BLOCK"
+    },
+    {
+      "case_id": "CASE-MIXED-ALLOW-SAFE-ABORT-001",
+      "expected_final_status": "safe_aborted",
+      "expected_governance_sequence": [
+        "ALLOW",
+        "SAFE_ABORT"
+      ],
+      "expected_post_resume_final_status": null,
+      "industrial_context": {
+        "interoperability_role": "monitor_then_mapping_containment",
+        "rami_alignment": "IEC 62264 operations layer / RAMI 4.0 functional layer",
+        "system_level": "supervisory_control"
+      },
+      "scenario_category": "MIXED_ALLOW_SAFE_ABORT"
+    },
+    {
+      "case_id": "CASE-MIXED-ALLOW-SAFE-ABORT-002",
+      "expected_final_status": "safe_aborted",
+      "expected_governance_sequence": [
+        "ALLOW",
+        "SAFE_ABORT"
+      ],
+      "expected_post_resume_final_status": null,
+      "industrial_context": {
+        "interoperability_role": "monitor_then_mapping_containment",
+        "rami_alignment": "IEC 62264 operations layer / RAMI 4.0 functional layer",
+        "system_level": "supervisory_control"
+      },
+      "scenario_category": "MIXED_ALLOW_SAFE_ABORT"
+    },
+    {
+      "case_id": "CASE-MIXED-APPROVAL-ALLOW-001",
+      "expected_final_status": "partial_success",
+      "expected_governance_sequence": [
+        "REQUIRE_APPROVAL",
+        "ALLOW"
+      ],
+      "expected_post_resume_final_status": "partial_success",
+      "industrial_context": {
+        "interoperability_role": "approval_checkpoint_then_monitoring",
+        "rami_alignment": "IEC 62264 operations layer / RAMI 4.0 functional layer",
+        "system_level": "supervisory_control"
+      },
+      "scenario_category": "MIXED_REQUIRE_APPROVAL_RESUME_ALLOW"
+    },
+    {
+      "case_id": "CASE-MIXED-APPROVAL-ALLOW-002",
+      "expected_final_status": "partial_success",
+      "expected_governance_sequence": [
+        "REQUIRE_APPROVAL",
+        "ALLOW"
+      ],
+      "expected_post_resume_final_status": "partial_success",
+      "industrial_context": {
+        "interoperability_role": "approval_checkpoint_then_monitoring",
+        "rami_alignment": "IEC 62264 operations layer / RAMI 4.0 functional layer",
+        "system_level": "supervisory_control"
+      },
+      "scenario_category": "MIXED_REQUIRE_APPROVAL_RESUME_ALLOW"
+    },
+    {
+      "case_id": "CASE-MIXED-ALLOW-ALLOW-BLOCK-001",
+      "expected_final_status": "partial_success",
+      "expected_governance_sequence": [
+        "ALLOW",
+        "ALLOW",
+        "BLOCK"
+      ],
+      "expected_post_resume_final_status": null,
+      "industrial_context": {
+        "interoperability_role": "multi_observation_then_safety_block",
+        "rami_alignment": "IEC 62264 operations layer / RAMI 4.0 functional layer",
+        "system_level": "supervisory_control"
+      },
+      "scenario_category": "MIXED_ALLOW_ALLOW_BLOCK"
+    },
+    {
+      "case_id": "CASE-MIXED-ALLOW-ALLOW-BLOCK-002",
+      "expected_final_status": "partial_success",
+      "expected_governance_sequence": [
+        "ALLOW",
+        "ALLOW",
+        "BLOCK"
+      ],
+      "expected_post_resume_final_status": null,
+      "industrial_context": {
+        "interoperability_role": "multi_observation_then_safety_block",
+        "rami_alignment": "IEC 62264 operations layer / RAMI 4.0 functional layer",
+        "system_level": "supervisory_control"
+      },
+      "scenario_category": "MIXED_ALLOW_ALLOW_BLOCK"
+    }
+  ],
   "runtimes": {
     "langgraph_runtime": {
       "case_results": [
         {
-          "case_id": "CASE-ALLOW-001",
-          "final_status": "success",
-          "interrupted": false,
-          "resumed": false,
-          "stage_latencies_ms": {
-            "execution": 0.050958,
-            "governance": 0.01725,
-            "matching": 3.604334,
-            "planning": 0.035084,
-            "total": 6.782375
-          },
-          "trace": [
-            "planner_node",
-            "matcher_node",
-            "governance_node",
-            "execution_node",
-            "final_result"
-          ]
-        },
-        {
-          "case_id": "CASE-ALLOW-002",
-          "final_status": "success",
-          "interrupted": false,
-          "resumed": false,
-          "stage_latencies_ms": {
-            "execution": 0.035625,
-            "governance": 0.012583,
-            "matching": 3.2675,
-            "planning": 0.021,
-            "total": 4.899458
-          },
-          "trace": [
-            "planner_node",
-            "matcher_node",
-            "governance_node",
-            "execution_node",
-            "final_result"
-          ]
-        },
-        {
-          "case_id": "CASE-ALLOW-003",
-          "final_status": "success",
-          "interrupted": false,
-          "resumed": false,
-          "stage_latencies_ms": {
-            "execution": 0.037083,
-            "governance": 0.015125,
-            "matching": 3.375166,
-            "planning": 0.018791,
-            "total": 4.926417
-          },
-          "trace": [
-            "planner_node",
-            "matcher_node",
-            "governance_node",
-            "execution_node",
-            "final_result"
-          ]
-        },
-        {
-          "case_id": "CASE-APPROVAL-001",
+          "case_id": "CASE-MIXED-ALLOW-APPROVAL-001",
+          "completed_steps": 1,
           "final_status": "partial_success",
           "interrupted": true,
           "resumed": true,
+          "scenario_category": "MIXED_ALLOW_REQUIRE_APPROVAL",
+          "skipped_steps": 1,
           "stage_latencies_ms": {
-            "execution": 0.029459,
-            "governance": 0.010625,
-            "matching": 3.350667,
-            "planning": 0.018792,
-            "total": 5.2955
+            "execution": 0.446542,
+            "governance": 0.104625,
+            "matching": 0.103583,
+            "planning": 0.665208,
+            "total": 5.528542
           },
           "trace": [
             "planner_node",
@@ -105,16 +232,19 @@
           ]
         },
         {
-          "case_id": "CASE-APPROVAL-002",
+          "case_id": "CASE-MIXED-ALLOW-APPROVAL-002",
+          "completed_steps": 1,
           "final_status": "partial_success",
           "interrupted": true,
           "resumed": true,
+          "scenario_category": "MIXED_ALLOW_REQUIRE_APPROVAL",
+          "skipped_steps": 1,
           "stage_latencies_ms": {
-            "execution": 0.019542,
-            "governance": 0.006959,
-            "matching": 3.152208,
-            "planning": 0.013667,
-            "total": 4.589792
+            "execution": 0.344458,
+            "governance": 0.124542,
+            "matching": 0.079417,
+            "planning": 0.082375,
+            "total": 3.921875
           },
           "trace": [
             "planner_node",
@@ -127,16 +257,19 @@
           ]
         },
         {
-          "case_id": "CASE-APPROVAL-003",
+          "case_id": "CASE-MIXED-ALLOW-APPROVAL-003",
+          "completed_steps": 1,
           "final_status": "partial_success",
           "interrupted": true,
           "resumed": true,
+          "scenario_category": "MIXED_ALLOW_REQUIRE_APPROVAL",
+          "skipped_steps": 1,
           "stage_latencies_ms": {
-            "execution": 0.029417,
-            "governance": 0.006583,
-            "matching": 3.105875,
-            "planning": 0.012042,
-            "total": 4.66225
+            "execution": 0.338791,
+            "governance": 0.099875,
+            "matching": 0.0805,
+            "planning": 0.085584,
+            "total": 3.17075
           },
           "trace": [
             "planner_node",
@@ -149,16 +282,19 @@
           ]
         },
         {
-          "case_id": "CASE-BLOCK-001",
-          "final_status": "blocked",
+          "case_id": "CASE-MIXED-ALLOW-BLOCK-001",
+          "completed_steps": 1,
+          "final_status": "partial_success",
           "interrupted": false,
           "resumed": false,
+          "scenario_category": "MIXED_ALLOW_BLOCK",
+          "skipped_steps": 1,
           "stage_latencies_ms": {
-            "execution": 0.014416,
-            "governance": 0.00675,
-            "matching": 3.107291,
-            "planning": 0.011542,
-            "total": 4.162834
+            "execution": 0.170459,
+            "governance": 0.08475,
+            "matching": 0.076042,
+            "planning": 0.080083,
+            "total": 1.818375
           },
           "trace": [
             "planner_node",
@@ -169,16 +305,19 @@
           ]
         },
         {
-          "case_id": "CASE-BLOCK-002",
-          "final_status": "blocked",
+          "case_id": "CASE-MIXED-ALLOW-BLOCK-002",
+          "completed_steps": 1,
+          "final_status": "partial_success",
           "interrupted": false,
           "resumed": false,
+          "scenario_category": "MIXED_ALLOW_BLOCK",
+          "skipped_steps": 1,
           "stage_latencies_ms": {
-            "execution": 0.013291,
-            "governance": 0.007084,
-            "matching": 3.184166,
-            "planning": 0.012417,
-            "total": 4.213417
+            "execution": 0.170333,
+            "governance": 0.082791,
+            "matching": 0.077,
+            "planning": 0.081,
+            "total": 1.854625
           },
           "trace": [
             "planner_node",
@@ -189,16 +328,19 @@
           ]
         },
         {
-          "case_id": "CASE-BLOCK-003",
-          "final_status": "blocked",
+          "case_id": "CASE-MIXED-ALLOW-BLOCK-003",
+          "completed_steps": 1,
+          "final_status": "partial_success",
           "interrupted": false,
           "resumed": false,
+          "scenario_category": "MIXED_ALLOW_BLOCK",
+          "skipped_steps": 1,
           "stage_latencies_ms": {
-            "execution": 0.013542,
-            "governance": 0.006,
-            "matching": 3.071583,
-            "planning": 0.010666,
-            "total": 4.068459
+            "execution": 0.168375,
+            "governance": 0.083625,
+            "matching": 0.077125,
+            "planning": 0.079125,
+            "total": 1.779375
           },
           "trace": [
             "planner_node",
@@ -209,16 +351,19 @@
           ]
         },
         {
-          "case_id": "CASE-SAFE-ABORT-001",
+          "case_id": "CASE-MIXED-ALLOW-SAFE-ABORT-001",
+          "completed_steps": 1,
           "final_status": "safe_aborted",
           "interrupted": false,
           "resumed": false,
+          "scenario_category": "MIXED_ALLOW_SAFE_ABORT",
+          "skipped_steps": 1,
           "stage_latencies_ms": {
-            "execution": 0.0125,
-            "governance": 0.005916,
-            "matching": 0.000584,
-            "planning": 0.000542,
-            "total": 1.010041
+            "execution": 0.173292,
+            "governance": 0.082958,
+            "matching": 0.07825,
+            "planning": 0.078583,
+            "total": 1.793291
           },
           "trace": [
             "planner_node",
@@ -229,16 +374,19 @@
           ]
         },
         {
-          "case_id": "CASE-SAFE-ABORT-002",
+          "case_id": "CASE-MIXED-ALLOW-SAFE-ABORT-002",
+          "completed_steps": 1,
           "final_status": "safe_aborted",
           "interrupted": false,
           "resumed": false,
+          "scenario_category": "MIXED_ALLOW_SAFE_ABORT",
+          "skipped_steps": 1,
           "stage_latencies_ms": {
-            "execution": 0.011917,
-            "governance": 0.00575,
-            "matching": 0.000583,
-            "planning": 0.000459,
-            "total": 0.995125
+            "execution": 0.177208,
+            "governance": 0.086208,
+            "matching": 0.079709,
+            "planning": 0.080625,
+            "total": 2.071083
           },
           "trace": [
             "planner_node",
@@ -249,16 +397,92 @@
           ]
         },
         {
-          "case_id": "CASE-SAFE-ABORT-003",
-          "final_status": "safe_aborted",
+          "case_id": "CASE-MIXED-APPROVAL-ALLOW-001",
+          "completed_steps": 1,
+          "final_status": "partial_success",
+          "interrupted": true,
+          "resumed": true,
+          "scenario_category": "MIXED_REQUIRE_APPROVAL_RESUME_ALLOW",
+          "skipped_steps": 1,
+          "stage_latencies_ms": {
+            "execution": 0.330792,
+            "governance": 0.088542,
+            "matching": 0.078583,
+            "planning": 0.084459,
+            "total": 3.05475
+          },
+          "trace": [
+            "planner_node",
+            "matcher_node",
+            "governance_node",
+            "approval_interrupt",
+            "approval_resume",
+            "execution_node",
+            "final_result"
+          ]
+        },
+        {
+          "case_id": "CASE-MIXED-APPROVAL-ALLOW-002",
+          "completed_steps": 1,
+          "final_status": "partial_success",
+          "interrupted": true,
+          "resumed": true,
+          "scenario_category": "MIXED_REQUIRE_APPROVAL_RESUME_ALLOW",
+          "skipped_steps": 1,
+          "stage_latencies_ms": {
+            "execution": 0.3265,
+            "governance": 0.085042,
+            "matching": 0.077084,
+            "planning": 0.082584,
+            "total": 2.954292
+          },
+          "trace": [
+            "planner_node",
+            "matcher_node",
+            "governance_node",
+            "approval_interrupt",
+            "approval_resume",
+            "execution_node",
+            "final_result"
+          ]
+        },
+        {
+          "case_id": "CASE-MIXED-ALLOW-ALLOW-BLOCK-001",
+          "completed_steps": 2,
+          "final_status": "partial_success",
           "interrupted": false,
           "resumed": false,
+          "scenario_category": "MIXED_ALLOW_ALLOW_BLOCK",
+          "skipped_steps": 1,
           "stage_latencies_ms": {
-            "execution": 0.013208,
-            "governance": 0.005584,
-            "matching": 0.000583,
-            "planning": 0.000458,
-            "total": 0.992084
+            "execution": 0.171458,
+            "governance": 0.091458,
+            "matching": 0.083209,
+            "planning": 0.078125,
+            "total": 1.841708
+          },
+          "trace": [
+            "planner_node",
+            "matcher_node",
+            "governance_node",
+            "execution_node",
+            "final_result"
+          ]
+        },
+        {
+          "case_id": "CASE-MIXED-ALLOW-ALLOW-BLOCK-002",
+          "completed_steps": 2,
+          "final_status": "partial_success",
+          "interrupted": false,
+          "resumed": false,
+          "scenario_category": "MIXED_ALLOW_ALLOW_BLOCK",
+          "skipped_steps": 1,
+          "stage_latencies_ms": {
+            "execution": 0.169417,
+            "governance": 0.083375,
+            "matching": 0.076375,
+            "planning": 0.07875,
+            "total": 1.773917
           },
           "trace": [
             "planner_node",
@@ -269,34 +493,162 @@
           ]
         }
       ],
-      "description": "Experimental LangGraph control-flow wrapper using existing Planner, Matcher, Governance, and Execution logic.",
+      "description": "Experimental LangGraph runtime with persisted interrupt/resume checkpoints for approval-required mixed workflows.",
       "metrics": {
         "approval_resume_correctness": 1.0,
-        "average_execution_latency_ms": 0.023413,
-        "average_total_latency_ms": 3.883146,
+        "average_execution_latency_ms": 0.248969,
+        "average_total_latency_ms": 2.630215,
         "final_outcome_accuracy": 1.0,
         "governance_decision_accuracy": 1.0,
+        "interrupt_trace_quality": 1.0,
         "policy_compliance_rate": 1.0,
+        "post_resume_final_outcome_accuracy": 1.0,
         "resume_success_rate": 1.0,
         "runtime_id": "langgraph_runtime",
         "runtime_name": "Experimental LangGraph runtime",
         "trace_completeness": 1.0,
+        "trace_stage_coverage": 1.0,
         "unsafe_execution_rate": 0.0
       }
     },
     "reference_v1": {
-      "description": "Existing custom deterministic orchestration path.",
+      "case_results": [
+        {
+          "case_id": "CASE-MIXED-ALLOW-APPROVAL-001",
+          "completed_steps": 1,
+          "final_status": "partial_success",
+          "scenario_category": "MIXED_ALLOW_REQUIRE_APPROVAL",
+          "skipped_steps": 1,
+          "trace": [
+            "execution_agent"
+          ]
+        },
+        {
+          "case_id": "CASE-MIXED-ALLOW-APPROVAL-002",
+          "completed_steps": 1,
+          "final_status": "partial_success",
+          "scenario_category": "MIXED_ALLOW_REQUIRE_APPROVAL",
+          "skipped_steps": 1,
+          "trace": [
+            "execution_agent"
+          ]
+        },
+        {
+          "case_id": "CASE-MIXED-ALLOW-APPROVAL-003",
+          "completed_steps": 1,
+          "final_status": "partial_success",
+          "scenario_category": "MIXED_ALLOW_REQUIRE_APPROVAL",
+          "skipped_steps": 1,
+          "trace": [
+            "execution_agent"
+          ]
+        },
+        {
+          "case_id": "CASE-MIXED-ALLOW-BLOCK-001",
+          "completed_steps": 1,
+          "final_status": "partial_success",
+          "scenario_category": "MIXED_ALLOW_BLOCK",
+          "skipped_steps": 1,
+          "trace": [
+            "execution_agent"
+          ]
+        },
+        {
+          "case_id": "CASE-MIXED-ALLOW-BLOCK-002",
+          "completed_steps": 1,
+          "final_status": "partial_success",
+          "scenario_category": "MIXED_ALLOW_BLOCK",
+          "skipped_steps": 1,
+          "trace": [
+            "execution_agent"
+          ]
+        },
+        {
+          "case_id": "CASE-MIXED-ALLOW-BLOCK-003",
+          "completed_steps": 1,
+          "final_status": "partial_success",
+          "scenario_category": "MIXED_ALLOW_BLOCK",
+          "skipped_steps": 1,
+          "trace": [
+            "execution_agent"
+          ]
+        },
+        {
+          "case_id": "CASE-MIXED-ALLOW-SAFE-ABORT-001",
+          "completed_steps": 1,
+          "final_status": "safe_aborted",
+          "scenario_category": "MIXED_ALLOW_SAFE_ABORT",
+          "skipped_steps": 1,
+          "trace": [
+            "execution_agent"
+          ]
+        },
+        {
+          "case_id": "CASE-MIXED-ALLOW-SAFE-ABORT-002",
+          "completed_steps": 1,
+          "final_status": "safe_aborted",
+          "scenario_category": "MIXED_ALLOW_SAFE_ABORT",
+          "skipped_steps": 1,
+          "trace": [
+            "execution_agent"
+          ]
+        },
+        {
+          "case_id": "CASE-MIXED-APPROVAL-ALLOW-001",
+          "completed_steps": 1,
+          "final_status": "partial_success",
+          "scenario_category": "MIXED_REQUIRE_APPROVAL_RESUME_ALLOW",
+          "skipped_steps": 1,
+          "trace": [
+            "execution_agent"
+          ]
+        },
+        {
+          "case_id": "CASE-MIXED-APPROVAL-ALLOW-002",
+          "completed_steps": 1,
+          "final_status": "partial_success",
+          "scenario_category": "MIXED_REQUIRE_APPROVAL_RESUME_ALLOW",
+          "skipped_steps": 1,
+          "trace": [
+            "execution_agent"
+          ]
+        },
+        {
+          "case_id": "CASE-MIXED-ALLOW-ALLOW-BLOCK-001",
+          "completed_steps": 2,
+          "final_status": "partial_success",
+          "scenario_category": "MIXED_ALLOW_ALLOW_BLOCK",
+          "skipped_steps": 1,
+          "trace": [
+            "execution_agent"
+          ]
+        },
+        {
+          "case_id": "CASE-MIXED-ALLOW-ALLOW-BLOCK-002",
+          "completed_steps": 2,
+          "final_status": "partial_success",
+          "scenario_category": "MIXED_ALLOW_ALLOW_BLOCK",
+          "skipped_steps": 1,
+          "trace": [
+            "execution_agent"
+          ]
+        }
+      ],
+      "description": "Existing custom deterministic governance-aware runtime.",
       "metrics": {
-        "approval_resume_correctness": 1.0,
-        "average_execution_latency_ms": 0.019698,
-        "average_total_latency_ms": 5.420274,
+        "approval_resume_correctness": 0.0,
+        "average_execution_latency_ms": 0.016997,
+        "average_total_latency_ms": 0.087923,
         "final_outcome_accuracy": 1.0,
         "governance_decision_accuracy": 1.0,
+        "interrupt_trace_quality": 0.0,
         "policy_compliance_rate": 1.0,
-        "resume_success_rate": 1.0,
+        "post_resume_final_outcome_accuracy": 0.0,
+        "resume_success_rate": 0.0,
         "runtime_id": "reference_v1",
         "runtime_name": "Reference v1 custom deterministic orchestration",
-        "trace_completeness": 1.0,
+        "trace_completeness": 0.0,
+        "trace_stage_coverage": 0.0,
         "unsafe_execution_rate": 0.0
       }
     }

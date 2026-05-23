@@ -160,11 +160,11 @@
           "resumed": true,
           "skipped_steps": 0,
           "stage_latencies_ms": {
-            "execution": 0.07575,
-            "governance": 0.014458,
-            "matching": 0.000875,
-            "planning": 0.000958,
-            "total": 2.92425
+            "execution": 0.659834,
+            "governance": 0.135542,
+            "matching": 0.098709,
+            "planning": 0.630625,
+            "total": 5.844208
           },
           "trace": [
             "planner_node",
@@ -189,11 +189,11 @@
           "resumed": true,
           "skipped_steps": 0,
           "stage_latencies_ms": {
-            "execution": 0.044292,
-            "governance": 0.009958,
-            "matching": 0.000792,
-            "planning": 0.001125,
-            "total": 1.678625
+            "execution": 0.591334,
+            "governance": 0.101,
+            "matching": 0.087083,
+            "planning": 0.105833,
+            "total": 3.959875
           },
           "trace": [
             "planner_node",
@@ -218,11 +218,11 @@
           "resumed": true,
           "skipped_steps": 0,
           "stage_latencies_ms": {
-            "execution": 0.047875,
-            "governance": 0.010417,
-            "matching": 0.000875,
-            "planning": 0.000708,
-            "total": 1.499459
+            "execution": 0.488209,
+            "governance": 0.093417,
+            "matching": 0.083041,
+            "planning": 0.085167,
+            "total": 3.339042
           },
           "trace": [
             "planner_node",
@@ -247,11 +247,11 @@
           "resumed": true,
           "skipped_steps": 1,
           "stage_latencies_ms": {
-            "execution": 0.035208,
-            "governance": 0.01325,
-            "matching": 0.000708,
-            "planning": 0.001042,
-            "total": 1.798375
+            "execution": 0.315333,
+            "governance": 0.087959,
+            "matching": 0.080792,
+            "planning": 0.087291,
+            "total": 3.083
           },
           "trace": [
             "planner_node",
@@ -275,11 +275,11 @@
           "resumed": true,
           "skipped_steps": 1,
           "stage_latencies_ms": {
-            "execution": 0.034458,
-            "governance": 0.011125,
-            "matching": 0.000708,
-            "planning": 0.000834,
-            "total": 1.764
+            "execution": 0.317125,
+            "governance": 0.097583,
+            "matching": 0.076875,
+            "planning": 0.084458,
+            "total": 2.955583
           },
           "trace": [
             "planner_node",
@@ -303,11 +303,11 @@
           "resumed": true,
           "skipped_steps": 1,
           "stage_latencies_ms": {
-            "execution": 0.054541,
-            "governance": 0.011958,
-            "matching": 0.00075,
-            "planning": 0.000708,
-            "total": 1.639833
+            "execution": 0.407084,
+            "governance": 0.117584,
+            "matching": 0.078167,
+            "planning": 0.082,
+            "total": 3.0835
           },
           "trace": [
             "planner_node",
@@ -326,8 +326,8 @@
         "approval_validation_accuracy": 1.0,
         "approved_execution_trace_completeness": 1.0,
         "approved_step_execution_rate": 1.0,
-        "average_execution_latency_ms": 0.048687,
-        "average_total_latency_ms": 1.88409,
+        "average_execution_latency_ms": 0.463153,
+        "average_total_latency_ms": 3.710868,
         "final_outcome_accuracy": 1.0,
         "gated_step_policy_compliance_rate": 1.0,
         "governance_decision_accuracy": 1.0,
@@ -401,8 +401,8 @@
         "approval_validation_accuracy": 0.0,
         "approved_execution_trace_completeness": 0.0,
         "approved_step_execution_rate": 0.0,
-        "average_execution_latency_ms": 0.012556,
-        "average_total_latency_ms": 0.017278,
+        "average_execution_latency_ms": 0.021361,
+        "average_total_latency_ms": 0.116034,
         "final_outcome_accuracy": 0.3333,
         "gated_step_policy_compliance_rate": 0.0,
         "governance_decision_accuracy": 0.8333,
