@@ -32,10 +32,10 @@ deterministic baselines over the same 12 predefined cases.
 
 | Method | Planning ms | Matching ms | Governance ms | Execution ms | Total ms |
 | --- | --- | --- | --- | --- | --- |
-| Reference: governance-aware execution | 0.011604 | 2.94576 | 3.123403 | 0.023476 | 6.124559 |
-| Baseline A: direct execution without governance | 0.0 | 0.0 | 0.0 | 0.004007 | 0.00776 |
-| Baseline B: single-stage execution | 0.002583 | 0.0 | 0.0 | 0.005906 | 0.008993 |
-| Baseline C: without governance-aware policy filtering | 0.0 | 0.0 | 0.003413 | 0.005736 | 0.009674 |
+| Reference: governance-aware execution | 0.006274 | 2.406382 | 2.370497 | 0.011601 | 4.870121 |
+| Baseline A: direct execution without governance | 0.0 | 0.0 | 0.0 | 0.003754 | 0.007274 |
+| Baseline B: single-stage execution | 0.002368 | 0.0 | 0.0 | 0.005104 | 0.007917 |
+| Baseline C: without governance-aware policy filtering | 0.0 | 0.0 | 0.003295 | 0.005167 | 0.008913 |
 
 ## Interpretation Notes
 
