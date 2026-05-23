@@ -105,8 +105,4 @@ def test_invalid_approval_after_restart_does_not_execute(tmp_path) -> None:
 
 
 def _post_approval_case(case_id: str):
-    return next(
-        case
-        for case in load_post_approval_evaluation_cases()
-        if case.case_id == case_id
-    )
+    return next(case for case in load_post_approval_evaluation_cases() if case.case_id == case_id)

@@ -158,11 +158,7 @@ def _metrics(runs: list[dict[str, Any]]) -> dict[str, float]:
 
 
 def _case(case_id: str) -> EvaluationCase:
-    return next(
-        case
-        for case in load_post_approval_evaluation_cases()
-        if case.case_id == case_id
-    )
+    return next(case for case in load_post_approval_evaluation_cases() if case.case_id == case_id)
 
 
 def _markdown(summary: dict[str, Any]) -> str:

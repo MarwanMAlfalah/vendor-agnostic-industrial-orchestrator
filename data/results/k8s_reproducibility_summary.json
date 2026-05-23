@@ -1,0 +1,38 @@
+{
+  "deployment_claim": "local Kubernetes reproducibility evidence only",
+  "deterministic": true,
+  "langsmith_trace_metadata_preview": {
+    "deployment_mode": "kubernetes_local",
+    "git_sha": "d2bee54",
+    "image_tag": "vendor-orchestrator:local",
+    "k8s_job_name": "k8s-reproducibility-summary",
+    "k8s_namespace": "vendor-orchestrator"
+  },
+  "metrics": {
+    "checkpoint_pvc_used": true,
+    "crash_restart_demo_success": true,
+    "health_endpoint_available": true,
+    "k8s_job_success": true,
+    "p95_latency_ms": 1.493592,
+    "trace_completeness": 1.0
+  },
+  "row": {
+    "checkpoint_pvc_used": true,
+    "crash_restart_demo_success": true,
+    "deployment_mode": "kubernetes_local",
+    "evidence_scope": "local_kubernetes_reproducibility_demo",
+    "git_sha": "d2bee54",
+    "health_endpoint_available": true,
+    "image_tag": "vendor-orchestrator:local",
+    "k8s_job_name": "k8s-reproducibility-summary",
+    "k8s_job_success": true,
+    "k8s_namespace": "vendor-orchestrator",
+    "p95_latency_ms": 1.493592,
+    "trace_completeness": 1.0
+  },
+  "source_artifacts": {
+    "checkpoint_db": "data/langgraph/checkpoints.db",
+    "crash_restart_summary": "data/results/crash_restart_demo_summary.json",
+    "scaled_journal_summary": "data/results/scaled_evaluation_summary_journal.json"
+  }
+}

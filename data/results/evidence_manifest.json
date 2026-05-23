@@ -1,0 +1,142 @@
+{
+  "artifacts": [
+    {
+      "path": "data/results/scaled_evaluation_summary_journal.json",
+      "type": "synthetic_scaled_evaluation_summary",
+      "used": true
+    },
+    {
+      "path": "data/results/scaled_evaluation_results_journal.csv",
+      "type": "synthetic_scaled_evaluation_rows",
+      "used": true
+    },
+    {
+      "path": "data/results/containerized_integration_summary.json",
+      "type": "docker_compose_integration_summary",
+      "used": true
+    },
+    {
+      "path": "data/results/containerized_integration_results.csv",
+      "type": "docker_compose_integration_rows",
+      "used": true
+    },
+    {
+      "path": "data/results/k8s_reproducibility_summary.json",
+      "type": "local_kubernetes_reproducibility_summary",
+      "used": true
+    },
+    {
+      "path": "data/results/k8s_reproducibility_results.csv",
+      "type": "local_kubernetes_reproducibility_row",
+      "used": true
+    },
+    {
+      "path": "docs/langsmith_trace_examples.md",
+      "type": "langsmith_trace_guidance",
+      "used": true
+    },
+    {
+      "path": "docs/langsmith_trace_usage.md",
+      "type": "langsmith_trace_usage_limits",
+      "used": true
+    },
+    {
+      "path": "docs/langsmith_setup.md",
+      "type": "langsmith_setup",
+      "used": true
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "run_status_artifact_available": false,
+      "type": "github_actions_workflow_config",
+      "used": true
+    }
+  ],
+  "deployment_mode_comparison_csv": "data/results/deployment_mode_comparison.csv",
+  "evidence_scope": "IJTech engineering evidence consolidation for deterministic prototype artifacts",
+  "generated_from_artifacts_only": true,
+  "git_sha": "d2bee54",
+  "non_claims": [
+    "No production deployment claim.",
+    "No live PLC integration claim.",
+    "No certified safety or regulatory compliance claim.",
+    "Docker and Kubernetes evidence are local reproducibility and containerized deployment feasibility evidence only.",
+    "LangSmith evidence is observability/debugging support only, not industrial validation.",
+    "Mock services are integration proxies, not real industrial controllers."
+  ],
+  "summary": {
+    "docker_compose": {
+      "adapter_contract_pass_rate": 1.0,
+      "final_outcome_accuracy": 1.0,
+      "integration_case_count": 5,
+      "p95_latency_ms": 8.759392,
+      "policy_compliance_rate": 1.0,
+      "service_topology": "orchestrator+opcua+rest+legacy",
+      "trace_completeness": 1.0,
+      "unsafe_execution_rate": 0.0
+    },
+    "github_actions": {
+      "run_status_artifact_available": false,
+      "workflow_config_available": true
+    },
+    "kubernetes_local": {
+      "checkpoint_pvc_used": true,
+      "crash_restart_demo_success": true,
+      "health_endpoint_available": true,
+      "k8s_job_success": true,
+      "p95_latency_ms": 1.493592,
+      "trace_completeness": 1.0
+    },
+    "langsmith": {
+      "claim": "optional observability and debugging support",
+      "metadata_previews": [
+        {
+          "deployment_mode": "docker_compose",
+          "experiment": "containerized_integration_demo",
+          "git_sha": "d2bee54",
+          "legacy_endpoint": "http://mock-legacy:8003",
+          "maintenance_endpoint": "http://mock-maintenance-rest:8002",
+          "opcua_endpoint": "http://mock-opcua:8001",
+          "service_topology": "orchestrator+opcua+rest+legacy"
+        },
+        {
+          "deployment_mode": "kubernetes_local",
+          "git_sha": "d2bee54",
+          "image_tag": "vendor-orchestrator:local",
+          "k8s_job_name": "k8s-reproducibility-summary",
+          "k8s_namespace": "vendor-orchestrator"
+        }
+      ]
+    },
+    "local_synthetic_scaled": {
+      "langgraph_runtime": {
+        "approval_bypass_rate": 0.0,
+        "final_outcome_accuracy": 0.9792,
+        "governance_decision_accuracy": 1.0,
+        "mean_latency_ms": 1.269167,
+        "median_latency_ms": 1.322417,
+        "p50_latency_ms": 1.322417,
+        "p95_latency_ms": 1.493592,
+        "policy_compliance_rate": 0.9792,
+        "runs": 240,
+        "trace_completeness": 1.0,
+        "unsafe_execution_rate": 0.0
+      },
+      "reference_v1": {
+        "approval_bypass_rate": 0.0,
+        "final_outcome_accuracy": 0.875,
+        "governance_decision_accuracy": 0.9583,
+        "mean_latency_ms": 0.019837,
+        "median_latency_ms": 0.01875,
+        "p50_latency_ms": 0.01875,
+        "p95_latency_ms": 0.029968,
+        "policy_compliance_rate": 0.8542,
+        "runs": 240,
+        "trace_completeness": 1.0,
+        "unsafe_execution_rate": 0.0
+      },
+      "result_row_count": 1200,
+      "scenario_count": 240
+    }
+  }
+}

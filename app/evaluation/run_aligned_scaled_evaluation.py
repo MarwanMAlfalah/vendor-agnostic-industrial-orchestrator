@@ -48,7 +48,9 @@ def run_aligned_scaled_evaluation(profile: str = "journal") -> dict[str, Any]:
     write_runtime_capability_profiles()
 
     rows = _load_original_rows(profile)
-    scenarios = {scenario["scenario_id"]: scenario for scenario in load_or_generate_scenarios(profile)}
+    scenarios = {
+        scenario["scenario_id"]: scenario for scenario in load_or_generate_scenarios(profile)
+    }
     aligned_rows = [_aligned_row(row, scenarios[row["scenario_id"]]) for row in rows]
 
     runtime_metrics = _runtime_metrics(aligned_rows)
@@ -117,8 +119,7 @@ def _aligned_row(row: dict[str, Any], scenario: dict[str, Any]) -> dict[str, Any
         row["observed_final_status"] == expectation["aligned_expected_final_status"]
     )
     aligned_governance_decision_correct = (
-        row["observed_governance_decision"]
-        == expectation["aligned_expected_governance_decision"]
+        row["observed_governance_decision"] == expectation["aligned_expected_governance_decision"]
     )
     aligned_policy_compliant = _aligned_policy_compliant(
         row,
@@ -136,16 +137,12 @@ def _aligned_row(row: dict[str, Any], scenario: dict[str, Any]) -> dict[str, Any
         "original_policy_compliant": row["policy_compliant"],
         "original_final_outcome_correct": row["final_outcome_correct"],
         "aligned_expected_final_status": expectation["aligned_expected_final_status"],
-        "aligned_expected_governance_decision": expectation[
-            "aligned_expected_governance_decision"
-        ],
+        "aligned_expected_governance_decision": expectation["aligned_expected_governance_decision"],
         "aligned_final_outcome_correct": aligned_final_outcome_correct,
         "aligned_governance_decision_correct": aligned_governance_decision_correct,
         "aligned_policy_compliant": aligned_policy_compliant,
         "expectation_basis": expectation["expectation_basis"],
-        "runtime_supports_expected_behavior": expectation[
-            "runtime_supports_expected_behavior"
-        ],
+        "runtime_supports_expected_behavior": expectation["runtime_supports_expected_behavior"],
         "scope": scope["scope"],
         "scope_reason": scope["scope_reason"],
         "alignment_explanation": explanation,
@@ -198,7 +195,10 @@ def _runtime_metrics(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
     grouped: dict[str, list[dict[str, Any]]] = defaultdict(list)
     for row in rows:
         grouped[row["runtime_id"]].append(row)
-    return [_aggregate_rows(runtime_id, group_rows) for runtime_id, group_rows in sorted(grouped.items())]
+    return [
+        _aggregate_rows(runtime_id, group_rows)
+        for runtime_id, group_rows in sorted(grouped.items())
+    ]
 
 
 def _scope_metrics(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
@@ -369,20 +369,15 @@ def _baseline_comparison(runtime_metrics: list[dict[str, Any]]) -> list[dict[str
                     "proposed_runtime": proposed_runtime,
                     "baseline_runtime": baseline_runtime,
                     "delta_aligned_policy_compliance": round(
-                        p["aligned_policy_compliance_rate"]
-                        - b["aligned_policy_compliance_rate"],
+                        p["aligned_policy_compliance_rate"] - b["aligned_policy_compliance_rate"],
                         6,
                     ),
                     "delta_unsafe_execution": round(
                         b["unsafe_execution_rate"] - p["unsafe_execution_rate"],
                         6,
                     ),
-                    "proposed_aligned_policy_compliance_rate": p[
-                        "aligned_policy_compliance_rate"
-                    ],
-                    "baseline_aligned_policy_compliance_rate": b[
-                        "aligned_policy_compliance_rate"
-                    ],
+                    "proposed_aligned_policy_compliance_rate": p["aligned_policy_compliance_rate"],
+                    "baseline_aligned_policy_compliance_rate": b["aligned_policy_compliance_rate"],
                     "proposed_unsafe_execution_rate": p["unsafe_execution_rate"],
                     "baseline_unsafe_execution_rate": b["unsafe_execution_rate"],
                 }
@@ -618,8 +613,7 @@ def _markdown_table(rows: list[dict[str, Any]], columns: list[str]) -> str:
     header = "| " + " | ".join(columns) + " |"
     separator = "| " + " | ".join("---" for _ in columns) + " |"
     body = [
-        "| " + " | ".join(str(row.get(column, "")) for column in columns) + " |"
-        for row in rows
+        "| " + " | ".join(str(row.get(column, "")) for column in columns) + " |" for row in rows
     ]
     return "\n".join([header, separator, *body])
 

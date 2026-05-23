@@ -30,9 +30,7 @@ def load_capabilities(path: Path = DEFAULT_REGISTRY_PATH) -> list[Capability]:
     capabilities: list[Capability] = []
     for index, item in enumerate(raw_registry):
         if not isinstance(item, dict):
-            raise CapabilityRegistryError(
-                f"Capability entry at index {index} must be a mapping."
-            )
+            raise CapabilityRegistryError(f"Capability entry at index {index} must be a mapping.")
 
         try:
             capabilities.append(Capability.model_validate(item))
@@ -52,10 +50,6 @@ def get_capability_by_name(
 
     registry = capabilities if capabilities is not None else load_capabilities()
     return next(
-        (
-            capability
-            for capability in registry
-            if capability.capability_name == capability_name
-        ),
+        (capability for capability in registry if capability.capability_name == capability_name),
         None,
     )

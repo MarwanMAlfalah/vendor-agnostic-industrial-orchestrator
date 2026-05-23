@@ -27,7 +27,11 @@ def classify_runtime_scope(scenario: dict[str, Any], runtime_id: str) -> dict[st
     failure_condition = str(scenario["failure_condition"])
     sequence = list(scenario["expected_governance_sequence"])
 
-    if failure_condition in {"malformed payload", "unsupported capability", "unavailable capability"}:
+    if failure_condition in {
+        "malformed payload",
+        "unsupported capability",
+        "unavailable capability",
+    }:
         return _scope("stress_scope", "Malformed or unavailable capability condition.")
 
     if runtime_id == "reference_v1":
@@ -50,7 +54,9 @@ def classify_runtime_scope(scenario: dict[str, Any], runtime_id: str) -> dict[st
                 "Invalidated mapping is a revalidation stress case, even though containment is supported.",
             )
         if failure_condition in {"invalid adapter mapping", "safe abort condition"}:
-            return _scope("stress_scope", "Invalid mapping and safe-abort cases test containment limits.")
+            return _scope(
+                "stress_scope", "Invalid mapping and safe-abort cases test containment limits."
+            )
         return _scope("supported_scope", "Scenario is within LangGraph runtime capability scope.")
 
     if runtime_id == "baseline_a_direct_without_governance":
@@ -63,7 +69,9 @@ def classify_runtime_scope(scenario: dict[str, Any], runtime_id: str) -> dict[st
 
     if runtime_id == "baseline_b_single_stage_execution":
         if governance_pattern == "all_allow":
-            return _scope("supported_scope", "Simple all-allow behavior is within single-stage scope.")
+            return _scope(
+                "supported_scope", "Simple all-allow behavior is within single-stage scope."
+            )
         return _scope(
             "stress_scope",
             "Multi-decision or policy-sensitive scenario exceeds single-stage baseline scope.",

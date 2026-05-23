@@ -131,9 +131,7 @@ def _trace_completeness(trace_records: list[dict[str, Any]]) -> float:
     if not trace_records:
         return 0.0
 
-    complete = sum(
-        1 for record in trace_records if TRACE_NODES.issubset(set(record["trace"]))
-    )
+    complete = sum(1 for record in trace_records if TRACE_NODES.issubset(set(record["trace"])))
     return round(complete / len(trace_records), 4)
 
 
@@ -274,12 +272,7 @@ def _markdown_table(
 ) -> str:
     header = "| " + " | ".join(label for label, _ in columns) + " |"
     separator = "| " + " | ".join("---" for _ in columns) + " |"
-    body = [
-        "| "
-        + " | ".join(str(row[field]) for _, field in columns)
-        + " |"
-        for row in rows
-    ]
+    body = ["| " + " | ".join(str(row[field]) for _, field in columns) + " |" for row in rows]
     return "\n".join([header, separator, *body])
 
 

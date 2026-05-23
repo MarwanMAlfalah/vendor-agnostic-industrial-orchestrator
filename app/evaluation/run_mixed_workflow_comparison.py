@@ -95,7 +95,9 @@ def run_mixed_workflow_comparison() -> tuple[list[dict[str, Any]], dict[str, Any
         json.dumps(summary, indent=2, sort_keys=True),
         encoding="utf-8",
     )
-    MIXED_SUMMARY_MD.write_text(_markdown_summary(rows, cases, langgraph_raw_runs), encoding="utf-8")
+    MIXED_SUMMARY_MD.write_text(
+        _markdown_summary(rows, cases, langgraph_raw_runs), encoding="utf-8"
+    )
     return rows, summary
 
 
@@ -153,7 +155,9 @@ def _trace_stage_coverage(trace_records: list[dict[str, Any]]) -> float:
     ratios = []
     for record in trace_records:
         trace = set(record.get("trace", []))
-        ratios.append(sum(1 for stage in GRAPH_STAGE_TRACE if stage in trace) / len(GRAPH_STAGE_TRACE))
+        ratios.append(
+            sum(1 for stage in GRAPH_STAGE_TRACE if stage in trace) / len(GRAPH_STAGE_TRACE)
+        )
 
     return round(sum(ratios) / len(ratios), 4)
 
@@ -201,8 +205,7 @@ def _approval_resume_correctness(
         and record["resumed"]
         and record["result"].final_status
         == (
-            record["case"].expected_post_resume_final_status
-            or record["case"].expected_final_status
+            record["case"].expected_post_resume_final_status or record["case"].expected_final_status
         )
     )
     return round(correct / len(approval_records), 4)
@@ -238,8 +241,7 @@ def _post_resume_final_outcome_accuracy(
         if record["resumed"]
         and record["result"].final_status
         == (
-            record["case"].expected_post_resume_final_status
-            or record["case"].expected_final_status
+            record["case"].expected_post_resume_final_status or record["case"].expected_final_status
         )
     )
     return round(correct / len(approval_records), 4)
@@ -389,10 +391,7 @@ def _markdown_table(
 ) -> str:
     header = "| " + " | ".join(label for label, _ in columns) + " |"
     separator = "| " + " | ".join("---" for _ in columns) + " |"
-    body = [
-        "| " + " | ".join(str(row[field]) for _, field in columns) + " |"
-        for row in rows
-    ]
+    body = ["| " + " | ".join(str(row[field]) for _, field in columns) + " |" for row in rows]
     return "\n".join([header, separator, *body])
 
 

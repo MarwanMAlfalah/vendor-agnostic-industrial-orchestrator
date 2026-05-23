@@ -1,7 +1,7 @@
 """Tests for the scaled deterministic empirical evaluation package."""
 
-import json
 import csv
+import json
 from pathlib import Path
 
 from app.evaluation.run_ablation_study import run_ablation_study
@@ -126,12 +126,14 @@ def test_error_audit_does_not_modify_runtime_source_files() -> None:
 def test_runtime_capability_profiles_load_correctly() -> None:
     assert "reference_v1" in RUNTIME_CAPABILITY_PROFILES
     assert "langgraph_runtime" in RUNTIME_CAPABILITY_PROFILES
-    assert "controlled post-approval execution" in RUNTIME_CAPABILITY_PROFILES[
-        "reference_v1"
-    ]["does_not_support"]
-    assert "controlled post-approval continuation" in RUNTIME_CAPABILITY_PROFILES[
-        "langgraph_runtime"
-    ]["supports"]
+    assert (
+        "controlled post-approval execution"
+        in RUNTIME_CAPABILITY_PROFILES["reference_v1"]["does_not_support"]
+    )
+    assert (
+        "controlled post-approval continuation"
+        in RUNTIME_CAPABILITY_PROFILES["langgraph_runtime"]["supports"]
+    )
 
 
 def test_runtime_specific_expected_outcomes_are_applied() -> None:
@@ -176,8 +178,7 @@ def test_aligned_metrics_do_not_hide_unsafe_execution() -> None:
     assert float(rows["langgraph_runtime"]["unsafe_execution_rate"]) == 0.0
     assert float(rows["baseline_a_direct_without_governance"]["unsafe_execution_rate"]) > 0
     assert (
-        float(rows["baseline_a_direct_without_governance"]["aligned_policy_compliance_rate"])
-        == 0.0
+        float(rows["baseline_a_direct_without_governance"]["aligned_policy_compliance_rate"]) == 0.0
     )
 
 

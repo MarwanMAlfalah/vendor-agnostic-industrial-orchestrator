@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: vendor-orchestrator
+  labels:
+    app.kubernetes.io/name: vendor-orchestrator
+    app.kubernetes.io/part-of: local-kubernetes-reproducibility-demo
+

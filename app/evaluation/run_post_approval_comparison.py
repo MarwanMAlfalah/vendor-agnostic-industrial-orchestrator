@@ -173,8 +173,7 @@ def _approval_resume_correctness(
         for record in records
         if record["interrupted"]
         and record["resumed"]
-        and record["result"].final_status
-        == record["case"].expected_post_resume_final_status
+        and record["result"].final_status == record["case"].expected_post_resume_final_status
     )
     return _rate(correct, len(records))
 
@@ -220,8 +219,7 @@ def _post_resume_final_outcome_accuracy(
         1
         for record in records
         if record["resumed"]
-        and record["result"].final_status
-        == record["case"].expected_post_resume_final_status
+        and record["result"].final_status == record["case"].expected_post_resume_final_status
     )
     return _rate(correct, len(records))
 
@@ -237,8 +235,7 @@ def _gated_step_policy_compliance_rate(
         expected_execute = bool(record["case"].expected_approval_execution_allowed)
         observed_execute = bool(record["approval_execution_performed"])
         final_status_matches = (
-            record["result"].final_status
-            == record["case"].expected_post_resume_final_status
+            record["result"].final_status == record["case"].expected_post_resume_final_status
         )
         compliant += int(expected_execute == observed_execute and final_status_matches)
 
@@ -261,19 +258,15 @@ def _approved_execution_trace_completeness(
     complete = 0
     for record in records:
         required_trace = [
-            marker
-            for marker in REQUIRED_APPROVAL_TRACE
-            if marker != "approval_validated"
+            marker for marker in REQUIRED_APPROVAL_TRACE if marker != "approval_validated"
         ]
         has_validation_outcome = (
-            "approval_validated" in record["trace"]
-            or "approval_rejected" in record["trace"]
+            "approval_validated" in record["trace"] or "approval_rejected" in record["trace"]
         )
         if record["case"].expected_approval_execution_allowed:
             required_trace.append("approved_execution")
         complete += int(
-            has_validation_outcome
-            and all(marker in record["trace"] for marker in required_trace)
+            has_validation_outcome and all(marker in record["trace"] for marker in required_trace)
         )
 
     return _rate(complete, len(records))
@@ -490,10 +483,7 @@ def _markdown_table(
 ) -> str:
     header = "| " + " | ".join(label for label, _ in columns) + " |"
     separator = "| " + " | ".join("---" for _ in columns) + " |"
-    body = [
-        "| " + " | ".join(str(row[field]) for _, field in columns) + " |"
-        for row in rows
-    ]
+    body = ["| " + " | ".join(str(row[field]) for _, field in columns) + " |" for row in rows]
     return "\n".join([header, separator, *body])
 
 

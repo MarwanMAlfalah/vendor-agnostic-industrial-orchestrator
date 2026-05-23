@@ -109,14 +109,14 @@ def run_scaled_error_audit(profile: str = "journal") -> dict[str, Any]:
         ),
         "top_failure_categories": [
             {"failure_category": category, "count": count}
-            for category, count in Counter(row["failure_category"] for row in error_rows).most_common(5)
+            for category, count in Counter(
+                row["failure_category"] for row in error_rows
+            ).most_common(5)
         ],
-        "supported_scope_preview": [
-            row for row in scope_rows if row["scope"] == "supported_scope"
-        ][:5],
-        "stress_scope_preview": [
-            row for row in scope_rows if row["scope"] == "stress_scope"
-        ][:5],
+        "supported_scope_preview": [row for row in scope_rows if row["scope"] == "supported_scope"][
+            :5
+        ],
+        "stress_scope_preview": [row for row in scope_rows if row["scope"] == "stress_scope"][:5],
         "generator_findings": generator_findings,
     }
     return summary
@@ -156,9 +156,7 @@ def _error_rows(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
         if not _is_problematic(row):
             continue
         error_row = {
-            field: row.get(field, "")
-            for field in ERROR_CASE_FIELDS
-            if field != "failure_category"
+            field: row.get(field, "") for field in ERROR_CASE_FIELDS if field != "failure_category"
         }
         error_row["failure_category"] = _failure_category(row)
         error_rows.append(error_row)
@@ -204,7 +202,11 @@ def _failure_category(row: dict[str, Any]) -> str:
     ):
         return "conservative_safe_failure"
 
-    if row["failure_condition"] in {"malformed payload", "unavailable capability", "unsupported capability"}:
+    if row["failure_condition"] in {
+        "malformed payload",
+        "unavailable capability",
+        "unsupported capability",
+    }:
         if not row["final_outcome_correct"] or not row["invalid_mapping_contained"]:
             return "true_runtime_limitation"
 
@@ -262,10 +264,7 @@ def _scope_metrics(
     rows: list[dict[str, Any]],
     scenarios: list[dict[str, Any]],
 ) -> list[dict[str, Any]]:
-    scenario_scope = {
-        scenario["scenario_id"]: _scenario_scope(scenario)
-        for scenario in scenarios
-    }
+    scenario_scope = {scenario["scenario_id"]: _scenario_scope(scenario) for scenario in scenarios}
     grouped: dict[tuple[str, str], list[dict[str, Any]]] = defaultdict(list)
     for row in rows:
         scope = scenario_scope.get(row["scenario_id"], "stress_scope")
@@ -336,7 +335,9 @@ def _metric_row(
         "count": len(rows),
         "policy_compliance_rate": _rate(sum(row["policy_compliant"] for row in rows), len(rows)),
         "unsafe_execution_rate": _rate(sum(row["unsafe_execution"] for row in rows), len(rows)),
-        "final_outcome_accuracy": _rate(sum(row["final_outcome_correct"] for row in rows), len(rows)),
+        "final_outcome_accuracy": _rate(
+            sum(row["final_outcome_correct"] for row in rows), len(rows)
+        ),
         "trace_completeness": _rate(sum(row["trace_complete"] for row in rows), len(rows)),
         "approval_bypass_rate": _rate(sum(row["approval_bypass"] for row in rows), len(rows)),
         "invalid_mapping_containment_rate": _rate(
@@ -357,9 +358,13 @@ def _scenario_generator_quality(
     scenario_ids = [scenario["scenario_id"] for scenario in scenarios]
     duplicate_ids = [item for item, count in Counter(scenario_ids).items() if count > 1]
     if duplicate_ids:
-        findings.append(_finding("duplicate_scenario_ids", "fail", f"Duplicate ids: {duplicate_ids[:10]}"))
+        findings.append(
+            _finding("duplicate_scenario_ids", "fail", f"Duplicate ids: {duplicate_ids[:10]}")
+        )
     else:
-        findings.append(_finding("duplicate_scenario_ids", "pass", "No duplicate scenario ids detected."))
+        findings.append(
+            _finding("duplicate_scenario_ids", "pass", "No duplicate scenario ids detected.")
+        )
 
     duplicate_signatures = _duplicate_signatures(scenarios)
     findings.append(
@@ -374,14 +379,22 @@ def _scenario_generator_quality(
     findings.append(
         _finding(
             "governance_pattern_coverage",
-            "pass" if set(GOVERNANCE_PATTERNS).issubset({s["governance_pattern"] for s in scenarios}) else "fail",
+            (
+                "pass"
+                if set(GOVERNANCE_PATTERNS).issubset({s["governance_pattern"] for s in scenarios})
+                else "fail"
+            ),
             "All requested governance patterns are represented.",
         )
     )
     findings.append(
         _finding(
             "failure_condition_coverage",
-            "pass" if set(FAILURE_CONDITIONS).issubset({s["failure_condition"] for s in scenarios}) else "warn",
+            (
+                "pass"
+                if set(FAILURE_CONDITIONS).issubset({s["failure_condition"] for s in scenarios})
+                else "warn"
+            ),
             "Requested failure/containment conditions are represented or explicitly absent by profile.",
         )
     )
@@ -444,10 +457,10 @@ def _consistency_findings(scenarios: list[dict[str, Any]]) -> list[dict[str, Any
             checks["approval_condition_requires_approval_step"].append(scenario["scenario_id"])
         if "SAFE_ABORT" in sequence and scenario["expected_final_status"] != "safe_aborted":
             checks["safe_abort_status_consistency"].append(scenario["scenario_id"])
-        if (
-            "BLOCK" in sequence
-            and scenario["expected_final_status"] not in {"blocked", "partial_success"}
-        ):
+        if "BLOCK" in sequence and scenario["expected_final_status"] not in {
+            "blocked",
+            "partial_success",
+        }:
             checks["block_status_consistency"].append(scenario["scenario_id"])
         if not set(scenario["runtime_applicability"]).issubset(KNOWN_RUNTIMES):
             checks["runtime_applicability_consistency"].append(scenario["scenario_id"])
@@ -460,9 +473,11 @@ def _consistency_findings(scenarios: list[dict[str, Any]]) -> list[dict[str, Any
             _finding(
                 check_name,
                 "pass" if not failures else "warn",
-                "No inconsistencies detected."
-                if not failures
-                else f"{len(failures)} scenarios need review, e.g. {failures[:10]}.",
+                (
+                    "No inconsistencies detected."
+                    if not failures
+                    else f"{len(failures)} scenarios need review, e.g. {failures[:10]}."
+                ),
             )
         )
     return findings
@@ -503,7 +518,9 @@ def _write_journal_outputs(
     scenarios: list[dict[str, Any]],
 ) -> None:
     _write_csv(RESULTS_DIR / "confusion_matrix_final_status_journal.csv", final_confusion)
-    _write_csv(RESULTS_DIR / "confusion_matrix_governance_decision_journal.csv", governance_confusion)
+    _write_csv(
+        RESULTS_DIR / "confusion_matrix_governance_decision_journal.csv", governance_confusion
+    )
     _write_csv(RESULTS_DIR / "scenario_factor_balance_journal.csv", factor_balance_rows)
 
     supported_rows = [row for row in scope_rows if row["scope"] == "supported_scope"]
@@ -579,9 +596,7 @@ def _confusion_markdown(
     final_confusion: list[dict[str, Any]],
     governance_confusion: list[dict[str, Any]],
 ) -> str:
-    final_mismatches = [
-        row for row in final_confusion if row["expected"] != row["observed"]
-    ]
+    final_mismatches = [row for row in final_confusion if row["expected"] != row["observed"]]
     governance_mismatches = [
         row for row in governance_confusion if row["expected"] != row["observed"]
     ]
@@ -820,8 +835,7 @@ def _markdown_table(rows: list[dict[str, Any]], columns: list[str]) -> str:
     header = "| " + " | ".join(columns) + " |"
     separator = "| " + " | ".join("---" for _ in columns) + " |"
     body = [
-        "| " + " | ".join(str(row.get(column, "")) for column in columns) + " |"
-        for row in rows
+        "| " + " | ".join(str(row.get(column, "")) for column in columns) + " |" for row in rows
     ]
     return "\n".join([header, separator, *body])
 

@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: orchestrator-config
+  namespace: vendor-orchestrator
+  labels:
+    app.kubernetes.io/name: vendor-orchestrator
+    app.kubernetes.io/part-of: local-kubernetes-reproducibility-demo
+data:
+  ORCHESTRATOR_ENVIRONMENT: kubernetes-local-repro
+  LANGSMITH_TRACING: "false"
+  LANGSMITH_PROJECT: vendor-agnostic-industrial-orchestrator
+  LANGSMITH_ENDPOINT: ""
+  DEPLOYMENT_MODE: kubernetes_local
+  IMAGE_TAG: vendor-orchestrator:local
+  GIT_SHA: unknown
+  HEALTH_CHECK_URL: http://orchestrator-api:8000/health
+

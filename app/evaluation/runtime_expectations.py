@@ -208,16 +208,14 @@ def _langgraph_expectation(
 
 
 def _requires_controlled_continuation(scenario: dict[str, Any]) -> bool:
-    return (
-        "REQUIRE_APPROVAL" in scenario["expected_governance_sequence"]
-        and scenario["approval_condition"]
-        in {
-            "valid approval",
-            "invalid approval",
-            "missing approval",
-            "approval with invalidated mapping",
-        }
-    )
+    return "REQUIRE_APPROVAL" in scenario["expected_governance_sequence"] and scenario[
+        "approval_condition"
+    ] in {
+        "valid approval",
+        "invalid approval",
+        "missing approval",
+        "approval with invalidated mapping",
+    }
 
 
 def _non_continuation_final_status(sequence: list[str]) -> str:

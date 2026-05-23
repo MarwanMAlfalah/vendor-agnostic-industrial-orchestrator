@@ -195,7 +195,10 @@ def execution_node(state: LangGraphRuntimeState) -> LangGraphRuntimeState:
                     with trace_experiment(
                         "approved_execution",
                         inputs={"case_id": state.get("case_id")},
-                        metadata={"runtime_id": "langgraph_runtime", "case_id": state.get("case_id")},
+                        metadata={
+                            "runtime_id": "langgraph_runtime",
+                            "case_id": state.get("case_id"),
+                        },
                         tags=["approval"],
                     ) as approved_trace:
                         approved_trace.add_outputs({"gated_step_executed": True})
@@ -289,9 +292,13 @@ def _apply_resume_mutation(
 
     step_id = mutation.get("step_id")
     steps = [
-        step.model_copy(update={key: value for key, value in mutation.items() if key != "step_id"})
-        if step.step_id == step_id
-        else step
+        (
+            step.model_copy(
+                update={key: value for key, value in mutation.items() if key != "step_id"}
+            )
+            if step.step_id == step_id
+            else step
+        )
         for step in governance_plan.steps
     ]
     return governance_plan.model_copy(update={"steps": steps})
@@ -301,7 +308,9 @@ def _approval_step_is_still_eligible(
     governance_plan: GovernanceEvaluation,
     step_id: str,
 ) -> tuple[bool, str | None]:
-    step = next((candidate for candidate in governance_plan.steps if candidate.step_id == step_id), None)
+    step = next(
+        (candidate for candidate in governance_plan.steps if candidate.step_id == step_id), None
+    )
     if step is None:
         return False, "approval_step_missing"
     if step.decision != "REQUIRE_APPROVAL" or step.reason != "sensitive_vendor_action":
@@ -323,15 +332,17 @@ def _approved_execution_plan(
     step_id: str,
 ) -> GovernanceEvaluation:
     steps = [
-        step.model_copy(
-            update={
-                "decision": "ALLOW",
-                "reason": "approved_controlled_continuation",
-                "notes": "LangGraph approved continuation after explicit approval.",
-            }
+        (
+            step.model_copy(
+                update={
+                    "decision": "ALLOW",
+                    "reason": "approved_controlled_continuation",
+                    "notes": "LangGraph approved continuation after explicit approval.",
+                }
+            )
+            if step.step_id == step_id
+            else step
         )
-        if step.step_id == step_id
-        else step
         for step in governance_plan.steps
     ]
     return governance_plan.model_copy(
@@ -345,15 +356,17 @@ def _safe_abort_approval_plan(
     reason: str,
 ) -> GovernanceEvaluation:
     steps = [
-        step.model_copy(
-            update={
-                "decision": "SAFE_ABORT",
-                "reason": reason,
-                "notes": "LangGraph blocked approved continuation during revalidation.",
-            }
+        (
+            step.model_copy(
+                update={
+                    "decision": "SAFE_ABORT",
+                    "reason": reason,
+                    "notes": "LangGraph blocked approved continuation during revalidation.",
+                }
+            )
+            if step.step_id == step_id
+            else step
         )
-        if step.step_id == step_id
-        else step
         for step in governance_plan.steps
     ]
     return governance_plan.model_copy(

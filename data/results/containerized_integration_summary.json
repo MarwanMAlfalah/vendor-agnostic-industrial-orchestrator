@@ -1,0 +1,72 @@
+{
+  "adapter_contract_pass_rate": 1.0,
+  "case_trace_markers": {
+    "INT-001": [
+      "planning_start",
+      "planning_complete",
+      "matching_complete",
+      "governance_complete",
+      "execution_start",
+      "service_call:opcua_adapter:read_machine_status",
+      "service_call:opcua_adapter:read_alarm_code",
+      "final_result"
+    ],
+    "INT-002": [
+      "planning_start",
+      "planning_complete",
+      "matching_complete",
+      "governance_complete",
+      "execution_start",
+      "service_call:rest_adapter:create_maintenance_ticket",
+      "service_call:rest_adapter:query_ticket_status",
+      "final_result"
+    ],
+    "INT-003": [
+      "planning_start",
+      "planning_complete",
+      "matching_complete",
+      "governance_complete",
+      "execution_start",
+      "approval_required_stop",
+      "final_result"
+    ],
+    "INT-004": [
+      "planning_start",
+      "planning_complete",
+      "matching_complete",
+      "governance_complete",
+      "execution_start",
+      "blocked_stop",
+      "final_result"
+    ],
+    "INT-005": [
+      "planning_start",
+      "planning_complete",
+      "matching_complete",
+      "governance_complete",
+      "execution_start",
+      "service_call:legacy_adapter:run_legacy_command",
+      "final_result"
+    ]
+  },
+  "deployment_claim": "local docker-compose integration experiment only",
+  "deterministic": true,
+  "final_outcome_accuracy": 1.0,
+  "integration_case_count": 5,
+  "langsmith_trace_metadata_preview": {
+    "deployment_mode": "docker_compose",
+    "experiment": "containerized_integration_demo",
+    "git_sha": "d2bee54",
+    "legacy_endpoint": "http://mock-legacy:8003",
+    "maintenance_endpoint": "http://mock-maintenance-rest:8002",
+    "opcua_endpoint": "http://mock-opcua:8001",
+    "service_topology": "orchestrator+opcua+rest+legacy"
+  },
+  "mean_latency_ms": 7.668517,
+  "p95_latency_ms": 8.759392,
+  "policy_compliance_rate": 1.0,
+  "service_health_pass_rate": 1.0,
+  "service_topology": "orchestrator+opcua+rest+legacy",
+  "trace_completeness": 1.0,
+  "unsafe_execution_rate": 0.0
+}

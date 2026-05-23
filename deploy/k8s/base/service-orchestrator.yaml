@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: orchestrator-api
+  namespace: vendor-orchestrator
+  labels:
+    app.kubernetes.io/name: vendor-orchestrator
+    app.kubernetes.io/component: api
+    app.kubernetes.io/part-of: local-kubernetes-reproducibility-demo
+spec:
+  type: ClusterIP
+  selector:
+    app.kubernetes.io/name: vendor-orchestrator
+    app.kubernetes.io/component: api
+  ports:
+    - name: http
+      port: 8000
+      targetPort: http
+

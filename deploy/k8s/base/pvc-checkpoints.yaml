@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: langgraph-checkpoints
+  namespace: vendor-orchestrator
+  labels:
+    app.kubernetes.io/name: vendor-orchestrator
+    app.kubernetes.io/part-of: local-kubernetes-reproducibility-demo
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+

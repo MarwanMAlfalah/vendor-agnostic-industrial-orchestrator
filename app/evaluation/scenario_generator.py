@@ -200,9 +200,9 @@ def _build_scenario(scenario_number: int, balance_index: int) -> dict[str, Any]:
         "expected_execution_allowed": _expected_execution_allowed(expected_sequence),
         "expected_policy_compliance": True,
         "expected_trace_markers": _expected_trace_markers(expected_sequence, approval_condition),
-        "expected_approval_execution_allowed": expected_approval_execution_allowed
-        if "REQUIRE_APPROVAL" in expected_sequence
-        else None,
+        "expected_approval_execution_allowed": (
+            expected_approval_execution_allowed if "REQUIRE_APPROVAL" in expected_sequence else None
+        ),
         "approval_payload": _approval_payload(approval_condition),
         "approval_resume_mutation": approval_resume_mutation,
         "industrial_context": industrial_context,
@@ -292,7 +292,9 @@ def _steps_for_pattern(
 
     for step_index, decision in enumerate(decisions, start=1):
         if decision == "ALLOW":
-            adapter, capability, title = allow_specs[(step_index + balance_index) % len(allow_specs)]
+            adapter, capability, title = allow_specs[
+                (step_index + balance_index) % len(allow_specs)
+            ]
             reason = "read_only_or_service_capability"
         elif decision == "REQUIRE_APPROVAL":
             adapter, capability, title = (
@@ -329,11 +331,21 @@ def _steps_for_pattern(
 def _decision_sequence(governance_pattern: str, step_count: int) -> list[str]:
     if governance_pattern == "all_allow":
         return ["ALLOW"] * step_count
-    if governance_pattern in {"allow_then_require_approval", "post_approval_valid", "post_approval_invalid", "post_approval_missing"}:
+    if governance_pattern in {
+        "allow_then_require_approval",
+        "post_approval_valid",
+        "post_approval_invalid",
+        "post_approval_missing",
+    }:
         return _with_terminal(step_count, "REQUIRE_APPROVAL")
     if governance_pattern == "allow_then_block":
         return _with_terminal(step_count, "BLOCK")
-    if governance_pattern in {"allow_then_safe_abort", "invalid_mapping", "unavailable_capability", "malformed_payload"}:
+    if governance_pattern in {
+        "allow_then_safe_abort",
+        "invalid_mapping",
+        "unavailable_capability",
+        "malformed_payload",
+    }:
         return _with_terminal(step_count, "SAFE_ABORT")
     if governance_pattern == "mixed_allow_approval_block":
         return _with_two_terminals(step_count, "REQUIRE_APPROVAL", "BLOCK")
@@ -357,10 +369,7 @@ def _with_two_terminals(step_count: int, first_terminal: str, second_terminal: s
 
 
 def _allow_specs(adapter_mix: str) -> list[tuple[str, str, str]]:
-    adapter_names = [
-        name.strip().removesuffix(" only").strip()
-        for name in adapter_mix.split("+")
-    ]
+    adapter_names = [name.strip().removesuffix(" only").strip() for name in adapter_mix.split("+")]
     specs: list[tuple[str, str, str]] = []
     for adapter_name in adapter_names:
         specs.extend(ADAPTER_CAPABILITIES[adapter_name])
@@ -369,11 +378,26 @@ def _allow_specs(adapter_mix: str) -> list[tuple[str, str, str]]:
 
 def _safe_abort_mapping(failure_condition: str) -> tuple[str | None, str | None, str, str]:
     if failure_condition == "invalid adapter mapping":
-        return None, "read_machine_status", "Abort invalid adapter mapping", "invalid_execution_mapping"
+        return (
+            None,
+            "read_machine_status",
+            "Abort invalid adapter mapping",
+            "invalid_execution_mapping",
+        )
     if failure_condition == "unavailable capability":
-        return "opcua_adapter", "capability_not_registered", "Abort unavailable capability", "invalid_execution_mapping"
+        return (
+            "opcua_adapter",
+            "capability_not_registered",
+            "Abort unavailable capability",
+            "invalid_execution_mapping",
+        )
     if failure_condition == "unsupported capability":
-        return "legacy_adapter", "capability_not_supported", "Abort unsupported capability", "invalid_execution_mapping"
+        return (
+            "legacy_adapter",
+            "capability_not_supported",
+            "Abort unsupported capability",
+            "invalid_execution_mapping",
+        )
     if failure_condition == "malformed payload":
         return "rest_adapter", None, "Abort malformed payload", "malformed_payload"
     return None, None, "Abort unsafe or unmapped action", "invalid_execution_mapping"

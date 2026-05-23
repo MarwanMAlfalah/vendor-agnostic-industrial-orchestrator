@@ -1,0 +1,58 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: scaled-evaluation-job
+  namespace: vendor-orchestrator
+  labels:
+    app.kubernetes.io/name: vendor-orchestrator
+    app.kubernetes.io/component: evaluation
+    app.kubernetes.io/part-of: local-kubernetes-reproducibility-demo
+spec:
+  backoffLimit: 0
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: vendor-orchestrator
+        app.kubernetes.io/component: evaluation
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: scaled-evaluation
+          image: vendor-orchestrator:local
+          imagePullPolicy: IfNotPresent
+          command:
+            - /bin/sh
+            - -c
+            - >
+              python -m app.evaluation.run_scaled_evaluation --profile journal &&
+              python -m app.evaluation.run_k8s_reproducibility_summary
+              --job-name scaled-evaluation-job
+              --health-url http://orchestrator-api:8000/health
+          envFrom:
+            - configMapRef:
+                name: orchestrator-config
+            - secretRef:
+                name: langsmith-secret
+                optional: true
+          env:
+            - name: K8S_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: K8S_JOB_NAME
+              value: scaled-evaluation-job
+          resources:
+            requests:
+              cpu: 250m
+              memory: 512Mi
+            limits:
+              cpu: "1"
+              memory: 1Gi
+          volumeMounts:
+            - name: checkpoints
+              mountPath: /app/data/langgraph
+      volumes:
+        - name: checkpoints
+          persistentVolumeClaim:
+            claimName: langgraph-checkpoints
+

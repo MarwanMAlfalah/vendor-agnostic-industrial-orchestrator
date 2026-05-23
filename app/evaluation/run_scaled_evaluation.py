@@ -147,7 +147,9 @@ def _run_runtime(
         "result": method_run.result,
         "stage_latencies_ms": method_run.stage_latencies_ms,
         "trace": trace,
-        "approval_state": "not_supported" if _requires_controlled_approval(scenario) else "not_required",
+        "approval_state": (
+            "not_supported" if _requires_controlled_approval(scenario) else "not_required"
+        ),
         "approval_validation_error": None,
         "approval_execution_performed": False,
         "interrupted": False,
@@ -218,7 +220,9 @@ def _result_row(
         "completed_steps": result.completed_steps,
         "skipped_steps": result.skipped_steps,
         "failed_steps": result.failed_steps,
-        "latency_ms": round(raw_run["stage_latencies_ms"].get("total", result.total_latency_ms or 0.0), 6),
+        "latency_ms": round(
+            raw_run["stage_latencies_ms"].get("total", result.total_latency_ms or 0.0), 6
+        ),
         "latency_group_runtime_id": runtime_id,
         "latency_group_scenario_family": scenario["scenario_family"],
     }
@@ -417,7 +421,9 @@ def _aggregate_rows(rows: list[dict[str, Any]]) -> dict[str, Any]:
         "policy_compliance_rate": _rate(sum(row["policy_compliant"] for row in rows), len(rows)),
         "unsafe_execution_rate": _rate(sum(row["unsafe_execution"] for row in rows), len(rows)),
         "approval_bypass_rate": _rate(sum(row["approval_bypass"] for row in rows), len(rows)),
-        "final_outcome_accuracy": _rate(sum(row["final_outcome_correct"] for row in rows), len(rows)),
+        "final_outcome_accuracy": _rate(
+            sum(row["final_outcome_correct"] for row in rows), len(rows)
+        ),
         "governance_decision_accuracy": _rate(
             sum(row["governance_decision_correct"] for row in rows),
             len(rows),

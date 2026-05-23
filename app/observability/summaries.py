@@ -21,7 +21,8 @@ def comparison_summary(rows: list[dict[str, Any]]) -> dict[str, Any]:
     """Return compact comparison outputs keyed by method/runtime id."""
 
     return {
-        row.get("method_id") or row.get("runtime_id"): {
+        row.get("method_id")
+        or row.get("runtime_id"): {
             key: row[key]
             for key in (
                 "policy_compliance_rate",
@@ -59,9 +60,7 @@ def crash_restart_summary(summary: dict[str, Any]) -> dict[str, Any]:
     return {
         "checkpoint_resume_success_rate": metrics.get("checkpoint_resume_success_rate"),
         "restart_recovery_success_rate": metrics.get("restart_recovery_success_rate"),
-        "post_restart_final_outcome_accuracy": metrics.get(
-            "post_restart_final_outcome_accuracy"
-        ),
+        "post_restart_final_outcome_accuracy": metrics.get("post_restart_final_outcome_accuracy"),
         "restart_trace_completeness": metrics.get("restart_trace_completeness"),
         "runs": [
             {

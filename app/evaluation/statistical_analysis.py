@@ -75,7 +75,9 @@ def run_statistical_analysis(profile: str = "journal") -> dict[str, Any]:
         "paired_comparisons": paired_rows,
     }
 
-    _write_statistical_outputs(profile, proportion_rows, effect_rows, latency_rows, paired_rows, summary)
+    _write_statistical_outputs(
+        profile, proportion_rows, effect_rows, latency_rows, paired_rows, summary
+    )
     _write_ijtech_outputs(profile, scenarios, rows, proportion_rows, effect_rows, latency_rows)
     return summary
 
@@ -180,7 +182,9 @@ def _effect_sizes(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
                 "delta_unsafe_execution": round(baseline_unsafe - proposed_unsafe, 6),
                 "relative_risk_unsafe_execution": _relative_risk(proposed_unsafe, baseline_unsafe),
                 "absolute_risk_reduction": round(baseline_unsafe - proposed_unsafe, 6),
-                "number_needed_to_prevent_unsafe_execution": _nnt(baseline_unsafe - proposed_unsafe),
+                "number_needed_to_prevent_unsafe_execution": _nnt(
+                    baseline_unsafe - proposed_unsafe
+                ),
             }
         )
     return effect_rows
@@ -188,7 +192,10 @@ def _effect_sizes(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
 
 def _metric_rates(rows: list[dict[str, Any]]) -> dict[str, float]:
     return {
-        metric: _rate(sum(1 for row in _denominator_rows(metric, rows) if row[column]), len(_denominator_rows(metric, rows)))
+        metric: _rate(
+            sum(1 for row in _denominator_rows(metric, rows) if row[column]),
+            len(_denominator_rows(metric, rows)),
+        )
         for metric, column in PROPORTION_METRICS.items()
     }
 
@@ -239,8 +246,7 @@ def _paired_comparisons(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
         pairs = [
             (by_pair[(scenario_id, PROPOSED_RUNTIME)], by_pair[(scenario_id, baseline_id)])
             for scenario_id in scenario_ids
-            if (scenario_id, PROPOSED_RUNTIME) in by_pair
-            and (scenario_id, baseline_id) in by_pair
+            if (scenario_id, PROPOSED_RUNTIME) in by_pair and (scenario_id, baseline_id) in by_pair
         ]
         paired_rows.append(
             {
@@ -276,7 +282,9 @@ def _mean_difference(
     for proposed, baseline in pairs:
         proposed_value = int(proposed[key])
         baseline_value = int(baseline[key])
-        differences.append((baseline_value - proposed_value) if invert else (proposed_value - baseline_value))
+        differences.append(
+            (baseline_value - proposed_value) if invert else (proposed_value - baseline_value)
+        )
     return round(sum(differences) / len(differences), 6)
 
 
@@ -323,9 +331,7 @@ def _write_ijtech_outputs(
         RESULTS_DIR / "ijtech_table_1_scenario_design.csv",
         _scenario_design_rows(scenarios),
     )
-    runtime_metric_rows = [
-        row for row in proportion_rows if row["group_type"] == "runtime"
-    ]
+    runtime_metric_rows = [row for row in proportion_rows if row["group_type"] == "runtime"]
     _write_csv(RESULTS_DIR / "ijtech_table_2_main_results.csv", runtime_metric_rows)
     _write_csv(RESULTS_DIR / "ijtech_table_3_baseline_comparison.csv", effect_rows)
     _write_csv(RESULTS_DIR / "ijtech_table_5_latency_summary.csv", latency_rows)
@@ -335,7 +341,14 @@ def _write_ijtech_outputs(
     )
     _write_csv(
         RESULTS_DIR / "ijtech_figure_data_latency_distribution.csv",
-        [{"runtime_id": row["runtime_id"], "scenario_family": row["scenario_family"], "latency_ms": row["latency_ms"]} for row in rows],
+        [
+            {
+                "runtime_id": row["runtime_id"],
+                "scenario_family": row["scenario_family"],
+                "latency_ms": row["latency_ms"],
+            }
+            for row in rows
+        ],
     )
     _write_csv(
         RESULTS_DIR / "ijtech_figure_data_trace_recovery.csv",
@@ -383,11 +396,19 @@ def _policy_vs_unsafe_rows(runtime_metric_rows: list[dict[str, Any]]) -> list[di
         {
             "runtime_id": runtime_id,
             "policy_compliance_rate": metrics.get("policy_compliance_rate", {}).get("rate", 0.0),
-            "policy_compliance_wilson_low": metrics.get("policy_compliance_rate", {}).get("wilson_95_low", 0.0),
-            "policy_compliance_wilson_high": metrics.get("policy_compliance_rate", {}).get("wilson_95_high", 0.0),
+            "policy_compliance_wilson_low": metrics.get("policy_compliance_rate", {}).get(
+                "wilson_95_low", 0.0
+            ),
+            "policy_compliance_wilson_high": metrics.get("policy_compliance_rate", {}).get(
+                "wilson_95_high", 0.0
+            ),
             "unsafe_execution_rate": metrics.get("unsafe_execution_rate", {}).get("rate", 0.0),
-            "unsafe_execution_wilson_low": metrics.get("unsafe_execution_rate", {}).get("wilson_95_low", 0.0),
-            "unsafe_execution_wilson_high": metrics.get("unsafe_execution_rate", {}).get("wilson_95_high", 0.0),
+            "unsafe_execution_wilson_low": metrics.get("unsafe_execution_rate", {}).get(
+                "wilson_95_low", 0.0
+            ),
+            "unsafe_execution_wilson_high": metrics.get("unsafe_execution_rate", {}).get(
+                "wilson_95_high", 0.0
+            ),
         }
         for runtime_id, metrics in sorted(by_runtime.items())
     ]
@@ -400,8 +421,12 @@ def _trace_recovery_rows(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
     return [
         {
             "runtime_id": runtime_id,
-            "trace_completeness": _rate(sum(1 for row in group_rows if row["trace_complete"]), len(group_rows)),
-            "restart_recovery_success_rate": _rate(sum(1 for row in group_rows if row["restart_recovered"]), len(group_rows)),
+            "trace_completeness": _rate(
+                sum(1 for row in group_rows if row["trace_complete"]), len(group_rows)
+            ),
+            "restart_recovery_success_rate": _rate(
+                sum(1 for row in group_rows if row["restart_recovered"]), len(group_rows)
+            ),
         }
         for runtime_id, group_rows in sorted(grouped.items())
     ]
@@ -422,11 +447,20 @@ def _statistical_markdown(profile: str, summary: dict[str, Any]) -> str:
         row
         for row in summary["proportion_metrics"]
         if row["group_type"] == "runtime"
-        and row["metric"] in {"policy_compliance_rate", "unsafe_execution_rate", "final_outcome_accuracy"}
+        and row["metric"]
+        in {"policy_compliance_rate", "unsafe_execution_rate", "final_outcome_accuracy"}
     ]
     table = _markdown_table(
         key_runtime_rows,
-        ["group_id", "metric", "numerator", "denominator", "rate", "wilson_95_low", "wilson_95_high"],
+        [
+            "group_id",
+            "metric",
+            "numerator",
+            "denominator",
+            "rate",
+            "wilson_95_low",
+            "wilson_95_high",
+        ],
     )
     return f"""# Scaled Statistical Analysis
 
@@ -469,7 +503,8 @@ def _ijtech_report(
     policy_rows = [
         row
         for row in runtime_metric_rows
-        if row["metric"] in {"policy_compliance_rate", "unsafe_execution_rate", "final_outcome_accuracy"}
+        if row["metric"]
+        in {"policy_compliance_rate", "unsafe_execution_rate", "final_outcome_accuracy"}
     ]
     return f"""# IJTech Empirical Results Report
 
@@ -542,8 +577,7 @@ def _markdown_table(rows: list[dict[str, Any]], columns: list[str]) -> str:
     header = "| " + " | ".join(columns) + " |"
     separator = "| " + " | ".join("---" for _ in columns) + " |"
     body = [
-        "| " + " | ".join(str(row.get(column, "")) for column in columns) + " |"
-        for row in rows
+        "| " + " | ".join(str(row.get(column, "")) for column in columns) + " |" for row in rows
     ]
     return "\n".join([header, separator, *body])
 
@@ -580,7 +614,9 @@ def main() -> None:
                 "profile": args.profile,
                 "proportion_rows": len(summary["proportion_metrics"]),
                 "effect_size_rows": len(summary["effect_sizes"]),
-                "summary_path": str(RESULTS_DIR / f"scaled_statistical_summary_{args.profile}.json"),
+                "summary_path": str(
+                    RESULTS_DIR / f"scaled_statistical_summary_{args.profile}.json"
+                ),
             },
             indent=2,
         )

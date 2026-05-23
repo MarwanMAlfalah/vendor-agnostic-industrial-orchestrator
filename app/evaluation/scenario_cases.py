@@ -343,7 +343,13 @@ def _allow_then_block_cases() -> list[EvaluationCase]:
 
 def _allow_then_safe_abort_cases() -> list[EvaluationCase]:
     invalid_mappings = [
-        ("CASE-MIXED-ALLOW-SAFE-ABORT-001", "G-MIXED-ALLOW-SAFE-ABORT-001", "M-101", None, "read_alarm_code"),
+        (
+            "CASE-MIXED-ALLOW-SAFE-ABORT-001",
+            "G-MIXED-ALLOW-SAFE-ABORT-001",
+            "M-101",
+            None,
+            "read_alarm_code",
+        ),
         (
             "CASE-MIXED-ALLOW-SAFE-ABORT-002",
             "G-MIXED-ALLOW-SAFE-ABORT-002",
@@ -697,13 +703,15 @@ def _post_approval_case(
         expected_governance_sequence=expected_sequence,
         expected_post_resume_final_status=expected_final_status,
         expected_approval_execution_allowed=expected_approval_execution_allowed,
-        approval_payload=approval_payload
-        if approval_payload is not None
-        else {
-            "approved": True,
-            "approved_by": "supervisor",
-            "approval_token": "APPROVED-001",
-        },
+        approval_payload=(
+            approval_payload
+            if approval_payload is not None
+            else {
+                "approved": True,
+                "approved_by": "supervisor",
+                "approval_token": "APPROVED-001",
+            }
+        ),
         approval_resume_mutation=approval_resume_mutation,
         industrial_context={
             "interoperability_role": context_role,

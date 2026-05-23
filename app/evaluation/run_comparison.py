@@ -66,8 +66,7 @@ def run_comparison() -> tuple[list[dict[str, Any]], dict[str, Any]]:
                 "description": method.description,
                 "metrics": metrics,
                 "case_results": [
-                    _case_result_summary(method_result)
-                    for method_result in method_results
+                    _case_result_summary(method_result) for method_result in method_results
                 ],
             }
         trace_handle.add_outputs(comparison_summary(aggregate_rows))
@@ -246,12 +245,7 @@ def _markdown_table(
 ) -> str:
     header = "| " + " | ".join(label for label, _ in columns) + " |"
     separator = "| " + " | ".join("---" for _ in columns) + " |"
-    body = [
-        "| "
-        + " | ".join(str(row[field]) for _, field in columns)
-        + " |"
-        for row in rows
-    ]
+    body = ["| " + " | ".join(str(row[field]) for _, field in columns) + " |" for row in rows]
     return "\n".join([header, separator, *body])
 
 

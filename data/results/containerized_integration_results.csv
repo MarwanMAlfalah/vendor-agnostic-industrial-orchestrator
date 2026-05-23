@@ -1,0 +1,6 @@
+case_id,description,final_status,expected_final_status,final_outcome_correct,policy_compliant,unsafe_execution,adapter_contract_passed,trace_complete,completed_steps,skipped_steps,failed_steps,latency_ms,executed_capabilities
+INT-001,Read machine status and alarm through containerized OPC UA mock service.,success,success,True,True,False,True,True,2,3,0,8.859834,read_machine_status;read_alarm_code
+INT-002,Create and query a maintenance ticket through containerized REST mock service.,success,success,True,True,False,True,True,2,0,0,8.357625,create_maintenance_ticket;query_ticket_status
+INT-003,Stop at approval-required governance decision before legacy command execution.,partial_success,partial_success,True,True,False,True,True,0,1,0,6.574291,
+INT-004,Block a forbidden shutdown action without invoking service-backed adapters.,blocked,blocked,True,True,False,True,True,0,1,0,6.659875,
+INT-005,Run an already-approved command through the containerized legacy mock service.,success,success,True,True,False,True,True,1,0,0,7.890958,run_legacy_command

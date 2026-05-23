@@ -331,10 +331,7 @@ class NoGovernancePolicyFilteringBaseline(EvaluationMethod):
         self,
         governance_plan: GovernanceEvaluation,
     ) -> GovernanceEvaluation:
-        steps = [
-            self._remove_policy_filter(step)
-            for step in governance_plan.steps
-        ]
+        steps = [self._remove_policy_filter(step) for step in governance_plan.steps]
         return GovernanceEvaluation(
             goal_id=governance_plan.goal_id,
             goal_type=governance_plan.goal_type,

@@ -1,20 +1,16 @@
 """Minimal tests for the optional LangGraph runtime path."""
 
+from app.evaluation.baselines import GovernanceAwareReference
 from app.evaluation.scenario_cases import (
     load_evaluation_cases,
     load_mixed_evaluation_cases,
     load_post_approval_evaluation_cases,
 )
-from app.evaluation.baselines import GovernanceAwareReference
 from app.langgraph_runtime import LangGraphRuntime
 
 
 def test_langgraph_runtime_completes_allow_case() -> None:
-    case = next(
-        case
-        for case in load_evaluation_cases()
-        if case.scenario_category == "ALLOW"
-    )
+    case = next(case for case in load_evaluation_cases() if case.scenario_category == "ALLOW")
 
     run = LangGraphRuntime().run_case(case)
 
@@ -31,9 +27,7 @@ def test_langgraph_runtime_completes_allow_case() -> None:
 
 def test_langgraph_runtime_interrupts_and_resumes_approval_case() -> None:
     case = next(
-        case
-        for case in load_evaluation_cases()
-        if case.scenario_category == "REQUIRE_APPROVAL"
+        case for case in load_evaluation_cases() if case.scenario_category == "REQUIRE_APPROVAL"
     )
 
     run = LangGraphRuntime().run_case(case)
@@ -73,9 +67,7 @@ def test_langgraph_mixed_approval_trace_records_interrupt_and_resume() -> None:
     assert run["result"].final_status == case.expected_post_resume_final_status
     assert "approval_interrupt" in run["trace"]
     assert "approval_resume" in run["trace"]
-    assert run["trace"].index("approval_interrupt") < run["trace"].index(
-        "approval_resume"
-    )
+    assert run["trace"].index("approval_interrupt") < run["trace"].index("approval_resume")
 
 
 def test_valid_approval_leads_to_controlled_continuation() -> None:
@@ -170,8 +162,4 @@ def test_reference_v1_remains_unchanged_for_approval_case() -> None:
 
 
 def _post_approval_case(case_id: str):
-    return next(
-        case
-        for case in load_post_approval_evaluation_cases()
-        if case.case_id == case_id
-    )
+    return next(case for case in load_post_approval_evaluation_cases() if case.case_id == case_id)

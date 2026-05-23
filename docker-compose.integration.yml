@@ -1,0 +1,67 @@
+services:
+  mock-opcua:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: python -m uvicorn app.integration.mock_opcua_server:app --host 0.0.0.0 --port 8001
+    ports:
+      - "8001:8001"
+
+  mock-maintenance-rest:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: python -m uvicorn app.integration.mock_maintenance_rest:app --host 0.0.0.0 --port 8002
+    ports:
+      - "8002:8002"
+
+  mock-legacy:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: python -m uvicorn app.integration.mock_legacy_service:app --host 0.0.0.0 --port 8003
+    ports:
+      - "8003:8003"
+
+  orchestrator:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      ORCHESTRATOR_ENVIRONMENT: integration-demo
+      LANGSMITH_TRACING: ${LANGSMITH_TRACING:-}
+      LANGSMITH_API_KEY: ${LANGSMITH_API_KEY:-}
+      LANGSMITH_PROJECT: ${LANGSMITH_PROJECT:-vendor-agnostic-industrial-orchestrator}
+      LANGSMITH_ENDPOINT: ${LANGSMITH_ENDPOINT:-}
+      GIT_SHA: ${GIT_SHA:-}
+    command: python -m uvicorn app.main:app --host 0.0.0.0 --port 8000
+    ports:
+      - "8000:8000"
+    depends_on:
+      - mock-opcua
+      - mock-maintenance-rest
+      - mock-legacy
+
+  evaluation-runner:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    profiles:
+      - evaluation
+    environment:
+      INTEGRATION_OPCUA_URL: http://mock-opcua:8001
+      INTEGRATION_MAINTENANCE_URL: http://mock-maintenance-rest:8002
+      INTEGRATION_LEGACY_URL: http://mock-legacy:8003
+      LANGSMITH_TRACING: ${LANGSMITH_TRACING:-}
+      LANGSMITH_API_KEY: ${LANGSMITH_API_KEY:-}
+      LANGSMITH_PROJECT: ${LANGSMITH_PROJECT:-vendor-agnostic-industrial-orchestrator}
+      LANGSMITH_ENDPOINT: ${LANGSMITH_ENDPOINT:-}
+      GIT_SHA: ${GIT_SHA:-}
+    volumes:
+      - ./data:/app/data
+      - ./docs:/app/docs
+    command: python -m app.evaluation.run_containerized_integration_demo
+    depends_on:
+      - mock-opcua
+      - mock-maintenance-rest
+      - mock-legacy

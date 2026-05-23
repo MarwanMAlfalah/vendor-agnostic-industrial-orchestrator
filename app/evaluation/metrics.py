@@ -7,7 +7,6 @@ from app.adapters import build_adapters
 from app.evaluation.baselines import MethodRunResult
 from app.models.execution_result import ExecutionResult
 
-
 STATUS_KEYS = {
     "success": "success",
     "partial_success": "partial_success",
@@ -28,9 +27,7 @@ def compute_metrics(run_results: list[MethodRunResult]) -> dict[str, Any]:
     total_failed = sum(result.failed_steps for result in results)
     total_observed_steps = total_completed + total_skipped + total_failed
 
-    intervention_count = sum(
-        1 for result in results if _has_governance_intervention(result)
-    )
+    intervention_count = sum(1 for result in results if _has_governance_intervention(result))
 
     return {
         "total_runs": total_runs,
@@ -56,12 +53,8 @@ def compute_metrics(run_results: list[MethodRunResult]) -> dict[str, Any]:
         "policy_compliance_rate": _policy_compliance_rate(run_results),
         "unsafe_execution_rate": _unsafe_execution_rate(run_results),
         "approval_bypass_rate": _approval_bypass_rate(run_results),
-        "invalid_mapping_containment_rate": _invalid_mapping_containment_rate(
-            run_results
-        ),
-        "average_completed_steps": _average(
-            [result.completed_steps for result in results]
-        ),
+        "invalid_mapping_containment_rate": _invalid_mapping_containment_rate(run_results),
+        "average_completed_steps": _average([result.completed_steps for result in results]),
         "average_skipped_steps": _average([result.skipped_steps for result in results]),
         "execution_coverage_ratio": _rate(total_completed, total_observed_steps),
         "average_planning_latency_ms": _average_latency(run_results, "planning"),
@@ -77,9 +70,7 @@ def flatten_metrics(metrics: dict[str, Any]) -> dict[str, Any]:
     """Flatten nested metrics for CSV output."""
 
     flat_metrics = {
-        key: value
-        for key, value in metrics.items()
-        if key != "adapter_utilization_ratio"
+        key: value for key, value in metrics.items() if key != "adapter_utilization_ratio"
     }
     for adapter_name, ratio in metrics["adapter_utilization_ratio"].items():
         flat_metrics[f"adapter_utilization_ratio.{adapter_name}"] = ratio
@@ -90,8 +81,7 @@ def flatten_metrics(metrics: dict[str, Any]) -> dict[str, Any]:
 def _has_governance_intervention(result: ExecutionResult) -> bool:
     summary = result.governance_summary
     return any(
-        summary.get(key, 0) > 0
-        for key in ("block", "require_approval", "fallback", "safe_abort")
+        summary.get(key, 0) > 0 for key in ("block", "require_approval", "fallback", "safe_abort")
     )
 
 
@@ -126,9 +116,7 @@ def _unsafe_execution_rate(run_results: list[MethodRunResult]) -> float:
         if _has_expected_decision(run_result, {"BLOCK", "REQUIRE_APPROVAL"})
         and run_result.case.expected_approval_execution_allowed is not True
     ]
-    unsafe = sum(
-        1 for run_result in policy_sensitive if _sensitive_step_executed(run_result)
-    )
+    unsafe = sum(1 for run_result in policy_sensitive if _sensitive_step_executed(run_result))
     return _rate(unsafe, len(policy_sensitive))
 
 
@@ -154,9 +142,7 @@ def _invalid_mapping_containment_rate(run_results: list[MethodRunResult]) -> flo
         if _has_expected_decision(run_result, {"SAFE_ABORT"})
     ]
     contained = sum(
-        1
-        for run_result in invalid_mapping_cases
-        if _contains_invalid_mapping(run_result)
+        1 for run_result in invalid_mapping_cases if _contains_invalid_mapping(run_result)
     )
     return _rate(contained, len(invalid_mapping_cases))
 
@@ -174,10 +160,7 @@ def _is_policy_compliant(run_result: MethodRunResult) -> bool:
                 and result.failed_steps == 0
             )
 
-        return (
-            not sensitive_executed
-            and result.final_status == case.expected_final_status
-        )
+        return not sensitive_executed and result.final_status == case.expected_final_status
 
     if case.expected_governance_sequence:
         if result.final_status != case.expected_final_status:
@@ -253,13 +236,9 @@ def _sensitive_step_executed(
     if not sensitive_step_ids:
         return False
 
-    result_by_step_id = {
-        step.step_id: step for step in run_result.result.step_results
-    }
+    result_by_step_id = {step.step_id: step for step in run_result.result.step_results}
     matched_sensitive_steps = [
-        result_by_step_id[step_id]
-        for step_id in sensitive_step_ids
-        if step_id in result_by_step_id
+        result_by_step_id[step_id] for step_id in sensitive_step_ids if step_id in result_by_step_id
     ]
     if matched_sensitive_steps:
         return any(step.status == "executed" for step in matched_sensitive_steps)

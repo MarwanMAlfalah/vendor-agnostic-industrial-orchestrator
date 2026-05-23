@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import csv
 import json
-from collections import defaultdict
 from pathlib import Path
 from typing import Any
 
@@ -66,10 +65,12 @@ def run_ablation_study() -> tuple[list[dict[str, Any]], dict[str, Any]]:
     }
 
     for variant_id, metadata in ABLATION_VARIANTS.items():
-        variant_rows = [
-            row for row in scaled_rows if row["runtime_id"] == metadata["runtime_id"]
-        ]
-        metrics = _variant_metrics(variant_rows) if metadata["implemented"] else _not_implemented_metrics()
+        variant_rows = [row for row in scaled_rows if row["runtime_id"] == metadata["runtime_id"]]
+        metrics = (
+            _variant_metrics(variant_rows)
+            if metadata["implemented"]
+            else _not_implemented_metrics()
+        )
         result_row = {
             "variant_id": variant_id,
             "implemented": metadata["implemented"],
@@ -110,10 +111,14 @@ def _variant_metrics(rows: list[dict[str, Any]]) -> dict[str, Any]:
     return {
         "policy_compliance_rate": _rate(sum(row["policy_compliant"] for row in rows), len(rows)),
         "unsafe_execution_rate": _rate(sum(row["unsafe_execution"] for row in rows), len(rows)),
-        "final_outcome_accuracy": _rate(sum(row["final_outcome_correct"] for row in rows), len(rows)),
+        "final_outcome_accuracy": _rate(
+            sum(row["final_outcome_correct"] for row in rows), len(rows)
+        ),
         "trace_completeness": _rate(sum(row["trace_complete"] for row in rows), len(rows)),
         "recovery_success_rate": _rate(sum(row["restart_recovered"] for row in rows), len(rows)),
-        "mean_latency_ms": round(sum(row["latency_ms"] for row in rows) / len(rows), 6) if rows else 0.0,
+        "mean_latency_ms": (
+            round(sum(row["latency_ms"] for row in rows) / len(rows), 6) if rows else 0.0
+        ),
         "run_count": len(rows),
         "not_implemented_reason": "",
     }
@@ -203,8 +208,7 @@ def _markdown_table(rows: list[dict[str, Any]]) -> str:
     header = "| " + " | ".join(columns) + " |"
     separator = "| " + " | ".join("---" for _ in columns) + " |"
     body = [
-        "| " + " | ".join(str(row.get(column, "")) for column in columns) + " |"
-        for row in rows
+        "| " + " | ".join(str(row.get(column, "")) for column in columns) + " |" for row in rows
     ]
     return "\n".join([header, separator, *body])
 
