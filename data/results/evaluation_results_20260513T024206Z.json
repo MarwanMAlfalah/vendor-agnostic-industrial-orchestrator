@@ -1,0 +1,830 @@
+[
+  {
+    "case_id": "CASE-ALLOW-001",
+    "execution_result": {
+      "completed_steps": 1,
+      "failed_steps": 0,
+      "final_status": "success",
+      "goal_id": "G-EVAL-ALLOW-001",
+      "governance_summary": {
+        "allow": 2,
+        "block": 0,
+        "fallback": 0,
+        "require_approval": 0,
+        "safe_abort": 0
+      },
+      "output": {
+        "step-001": {
+          "adapter_name": "opcua_adapter",
+          "capability_name": "read_machine_status",
+          "result": {
+            "last_updated": "2026-05-13T00:00:00Z",
+            "machine_id": "M-101",
+            "status": "running"
+          }
+        }
+      },
+      "run_id": "run-G-EVAL-ALLOW-001",
+      "skipped_steps": 1,
+      "step_results": [
+        {
+          "adapter": "opcua_adapter",
+          "capability": "read_machine_status",
+          "error": null,
+          "latency_ms": 0,
+          "notes": "Allowed read-only machine status check.",
+          "result": {
+            "adapter_name": "opcua_adapter",
+            "capability_name": "read_machine_status",
+            "result": {
+              "last_updated": "2026-05-13T00:00:00Z",
+              "machine_id": "M-101",
+              "status": "running"
+            }
+          },
+          "status": "executed",
+          "step_id": "step-001",
+          "title": "Read machine status"
+        },
+        {
+          "adapter": null,
+          "capability": null,
+          "error": null,
+          "latency_ms": 0,
+          "notes": "Governance reason: reasoning_or_recording_step. Allowed non-executable step was skipped. Non-executable review step for M-101.",
+          "result": null,
+          "status": "skipped",
+          "step_id": "step-002",
+          "title": "Record observation"
+        }
+      ],
+      "total_latency_ms": 0
+    },
+    "governance_plan": {
+      "goal_id": "G-EVAL-ALLOW-001",
+      "goal_type": "alarm_handling",
+      "governance_summary": {
+        "allow": 2,
+        "block": 0,
+        "fallback": 0,
+        "require_approval": 0,
+        "safe_abort": 0
+      },
+      "payload": {
+        "machine_id": "M-101"
+      },
+      "steps": [
+        {
+          "decision": "ALLOW",
+          "notes": "Allowed read-only machine status check.",
+          "reason": "read_only_capability",
+          "selected_adapter": "opcua_adapter",
+          "selected_capability": "read_machine_status",
+          "step_id": "step-001",
+          "title": "Read machine status"
+        },
+        {
+          "decision": "ALLOW",
+          "notes": "Non-executable review step for M-101.",
+          "reason": "reasoning_or_recording_step",
+          "selected_adapter": null,
+          "selected_capability": null,
+          "step_id": "step-002",
+          "title": "Record observation"
+        }
+      ]
+    },
+    "scenario_category": "ALLOW"
+  },
+  {
+    "case_id": "CASE-ALLOW-002",
+    "execution_result": {
+      "completed_steps": 1,
+      "failed_steps": 0,
+      "final_status": "success",
+      "goal_id": "G-EVAL-ALLOW-002",
+      "governance_summary": {
+        "allow": 2,
+        "block": 0,
+        "fallback": 0,
+        "require_approval": 0,
+        "safe_abort": 0
+      },
+      "output": {
+        "step-001": {
+          "adapter_name": "opcua_adapter",
+          "capability_name": "read_alarm_code",
+          "result": {
+            "alarm_code": "ALM-201",
+            "machine_id": "M-202",
+            "severity": "high"
+          }
+        }
+      },
+      "run_id": "run-G-EVAL-ALLOW-002",
+      "skipped_steps": 1,
+      "step_results": [
+        {
+          "adapter": "opcua_adapter",
+          "capability": "read_alarm_code",
+          "error": null,
+          "latency_ms": 0,
+          "notes": "Allowed read-only alarm inspection.",
+          "result": {
+            "adapter_name": "opcua_adapter",
+            "capability_name": "read_alarm_code",
+            "result": {
+              "alarm_code": "ALM-201",
+              "machine_id": "M-202",
+              "severity": "high"
+            }
+          },
+          "status": "executed",
+          "step_id": "step-001",
+          "title": "Read alarm code"
+        },
+        {
+          "adapter": null,
+          "capability": null,
+          "error": null,
+          "latency_ms": 0,
+          "notes": "Governance reason: reasoning_or_recording_step. Allowed non-executable step was skipped. Non-executable review step for M-202.",
+          "result": null,
+          "status": "skipped",
+          "step_id": "step-002",
+          "title": "Record observation"
+        }
+      ],
+      "total_latency_ms": 0
+    },
+    "governance_plan": {
+      "goal_id": "G-EVAL-ALLOW-002",
+      "goal_type": "alarm_handling",
+      "governance_summary": {
+        "allow": 2,
+        "block": 0,
+        "fallback": 0,
+        "require_approval": 0,
+        "safe_abort": 0
+      },
+      "payload": {
+        "machine_id": "M-202"
+      },
+      "steps": [
+        {
+          "decision": "ALLOW",
+          "notes": "Allowed read-only alarm inspection.",
+          "reason": "read_only_capability",
+          "selected_adapter": "opcua_adapter",
+          "selected_capability": "read_alarm_code",
+          "step_id": "step-001",
+          "title": "Read alarm code"
+        },
+        {
+          "decision": "ALLOW",
+          "notes": "Non-executable review step for M-202.",
+          "reason": "reasoning_or_recording_step",
+          "selected_adapter": null,
+          "selected_capability": null,
+          "step_id": "step-002",
+          "title": "Record observation"
+        }
+      ]
+    },
+    "scenario_category": "ALLOW"
+  },
+  {
+    "case_id": "CASE-ALLOW-003",
+    "execution_result": {
+      "completed_steps": 1,
+      "failed_steps": 0,
+      "final_status": "success",
+      "goal_id": "G-EVAL-ALLOW-003",
+      "governance_summary": {
+        "allow": 2,
+        "block": 0,
+        "fallback": 0,
+        "require_approval": 0,
+        "safe_abort": 0
+      },
+      "output": {
+        "step-001": {
+          "adapter_name": "opcua_adapter",
+          "capability_name": "read_machine_status",
+          "result": {
+            "last_updated": "2026-05-13T00:00:00Z",
+            "machine_id": "M-303",
+            "status": "running"
+          }
+        }
+      },
+      "run_id": "run-G-EVAL-ALLOW-003",
+      "skipped_steps": 1,
+      "step_results": [
+        {
+          "adapter": "opcua_adapter",
+          "capability": "read_machine_status",
+          "error": null,
+          "latency_ms": 0,
+          "notes": "Allowed status read before a non-executable review step.",
+          "result": {
+            "adapter_name": "opcua_adapter",
+            "capability_name": "read_machine_status",
+            "result": {
+              "last_updated": "2026-05-13T00:00:00Z",
+              "machine_id": "M-303",
+              "status": "running"
+            }
+          },
+          "status": "executed",
+          "step_id": "step-001",
+          "title": "Read machine status before review"
+        },
+        {
+          "adapter": null,
+          "capability": null,
+          "error": null,
+          "latency_ms": 0,
+          "notes": "Governance reason: reasoning_or_recording_step. Allowed non-executable step was skipped. Non-executable review step for M-303.",
+          "result": null,
+          "status": "skipped",
+          "step_id": "step-002",
+          "title": "Record observation"
+        }
+      ],
+      "total_latency_ms": 0
+    },
+    "governance_plan": {
+      "goal_id": "G-EVAL-ALLOW-003",
+      "goal_type": "alarm_handling",
+      "governance_summary": {
+        "allow": 2,
+        "block": 0,
+        "fallback": 0,
+        "require_approval": 0,
+        "safe_abort": 0
+      },
+      "payload": {
+        "machine_id": "M-303"
+      },
+      "steps": [
+        {
+          "decision": "ALLOW",
+          "notes": "Allowed status read before a non-executable review step.",
+          "reason": "read_only_capability",
+          "selected_adapter": "opcua_adapter",
+          "selected_capability": "read_machine_status",
+          "step_id": "step-001",
+          "title": "Read machine status before review"
+        },
+        {
+          "decision": "ALLOW",
+          "notes": "Non-executable review step for M-303.",
+          "reason": "reasoning_or_recording_step",
+          "selected_adapter": null,
+          "selected_capability": null,
+          "step_id": "step-002",
+          "title": "Record observation"
+        }
+      ]
+    },
+    "scenario_category": "ALLOW"
+  },
+  {
+    "case_id": "CASE-APPROVAL-001",
+    "execution_result": {
+      "completed_steps": 0,
+      "failed_steps": 0,
+      "final_status": "partial_success",
+      "goal_id": "G-EVAL-APPROVAL-001",
+      "governance_summary": {
+        "allow": 0,
+        "block": 0,
+        "fallback": 0,
+        "require_approval": 1,
+        "safe_abort": 0
+      },
+      "output": {},
+      "run_id": "run-G-EVAL-APPROVAL-001",
+      "skipped_steps": 1,
+      "step_results": [
+        {
+          "adapter": "legacy_adapter",
+          "capability": "validate_vendor_action",
+          "error": null,
+          "latency_ms": 0,
+          "notes": "Governance reason: sensitive_vendor_action. Governance decision: REQUIRE_APPROVAL. Sensitive action 'reset_alarm' requires approval.",
+          "result": null,
+          "status": "approval_required",
+          "step_id": "step-001",
+          "title": "Validate vendor action"
+        }
+      ],
+      "total_latency_ms": 0
+    },
+    "governance_plan": {
+      "goal_id": "G-EVAL-APPROVAL-001",
+      "goal_type": "governed_action",
+      "governance_summary": {
+        "allow": 0,
+        "block": 0,
+        "fallback": 0,
+        "require_approval": 1,
+        "safe_abort": 0
+      },
+      "payload": {
+        "action_name": "reset_alarm",
+        "machine_id": "M-101"
+      },
+      "steps": [
+        {
+          "decision": "REQUIRE_APPROVAL",
+          "notes": "Sensitive action 'reset_alarm' requires approval.",
+          "reason": "sensitive_vendor_action",
+          "selected_adapter": "legacy_adapter",
+          "selected_capability": "validate_vendor_action",
+          "step_id": "step-001",
+          "title": "Validate vendor action"
+        }
+      ]
+    },
+    "scenario_category": "REQUIRE_APPROVAL"
+  },
+  {
+    "case_id": "CASE-APPROVAL-002",
+    "execution_result": {
+      "completed_steps": 0,
+      "failed_steps": 0,
+      "final_status": "partial_success",
+      "goal_id": "G-EVAL-APPROVAL-002",
+      "governance_summary": {
+        "allow": 0,
+        "block": 0,
+        "fallback": 0,
+        "require_approval": 1,
+        "safe_abort": 0
+      },
+      "output": {},
+      "run_id": "run-G-EVAL-APPROVAL-002",
+      "skipped_steps": 1,
+      "step_results": [
+        {
+          "adapter": "legacy_adapter",
+          "capability": "validate_vendor_action",
+          "error": null,
+          "latency_ms": 0,
+          "notes": "Governance reason: sensitive_vendor_action. Governance decision: REQUIRE_APPROVAL. Sensitive action 'override_interlock' requires approval.",
+          "result": null,
+          "status": "approval_required",
+          "step_id": "step-001",
+          "title": "Validate vendor action"
+        }
+      ],
+      "total_latency_ms": 0
+    },
+    "governance_plan": {
+      "goal_id": "G-EVAL-APPROVAL-002",
+      "goal_type": "governed_action",
+      "governance_summary": {
+        "allow": 0,
+        "block": 0,
+        "fallback": 0,
+        "require_approval": 1,
+        "safe_abort": 0
+      },
+      "payload": {
+        "action_name": "override_interlock",
+        "machine_id": "M-202"
+      },
+      "steps": [
+        {
+          "decision": "REQUIRE_APPROVAL",
+          "notes": "Sensitive action 'override_interlock' requires approval.",
+          "reason": "sensitive_vendor_action",
+          "selected_adapter": "legacy_adapter",
+          "selected_capability": "validate_vendor_action",
+          "step_id": "step-001",
+          "title": "Validate vendor action"
+        }
+      ]
+    },
+    "scenario_category": "REQUIRE_APPROVAL"
+  },
+  {
+    "case_id": "CASE-APPROVAL-003",
+    "execution_result": {
+      "completed_steps": 0,
+      "failed_steps": 0,
+      "final_status": "partial_success",
+      "goal_id": "G-EVAL-APPROVAL-003",
+      "governance_summary": {
+        "allow": 0,
+        "block": 0,
+        "fallback": 0,
+        "require_approval": 1,
+        "safe_abort": 0
+      },
+      "output": {},
+      "run_id": "run-G-EVAL-APPROVAL-003",
+      "skipped_steps": 1,
+      "step_results": [
+        {
+          "adapter": "legacy_adapter",
+          "capability": "validate_vendor_action",
+          "error": null,
+          "latency_ms": 0,
+          "notes": "Governance reason: sensitive_vendor_action. Governance decision: REQUIRE_APPROVAL. Sensitive action 'change_vendor_mode' requires approval.",
+          "result": null,
+          "status": "approval_required",
+          "step_id": "step-001",
+          "title": "Validate vendor action"
+        }
+      ],
+      "total_latency_ms": 0
+    },
+    "governance_plan": {
+      "goal_id": "G-EVAL-APPROVAL-003",
+      "goal_type": "governed_action",
+      "governance_summary": {
+        "allow": 0,
+        "block": 0,
+        "fallback": 0,
+        "require_approval": 1,
+        "safe_abort": 0
+      },
+      "payload": {
+        "action_name": "change_vendor_mode",
+        "machine_id": "M-303"
+      },
+      "steps": [
+        {
+          "decision": "REQUIRE_APPROVAL",
+          "notes": "Sensitive action 'change_vendor_mode' requires approval.",
+          "reason": "sensitive_vendor_action",
+          "selected_adapter": "legacy_adapter",
+          "selected_capability": "validate_vendor_action",
+          "step_id": "step-001",
+          "title": "Validate vendor action"
+        }
+      ]
+    },
+    "scenario_category": "REQUIRE_APPROVAL"
+  },
+  {
+    "case_id": "CASE-BLOCK-001",
+    "execution_result": {
+      "completed_steps": 0,
+      "failed_steps": 0,
+      "final_status": "blocked",
+      "goal_id": "G-EVAL-BLOCK-001",
+      "governance_summary": {
+        "allow": 0,
+        "block": 1,
+        "fallback": 0,
+        "require_approval": 0,
+        "safe_abort": 0
+      },
+      "output": {},
+      "run_id": "run-G-EVAL-BLOCK-001",
+      "skipped_steps": 1,
+      "step_results": [
+        {
+          "adapter": "legacy_adapter",
+          "capability": "validate_vendor_action",
+          "error": null,
+          "latency_ms": 0,
+          "notes": "Governance reason: forbidden_action_policy. Governance decision: BLOCK. Forbidden shutdown action for M-101.",
+          "result": null,
+          "status": "blocked",
+          "step_id": "step-001",
+          "title": "Block forbidden shutdown"
+        }
+      ],
+      "total_latency_ms": 0
+    },
+    "governance_plan": {
+      "goal_id": "G-EVAL-BLOCK-001",
+      "goal_type": "governed_action",
+      "governance_summary": {
+        "allow": 0,
+        "block": 1,
+        "fallback": 0,
+        "require_approval": 0,
+        "safe_abort": 0
+      },
+      "payload": {
+        "action_name": "shutdown_line",
+        "machine_id": "M-101"
+      },
+      "steps": [
+        {
+          "decision": "BLOCK",
+          "notes": "Forbidden shutdown action for M-101.",
+          "reason": "forbidden_action_policy",
+          "selected_adapter": "legacy_adapter",
+          "selected_capability": "validate_vendor_action",
+          "step_id": "step-001",
+          "title": "Block forbidden shutdown"
+        }
+      ]
+    },
+    "scenario_category": "BLOCK"
+  },
+  {
+    "case_id": "CASE-BLOCK-002",
+    "execution_result": {
+      "completed_steps": 0,
+      "failed_steps": 0,
+      "final_status": "blocked",
+      "goal_id": "G-EVAL-BLOCK-002",
+      "governance_summary": {
+        "allow": 0,
+        "block": 1,
+        "fallback": 0,
+        "require_approval": 0,
+        "safe_abort": 0
+      },
+      "output": {},
+      "run_id": "run-G-EVAL-BLOCK-002",
+      "skipped_steps": 1,
+      "step_results": [
+        {
+          "adapter": "legacy_adapter",
+          "capability": "validate_vendor_action",
+          "error": null,
+          "latency_ms": 0,
+          "notes": "Governance reason: forbidden_action_policy. Governance decision: BLOCK. Forbidden shutdown action for M-202.",
+          "result": null,
+          "status": "blocked",
+          "step_id": "step-001",
+          "title": "Block forbidden shutdown"
+        }
+      ],
+      "total_latency_ms": 0
+    },
+    "governance_plan": {
+      "goal_id": "G-EVAL-BLOCK-002",
+      "goal_type": "governed_action",
+      "governance_summary": {
+        "allow": 0,
+        "block": 1,
+        "fallback": 0,
+        "require_approval": 0,
+        "safe_abort": 0
+      },
+      "payload": {
+        "action_name": "shutdown_line",
+        "machine_id": "M-202"
+      },
+      "steps": [
+        {
+          "decision": "BLOCK",
+          "notes": "Forbidden shutdown action for M-202.",
+          "reason": "forbidden_action_policy",
+          "selected_adapter": "legacy_adapter",
+          "selected_capability": "validate_vendor_action",
+          "step_id": "step-001",
+          "title": "Block forbidden shutdown"
+        }
+      ]
+    },
+    "scenario_category": "BLOCK"
+  },
+  {
+    "case_id": "CASE-BLOCK-003",
+    "execution_result": {
+      "completed_steps": 0,
+      "failed_steps": 0,
+      "final_status": "blocked",
+      "goal_id": "G-EVAL-BLOCK-003",
+      "governance_summary": {
+        "allow": 0,
+        "block": 1,
+        "fallback": 0,
+        "require_approval": 0,
+        "safe_abort": 0
+      },
+      "output": {},
+      "run_id": "run-G-EVAL-BLOCK-003",
+      "skipped_steps": 1,
+      "step_results": [
+        {
+          "adapter": "legacy_adapter",
+          "capability": "validate_vendor_action",
+          "error": null,
+          "latency_ms": 0,
+          "notes": "Governance reason: forbidden_action_policy. Governance decision: BLOCK. Forbidden shutdown action for M-303.",
+          "result": null,
+          "status": "blocked",
+          "step_id": "step-001",
+          "title": "Block forbidden shutdown"
+        }
+      ],
+      "total_latency_ms": 0
+    },
+    "governance_plan": {
+      "goal_id": "G-EVAL-BLOCK-003",
+      "goal_type": "governed_action",
+      "governance_summary": {
+        "allow": 0,
+        "block": 1,
+        "fallback": 0,
+        "require_approval": 0,
+        "safe_abort": 0
+      },
+      "payload": {
+        "action_name": "shutdown_line",
+        "machine_id": "M-303"
+      },
+      "steps": [
+        {
+          "decision": "BLOCK",
+          "notes": "Forbidden shutdown action for M-303.",
+          "reason": "forbidden_action_policy",
+          "selected_adapter": "legacy_adapter",
+          "selected_capability": "validate_vendor_action",
+          "step_id": "step-001",
+          "title": "Block forbidden shutdown"
+        }
+      ]
+    },
+    "scenario_category": "BLOCK"
+  },
+  {
+    "case_id": "CASE-SAFE-ABORT-001",
+    "execution_result": {
+      "completed_steps": 0,
+      "failed_steps": 0,
+      "final_status": "safe_aborted",
+      "goal_id": "G-EVAL-SAFE-ABORT-001",
+      "governance_summary": {
+        "allow": 0,
+        "block": 0,
+        "fallback": 0,
+        "require_approval": 0,
+        "safe_abort": 1
+      },
+      "output": {},
+      "run_id": "run-G-EVAL-SAFE-ABORT-001",
+      "skipped_steps": 1,
+      "step_results": [
+        {
+          "adapter": null,
+          "capability": "read_alarm_code",
+          "error": null,
+          "latency_ms": 0,
+          "notes": "Governance reason: invalid_execution_mapping. Governance decision: SAFE_ABORT. Matched executable step is missing an adapter.",
+          "result": null,
+          "status": "safe_aborted",
+          "step_id": "step-001",
+          "title": "Abort invalid mapping"
+        }
+      ],
+      "total_latency_ms": 0
+    },
+    "governance_plan": {
+      "goal_id": "G-EVAL-SAFE-ABORT-001",
+      "goal_type": "manual_invalid_mapping",
+      "governance_summary": {
+        "allow": 0,
+        "block": 0,
+        "fallback": 0,
+        "require_approval": 0,
+        "safe_abort": 1
+      },
+      "payload": {
+        "machine_id": "M-101"
+      },
+      "steps": [
+        {
+          "decision": "SAFE_ABORT",
+          "notes": "Matched executable step is missing an adapter.",
+          "reason": "invalid_execution_mapping",
+          "selected_adapter": null,
+          "selected_capability": "read_alarm_code",
+          "step_id": "step-001",
+          "title": "Abort invalid mapping"
+        }
+      ]
+    },
+    "scenario_category": "SAFE_ABORT"
+  },
+  {
+    "case_id": "CASE-SAFE-ABORT-002",
+    "execution_result": {
+      "completed_steps": 0,
+      "failed_steps": 0,
+      "final_status": "safe_aborted",
+      "goal_id": "G-EVAL-SAFE-ABORT-002",
+      "governance_summary": {
+        "allow": 0,
+        "block": 0,
+        "fallback": 0,
+        "require_approval": 0,
+        "safe_abort": 1
+      },
+      "output": {},
+      "run_id": "run-G-EVAL-SAFE-ABORT-002",
+      "skipped_steps": 1,
+      "step_results": [
+        {
+          "adapter": "opcua_adapter",
+          "capability": null,
+          "error": null,
+          "latency_ms": 0,
+          "notes": "Governance reason: invalid_execution_mapping. Governance decision: SAFE_ABORT. Matched executable step is missing a capability.",
+          "result": null,
+          "status": "safe_aborted",
+          "step_id": "step-001",
+          "title": "Abort invalid mapping"
+        }
+      ],
+      "total_latency_ms": 0
+    },
+    "governance_plan": {
+      "goal_id": "G-EVAL-SAFE-ABORT-002",
+      "goal_type": "manual_invalid_mapping",
+      "governance_summary": {
+        "allow": 0,
+        "block": 0,
+        "fallback": 0,
+        "require_approval": 0,
+        "safe_abort": 1
+      },
+      "payload": {
+        "machine_id": "M-202"
+      },
+      "steps": [
+        {
+          "decision": "SAFE_ABORT",
+          "notes": "Matched executable step is missing a capability.",
+          "reason": "invalid_execution_mapping",
+          "selected_adapter": "opcua_adapter",
+          "selected_capability": null,
+          "step_id": "step-001",
+          "title": "Abort invalid mapping"
+        }
+      ]
+    },
+    "scenario_category": "SAFE_ABORT"
+  },
+  {
+    "case_id": "CASE-SAFE-ABORT-003",
+    "execution_result": {
+      "completed_steps": 0,
+      "failed_steps": 0,
+      "final_status": "safe_aborted",
+      "goal_id": "G-EVAL-SAFE-ABORT-003",
+      "governance_summary": {
+        "allow": 0,
+        "block": 0,
+        "fallback": 0,
+        "require_approval": 0,
+        "safe_abort": 1
+      },
+      "output": {},
+      "run_id": "run-G-EVAL-SAFE-ABORT-003",
+      "skipped_steps": 1,
+      "step_results": [
+        {
+          "adapter": null,
+          "capability": null,
+          "error": null,
+          "latency_ms": 0,
+          "notes": "Governance reason: invalid_execution_mapping. Governance decision: SAFE_ABORT. Matched executable step is missing adapter and capability.",
+          "result": null,
+          "status": "safe_aborted",
+          "step_id": "step-001",
+          "title": "Abort invalid mapping"
+        }
+      ],
+      "total_latency_ms": 0
+    },
+    "governance_plan": {
+      "goal_id": "G-EVAL-SAFE-ABORT-003",
+      "goal_type": "manual_invalid_mapping",
+      "governance_summary": {
+        "allow": 0,
+        "block": 0,
+        "fallback": 0,
+        "require_approval": 0,
+        "safe_abort": 1
+      },
+      "payload": {
+        "machine_id": "M-303"
+      },
+      "steps": [
+        {
+          "decision": "SAFE_ABORT",
+          "notes": "Matched executable step is missing adapter and capability.",
+          "reason": "invalid_execution_mapping",
+          "selected_adapter": null,
+          "selected_capability": null,
+          "step_id": "step-001",
+          "title": "Abort invalid mapping"
+        }
+      ]
+    },
+    "scenario_category": "SAFE_ABORT"
+  }
+]

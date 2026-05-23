@@ -1,0 +1,61 @@
+{
+  "checkpoint_db": "data/langgraph/checkpoints.db",
+  "deterministic": true,
+  "metrics": {
+    "checkpoint_resume_success_rate": 1.0,
+    "post_restart_final_outcome_accuracy": 1.0,
+    "restart_recovery_success_rate": 1.0,
+    "restart_trace_completeness": 1.0
+  },
+  "runs": [
+    {
+      "approval_state": "approved",
+      "approval_validated": true,
+      "approval_validation_error": null,
+      "case_id": "CASE-POST-APPROVAL-VALID-001",
+      "checkpoint_saved": true,
+      "expected_final_status": "success",
+      "final_status": "success",
+      "gated_step_executed": true,
+      "interrupt_reached": true,
+      "process_restarted": true,
+      "resumed_from_checkpoint": true,
+      "thread_id": "crash-restart-CASE-POST-APPROVAL-VALID-001",
+      "trace": [
+        "planner_node",
+        "matcher_node",
+        "governance_node",
+        "approval_interrupt",
+        "approval_resume",
+        "approval_validated",
+        "approved_execution",
+        "execution_node",
+        "final_result"
+      ]
+    },
+    {
+      "approval_state": "approval_invalid",
+      "approval_validated": false,
+      "approval_validation_error": "approval_not_granted",
+      "case_id": "CASE-POST-APPROVAL-INVALID-PAYLOAD-001",
+      "checkpoint_saved": true,
+      "expected_final_status": "partial_success",
+      "final_status": "partial_success",
+      "gated_step_executed": false,
+      "interrupt_reached": true,
+      "process_restarted": true,
+      "resumed_from_checkpoint": true,
+      "thread_id": "crash-restart-CASE-POST-APPROVAL-INVALID-PAYLOAD-001",
+      "trace": [
+        "planner_node",
+        "matcher_node",
+        "governance_node",
+        "approval_interrupt",
+        "approval_resume",
+        "approval_rejected",
+        "execution_node",
+        "final_result"
+      ]
+    }
+  ]
+}

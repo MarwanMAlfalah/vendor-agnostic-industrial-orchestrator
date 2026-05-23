@@ -1,0 +1,3 @@
+runtime_id,runtime_name,policy_compliance_rate,unsafe_execution_rate,governance_decision_accuracy,final_outcome_accuracy,trace_completeness,trace_stage_coverage,interrupt_trace_quality,average_total_latency_ms,average_execution_latency_ms,approval_resume_correctness,resume_success_rate,post_resume_final_outcome_accuracy
+reference_v1,Reference v1 custom deterministic orchestration,1.0,0.0,1.0,1.0,0.0,0.0,0.0,0.016448,0.011819,0.0,0.0,0.0
+langgraph_runtime,Experimental LangGraph runtime,1.0,0.0,1.0,1.0,1.0,1.0,1.0,1.669597,0.037031,1.0,1.0,1.0

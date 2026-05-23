@@ -1,0 +1,1279 @@
+{
+  "evaluation_design": {
+    "case_count": 12,
+    "case_ids": [
+      "CASE-ALLOW-001",
+      "CASE-ALLOW-002",
+      "CASE-ALLOW-003",
+      "CASE-APPROVAL-001",
+      "CASE-APPROVAL-002",
+      "CASE-APPROVAL-003",
+      "CASE-BLOCK-001",
+      "CASE-BLOCK-002",
+      "CASE-BLOCK-003",
+      "CASE-SAFE-ABORT-001",
+      "CASE-SAFE-ABORT-002",
+      "CASE-SAFE-ABORT-003"
+    ],
+    "deterministic": true,
+    "gold_labels": [
+      {
+        "case_id": "CASE-ALLOW-001",
+        "expected_execution_allowed": true,
+        "expected_final_status": "success",
+        "expected_governance_decision": "ALLOW"
+      },
+      {
+        "case_id": "CASE-ALLOW-002",
+        "expected_execution_allowed": true,
+        "expected_final_status": "success",
+        "expected_governance_decision": "ALLOW"
+      },
+      {
+        "case_id": "CASE-ALLOW-003",
+        "expected_execution_allowed": true,
+        "expected_final_status": "success",
+        "expected_governance_decision": "ALLOW"
+      },
+      {
+        "case_id": "CASE-APPROVAL-001",
+        "expected_execution_allowed": false,
+        "expected_final_status": "partial_success",
+        "expected_governance_decision": "REQUIRE_APPROVAL"
+      },
+      {
+        "case_id": "CASE-APPROVAL-002",
+        "expected_execution_allowed": false,
+        "expected_final_status": "partial_success",
+        "expected_governance_decision": "REQUIRE_APPROVAL"
+      },
+      {
+        "case_id": "CASE-APPROVAL-003",
+        "expected_execution_allowed": false,
+        "expected_final_status": "partial_success",
+        "expected_governance_decision": "REQUIRE_APPROVAL"
+      },
+      {
+        "case_id": "CASE-BLOCK-001",
+        "expected_execution_allowed": false,
+        "expected_final_status": "blocked",
+        "expected_governance_decision": "BLOCK"
+      },
+      {
+        "case_id": "CASE-BLOCK-002",
+        "expected_execution_allowed": false,
+        "expected_final_status": "blocked",
+        "expected_governance_decision": "BLOCK"
+      },
+      {
+        "case_id": "CASE-BLOCK-003",
+        "expected_execution_allowed": false,
+        "expected_final_status": "blocked",
+        "expected_governance_decision": "BLOCK"
+      },
+      {
+        "case_id": "CASE-SAFE-ABORT-001",
+        "expected_execution_allowed": false,
+        "expected_final_status": "safe_aborted",
+        "expected_governance_decision": "SAFE_ABORT"
+      },
+      {
+        "case_id": "CASE-SAFE-ABORT-002",
+        "expected_execution_allowed": false,
+        "expected_final_status": "safe_aborted",
+        "expected_governance_decision": "SAFE_ABORT"
+      },
+      {
+        "case_id": "CASE-SAFE-ABORT-003",
+        "expected_execution_allowed": false,
+        "expected_final_status": "safe_aborted",
+        "expected_governance_decision": "SAFE_ABORT"
+      }
+    ],
+    "stochastic_llm_logic": false
+  },
+  "methods": {
+    "baseline_a_direct_without_governance": {
+      "case_results": [
+        {
+          "case_id": "CASE-ALLOW-001",
+          "completed_steps": 1,
+          "executed_adapters": [
+            "opcua_adapter"
+          ],
+          "expected_execution_allowed": true,
+          "expected_final_status": "success",
+          "expected_governance_decision": "ALLOW",
+          "failed_steps": 0,
+          "final_status": "success",
+          "goal_id": "G-EVAL-ALLOW-001",
+          "scenario_category": "ALLOW",
+          "skipped_steps": 1,
+          "stage_latencies_ms": {
+            "execution": 0.009959,
+            "governance": 0.0,
+            "matching": 0.0,
+            "planning": 0.0,
+            "total": 0.016916
+          }
+        },
+        {
+          "case_id": "CASE-ALLOW-002",
+          "completed_steps": 1,
+          "executed_adapters": [
+            "opcua_adapter"
+          ],
+          "expected_execution_allowed": true,
+          "expected_final_status": "success",
+          "expected_governance_decision": "ALLOW",
+          "failed_steps": 0,
+          "final_status": "success",
+          "goal_id": "G-EVAL-ALLOW-002",
+          "scenario_category": "ALLOW",
+          "skipped_steps": 1,
+          "stage_latencies_ms": {
+            "execution": 0.006292,
+            "governance": 0.0,
+            "matching": 0.0,
+            "planning": 0.0,
+            "total": 0.010459
+          }
+        },
+        {
+          "case_id": "CASE-ALLOW-003",
+          "completed_steps": 1,
+          "executed_adapters": [
+            "opcua_adapter"
+          ],
+          "expected_execution_allowed": true,
+          "expected_final_status": "success",
+          "expected_governance_decision": "ALLOW",
+          "failed_steps": 0,
+          "final_status": "success",
+          "goal_id": "G-EVAL-ALLOW-003",
+          "scenario_category": "ALLOW",
+          "skipped_steps": 1,
+          "stage_latencies_ms": {
+            "execution": 0.004834,
+            "governance": 0.0,
+            "matching": 0.0,
+            "planning": 0.0,
+            "total": 0.00875
+          }
+        },
+        {
+          "case_id": "CASE-APPROVAL-001",
+          "completed_steps": 1,
+          "executed_adapters": [
+            "legacy_adapter"
+          ],
+          "expected_execution_allowed": false,
+          "expected_final_status": "partial_success",
+          "expected_governance_decision": "REQUIRE_APPROVAL",
+          "failed_steps": 0,
+          "final_status": "success",
+          "goal_id": "G-EVAL-APPROVAL-001",
+          "scenario_category": "REQUIRE_APPROVAL",
+          "skipped_steps": 0,
+          "stage_latencies_ms": {
+            "execution": 0.004958,
+            "governance": 0.0,
+            "matching": 0.0,
+            "planning": 0.0,
+            "total": 0.008459
+          }
+        },
+        {
+          "case_id": "CASE-APPROVAL-002",
+          "completed_steps": 1,
+          "executed_adapters": [
+            "legacy_adapter"
+          ],
+          "expected_execution_allowed": false,
+          "expected_final_status": "partial_success",
+          "expected_governance_decision": "REQUIRE_APPROVAL",
+          "failed_steps": 0,
+          "final_status": "success",
+          "goal_id": "G-EVAL-APPROVAL-002",
+          "scenario_category": "REQUIRE_APPROVAL",
+          "skipped_steps": 0,
+          "stage_latencies_ms": {
+            "execution": 0.004084,
+            "governance": 0.0,
+            "matching": 0.0,
+            "planning": 0.0,
+            "total": 0.007333
+          }
+        },
+        {
+          "case_id": "CASE-APPROVAL-003",
+          "completed_steps": 1,
+          "executed_adapters": [
+            "legacy_adapter"
+          ],
+          "expected_execution_allowed": false,
+          "expected_final_status": "partial_success",
+          "expected_governance_decision": "REQUIRE_APPROVAL",
+          "failed_steps": 0,
+          "final_status": "success",
+          "goal_id": "G-EVAL-APPROVAL-003",
+          "scenario_category": "REQUIRE_APPROVAL",
+          "skipped_steps": 0,
+          "stage_latencies_ms": {
+            "execution": 0.002958,
+            "governance": 0.0,
+            "matching": 0.0,
+            "planning": 0.0,
+            "total": 0.006
+          }
+        },
+        {
+          "case_id": "CASE-BLOCK-001",
+          "completed_steps": 1,
+          "executed_adapters": [
+            "legacy_adapter"
+          ],
+          "expected_execution_allowed": false,
+          "expected_final_status": "blocked",
+          "expected_governance_decision": "BLOCK",
+          "failed_steps": 0,
+          "final_status": "success",
+          "goal_id": "G-EVAL-BLOCK-001",
+          "scenario_category": "BLOCK",
+          "skipped_steps": 0,
+          "stage_latencies_ms": {
+            "execution": 0.002833,
+            "governance": 0.0,
+            "matching": 0.0,
+            "planning": 0.0,
+            "total": 0.006042
+          }
+        },
+        {
+          "case_id": "CASE-BLOCK-002",
+          "completed_steps": 1,
+          "executed_adapters": [
+            "legacy_adapter"
+          ],
+          "expected_execution_allowed": false,
+          "expected_final_status": "blocked",
+          "expected_governance_decision": "BLOCK",
+          "failed_steps": 0,
+          "final_status": "success",
+          "goal_id": "G-EVAL-BLOCK-002",
+          "scenario_category": "BLOCK",
+          "skipped_steps": 0,
+          "stage_latencies_ms": {
+            "execution": 0.004,
+            "governance": 0.0,
+            "matching": 0.0,
+            "planning": 0.0,
+            "total": 0.009458
+          }
+        },
+        {
+          "case_id": "CASE-BLOCK-003",
+          "completed_steps": 1,
+          "executed_adapters": [
+            "legacy_adapter"
+          ],
+          "expected_execution_allowed": false,
+          "expected_final_status": "blocked",
+          "expected_governance_decision": "BLOCK",
+          "failed_steps": 0,
+          "final_status": "success",
+          "goal_id": "G-EVAL-BLOCK-003",
+          "scenario_category": "BLOCK",
+          "skipped_steps": 0,
+          "stage_latencies_ms": {
+            "execution": 0.00325,
+            "governance": 0.0,
+            "matching": 0.0,
+            "planning": 0.0,
+            "total": 0.006708
+          }
+        },
+        {
+          "case_id": "CASE-SAFE-ABORT-001",
+          "completed_steps": 0,
+          "executed_adapters": [],
+          "expected_execution_allowed": false,
+          "expected_final_status": "safe_aborted",
+          "expected_governance_decision": "SAFE_ABORT",
+          "failed_steps": 1,
+          "final_status": "failed",
+          "goal_id": "G-EVAL-SAFE-ABORT-001",
+          "scenario_category": "SAFE_ABORT",
+          "skipped_steps": 0,
+          "stage_latencies_ms": {
+            "execution": 0.001916,
+            "governance": 0.0,
+            "matching": 0.0,
+            "planning": 0.0,
+            "total": 0.004875
+          }
+        },
+        {
+          "case_id": "CASE-SAFE-ABORT-002",
+          "completed_steps": 0,
+          "executed_adapters": [],
+          "expected_execution_allowed": false,
+          "expected_final_status": "safe_aborted",
+          "expected_governance_decision": "SAFE_ABORT",
+          "failed_steps": 1,
+          "final_status": "failed",
+          "goal_id": "G-EVAL-SAFE-ABORT-002",
+          "scenario_category": "SAFE_ABORT",
+          "skipped_steps": 0,
+          "stage_latencies_ms": {
+            "execution": 0.0015,
+            "governance": 0.0,
+            "matching": 0.0,
+            "planning": 0.0,
+            "total": 0.004125
+          }
+        },
+        {
+          "case_id": "CASE-SAFE-ABORT-003",
+          "completed_steps": 0,
+          "executed_adapters": [],
+          "expected_execution_allowed": false,
+          "expected_final_status": "safe_aborted",
+          "expected_governance_decision": "SAFE_ABORT",
+          "failed_steps": 1,
+          "final_status": "failed",
+          "goal_id": "G-EVAL-SAFE-ABORT-003",
+          "scenario_category": "SAFE_ABORT",
+          "skipped_steps": 0,
+          "stage_latencies_ms": {
+            "execution": 0.0015,
+            "governance": 0.0,
+            "matching": 0.0,
+            "planning": 0.0,
+            "total": 0.004
+          }
+        }
+      ],
+      "description": "Executes mapped adapter calls directly and records malformed executable mappings as failures instead of governance safe aborts.",
+      "method_name": "Baseline A: direct execution without governance",
+      "metrics": {
+        "adapter_utilization_ratio": {
+          "legacy_adapter": 0.6667,
+          "opcua_adapter": 0.3333,
+          "rest_adapter": 0.0
+        },
+        "approval_bypass_rate": 1.0,
+        "average_completed_steps": 0.75,
+        "average_execution_latency_ms": 0.004007,
+        "average_governance_latency_ms": 0.0,
+        "average_matching_latency_ms": 0.0,
+        "average_planning_latency_ms": 0.0,
+        "average_skipped_steps": 0.25,
+        "average_total_latency_ms": 0.00776,
+        "blocked_count": 0,
+        "blocked_rate": 0.0,
+        "execution_coverage_ratio": 0.6,
+        "failed_count": 3,
+        "failed_rate": 0.25,
+        "final_outcome_accuracy": 0.25,
+        "governance_decision_accuracy": 0.0,
+        "governance_intervention_rate": 0.0,
+        "invalid_mapping_containment_rate": 0.0,
+        "partial_success_count": 0,
+        "partial_success_rate": 0.0,
+        "policy_compliance_rate": 0.25,
+        "safe_aborted_count": 0,
+        "safe_aborted_rate": 0.0,
+        "success_count": 9,
+        "success_rate": 0.75,
+        "total_runs": 12,
+        "unsafe_execution_rate": 1.0
+      }
+    },
+    "baseline_b_single_stage_execution": {
+      "case_results": [
+        {
+          "case_id": "CASE-ALLOW-001",
+          "completed_steps": 1,
+          "executed_adapters": [
+            "opcua_adapter"
+          ],
+          "expected_execution_allowed": true,
+          "expected_final_status": "success",
+          "expected_governance_decision": "ALLOW",
+          "failed_steps": 0,
+          "final_status": "success",
+          "goal_id": "G-EVAL-ALLOW-001",
+          "scenario_category": "ALLOW",
+          "skipped_steps": 0,
+          "stage_latencies_ms": {
+            "execution": 0.008542,
+            "governance": 0.0,
+            "matching": 0.0,
+            "planning": 0.004292,
+            "total": 0.013459
+          }
+        },
+        {
+          "case_id": "CASE-ALLOW-002",
+          "completed_steps": 1,
+          "executed_adapters": [
+            "opcua_adapter"
+          ],
+          "expected_execution_allowed": true,
+          "expected_final_status": "success",
+          "expected_governance_decision": "ALLOW",
+          "failed_steps": 0,
+          "final_status": "success",
+          "goal_id": "G-EVAL-ALLOW-002",
+          "scenario_category": "ALLOW",
+          "skipped_steps": 0,
+          "stage_latencies_ms": {
+            "execution": 0.006667,
+            "governance": 0.0,
+            "matching": 0.0,
+            "planning": 0.002583,
+            "total": 0.00975
+          }
+        },
+        {
+          "case_id": "CASE-ALLOW-003",
+          "completed_steps": 1,
+          "executed_adapters": [
+            "opcua_adapter"
+          ],
+          "expected_execution_allowed": true,
+          "expected_final_status": "success",
+          "expected_governance_decision": "ALLOW",
+          "failed_steps": 0,
+          "final_status": "success",
+          "goal_id": "G-EVAL-ALLOW-003",
+          "scenario_category": "ALLOW",
+          "skipped_steps": 0,
+          "stage_latencies_ms": {
+            "execution": 0.005708,
+            "governance": 0.0,
+            "matching": 0.0,
+            "planning": 0.002292,
+            "total": 0.0085
+          }
+        },
+        {
+          "case_id": "CASE-APPROVAL-001",
+          "completed_steps": 1,
+          "executed_adapters": [
+            "legacy_adapter"
+          ],
+          "expected_execution_allowed": false,
+          "expected_final_status": "partial_success",
+          "expected_governance_decision": "REQUIRE_APPROVAL",
+          "failed_steps": 0,
+          "final_status": "success",
+          "goal_id": "G-EVAL-APPROVAL-001",
+          "scenario_category": "REQUIRE_APPROVAL",
+          "skipped_steps": 0,
+          "stage_latencies_ms": {
+            "execution": 0.006625,
+            "governance": 0.0,
+            "matching": 0.0,
+            "planning": 0.002542,
+            "total": 0.009625
+          }
+        },
+        {
+          "case_id": "CASE-APPROVAL-002",
+          "completed_steps": 1,
+          "executed_adapters": [
+            "legacy_adapter"
+          ],
+          "expected_execution_allowed": false,
+          "expected_final_status": "partial_success",
+          "expected_governance_decision": "REQUIRE_APPROVAL",
+          "failed_steps": 0,
+          "final_status": "success",
+          "goal_id": "G-EVAL-APPROVAL-002",
+          "scenario_category": "REQUIRE_APPROVAL",
+          "skipped_steps": 0,
+          "stage_latencies_ms": {
+            "execution": 0.006333,
+            "governance": 0.0,
+            "matching": 0.0,
+            "planning": 0.002458,
+            "total": 0.009292
+          }
+        },
+        {
+          "case_id": "CASE-APPROVAL-003",
+          "completed_steps": 1,
+          "executed_adapters": [
+            "legacy_adapter"
+          ],
+          "expected_execution_allowed": false,
+          "expected_final_status": "partial_success",
+          "expected_governance_decision": "REQUIRE_APPROVAL",
+          "failed_steps": 0,
+          "final_status": "success",
+          "goal_id": "G-EVAL-APPROVAL-003",
+          "scenario_category": "REQUIRE_APPROVAL",
+          "skipped_steps": 0,
+          "stage_latencies_ms": {
+            "execution": 0.0055,
+            "governance": 0.0,
+            "matching": 0.0,
+            "planning": 0.002292,
+            "total": 0.008292
+          }
+        },
+        {
+          "case_id": "CASE-BLOCK-001",
+          "completed_steps": 1,
+          "executed_adapters": [
+            "legacy_adapter"
+          ],
+          "expected_execution_allowed": false,
+          "expected_final_status": "blocked",
+          "expected_governance_decision": "BLOCK",
+          "failed_steps": 0,
+          "final_status": "success",
+          "goal_id": "G-EVAL-BLOCK-001",
+          "scenario_category": "BLOCK",
+          "skipped_steps": 0,
+          "stage_latencies_ms": {
+            "execution": 0.0055,
+            "governance": 0.0,
+            "matching": 0.0,
+            "planning": 0.002209,
+            "total": 0.008208
+          }
+        },
+        {
+          "case_id": "CASE-BLOCK-002",
+          "completed_steps": 1,
+          "executed_adapters": [
+            "legacy_adapter"
+          ],
+          "expected_execution_allowed": false,
+          "expected_final_status": "blocked",
+          "expected_governance_decision": "BLOCK",
+          "failed_steps": 0,
+          "final_status": "success",
+          "goal_id": "G-EVAL-BLOCK-002",
+          "scenario_category": "BLOCK",
+          "skipped_steps": 0,
+          "stage_latencies_ms": {
+            "execution": 0.005459,
+            "governance": 0.0,
+            "matching": 0.0,
+            "planning": 0.003333,
+            "total": 0.009333
+          }
+        },
+        {
+          "case_id": "CASE-BLOCK-003",
+          "completed_steps": 1,
+          "executed_adapters": [
+            "legacy_adapter"
+          ],
+          "expected_execution_allowed": false,
+          "expected_final_status": "blocked",
+          "expected_governance_decision": "BLOCK",
+          "failed_steps": 0,
+          "final_status": "success",
+          "goal_id": "G-EVAL-BLOCK-003",
+          "scenario_category": "BLOCK",
+          "skipped_steps": 0,
+          "stage_latencies_ms": {
+            "execution": 0.005333,
+            "governance": 0.0,
+            "matching": 0.0,
+            "planning": 0.002542,
+            "total": 0.008334
+          }
+        },
+        {
+          "case_id": "CASE-SAFE-ABORT-001",
+          "completed_steps": 1,
+          "executed_adapters": [
+            "opcua_adapter"
+          ],
+          "expected_execution_allowed": false,
+          "expected_final_status": "safe_aborted",
+          "expected_governance_decision": "SAFE_ABORT",
+          "failed_steps": 0,
+          "final_status": "success",
+          "goal_id": "G-EVAL-SAFE-ABORT-001",
+          "scenario_category": "SAFE_ABORT",
+          "skipped_steps": 0,
+          "stage_latencies_ms": {
+            "execution": 0.005334,
+            "governance": 0.0,
+            "matching": 0.0,
+            "planning": 0.002375,
+            "total": 0.00825
+          }
+        },
+        {
+          "case_id": "CASE-SAFE-ABORT-002",
+          "completed_steps": 1,
+          "executed_adapters": [
+            "opcua_adapter"
+          ],
+          "expected_execution_allowed": false,
+          "expected_final_status": "safe_aborted",
+          "expected_governance_decision": "SAFE_ABORT",
+          "failed_steps": 0,
+          "final_status": "success",
+          "goal_id": "G-EVAL-SAFE-ABORT-002",
+          "scenario_category": "SAFE_ABORT",
+          "skipped_steps": 0,
+          "stage_latencies_ms": {
+            "execution": 0.004916,
+            "governance": 0.0,
+            "matching": 0.0,
+            "planning": 0.002042,
+            "total": 0.0075
+          }
+        },
+        {
+          "case_id": "CASE-SAFE-ABORT-003",
+          "completed_steps": 1,
+          "executed_adapters": [
+            "opcua_adapter"
+          ],
+          "expected_execution_allowed": false,
+          "expected_final_status": "safe_aborted",
+          "expected_governance_decision": "SAFE_ABORT",
+          "failed_steps": 0,
+          "final_status": "success",
+          "goal_id": "G-EVAL-SAFE-ABORT-003",
+          "scenario_category": "SAFE_ABORT",
+          "skipped_steps": 0,
+          "stage_latencies_ms": {
+            "execution": 0.004959,
+            "governance": 0.0,
+            "matching": 0.0,
+            "planning": 0.002042,
+            "total": 0.007375
+          }
+        }
+      ],
+      "description": "Selects one deterministic adapter capability directly from the case payload, bypassing separate planning and matching stages.",
+      "method_name": "Baseline B: single-stage execution",
+      "metrics": {
+        "adapter_utilization_ratio": {
+          "legacy_adapter": 0.5,
+          "opcua_adapter": 0.5,
+          "rest_adapter": 0.0
+        },
+        "approval_bypass_rate": 1.0,
+        "average_completed_steps": 1.0,
+        "average_execution_latency_ms": 0.005906,
+        "average_governance_latency_ms": 0.0,
+        "average_matching_latency_ms": 0.0,
+        "average_planning_latency_ms": 0.002583,
+        "average_skipped_steps": 0.0,
+        "average_total_latency_ms": 0.008993,
+        "blocked_count": 0,
+        "blocked_rate": 0.0,
+        "execution_coverage_ratio": 1.0,
+        "failed_count": 0,
+        "failed_rate": 0.0,
+        "final_outcome_accuracy": 0.25,
+        "governance_decision_accuracy": 0.25,
+        "governance_intervention_rate": 0.0,
+        "invalid_mapping_containment_rate": 0.0,
+        "partial_success_count": 0,
+        "partial_success_rate": 0.0,
+        "policy_compliance_rate": 0.25,
+        "safe_aborted_count": 0,
+        "safe_aborted_rate": 0.0,
+        "success_count": 12,
+        "success_rate": 1.0,
+        "total_runs": 12,
+        "unsafe_execution_rate": 1.0
+      }
+    },
+    "baseline_c_without_policy_filtering": {
+      "case_results": [
+        {
+          "case_id": "CASE-ALLOW-001",
+          "completed_steps": 1,
+          "executed_adapters": [
+            "opcua_adapter"
+          ],
+          "expected_execution_allowed": true,
+          "expected_final_status": "success",
+          "expected_governance_decision": "ALLOW",
+          "failed_steps": 0,
+          "final_status": "success",
+          "goal_id": "G-EVAL-ALLOW-001",
+          "scenario_category": "ALLOW",
+          "skipped_steps": 1,
+          "stage_latencies_ms": {
+            "execution": 0.008958,
+            "governance": 0.004208,
+            "matching": 0.0,
+            "planning": 0.0,
+            "total": 0.013708
+          }
+        },
+        {
+          "case_id": "CASE-ALLOW-002",
+          "completed_steps": 1,
+          "executed_adapters": [
+            "opcua_adapter"
+          ],
+          "expected_execution_allowed": true,
+          "expected_final_status": "success",
+          "expected_governance_decision": "ALLOW",
+          "failed_steps": 0,
+          "final_status": "success",
+          "goal_id": "G-EVAL-ALLOW-002",
+          "scenario_category": "ALLOW",
+          "skipped_steps": 1,
+          "stage_latencies_ms": {
+            "execution": 0.00725,
+            "governance": 0.002125,
+            "matching": 0.0,
+            "planning": 0.0,
+            "total": 0.009834
+          }
+        },
+        {
+          "case_id": "CASE-ALLOW-003",
+          "completed_steps": 1,
+          "executed_adapters": [
+            "opcua_adapter"
+          ],
+          "expected_execution_allowed": true,
+          "expected_final_status": "success",
+          "expected_governance_decision": "ALLOW",
+          "failed_steps": 0,
+          "final_status": "success",
+          "goal_id": "G-EVAL-ALLOW-003",
+          "scenario_category": "ALLOW",
+          "skipped_steps": 1,
+          "stage_latencies_ms": {
+            "execution": 0.006666,
+            "governance": 0.002458,
+            "matching": 0.0,
+            "planning": 0.0,
+            "total": 0.009666
+          }
+        },
+        {
+          "case_id": "CASE-APPROVAL-001",
+          "completed_steps": 1,
+          "executed_adapters": [
+            "legacy_adapter"
+          ],
+          "expected_execution_allowed": false,
+          "expected_final_status": "partial_success",
+          "expected_governance_decision": "REQUIRE_APPROVAL",
+          "failed_steps": 0,
+          "final_status": "success",
+          "goal_id": "G-EVAL-APPROVAL-001",
+          "scenario_category": "REQUIRE_APPROVAL",
+          "skipped_steps": 0,
+          "stage_latencies_ms": {
+            "execution": 0.006333,
+            "governance": 0.009208,
+            "matching": 0.0,
+            "planning": 0.0,
+            "total": 0.016083
+          }
+        },
+        {
+          "case_id": "CASE-APPROVAL-002",
+          "completed_steps": 1,
+          "executed_adapters": [
+            "legacy_adapter"
+          ],
+          "expected_execution_allowed": false,
+          "expected_final_status": "partial_success",
+          "expected_governance_decision": "REQUIRE_APPROVAL",
+          "failed_steps": 0,
+          "final_status": "success",
+          "goal_id": "G-EVAL-APPROVAL-002",
+          "scenario_category": "REQUIRE_APPROVAL",
+          "skipped_steps": 0,
+          "stage_latencies_ms": {
+            "execution": 0.005583,
+            "governance": 0.004208,
+            "matching": 0.0,
+            "planning": 0.0,
+            "total": 0.01025
+          }
+        },
+        {
+          "case_id": "CASE-APPROVAL-003",
+          "completed_steps": 1,
+          "executed_adapters": [
+            "legacy_adapter"
+          ],
+          "expected_execution_allowed": false,
+          "expected_final_status": "partial_success",
+          "expected_governance_decision": "REQUIRE_APPROVAL",
+          "failed_steps": 0,
+          "final_status": "success",
+          "goal_id": "G-EVAL-APPROVAL-003",
+          "scenario_category": "REQUIRE_APPROVAL",
+          "skipped_steps": 0,
+          "stage_latencies_ms": {
+            "execution": 0.00525,
+            "governance": 0.004334,
+            "matching": 0.0,
+            "planning": 0.0,
+            "total": 0.010166
+          }
+        },
+        {
+          "case_id": "CASE-BLOCK-001",
+          "completed_steps": 1,
+          "executed_adapters": [
+            "legacy_adapter"
+          ],
+          "expected_execution_allowed": false,
+          "expected_final_status": "blocked",
+          "expected_governance_decision": "BLOCK",
+          "failed_steps": 0,
+          "final_status": "success",
+          "goal_id": "G-EVAL-BLOCK-001",
+          "scenario_category": "BLOCK",
+          "skipped_steps": 0,
+          "stage_latencies_ms": {
+            "execution": 0.005333,
+            "governance": 0.003167,
+            "matching": 0.0,
+            "planning": 0.0,
+            "total": 0.009
+          }
+        },
+        {
+          "case_id": "CASE-BLOCK-002",
+          "completed_steps": 1,
+          "executed_adapters": [
+            "legacy_adapter"
+          ],
+          "expected_execution_allowed": false,
+          "expected_final_status": "blocked",
+          "expected_governance_decision": "BLOCK",
+          "failed_steps": 0,
+          "final_status": "success",
+          "goal_id": "G-EVAL-BLOCK-002",
+          "scenario_category": "BLOCK",
+          "skipped_steps": 0,
+          "stage_latencies_ms": {
+            "execution": 0.00525,
+            "governance": 0.003458,
+            "matching": 0.0,
+            "planning": 0.0,
+            "total": 0.009292
+          }
+        },
+        {
+          "case_id": "CASE-BLOCK-003",
+          "completed_steps": 1,
+          "executed_adapters": [
+            "legacy_adapter"
+          ],
+          "expected_execution_allowed": false,
+          "expected_final_status": "blocked",
+          "expected_governance_decision": "BLOCK",
+          "failed_steps": 0,
+          "final_status": "success",
+          "goal_id": "G-EVAL-BLOCK-003",
+          "scenario_category": "BLOCK",
+          "skipped_steps": 0,
+          "stage_latencies_ms": {
+            "execution": 0.005125,
+            "governance": 0.002917,
+            "matching": 0.0,
+            "planning": 0.0,
+            "total": 0.008583
+          }
+        },
+        {
+          "case_id": "CASE-SAFE-ABORT-001",
+          "completed_steps": 0,
+          "executed_adapters": [],
+          "expected_execution_allowed": false,
+          "expected_final_status": "safe_aborted",
+          "expected_governance_decision": "SAFE_ABORT",
+          "failed_steps": 0,
+          "final_status": "safe_aborted",
+          "goal_id": "G-EVAL-SAFE-ABORT-001",
+          "scenario_category": "SAFE_ABORT",
+          "skipped_steps": 1,
+          "stage_latencies_ms": {
+            "execution": 0.004792,
+            "governance": 0.001833,
+            "matching": 0.0,
+            "planning": 0.0,
+            "total": 0.007125
+          }
+        },
+        {
+          "case_id": "CASE-SAFE-ABORT-002",
+          "completed_steps": 0,
+          "executed_adapters": [],
+          "expected_execution_allowed": false,
+          "expected_final_status": "safe_aborted",
+          "expected_governance_decision": "SAFE_ABORT",
+          "failed_steps": 0,
+          "final_status": "safe_aborted",
+          "goal_id": "G-EVAL-SAFE-ABORT-002",
+          "scenario_category": "SAFE_ABORT",
+          "skipped_steps": 1,
+          "stage_latencies_ms": {
+            "execution": 0.004333,
+            "governance": 0.001584,
+            "matching": 0.0,
+            "planning": 0.0,
+            "total": 0.006416
+          }
+        },
+        {
+          "case_id": "CASE-SAFE-ABORT-003",
+          "completed_steps": 0,
+          "executed_adapters": [],
+          "expected_execution_allowed": false,
+          "expected_final_status": "safe_aborted",
+          "expected_governance_decision": "SAFE_ABORT",
+          "failed_steps": 0,
+          "final_status": "safe_aborted",
+          "goal_id": "G-EVAL-SAFE-ABORT-003",
+          "scenario_category": "SAFE_ABORT",
+          "skipped_steps": 1,
+          "stage_latencies_ms": {
+            "execution": 0.003959,
+            "governance": 0.001458,
+            "matching": 0.0,
+            "planning": 0.0,
+            "total": 0.005959
+          }
+        }
+      ],
+      "description": "Keeps mapped adapter selections but converts policy BLOCK and REQUIRE_APPROVAL decisions into ALLOW decisions.",
+      "method_name": "Baseline C: without governance-aware policy filtering",
+      "metrics": {
+        "adapter_utilization_ratio": {
+          "legacy_adapter": 0.6667,
+          "opcua_adapter": 0.3333,
+          "rest_adapter": 0.0
+        },
+        "approval_bypass_rate": 1.0,
+        "average_completed_steps": 0.75,
+        "average_execution_latency_ms": 0.005736,
+        "average_governance_latency_ms": 0.003413,
+        "average_matching_latency_ms": 0.0,
+        "average_planning_latency_ms": 0.0,
+        "average_skipped_steps": 0.5,
+        "average_total_latency_ms": 0.009674,
+        "blocked_count": 0,
+        "blocked_rate": 0.0,
+        "execution_coverage_ratio": 0.6,
+        "failed_count": 0,
+        "failed_rate": 0.0,
+        "final_outcome_accuracy": 0.5,
+        "governance_decision_accuracy": 0.5,
+        "governance_intervention_rate": 0.25,
+        "invalid_mapping_containment_rate": 1.0,
+        "partial_success_count": 0,
+        "partial_success_rate": 0.0,
+        "policy_compliance_rate": 0.5,
+        "safe_aborted_count": 3,
+        "safe_aborted_rate": 0.25,
+        "success_count": 9,
+        "success_rate": 0.75,
+        "total_runs": 12,
+        "unsafe_execution_rate": 1.0
+      }
+    },
+    "reference_governance_aware": {
+      "case_results": [
+        {
+          "case_id": "CASE-ALLOW-001",
+          "completed_steps": 1,
+          "executed_adapters": [
+            "opcua_adapter"
+          ],
+          "expected_execution_allowed": true,
+          "expected_final_status": "success",
+          "expected_governance_decision": "ALLOW",
+          "failed_steps": 0,
+          "final_status": "success",
+          "goal_id": "G-EVAL-ALLOW-001",
+          "scenario_category": "ALLOW",
+          "skipped_steps": 1,
+          "stage_latencies_ms": {
+            "execution": 0.029292,
+            "governance": 4.034583,
+            "matching": 3.622667,
+            "planning": 0.010792,
+            "total": 7.71425
+          }
+        },
+        {
+          "case_id": "CASE-ALLOW-002",
+          "completed_steps": 1,
+          "executed_adapters": [
+            "opcua_adapter"
+          ],
+          "expected_execution_allowed": true,
+          "expected_final_status": "success",
+          "expected_governance_decision": "ALLOW",
+          "failed_steps": 0,
+          "final_status": "success",
+          "goal_id": "G-EVAL-ALLOW-002",
+          "scenario_category": "ALLOW",
+          "skipped_steps": 1,
+          "stage_latencies_ms": {
+            "execution": 0.026208,
+            "governance": 3.990125,
+            "matching": 3.374209,
+            "planning": 0.008375,
+            "total": 7.418834
+          }
+        },
+        {
+          "case_id": "CASE-ALLOW-003",
+          "completed_steps": 1,
+          "executed_adapters": [
+            "opcua_adapter"
+          ],
+          "expected_execution_allowed": true,
+          "expected_final_status": "success",
+          "expected_governance_decision": "ALLOW",
+          "failed_steps": 0,
+          "final_status": "success",
+          "goal_id": "G-EVAL-ALLOW-003",
+          "scenario_category": "ALLOW",
+          "skipped_steps": 1,
+          "stage_latencies_ms": {
+            "execution": 0.068083,
+            "governance": 5.079125,
+            "matching": 4.031083,
+            "planning": 0.008833,
+            "total": 9.215541
+          }
+        },
+        {
+          "case_id": "CASE-APPROVAL-001",
+          "completed_steps": 0,
+          "executed_adapters": [],
+          "expected_execution_allowed": false,
+          "expected_final_status": "partial_success",
+          "expected_governance_decision": "REQUIRE_APPROVAL",
+          "failed_steps": 0,
+          "final_status": "partial_success",
+          "goal_id": "G-EVAL-APPROVAL-001",
+          "scenario_category": "REQUIRE_APPROVAL",
+          "skipped_steps": 1,
+          "stage_latencies_ms": {
+            "execution": 0.042542,
+            "governance": 5.08125,
+            "matching": 3.967917,
+            "planning": 0.057625,
+            "total": 9.1985
+          }
+        },
+        {
+          "case_id": "CASE-APPROVAL-002",
+          "completed_steps": 0,
+          "executed_adapters": [],
+          "expected_execution_allowed": false,
+          "expected_final_status": "partial_success",
+          "expected_governance_decision": "REQUIRE_APPROVAL",
+          "failed_steps": 0,
+          "final_status": "partial_success",
+          "goal_id": "G-EVAL-APPROVAL-002",
+          "scenario_category": "REQUIRE_APPROVAL",
+          "skipped_steps": 1,
+          "stage_latencies_ms": {
+            "execution": 0.021792,
+            "governance": 4.474542,
+            "matching": 6.651458,
+            "planning": 0.016166,
+            "total": 11.195208
+          }
+        },
+        {
+          "case_id": "CASE-APPROVAL-003",
+          "completed_steps": 0,
+          "executed_adapters": [],
+          "expected_execution_allowed": false,
+          "expected_final_status": "partial_success",
+          "expected_governance_decision": "REQUIRE_APPROVAL",
+          "failed_steps": 0,
+          "final_status": "partial_success",
+          "goal_id": "G-EVAL-APPROVAL-003",
+          "scenario_category": "REQUIRE_APPROVAL",
+          "skipped_steps": 1,
+          "stage_latencies_ms": {
+            "execution": 0.019708,
+            "governance": 3.333167,
+            "matching": 3.367375,
+            "planning": 0.010084,
+            "total": 6.7495
+          }
+        },
+        {
+          "case_id": "CASE-BLOCK-001",
+          "completed_steps": 0,
+          "executed_adapters": [],
+          "expected_execution_allowed": false,
+          "expected_final_status": "blocked",
+          "expected_governance_decision": "BLOCK",
+          "failed_steps": 0,
+          "final_status": "blocked",
+          "goal_id": "G-EVAL-BLOCK-001",
+          "scenario_category": "BLOCK",
+          "skipped_steps": 1,
+          "stage_latencies_ms": {
+            "execution": 0.019375,
+            "governance": 3.850084,
+            "matching": 3.475083,
+            "planning": 0.008125,
+            "total": 7.372959
+          }
+        },
+        {
+          "case_id": "CASE-BLOCK-002",
+          "completed_steps": 0,
+          "executed_adapters": [],
+          "expected_execution_allowed": false,
+          "expected_final_status": "blocked",
+          "expected_governance_decision": "BLOCK",
+          "failed_steps": 0,
+          "final_status": "blocked",
+          "goal_id": "G-EVAL-BLOCK-002",
+          "scenario_category": "BLOCK",
+          "skipped_steps": 1,
+          "stage_latencies_ms": {
+            "execution": 0.019417,
+            "governance": 3.354,
+            "matching": 3.407708,
+            "planning": 0.011083,
+            "total": 6.810667
+          }
+        },
+        {
+          "case_id": "CASE-BLOCK-003",
+          "completed_steps": 0,
+          "executed_adapters": [],
+          "expected_execution_allowed": false,
+          "expected_final_status": "blocked",
+          "expected_governance_decision": "BLOCK",
+          "failed_steps": 0,
+          "final_status": "blocked",
+          "goal_id": "G-EVAL-BLOCK-003",
+          "scenario_category": "BLOCK",
+          "skipped_steps": 1,
+          "stage_latencies_ms": {
+            "execution": 0.017625,
+            "governance": 4.283959,
+            "matching": 3.451625,
+            "planning": 0.008167,
+            "total": 7.779583
+          }
+        },
+        {
+          "case_id": "CASE-SAFE-ABORT-001",
+          "completed_steps": 0,
+          "executed_adapters": [],
+          "expected_execution_allowed": false,
+          "expected_final_status": "safe_aborted",
+          "expected_governance_decision": "SAFE_ABORT",
+          "failed_steps": 0,
+          "final_status": "safe_aborted",
+          "goal_id": "G-EVAL-SAFE-ABORT-001",
+          "scenario_category": "SAFE_ABORT",
+          "skipped_steps": 1,
+          "stage_latencies_ms": {
+            "execution": 0.006958,
+            "governance": 0.0,
+            "matching": 0.0,
+            "planning": 0.0,
+            "total": 0.01975
+          }
+        },
+        {
+          "case_id": "CASE-SAFE-ABORT-002",
+          "completed_steps": 0,
+          "executed_adapters": [],
+          "expected_execution_allowed": false,
+          "expected_final_status": "safe_aborted",
+          "expected_governance_decision": "SAFE_ABORT",
+          "failed_steps": 0,
+          "final_status": "safe_aborted",
+          "goal_id": "G-EVAL-SAFE-ABORT-002",
+          "scenario_category": "SAFE_ABORT",
+          "skipped_steps": 1,
+          "stage_latencies_ms": {
+            "execution": 0.00575,
+            "governance": 0.0,
+            "matching": 0.0,
+            "planning": 0.0,
+            "total": 0.010791
+          }
+        },
+        {
+          "case_id": "CASE-SAFE-ABORT-003",
+          "completed_steps": 0,
+          "executed_adapters": [],
+          "expected_execution_allowed": false,
+          "expected_final_status": "safe_aborted",
+          "expected_governance_decision": "SAFE_ABORT",
+          "failed_steps": 0,
+          "final_status": "safe_aborted",
+          "goal_id": "G-EVAL-SAFE-ABORT-003",
+          "scenario_category": "SAFE_ABORT",
+          "skipped_steps": 1,
+          "stage_latencies_ms": {
+            "execution": 0.004958,
+            "governance": 0.0,
+            "matching": 0.0,
+            "planning": 0.0,
+            "total": 0.009125
+          }
+        }
+      ],
+      "description": "Existing Governance -> Execution behavior.",
+      "method_name": "Reference: governance-aware execution",
+      "metrics": {
+        "adapter_utilization_ratio": {
+          "legacy_adapter": 0.0,
+          "opcua_adapter": 1.0,
+          "rest_adapter": 0.0
+        },
+        "approval_bypass_rate": 0.0,
+        "average_completed_steps": 0.25,
+        "average_execution_latency_ms": 0.023476,
+        "average_governance_latency_ms": 3.123403,
+        "average_matching_latency_ms": 2.94576,
+        "average_planning_latency_ms": 0.011604,
+        "average_skipped_steps": 1.0,
+        "average_total_latency_ms": 6.124559,
+        "blocked_count": 3,
+        "blocked_rate": 0.25,
+        "execution_coverage_ratio": 0.2,
+        "failed_count": 0,
+        "failed_rate": 0.0,
+        "final_outcome_accuracy": 1.0,
+        "governance_decision_accuracy": 1.0,
+        "governance_intervention_rate": 0.75,
+        "invalid_mapping_containment_rate": 1.0,
+        "partial_success_count": 3,
+        "partial_success_rate": 0.25,
+        "policy_compliance_rate": 1.0,
+        "safe_aborted_count": 3,
+        "safe_aborted_rate": 0.25,
+        "success_count": 3,
+        "success_rate": 0.25,
+        "total_runs": 12,
+        "unsafe_execution_rate": 0.0
+      }
+    }
+  }
+}

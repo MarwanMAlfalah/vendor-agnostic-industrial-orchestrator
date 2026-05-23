@@ -1,6 +1,18 @@
+# Local environment
+.env
+.venv/
+.pytest_cache/
 __pycache__/
 *.py[cod]
+*.pyc
+.DS_Store
+
+# Build metadata
 *.egg-info/
-.pytest_cache/
-.venv/
-.env
+
+# Local persistence / demo artifacts
+data/langgraph/checkpoints.db
+
+# Optional: ignore transient generated outputs
+# data/results/*.json
+# data/results/*.csv

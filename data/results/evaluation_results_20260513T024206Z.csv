@@ -1,0 +1,13 @@
+case_id,goal_id,goal_type,final_status,completed_steps,failed_steps,skipped_steps,allow_count,block_count,require_approval_count,fallback_count,safe_abort_count
+CASE-ALLOW-001,G-EVAL-ALLOW-001,alarm_handling,success,1,0,1,2,0,0,0,0
+CASE-ALLOW-002,G-EVAL-ALLOW-002,alarm_handling,success,1,0,1,2,0,0,0,0
+CASE-ALLOW-003,G-EVAL-ALLOW-003,alarm_handling,success,1,0,1,2,0,0,0,0
+CASE-APPROVAL-001,G-EVAL-APPROVAL-001,governed_action,partial_success,0,0,1,0,0,1,0,0
+CASE-APPROVAL-002,G-EVAL-APPROVAL-002,governed_action,partial_success,0,0,1,0,0,1,0,0
+CASE-APPROVAL-003,G-EVAL-APPROVAL-003,governed_action,partial_success,0,0,1,0,0,1,0,0
+CASE-BLOCK-001,G-EVAL-BLOCK-001,governed_action,blocked,0,0,1,0,1,0,0,0
+CASE-BLOCK-002,G-EVAL-BLOCK-002,governed_action,blocked,0,0,1,0,1,0,0,0
+CASE-BLOCK-003,G-EVAL-BLOCK-003,governed_action,blocked,0,0,1,0,1,0,0,0
+CASE-SAFE-ABORT-001,G-EVAL-SAFE-ABORT-001,manual_invalid_mapping,safe_aborted,0,0,1,0,0,0,0,1
+CASE-SAFE-ABORT-002,G-EVAL-SAFE-ABORT-002,manual_invalid_mapping,safe_aborted,0,0,1,0,0,0,0,1
+CASE-SAFE-ABORT-003,G-EVAL-SAFE-ABORT-003,manual_invalid_mapping,safe_aborted,0,0,1,0,0,0,0,1

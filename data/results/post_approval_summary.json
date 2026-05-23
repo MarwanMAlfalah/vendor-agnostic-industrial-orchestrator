@@ -1,0 +1,418 @@
+{
+  "cases": [
+    {
+      "approval_payload": {
+        "approval_token": "APPROVED-001",
+        "approved": true,
+        "approved_by": "supervisor"
+      },
+      "approval_resume_mutation": null,
+      "case_id": "CASE-POST-APPROVAL-VALID-001",
+      "expected_approval_execution_allowed": true,
+      "expected_final_status": "success",
+      "expected_governance_sequence": [
+        "ALLOW",
+        "REQUIRE_APPROVAL"
+      ],
+      "expected_post_resume_final_status": "success",
+      "industrial_context": {
+        "interoperability_role": "approved_control_gate_after_monitoring",
+        "rami_alignment": "IEC 62264 operations layer / RAMI 4.0 functional layer",
+        "system_level": "supervisory_control"
+      },
+      "scenario_category": "POST_APPROVAL_ALLOW_REQUIRE_APPROVAL_CONTINUE"
+    },
+    {
+      "approval_payload": {
+        "approval_token": "APPROVED-001",
+        "approved": true,
+        "approved_by": "supervisor"
+      },
+      "approval_resume_mutation": null,
+      "case_id": "CASE-POST-APPROVAL-VALID-002",
+      "expected_approval_execution_allowed": true,
+      "expected_final_status": "success",
+      "expected_governance_sequence": [
+        "REQUIRE_APPROVAL"
+      ],
+      "expected_post_resume_final_status": "success",
+      "industrial_context": {
+        "interoperability_role": "single_approval_checkpoint",
+        "rami_alignment": "IEC 62264 operations layer / RAMI 4.0 functional layer",
+        "system_level": "supervisory_control"
+      },
+      "scenario_category": "POST_APPROVAL_REQUIRE_APPROVAL_ONLY"
+    },
+    {
+      "approval_payload": {
+        "approval_token": "APPROVED-001",
+        "approved": true,
+        "approved_by": "supervisor"
+      },
+      "approval_resume_mutation": null,
+      "case_id": "CASE-POST-APPROVAL-VALID-003",
+      "expected_approval_execution_allowed": true,
+      "expected_final_status": "success",
+      "expected_governance_sequence": [
+        "ALLOW",
+        "REQUIRE_APPROVAL",
+        "ALLOW"
+      ],
+      "expected_post_resume_final_status": "success",
+      "industrial_context": {
+        "interoperability_role": "approved_control_gate_between_monitoring_steps",
+        "rami_alignment": "IEC 62264 operations layer / RAMI 4.0 functional layer",
+        "system_level": "supervisory_control"
+      },
+      "scenario_category": "POST_APPROVAL_ALLOW_REQUIRE_APPROVAL_CONTINUE_ALLOW"
+    },
+    {
+      "approval_payload": {
+        "approval_token": "REJECTED-001",
+        "approved": false,
+        "approved_by": "supervisor"
+      },
+      "approval_resume_mutation": null,
+      "case_id": "CASE-POST-APPROVAL-INVALID-PAYLOAD-001",
+      "expected_approval_execution_allowed": false,
+      "expected_final_status": "partial_success",
+      "expected_governance_sequence": [
+        "REQUIRE_APPROVAL"
+      ],
+      "expected_post_resume_final_status": "partial_success",
+      "industrial_context": {
+        "interoperability_role": "invalid_approval_rejection",
+        "rami_alignment": "IEC 62264 operations layer / RAMI 4.0 functional layer",
+        "system_level": "supervisory_control"
+      },
+      "scenario_category": "POST_APPROVAL_INVALID_APPROVAL_PAYLOAD"
+    },
+    {
+      "approval_payload": {
+        "approved_by": "supervisor"
+      },
+      "approval_resume_mutation": null,
+      "case_id": "CASE-POST-APPROVAL-MISSING-PAYLOAD-001",
+      "expected_approval_execution_allowed": false,
+      "expected_final_status": "partial_success",
+      "expected_governance_sequence": [
+        "REQUIRE_APPROVAL"
+      ],
+      "expected_post_resume_final_status": "partial_success",
+      "industrial_context": {
+        "interoperability_role": "missing_approval_payload_rejection",
+        "rami_alignment": "IEC 62264 operations layer / RAMI 4.0 functional layer",
+        "system_level": "supervisory_control"
+      },
+      "scenario_category": "POST_APPROVAL_MISSING_APPROVAL_PAYLOAD"
+    },
+    {
+      "approval_payload": {
+        "approval_token": "APPROVED-001",
+        "approved": true,
+        "approved_by": "supervisor"
+      },
+      "approval_resume_mutation": {
+        "selected_capability": null,
+        "step_id": "step-002"
+      },
+      "case_id": "CASE-POST-APPROVAL-INVALID-MAPPING-001",
+      "expected_approval_execution_allowed": false,
+      "expected_final_status": "safe_aborted",
+      "expected_governance_sequence": [
+        "ALLOW",
+        "REQUIRE_APPROVAL"
+      ],
+      "expected_post_resume_final_status": "safe_aborted",
+      "industrial_context": {
+        "interoperability_role": "approved_but_mapping_invalidated",
+        "rami_alignment": "IEC 62264 operations layer / RAMI 4.0 functional layer",
+        "system_level": "supervisory_control"
+      },
+      "scenario_category": "POST_APPROVAL_MAPPING_INVALID_AFTER_RESUME"
+    }
+  ],
+  "evaluation_design": {
+    "case_count": 6,
+    "case_ids": [
+      "CASE-POST-APPROVAL-VALID-001",
+      "CASE-POST-APPROVAL-VALID-002",
+      "CASE-POST-APPROVAL-VALID-003",
+      "CASE-POST-APPROVAL-INVALID-PAYLOAD-001",
+      "CASE-POST-APPROVAL-MISSING-PAYLOAD-001",
+      "CASE-POST-APPROVAL-INVALID-MAPPING-001"
+    ],
+    "deterministic": true,
+    "post_approval_continuation": true,
+    "reference_v1_unchanged": true
+  },
+  "runtimes": {
+    "langgraph_runtime": {
+      "case_results": [
+        {
+          "approval_execution_performed": true,
+          "approval_state": "approved",
+          "approval_validation_error": null,
+          "case_id": "CASE-POST-APPROVAL-VALID-001",
+          "completed_steps": 2,
+          "final_status": "success",
+          "interrupted": true,
+          "resumed": true,
+          "skipped_steps": 0,
+          "stage_latencies_ms": {
+            "execution": 0.07575,
+            "governance": 0.014458,
+            "matching": 0.000875,
+            "planning": 0.000958,
+            "total": 2.92425
+          },
+          "trace": [
+            "planner_node",
+            "matcher_node",
+            "governance_node",
+            "approval_interrupt",
+            "approval_resume",
+            "approval_validated",
+            "approved_execution",
+            "execution_node",
+            "final_result"
+          ]
+        },
+        {
+          "approval_execution_performed": true,
+          "approval_state": "approved",
+          "approval_validation_error": null,
+          "case_id": "CASE-POST-APPROVAL-VALID-002",
+          "completed_steps": 1,
+          "final_status": "success",
+          "interrupted": true,
+          "resumed": true,
+          "skipped_steps": 0,
+          "stage_latencies_ms": {
+            "execution": 0.044292,
+            "governance": 0.009958,
+            "matching": 0.000792,
+            "planning": 0.001125,
+            "total": 1.678625
+          },
+          "trace": [
+            "planner_node",
+            "matcher_node",
+            "governance_node",
+            "approval_interrupt",
+            "approval_resume",
+            "approval_validated",
+            "approved_execution",
+            "execution_node",
+            "final_result"
+          ]
+        },
+        {
+          "approval_execution_performed": true,
+          "approval_state": "approved",
+          "approval_validation_error": null,
+          "case_id": "CASE-POST-APPROVAL-VALID-003",
+          "completed_steps": 3,
+          "final_status": "success",
+          "interrupted": true,
+          "resumed": true,
+          "skipped_steps": 0,
+          "stage_latencies_ms": {
+            "execution": 0.047875,
+            "governance": 0.010417,
+            "matching": 0.000875,
+            "planning": 0.000708,
+            "total": 1.499459
+          },
+          "trace": [
+            "planner_node",
+            "matcher_node",
+            "governance_node",
+            "approval_interrupt",
+            "approval_resume",
+            "approval_validated",
+            "approved_execution",
+            "execution_node",
+            "final_result"
+          ]
+        },
+        {
+          "approval_execution_performed": false,
+          "approval_state": "approval_invalid",
+          "approval_validation_error": "approval_not_granted",
+          "case_id": "CASE-POST-APPROVAL-INVALID-PAYLOAD-001",
+          "completed_steps": 0,
+          "final_status": "partial_success",
+          "interrupted": true,
+          "resumed": true,
+          "skipped_steps": 1,
+          "stage_latencies_ms": {
+            "execution": 0.035208,
+            "governance": 0.01325,
+            "matching": 0.000708,
+            "planning": 0.001042,
+            "total": 1.798375
+          },
+          "trace": [
+            "planner_node",
+            "matcher_node",
+            "governance_node",
+            "approval_interrupt",
+            "approval_resume",
+            "approval_rejected",
+            "execution_node",
+            "final_result"
+          ]
+        },
+        {
+          "approval_execution_performed": false,
+          "approval_state": "approval_invalid",
+          "approval_validation_error": "approval_not_granted",
+          "case_id": "CASE-POST-APPROVAL-MISSING-PAYLOAD-001",
+          "completed_steps": 0,
+          "final_status": "partial_success",
+          "interrupted": true,
+          "resumed": true,
+          "skipped_steps": 1,
+          "stage_latencies_ms": {
+            "execution": 0.034458,
+            "governance": 0.011125,
+            "matching": 0.000708,
+            "planning": 0.000834,
+            "total": 1.764
+          },
+          "trace": [
+            "planner_node",
+            "matcher_node",
+            "governance_node",
+            "approval_interrupt",
+            "approval_resume",
+            "approval_rejected",
+            "execution_node",
+            "final_result"
+          ]
+        },
+        {
+          "approval_execution_performed": false,
+          "approval_state": "revalidation_failed",
+          "approval_validation_error": "invalid_execution_mapping",
+          "case_id": "CASE-POST-APPROVAL-INVALID-MAPPING-001",
+          "completed_steps": 1,
+          "final_status": "safe_aborted",
+          "interrupted": true,
+          "resumed": true,
+          "skipped_steps": 1,
+          "stage_latencies_ms": {
+            "execution": 0.054541,
+            "governance": 0.011958,
+            "matching": 0.00075,
+            "planning": 0.000708,
+            "total": 1.639833
+          },
+          "trace": [
+            "planner_node",
+            "matcher_node",
+            "governance_node",
+            "approval_interrupt",
+            "approval_resume",
+            "approval_validated",
+            "execution_node",
+            "final_result"
+          ]
+        }
+      ],
+      "metrics": {
+        "approval_resume_correctness": 1.0,
+        "approval_validation_accuracy": 1.0,
+        "approved_execution_trace_completeness": 1.0,
+        "approved_step_execution_rate": 1.0,
+        "average_execution_latency_ms": 0.048687,
+        "average_total_latency_ms": 1.88409,
+        "final_outcome_accuracy": 1.0,
+        "gated_step_policy_compliance_rate": 1.0,
+        "governance_decision_accuracy": 1.0,
+        "policy_compliance_rate": 1.0,
+        "post_resume_final_outcome_accuracy": 1.0,
+        "resume_success_rate": 1.0,
+        "runtime_id": "langgraph_runtime",
+        "runtime_name": "Experimental LangGraph controlled approval continuation",
+        "unsafe_execution_rate": 0.0
+      }
+    },
+    "reference_v1": {
+      "case_results": [
+        {
+          "case_id": "CASE-POST-APPROVAL-VALID-001",
+          "completed_steps": 1,
+          "final_status": "partial_success",
+          "skipped_steps": 1,
+          "trace": [
+            "execution_agent"
+          ]
+        },
+        {
+          "case_id": "CASE-POST-APPROVAL-VALID-002",
+          "completed_steps": 0,
+          "final_status": "partial_success",
+          "skipped_steps": 1,
+          "trace": [
+            "execution_agent"
+          ]
+        },
+        {
+          "case_id": "CASE-POST-APPROVAL-VALID-003",
+          "completed_steps": 2,
+          "final_status": "partial_success",
+          "skipped_steps": 1,
+          "trace": [
+            "execution_agent"
+          ]
+        },
+        {
+          "case_id": "CASE-POST-APPROVAL-INVALID-PAYLOAD-001",
+          "completed_steps": 0,
+          "final_status": "partial_success",
+          "skipped_steps": 1,
+          "trace": [
+            "execution_agent"
+          ]
+        },
+        {
+          "case_id": "CASE-POST-APPROVAL-MISSING-PAYLOAD-001",
+          "completed_steps": 0,
+          "final_status": "partial_success",
+          "skipped_steps": 1,
+          "trace": [
+            "execution_agent"
+          ]
+        },
+        {
+          "case_id": "CASE-POST-APPROVAL-INVALID-MAPPING-001",
+          "completed_steps": 1,
+          "final_status": "partial_success",
+          "skipped_steps": 1,
+          "trace": [
+            "execution_agent"
+          ]
+        }
+      ],
+      "metrics": {
+        "approval_resume_correctness": 0.0,
+        "approval_validation_accuracy": 0.0,
+        "approved_execution_trace_completeness": 0.0,
+        "approved_step_execution_rate": 0.0,
+        "average_execution_latency_ms": 0.012556,
+        "average_total_latency_ms": 0.017278,
+        "final_outcome_accuracy": 0.3333,
+        "gated_step_policy_compliance_rate": 0.0,
+        "governance_decision_accuracy": 0.8333,
+        "policy_compliance_rate": 0.3333,
+        "post_resume_final_outcome_accuracy": 0.0,
+        "resume_success_rate": 0.0,
+        "runtime_id": "reference_v1",
+        "runtime_name": "Reference v1 custom deterministic orchestration",
+        "unsafe_execution_rate": 0.0
+      }
+    }
+  }
+}

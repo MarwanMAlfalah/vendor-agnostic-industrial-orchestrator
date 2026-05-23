@@ -1,0 +1,11 @@
+FROM python:3.11-slim
+
+WORKDIR /app
+
+COPY pyproject.toml README.md ./
+COPY app ./app
+
+RUN python -m pip install --upgrade pip \
+    && python -m pip install -e ".[dev]"
+
+CMD ["python", "-m", "app.evaluation.run_crash_restart_demo"]

@@ -13,7 +13,7 @@ class StepExecutionResult(BaseModel):
     status: str
     adapter: str | None = None
     capability: str | None = None
-    latency_ms: int | None = None
+    latency_ms: float | None = None
     result: dict[str, Any] | None = None
     error: str | None = None
     notes: str | None = None
@@ -25,7 +25,8 @@ class ExecutionResult(BaseModel):
     run_id: str
     goal_id: str
     final_status: str
-    total_latency_ms: int | None = None
+    total_latency_ms: float | None = None
+    stage_latencies_ms: dict[str, float] = Field(default_factory=dict)
     completed_steps: int = 0
     failed_steps: int = 0
     skipped_steps: int = 0

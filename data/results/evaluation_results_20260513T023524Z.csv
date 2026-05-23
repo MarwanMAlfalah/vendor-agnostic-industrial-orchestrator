@@ -1,0 +1,5 @@
+case_id,goal_id,goal_type,final_status,completed_steps,failed_steps,skipped_steps,allow_count,block_count,require_approval_count,fallback_count,safe_abort_count
+CASE-ALLOW-001,G-EVAL-ALLOW,alarm_handling,success,1,0,1,2,0,0,0,0
+CASE-APPROVAL-001,G-EVAL-APPROVAL,governed_action,partial_success,0,0,1,0,0,1,0,0
+CASE-BLOCK-001,G-EVAL-BLOCK,governed_action,blocked,0,0,1,0,1,0,0,0
+CASE-SAFE-ABORT-001,G-EVAL-SAFE-ABORT,manual_invalid_mapping,safe_aborted,0,0,1,0,0,0,0,1

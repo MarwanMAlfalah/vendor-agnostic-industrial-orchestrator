@@ -1,0 +1,16 @@
+{
+  "average_completed_steps": 0.25,
+  "average_skipped_steps": 1.0,
+  "blocked_count": 3,
+  "blocked_rate": 0.25,
+  "failed_count": 0,
+  "failed_rate": 0.0,
+  "governance_intervention_rate": 0.75,
+  "partial_success_count": 3,
+  "partial_success_rate": 0.25,
+  "safe_aborted_count": 3,
+  "safe_aborted_rate": 0.25,
+  "success_count": 3,
+  "success_rate": 0.25,
+  "total_runs": 12
+}

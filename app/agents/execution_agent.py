@@ -38,6 +38,7 @@ class ExecutionAgent:
             goal_id=governance_plan.goal_id,
             final_status=self._final_status(step_results),
             total_latency_ms=total_latency_ms,
+            stage_latencies_ms={"execution": total_latency_ms},
             completed_steps=completed_steps,
             failed_steps=failed_steps,
             skipped_steps=skipped_steps,
@@ -188,5 +189,5 @@ class ExecutionAgent:
 
         return " ".join(note_parts)
 
-    def _elapsed_ms(self, start: float) -> int:
-        return int((perf_counter() - start) * 1000)
+    def _elapsed_ms(self, start: float) -> float:
+        return round((perf_counter() - start) * 1000, 6)

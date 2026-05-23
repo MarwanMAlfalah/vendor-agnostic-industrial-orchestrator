@@ -19,6 +19,9 @@
     - read_only
     - plant_floor
   availability: true
+  interoperability_role: telemetry_read
+  system_level: field_device
+  rami_alignment: Asset and Integration layers; read-only machine state.
 
 - capability_name: read_alarm_code
   description: Read the active alarm code for a machine from OPC UA.
@@ -41,6 +44,9 @@
     - read_only
     - alarms
   availability: true
+  interoperability_role: alarm_telemetry_read
+  system_level: field_device
+  rami_alignment: Asset and Integration layers; alarm state observation.
 
 - capability_name: create_maintenance_ticket
   description: Create a maintenance ticket through an HTTP service.
@@ -68,6 +74,9 @@
     - write_action
     - maintenance
   availability: true
+  interoperability_role: maintenance_work_order_write
+  system_level: operations_management
+  rami_alignment: Functional and Business layers; maintenance coordination.
 
 - capability_name: query_ticket_status
   description: Query the current status of a maintenance ticket.
@@ -92,6 +101,9 @@
     - read_only
     - maintenance
   availability: true
+  interoperability_role: maintenance_status_read
+  system_level: operations_management
+  rami_alignment: Functional layer; maintenance workflow visibility.
 
 - capability_name: run_legacy_command
   description: Run an approved command against a legacy industrial system.
@@ -116,6 +128,9 @@
     - controlled_action
     - legacy_system
   availability: true
+  interoperability_role: controlled_legacy_actuation
+  system_level: control_system
+  rami_alignment: Functional layer; governed command execution.
 
 - capability_name: validate_vendor_action
   description: Validate a proposed vendor-specific action before execution.
@@ -143,3 +158,6 @@
     - governance
     - validation
   availability: true
+  interoperability_role: vendor_action_validation
+  system_level: supervisory_control
+  rami_alignment: Functional and Information layers; policy-aware validation.

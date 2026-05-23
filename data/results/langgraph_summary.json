@@ -1,0 +1,304 @@
+{
+  "evaluation_design": {
+    "case_count": 12,
+    "case_ids": [
+      "CASE-ALLOW-001",
+      "CASE-ALLOW-002",
+      "CASE-ALLOW-003",
+      "CASE-APPROVAL-001",
+      "CASE-APPROVAL-002",
+      "CASE-APPROVAL-003",
+      "CASE-BLOCK-001",
+      "CASE-BLOCK-002",
+      "CASE-BLOCK-003",
+      "CASE-SAFE-ABORT-001",
+      "CASE-SAFE-ABORT-002",
+      "CASE-SAFE-ABORT-003"
+    ],
+    "deterministic": true,
+    "langgraph_optional_runtime": true,
+    "stochastic_llm_logic": false
+  },
+  "runtimes": {
+    "langgraph_runtime": {
+      "case_results": [
+        {
+          "case_id": "CASE-ALLOW-001",
+          "final_status": "success",
+          "interrupted": false,
+          "resumed": false,
+          "stage_latencies_ms": {
+            "execution": 0.050958,
+            "governance": 0.01725,
+            "matching": 3.604334,
+            "planning": 0.035084,
+            "total": 6.782375
+          },
+          "trace": [
+            "planner_node",
+            "matcher_node",
+            "governance_node",
+            "execution_node",
+            "final_result"
+          ]
+        },
+        {
+          "case_id": "CASE-ALLOW-002",
+          "final_status": "success",
+          "interrupted": false,
+          "resumed": false,
+          "stage_latencies_ms": {
+            "execution": 0.035625,
+            "governance": 0.012583,
+            "matching": 3.2675,
+            "planning": 0.021,
+            "total": 4.899458
+          },
+          "trace": [
+            "planner_node",
+            "matcher_node",
+            "governance_node",
+            "execution_node",
+            "final_result"
+          ]
+        },
+        {
+          "case_id": "CASE-ALLOW-003",
+          "final_status": "success",
+          "interrupted": false,
+          "resumed": false,
+          "stage_latencies_ms": {
+            "execution": 0.037083,
+            "governance": 0.015125,
+            "matching": 3.375166,
+            "planning": 0.018791,
+            "total": 4.926417
+          },
+          "trace": [
+            "planner_node",
+            "matcher_node",
+            "governance_node",
+            "execution_node",
+            "final_result"
+          ]
+        },
+        {
+          "case_id": "CASE-APPROVAL-001",
+          "final_status": "partial_success",
+          "interrupted": true,
+          "resumed": true,
+          "stage_latencies_ms": {
+            "execution": 0.029459,
+            "governance": 0.010625,
+            "matching": 3.350667,
+            "planning": 0.018792,
+            "total": 5.2955
+          },
+          "trace": [
+            "planner_node",
+            "matcher_node",
+            "governance_node",
+            "approval_interrupt",
+            "approval_resume",
+            "execution_node",
+            "final_result"
+          ]
+        },
+        {
+          "case_id": "CASE-APPROVAL-002",
+          "final_status": "partial_success",
+          "interrupted": true,
+          "resumed": true,
+          "stage_latencies_ms": {
+            "execution": 0.019542,
+            "governance": 0.006959,
+            "matching": 3.152208,
+            "planning": 0.013667,
+            "total": 4.589792
+          },
+          "trace": [
+            "planner_node",
+            "matcher_node",
+            "governance_node",
+            "approval_interrupt",
+            "approval_resume",
+            "execution_node",
+            "final_result"
+          ]
+        },
+        {
+          "case_id": "CASE-APPROVAL-003",
+          "final_status": "partial_success",
+          "interrupted": true,
+          "resumed": true,
+          "stage_latencies_ms": {
+            "execution": 0.029417,
+            "governance": 0.006583,
+            "matching": 3.105875,
+            "planning": 0.012042,
+            "total": 4.66225
+          },
+          "trace": [
+            "planner_node",
+            "matcher_node",
+            "governance_node",
+            "approval_interrupt",
+            "approval_resume",
+            "execution_node",
+            "final_result"
+          ]
+        },
+        {
+          "case_id": "CASE-BLOCK-001",
+          "final_status": "blocked",
+          "interrupted": false,
+          "resumed": false,
+          "stage_latencies_ms": {
+            "execution": 0.014416,
+            "governance": 0.00675,
+            "matching": 3.107291,
+            "planning": 0.011542,
+            "total": 4.162834
+          },
+          "trace": [
+            "planner_node",
+            "matcher_node",
+            "governance_node",
+            "execution_node",
+            "final_result"
+          ]
+        },
+        {
+          "case_id": "CASE-BLOCK-002",
+          "final_status": "blocked",
+          "interrupted": false,
+          "resumed": false,
+          "stage_latencies_ms": {
+            "execution": 0.013291,
+            "governance": 0.007084,
+            "matching": 3.184166,
+            "planning": 0.012417,
+            "total": 4.213417
+          },
+          "trace": [
+            "planner_node",
+            "matcher_node",
+            "governance_node",
+            "execution_node",
+            "final_result"
+          ]
+        },
+        {
+          "case_id": "CASE-BLOCK-003",
+          "final_status": "blocked",
+          "interrupted": false,
+          "resumed": false,
+          "stage_latencies_ms": {
+            "execution": 0.013542,
+            "governance": 0.006,
+            "matching": 3.071583,
+            "planning": 0.010666,
+            "total": 4.068459
+          },
+          "trace": [
+            "planner_node",
+            "matcher_node",
+            "governance_node",
+            "execution_node",
+            "final_result"
+          ]
+        },
+        {
+          "case_id": "CASE-SAFE-ABORT-001",
+          "final_status": "safe_aborted",
+          "interrupted": false,
+          "resumed": false,
+          "stage_latencies_ms": {
+            "execution": 0.0125,
+            "governance": 0.005916,
+            "matching": 0.000584,
+            "planning": 0.000542,
+            "total": 1.010041
+          },
+          "trace": [
+            "planner_node",
+            "matcher_node",
+            "governance_node",
+            "execution_node",
+            "final_result"
+          ]
+        },
+        {
+          "case_id": "CASE-SAFE-ABORT-002",
+          "final_status": "safe_aborted",
+          "interrupted": false,
+          "resumed": false,
+          "stage_latencies_ms": {
+            "execution": 0.011917,
+            "governance": 0.00575,
+            "matching": 0.000583,
+            "planning": 0.000459,
+            "total": 0.995125
+          },
+          "trace": [
+            "planner_node",
+            "matcher_node",
+            "governance_node",
+            "execution_node",
+            "final_result"
+          ]
+        },
+        {
+          "case_id": "CASE-SAFE-ABORT-003",
+          "final_status": "safe_aborted",
+          "interrupted": false,
+          "resumed": false,
+          "stage_latencies_ms": {
+            "execution": 0.013208,
+            "governance": 0.005584,
+            "matching": 0.000583,
+            "planning": 0.000458,
+            "total": 0.992084
+          },
+          "trace": [
+            "planner_node",
+            "matcher_node",
+            "governance_node",
+            "execution_node",
+            "final_result"
+          ]
+        }
+      ],
+      "description": "Experimental LangGraph control-flow wrapper using existing Planner, Matcher, Governance, and Execution logic.",
+      "metrics": {
+        "approval_resume_correctness": 1.0,
+        "average_execution_latency_ms": 0.023413,
+        "average_total_latency_ms": 3.883146,
+        "final_outcome_accuracy": 1.0,
+        "governance_decision_accuracy": 1.0,
+        "policy_compliance_rate": 1.0,
+        "resume_success_rate": 1.0,
+        "runtime_id": "langgraph_runtime",
+        "runtime_name": "Experimental LangGraph runtime",
+        "trace_completeness": 1.0,
+        "unsafe_execution_rate": 0.0
+      }
+    },
+    "reference_v1": {
+      "description": "Existing custom deterministic orchestration path.",
+      "metrics": {
+        "approval_resume_correctness": 1.0,
+        "average_execution_latency_ms": 0.019698,
+        "average_total_latency_ms": 5.420274,
+        "final_outcome_accuracy": 1.0,
+        "governance_decision_accuracy": 1.0,
+        "policy_compliance_rate": 1.0,
+        "resume_success_rate": 1.0,
+        "runtime_id": "reference_v1",
+        "runtime_name": "Reference v1 custom deterministic orchestration",
+        "trace_completeness": 1.0,
+        "unsafe_execution_rate": 0.0
+      }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+services:
+  crash-restart-demo:
+    build:
+      context: .
+      dockerfile: Dockerfile.demo
+    environment:
+      LANGSMITH_TRACING: ${LANGSMITH_TRACING:-}
+      LANGSMITH_API_KEY: ${LANGSMITH_API_KEY:-}
+      LANGSMITH_PROJECT: ${LANGSMITH_PROJECT:-vendor-agnostic-industrial-orchestrator}
+      LANGSMITH_ENDPOINT: ${LANGSMITH_ENDPOINT:-}
+    volumes:
+      - ./data:/app/data
+      - ./docs:/app/docs
+    command: python -m app.evaluation.run_crash_restart_demo

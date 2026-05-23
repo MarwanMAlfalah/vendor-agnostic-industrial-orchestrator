@@ -15,3 +15,6 @@ class Capability(BaseModel):
     output_schema: dict[str, Any]
     policy_tags: list[str] = Field(default_factory=list)
     availability: bool = True
+    interoperability_role: str | None = None
+    system_level: str | None = None
+    rami_alignment: str | None = None
