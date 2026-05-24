@@ -82,6 +82,30 @@ def test_key_evidence_json_files_parse() -> None:
         assert isinstance(data, dict), path
 
 
+def test_kubernetes_log_evidence_uses_correct_deployment_log() -> None:
+    """Kubernetes evidence should use the deployment log, not the obsolete service-name log."""
+
+    manifest = json.loads((RESULTS_DIR / "evidence_manifest.json").read_text(encoding="utf-8"))
+    log_evidence = manifest["kubernetes_log_evidence"]
+    evidence_paths = {artifact["path"] for artifact in log_evidence["files"]}
+    obsolete_paths = {
+        artifact["path"] for artifact in log_evidence["empty_files_excluded_from_evidence"]
+    }
+
+    assert log_evidence["deployment_name"] == "orchestrator"
+    assert log_evidence["service_name"] == "orchestrator-api"
+    assert log_evidence["health_status"] == "ok"
+    assert "data/results/k8s_logs/orchestrator.log" in evidence_paths
+    assert "data/results/k8s_logs/events.txt" in evidence_paths
+    assert "data/results/k8s_logs/orchestrator-deployment-describe.txt" in evidence_paths
+    assert "data/results/k8s_logs/orchestrator-service-describe.txt" in evidence_paths
+    assert "data/results/k8s_logs/orchestrator-api.log" not in evidence_paths
+    assert "data/results/k8s_logs/orchestrator-api.log" in obsolete_paths
+
+    for path in evidence_paths:
+        assert Path(path).stat().st_size > 0, path
+
+
 def test_results_metadata_index_covers_result_artifacts() -> None:
     """The metadata index should cover stable result artifacts."""
 
