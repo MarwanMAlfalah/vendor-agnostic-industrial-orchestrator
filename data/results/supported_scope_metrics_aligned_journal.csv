@@ -1,6 +1,6 @@
 aligned_final_outcome_accuracy,aligned_policy_compliance_rate,alignment_delta_policy_compliance,approval_bypass_rate,count,invalid_mapping_containment_rate,mean_latency_ms,median_latency_ms,original_final_outcome_accuracy,original_policy_compliance_rate,p95_latency_ms,runtime_id,scenario_count,scope,stress_scope_containment_rate,supported_scope_accuracy,trace_completeness,unsafe_execution_rate
-1.0,0.0,0.0,0.0,20,1.0,0.011173,0.010896,1.0,0.0,0.011859,baseline_a_direct_without_governance,20,supported_scope,,1.0,0.0,0.0
-1.0,1.0,0.0,0.0,20,1.0,0.009983,0.009708,1.0,1.0,0.010586,baseline_b_single_stage_execution,20,supported_scope,,1.0,0.0,0.0
-1.0,1.0,0.0,0.0,60,1.0,0.010567,0.010458,1.0,1.0,0.011797,baseline_c_without_policy_filtering,60,supported_scope,,1.0,0.0,0.0
-1.0,1.0,0.038462,0.0,130,1.0,2.760609,2.834792,0.961538,0.961538,3.506873,langgraph_runtime,130,supported_scope,,1.0,1.0,0.0
-1.0,1.0,0.04,0.0,125,1.0,0.055166,0.053291,1.0,0.96,0.072483,reference_v1,125,supported_scope,,1.0,1.0,0.0
+1.0,0.0,0.0,0.0,20,1.0,0.01146,0.011229,1.0,0.0,0.012448,baseline_a_direct_without_governance,20,supported_scope,,1.0,0.0,0.0
+1.0,1.0,0.0,0.0,20,1.0,0.010212,0.010083,1.0,1.0,0.011269,baseline_b_single_stage_execution,20,supported_scope,,1.0,0.0,0.0
+1.0,1.0,0.0,0.0,60,1.0,0.010692,0.010604,1.0,1.0,0.011926,baseline_c_without_policy_filtering,60,supported_scope,,1.0,0.0,0.0
+1.0,1.0,0.038462,0.0,130,1.0,2.773972,2.861041,0.961538,0.961538,3.334302,langgraph_runtime,130,supported_scope,,1.0,1.0,0.0
+1.0,1.0,0.04,0.0,125,1.0,0.05478,0.052416,1.0,0.96,0.072725,reference_v1,125,supported_scope,,1.0,1.0,0.0

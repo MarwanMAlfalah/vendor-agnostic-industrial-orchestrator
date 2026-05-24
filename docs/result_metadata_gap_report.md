@@ -4,20 +4,31 @@ This audit scans generated result CSV/JSON artifacts under `data/results` and ch
 
 ## Summary
 
-- Files scanned: `66`
-- `run_id` present in `3` files and missing in `63` files.
-- `git_sha` present in `6` files and missing in `60` files.
-- `profile` present in `7` files and missing in `59` files.
-- `deployment_mode` present in `5` files and missing in `61` files.
-- `runtime_id` present in `40` files and missing in `26` files.
-- `timestamp` present in `0` files and missing in `66` files.
+- Files scanned: `70`
+- `run_id` present in `7` files and missing in `63` files.
+- `git_sha` present in `10` files and missing in `60` files.
+- `profile` present in `11` files and missing in `59` files.
+- `deployment_mode` present in `9` files and missing in `61` files.
+- `runtime_id` present in `40` files and missing in `30` files.
+- `timestamp` present in `0` files and missing in `70` files.
 - Files containing all checked fields: `0`
+
+## Interpretation
+
+- Historical raw artifacts may miss metadata because many were generated before deployment-mode and traceability fields were introduced.
+- The raw result files should not be rewritten to hide provenance gaps or alter their original structure.
+- Final evidence traceability is now provided through `data/results/RESULTS_MANIFEST.json`, `data/results/RESULTS_METADATA_INDEX.csv`, and `data/results/RESULTS_METADATA_INDEX.json`.
+- Manuscript-facing normalized copies with explicit metadata are available at `data/results/final_manuscript_results_with_metadata.csv` and `data/results/deployment_mode_comparison_with_metadata.csv`.
+- `timestamp_utc` in the metadata index records the indexing pass time; it is not backfilled into historical raw artifacts.
+- `RESULTS_MANIFEST.json` and the `RESULTS_METADATA_INDEX.*` files are self-referential metadata artifacts; the metadata index excludes those files to avoid unstable self-hashes, while `RESULTS_MANIFEST.json` remains the authoritative hash manifest for current result files except itself.
 
 ## Field Presence Matrix
 
 | File | Format | Shape/records | run_id | git_sha | profile | deployment_mode | runtime_id | timestamp | Missing fields |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | `data/results/RESULTS_MANIFEST.json` | json | object; object | missing | present | missing | missing | missing | missing | run_id, profile, deployment_mode, runtime_id, timestamp |
+| `data/results/RESULTS_METADATA_INDEX.csv` | csv | csv; 68 rows | present | present | present | present | missing | missing | runtime_id, timestamp |
+| `data/results/RESULTS_METADATA_INDEX.json` | json | object; object | present | present | present | present | missing | missing | runtime_id, timestamp |
 | `data/results/ablation_results.csv` | csv | csv; 6 rows | missing | missing | missing | missing | present | missing | run_id, git_sha, profile, deployment_mode, timestamp |
 | `data/results/ablation_summary.json` | json | object; object | missing | missing | present | missing | present | missing | run_id, git_sha, deployment_mode, timestamp |
 | `data/results/aligned_confusion_matrix_final_status_journal.csv` | csv | csv; 72 rows | missing | missing | missing | missing | present | missing | run_id, git_sha, profile, deployment_mode, timestamp |
@@ -34,12 +45,14 @@ This audit scans generated result CSV/JSON artifacts under `data/results` and ch
 | `data/results/containerized_integration_summary.json` | json | object; object | missing | present | missing | present | missing | missing | run_id, profile, runtime_id, timestamp |
 | `data/results/crash_restart_demo_summary.json` | json | object; object | missing | missing | missing | missing | missing | missing | run_id, git_sha, profile, deployment_mode, runtime_id, timestamp |
 | `data/results/deployment_mode_comparison.csv` | csv | csv; 6 rows | missing | missing | missing | present | missing | missing | run_id, git_sha, profile, runtime_id, timestamp |
+| `data/results/deployment_mode_comparison_with_metadata.csv` | csv | csv; 6 rows | present | present | present | present | missing | missing | runtime_id, timestamp |
 | `data/results/evaluation_results_20260513T023524Z.csv` | csv | csv; 4 rows | missing | missing | missing | missing | missing | missing | run_id, git_sha, profile, deployment_mode, runtime_id, timestamp |
 | `data/results/evaluation_results_20260513T023524Z.json` | json | list; 4 | present | missing | missing | missing | missing | missing | git_sha, profile, deployment_mode, runtime_id, timestamp |
 | `data/results/evaluation_results_20260513T024206Z.csv` | csv | csv; 12 rows | missing | missing | missing | missing | missing | missing | run_id, git_sha, profile, deployment_mode, runtime_id, timestamp |
 | `data/results/evaluation_results_20260513T024206Z.json` | json | list; 12 | present | missing | missing | missing | missing | missing | git_sha, profile, deployment_mode, runtime_id, timestamp |
 | `data/results/evaluation_summary_20260513T024206Z.json` | json | object; object | missing | missing | missing | missing | missing | missing | run_id, git_sha, profile, deployment_mode, runtime_id, timestamp |
 | `data/results/evidence_manifest.json` | json | object; object | missing | present | missing | missing | missing | missing | run_id, profile, deployment_mode, runtime_id, timestamp |
+| `data/results/final_manuscript_results_with_metadata.csv` | csv | csv; 11 rows | present | present | present | present | missing | missing | runtime_id, timestamp |
 | `data/results/final_results_table.csv` | csv | csv; 15 rows | missing | missing | missing | missing | missing | missing | run_id, git_sha, profile, deployment_mode, runtime_id, timestamp |
 | `data/results/final_unified_metrics.csv` | csv | csv; 11 rows | missing | missing | missing | missing | missing | missing | run_id, git_sha, profile, deployment_mode, runtime_id, timestamp |
 | `data/results/final_unified_metrics.json` | json | object; object | missing | missing | missing | missing | missing | missing | run_id, git_sha, profile, deployment_mode, runtime_id, timestamp |

@@ -14,6 +14,7 @@ change runtime/business logic.
 | Local Kubernetes reproducibility | `data/results/k8s_reproducibility_summary.json`; `data/results/k8s_reproducibility_results.csv`; `deploy/k8s/base/` | Actual local kind execution evidence with API deployment, completed jobs, probes, resource bounds, ConfigMap, Secret example, service health check, and checkpoint PVC. |
 | LangSmith observability | `data/results/langsmith_trace_manifest.csv`; `docs/langsmith_trace_examples.md`; `docs/langsmith_trace_usage.md`; `docs/langsmith_setup.md` | Queried LangSmith trace IDs and documented trace markers for deterministic traces and metadata. |
 | GitHub Actions CI | `.github/workflows/ci.yml`; GitHub Actions run `26346770533` | CI workflow and verified public run status for Python 3.11 install, lint, and tests. |
+| Metadata hardening | `data/results/RESULTS_MANIFEST.json`; `data/results/RESULTS_METADATA_INDEX.csv`; `data/results/RESULTS_METADATA_INDEX.json`; normalized metadata tables | SHA256 result hashes, per-artifact metadata index, and manuscript-facing copies with explicit metadata columns. |
 
 ## Consolidated Table Preview
 
@@ -27,6 +28,9 @@ change runtime/business logic.
 | GitHub Actions | CI workflow run | 1 run | n/a | n/a | n/a | n/a | n/a | Public CI run completed successfully. |
 
 The machine-readable companion table is `data/results/deployment_mode_comparison.csv`.
+The metadata-hardened companion is `data/results/deployment_mode_comparison_with_metadata.csv`,
+and the manuscript-facing consolidated metrics copy is
+`data/results/final_manuscript_results_with_metadata.csv`.
 
 ## Updated Results Narrative
 
@@ -68,6 +72,21 @@ install the package with development dependencies, run `ruff check app tests`, a
 The final verification pass also queried the public GitHub Actions API and recorded run
 `26346770533` for commit `36853bdc7363d6b587606ddd11f9cf5803accd37` with status `completed` and
 conclusion `success`. This is software quality evidence only, not industrial deployment evidence.
+
+## Metadata And Log Evidence Status
+
+The final metadata hardening pass preserves historical raw artifacts as-is and records provenance
+gaps separately. `data/results/RESULTS_MANIFEST.json` provides SHA256 hashes for result CSV/JSON
+artifacts, while `data/results/RESULTS_METADATA_INDEX.csv` and
+`data/results/RESULTS_METADATA_INDEX.json` provide artifact-level metadata such as known command,
+git SHA, profile, deployment mode, runtime scope, indexing timestamp, and notes. The normalized
+tables `data/results/final_manuscript_results_with_metadata.csv` and
+`data/results/deployment_mode_comparison_with_metadata.csv` add metadata columns without changing
+metric values.
+
+The directory `data/results/k8s_logs/` exists, but its current files are zero-byte placeholders.
+The evidence manifest records this as `present_but_empty`; therefore, Kubernetes evidence is based
+on the generated summary artifacts and observed command outputs, not stored log-file content.
 
 ## Limitations And Non-Claims
 

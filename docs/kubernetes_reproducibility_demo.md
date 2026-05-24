@@ -117,6 +117,9 @@ The Kubernetes summary script writes:
 
 - `data/results/k8s_reproducibility_results.csv`
 - `data/results/k8s_reproducibility_summary.json`
+- `data/results/k8s_logs/` exists in the repository, but the current files in that directory are
+  zero-byte placeholders. They are listed in `data/results/evidence_manifest.json` as
+  `present_but_empty` and are not treated as log-level evidence.
 
 Sample CSV row:
 

@@ -9,9 +9,9 @@ invented for manuscript convenience.
 
 | variant_id | implemented | policy_compliance_rate | unsafe_execution_rate | final_outcome_accuracy | trace_completeness | recovery_success_rate | mean_latency_ms |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| full_system | True | 0.858333 | 0.0 | 0.883333 | 1.0 | 0.0 | 0.020972 |
-| without_governance | True | 0.0 | 0.583333 | 0.166667 | 0.0 | 0.0 | 0.017006 |
-| without_capability_matching | True | 0.083333 | 0.0 | 0.166667 | 0.0 | 0.0 | 0.009735 |
+| full_system | True | 0.858333 | 0.0 | 0.883333 | 1.0 | 0.0 | 0.020267 |
+| without_governance | True | 0.0 | 0.583333 | 0.166667 | 0.0 | 0.0 | 0.017041 |
+| without_capability_matching | True | 0.083333 | 0.0 | 0.166667 | 0.0 | 0.0 | 0.009896 |
 | without_approval_revalidation | False |  |  |  |  |  |  |
 | without_langgraph_persistence | False |  |  |  |  |  |  |
 | without_trace_observability | False |  |  |  |  |  |  |

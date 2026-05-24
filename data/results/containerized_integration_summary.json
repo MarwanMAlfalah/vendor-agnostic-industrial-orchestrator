@@ -56,14 +56,14 @@
   "langsmith_trace_metadata_preview": {
     "deployment_mode": "docker_compose",
     "experiment": "containerized_integration_demo",
-    "git_sha": "36853bd",
+    "git_sha": "unknown",
     "legacy_endpoint": "http://mock-legacy:8003",
     "maintenance_endpoint": "http://mock-maintenance-rest:8002",
     "opcua_endpoint": "http://mock-opcua:8001",
     "service_topology": "orchestrator+opcua+rest+legacy"
   },
-  "mean_latency_ms": 7.4821,
-  "p95_latency_ms": 8.625191,
+  "mean_latency_ms": 7.652142,
+  "p95_latency_ms": 8.596034,
   "policy_compliance_rate": 1.0,
   "service_health_pass_rate": 1.0,
   "service_topology": "orchestrator+opcua+rest+legacy",

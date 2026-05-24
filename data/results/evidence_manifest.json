@@ -51,12 +51,92 @@
       "run_url": "https://github.com/MarwanMAlfalah/vendor-agnostic-industrial-orchestrator/actions/runs/26346770533",
       "type": "github_actions_workflow_config",
       "used": true
+    },
+    {
+      "path": "data/results/RESULTS_METADATA_INDEX.csv",
+      "type": "metadata_index_csv",
+      "used": true
+    },
+    {
+      "path": "data/results/RESULTS_METADATA_INDEX.json",
+      "type": "metadata_index_json",
+      "used": true
+    },
+    {
+      "path": "data/results/final_manuscript_results_with_metadata.csv",
+      "type": "normalized_final_manuscript_table",
+      "used": true
+    },
+    {
+      "path": "data/results/deployment_mode_comparison_with_metadata.csv",
+      "type": "normalized_deployment_mode_comparison",
+      "used": true
     }
   ],
   "deployment_mode_comparison_csv": "data/results/deployment_mode_comparison.csv",
   "evidence_scope": "Final evidence verification pass for deterministic prototype artifacts",
   "generated_from_artifacts_only": true,
   "git_sha": "36853bd",
+  "kubernetes_log_evidence": {
+    "directory_exists": true,
+    "files": [
+      {
+        "bytes": 0,
+        "path": "data/results/k8s_logs/crash-restart-demo-job.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "bytes": 0,
+        "path": "data/results/k8s_logs/health_response.json",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "bytes": 0,
+        "path": "data/results/k8s_logs/jobs.txt",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "bytes": 0,
+        "path": "data/results/k8s_logs/orchestrator-api.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "bytes": 0,
+        "path": "data/results/k8s_logs/pods.txt",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "bytes": 0,
+        "path": "data/results/k8s_logs/pvc.txt",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "bytes": 0,
+        "path": "data/results/k8s_logs/scaled-evaluation-job.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "bytes": 0,
+        "path": "data/results/k8s_logs/services.txt",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ],
+    "log_directory": "data/results/k8s_logs",
+    "notes": "Zero-byte log placeholders are not treated as log-level evidence.",
+    "status": "present_but_empty"
+  },
+  "metadata_hardening": {
+    "deployment_mode_comparison_with_metadata": "data/results/deployment_mode_comparison_with_metadata.csv",
+    "final_manuscript_results_with_metadata": "data/results/final_manuscript_results_with_metadata.csv",
+    "metadata_index_self_referential_exclusions": [
+      "RESULTS_MANIFEST.json",
+      "RESULTS_METADATA_INDEX.csv",
+      "RESULTS_METADATA_INDEX.json"
+    ],
+    "results_metadata_index_csv": "data/results/RESULTS_METADATA_INDEX.csv",
+    "results_metadata_index_json": "data/results/RESULTS_METADATA_INDEX.json",
+    "timestamp_utc": "2026-05-24T01:19:17Z"
+  },
   "non_claims": [
     "No production deployment claim.",
     "No live PLC integration claim.",
