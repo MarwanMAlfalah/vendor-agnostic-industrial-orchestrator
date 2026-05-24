@@ -1,0 +1,2 @@
+NAME               TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)    AGE     SELECTOR
+orchestrator-api   ClusterIP   10.96.65.205   <none>        8000/TCP   4m22s   app.kubernetes.io/component=api,app.kubernetes.io/name=vendor-orchestrator

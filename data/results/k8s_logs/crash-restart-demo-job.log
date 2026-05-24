@@ -1,0 +1,48 @@
+Checkpoint DB: data/langgraph/checkpoints.db
+Crash/restart summary JSON: data/results/crash_restart_demo_summary.json
+Crash/restart docs: docs/crash_restart_demo.md
+Crash/restart metrics:
+  checkpoint_resume_success_rate: 1.0
+  restart_recovery_success_rate: 1.0
+  post_restart_final_outcome_accuracy: 1.0
+  restart_trace_completeness: 1.0
+  CASE-POST-APPROVAL-VALID-001: interrupt=True, checkpoint=True, resumed=True, approval_state=approved, gated_step_executed=True, final_status=success
+  CASE-POST-APPROVAL-INVALID-PAYLOAD-001: interrupt=True, checkpoint=True, resumed=True, approval_state=approval_invalid, gated_step_executed=False, final_status=partial_success
+{
+  "deployment_claim": "local Kubernetes reproducibility evidence only",
+  "deterministic": true,
+  "langsmith_trace_metadata_preview": {
+    "deployment_mode": "kubernetes_local",
+    "git_sha": "unknown",
+    "image_tag": "vendor-orchestrator:local",
+    "k8s_job_name": "crash-restart-demo-job",
+    "k8s_namespace": "vendor-orchestrator"
+  },
+  "metrics": {
+    "checkpoint_pvc_used": true,
+    "crash_restart_demo_success": true,
+    "health_endpoint_available": true,
+    "k8s_job_success": true,
+    "p95_latency_ms": 0.0,
+    "trace_completeness": 1.0
+  },
+  "row": {
+    "checkpoint_pvc_used": true,
+    "crash_restart_demo_success": true,
+    "deployment_mode": "kubernetes_local",
+    "evidence_scope": "local_kubernetes_reproducibility_demo",
+    "git_sha": "unknown",
+    "health_endpoint_available": true,
+    "image_tag": "vendor-orchestrator:local",
+    "k8s_job_name": "crash-restart-demo-job",
+    "k8s_job_success": true,
+    "k8s_namespace": "vendor-orchestrator",
+    "p95_latency_ms": 0.0,
+    "trace_completeness": 1.0
+  },
+  "source_artifacts": {
+    "checkpoint_db": "data/langgraph/checkpoints.db",
+    "crash_restart_summary": "data/results/crash_restart_demo_summary.json",
+    "scaled_journal_summary": "data/results/scaled_evaluation_summary_journal.json"
+  }
+}

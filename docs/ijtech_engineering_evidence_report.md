@@ -11,8 +11,8 @@ change runtime/business logic.
 | --- | --- | --- |
 | Synthetic scaled evaluation | `data/results/scaled_evaluation_summary_journal.json`; `data/results/scaled_evaluation_results_journal.csv` | Main deterministic empirical evidence for `reference_v1`, `langgraph_runtime`, and baselines across the 240-scenario journal profile. |
 | Dockerized integration | `data/results/containerized_integration_summary.json`; `data/results/containerized_integration_results.csv`; `docker-compose.integration.yml` | Local service-boundary evidence using separate containerized mock OPC UA-style, REST, and legacy services. |
-| Local Kubernetes reproducibility | `data/results/k8s_reproducibility_summary.json`; `data/results/k8s_reproducibility_results.csv`; `deploy/k8s/base/` | Actual local kind execution evidence with API deployment, completed jobs, probes, resource bounds, ConfigMap, Secret example, service health check, and checkpoint PVC. |
-| LangSmith observability | `data/results/langsmith_trace_manifest.csv`; `docs/langsmith_trace_examples.md`; `docs/langsmith_trace_usage.md`; `docs/langsmith_setup.md` | Queried LangSmith trace IDs and documented trace markers for deterministic traces and metadata. |
+| Local Kubernetes reproducibility | `data/results/k8s_reproducibility_summary.json`; `data/results/k8s_reproducibility_results.csv`; `data/results/k8s_logs/`; `deploy/k8s/base/` | Actual local kind execution evidence with `orchestrator` Deployment, `orchestrator-api` Service, completed jobs, probes, resource bounds, ConfigMap, empty Secret example, service health check, event logs, and checkpoint PVC. |
+| LangSmith observability | `data/results/langsmith_trace_manifest.csv`; `docs/langsmith_trace_examples.md`; `docs/langsmith_trace_usage.md`; `docs/langsmith_setup.md` | Queried LangSmith trace IDs and documented trace markers for deterministic traces and metadata. Observability/debugging evidence only. |
 | GitHub Actions CI | `.github/workflows/ci.yml`; GitHub Actions run `26346770533` | CI workflow and verified public run status for Python 3.11 install, lint, and tests. |
 | Metadata hardening | `data/results/RESULTS_MANIFEST.json`; `data/results/RESULTS_METADATA_INDEX.csv`; `data/results/RESULTS_METADATA_INDEX.json`; normalized metadata tables | SHA256 result hashes, per-artifact metadata index, and manuscript-facing copies with explicit metadata columns. |
 
@@ -43,17 +43,19 @@ outcome accuracy of `0.9792`, trace completeness of `1.0`, and p95 latency of `3
 The Docker Compose integration artifact adds five deterministic service-boundary cases using
 containerized OPC UA-style, REST, and legacy mock services, with adapter contract pass rate
 `1.0`, policy compliance `1.0`, unsafe execution `0.0`, final outcome accuracy `1.0`, and trace
-completeness `1.0`. The local Kubernetes kind artifact records completed evaluation and
-crash/restart jobs, observed service health through port forwarding, checkpoint PVC use, and
-crash/restart demo success, with trace completeness `1.0`. These artifacts strengthen the engineering reproducibility evidence
+completeness `1.0`. The local Kubernetes kind artifact records an available `orchestrator`
+Deployment, `orchestrator-api` Service health through port forwarding, completed evaluation and
+crash/restart jobs, non-empty application/job/event logs, checkpoint PVC use, and crash/restart
+demo success, with trace completeness `1.0`. These artifacts strengthen the engineering reproducibility evidence
 for the prototype while preserving the original scope: deterministic synthetic and mock-service
 experiments rather than production industrial deployment.
 
 ## LangSmith Evidence Framing
 
-LangSmith is included as optional observability evidence. The final verification pass queried
-seven trace rows in `data/results/langsmith_trace_manifest.csv`, including Docker Compose,
-Kubernetes-summary, crash/restart, and representative scaled-evaluation traces. The generated
+LangSmith is included as optional observability and debugging evidence. After key rotation,
+tracing is valid again, but no API key is stored in repository artifacts. The final verification
+pass uses seven trace rows in `data/results/langsmith_trace_manifest.csv`, including Docker
+Compose, Kubernetes-summary, crash/restart, and representative scaled-evaluation traces. The generated
 summaries contain metadata previews for Docker Compose and local Kubernetes contexts, including
 `deployment_mode`, `experiment`, `git_sha`, `service_topology`, `k8s_namespace`,
 `k8s_job_name`, and `image_tag`.
@@ -84,16 +86,23 @@ tables `data/results/final_manuscript_results_with_metadata.csv` and
 `data/results/deployment_mode_comparison_with_metadata.csv` add metadata columns without changing
 metric values.
 
-The directory `data/results/k8s_logs/` exists, but its current files are zero-byte placeholders.
-The evidence manifest records this as `present_but_empty`; therefore, Kubernetes evidence is based
-on the generated summary artifacts and observed command outputs, not stored log-file content.
+The directory `data/results/k8s_logs/` now contains actual local kind evidence: pod, job, PVC, and
+service listings; port-forwarded `health_response.json` with `status=ok`; non-empty
+`orchestrator.log`; non-empty job logs; Kubernetes events; and Deployment/Service descriptions.
+The stale zero-byte `orchestrator-api.log` is retained only as evidence of a collection mistake:
+`orchestrator-api` is the Service name, while `orchestrator` is the Deployment name. This naming
+mismatch was not a runtime failure.
+
+Docker Desktop or kind control-plane logs are infrastructure/node logs, not application evidence.
+Application evidence is limited to the `orchestrator` Deployment log, job logs, Kubernetes
+resource/event/descriptive outputs, and the health response.
 
 ## Limitations And Non-Claims
 
 The additional engineering evidence does not change the scientific claim boundary. Docker and
-Kubernetes artifacts demonstrate local reproducibility and containerized deployment feasibility,
-not production deployment, high availability, cybersecurity readiness, real-time guarantees, or
-industrial certification. The OPC UA-style, REST, and legacy services used in the Docker demo are
+Kubernetes artifacts demonstrate actual local kind reproducibility and containerized deployment
+feasibility, not production deployment, high availability, cybersecurity readiness, real-time
+guarantees, live PLC integration, or industrial certification. The OPC UA-style, REST, and legacy services used in the Docker demo are
 deterministic mock services and integration proxies, not live PLCs, SCADA systems, or vendor
 certified controllers. LangSmith traces and metadata support observability, debugging, and
 inspection of deterministic execution structure, but they do not validate industrial safety,

@@ -1,0 +1,18 @@
+Name:                     orchestrator-api
+Namespace:                vendor-orchestrator
+Labels:                   app.kubernetes.io/component=api
+                          app.kubernetes.io/name=vendor-orchestrator
+                          app.kubernetes.io/part-of=local-kubernetes-reproducibility-demo
+Annotations:              <none>
+Selector:                 app.kubernetes.io/component=api,app.kubernetes.io/name=vendor-orchestrator
+Type:                     ClusterIP
+IP Family Policy:         SingleStack
+IP Families:              IPv4
+IP:                       10.96.65.205
+IPs:                      10.96.65.205
+Port:                     http  8000/TCP
+TargetPort:               http/TCP
+Endpoints:                10.244.0.6:8000
+Session Affinity:         None
+Internal Traffic Policy:  Cluster
+Events:                   <none>

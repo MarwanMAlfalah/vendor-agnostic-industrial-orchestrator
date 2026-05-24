@@ -71,6 +71,76 @@
       "path": "data/results/deployment_mode_comparison_with_metadata.csv",
       "type": "normalized_deployment_mode_comparison",
       "used": true
+    },
+    {
+      "path": "data/results/k8s_logs/pods.txt",
+      "type": "actual_local_kind_kubernetes_log_evidence",
+      "used": true
+    },
+    {
+      "path": "data/results/k8s_logs/jobs.txt",
+      "type": "actual_local_kind_kubernetes_log_evidence",
+      "used": true
+    },
+    {
+      "path": "data/results/k8s_logs/pvc.txt",
+      "type": "actual_local_kind_kubernetes_log_evidence",
+      "used": true
+    },
+    {
+      "path": "data/results/k8s_logs/services.txt",
+      "type": "actual_local_kind_kubernetes_log_evidence",
+      "used": true
+    },
+    {
+      "path": "data/results/k8s_logs/health_response.json",
+      "type": "actual_local_kind_kubernetes_log_evidence",
+      "used": true
+    },
+    {
+      "path": "data/results/k8s_logs/orchestrator.log",
+      "type": "actual_local_kind_kubernetes_log_evidence",
+      "used": true
+    },
+    {
+      "path": "data/results/k8s_logs/scaled-evaluation-job.log",
+      "type": "actual_local_kind_kubernetes_log_evidence",
+      "used": true
+    },
+    {
+      "path": "data/results/k8s_logs/crash-restart-demo-job.log",
+      "type": "actual_local_kind_kubernetes_log_evidence",
+      "used": true
+    },
+    {
+      "path": "data/results/k8s_logs/events.txt",
+      "type": "actual_local_kind_kubernetes_log_evidence",
+      "used": true
+    },
+    {
+      "path": "data/results/k8s_logs/orchestrator-deployment-describe.txt",
+      "type": "actual_local_kind_kubernetes_log_evidence",
+      "used": true
+    },
+    {
+      "path": "data/results/k8s_logs/orchestrator-service-describe.txt",
+      "type": "actual_local_kind_kubernetes_log_evidence",
+      "used": true
+    },
+    {
+      "path": "docs/kubernetes_reproducibility_demo.md",
+      "type": "evidence_documentation",
+      "used": true
+    },
+    {
+      "path": "docs/ijtech_engineering_evidence_report.md",
+      "type": "evidence_documentation",
+      "used": true
+    },
+    {
+      "path": "docs/final_evidence_acceptance_checklist.md",
+      "type": "evidence_documentation",
+      "used": true
     }
   ],
   "deployment_mode_comparison_csv": "data/results/deployment_mode_comparison.csv",
@@ -78,52 +148,80 @@
   "generated_from_artifacts_only": true,
   "git_sha": "36853bd",
   "kubernetes_log_evidence": {
+    "status": "actual_local_kind_logs_present",
+    "log_directory": "data/results/k8s_logs",
     "directory_exists": true,
+    "deployment_name": "orchestrator",
+    "service_name": "orchestrator-api",
+    "health_status": "ok",
+    "application_log": "data/results/k8s_logs/orchestrator.log",
     "files": [
       {
-        "bytes": 0,
-        "path": "data/results/k8s_logs/crash-restart-demo-job.log",
-        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-      },
-      {
-        "bytes": 0,
-        "path": "data/results/k8s_logs/health_response.json",
-        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-      },
-      {
-        "bytes": 0,
-        "path": "data/results/k8s_logs/jobs.txt",
-        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-      },
-      {
-        "bytes": 0,
-        "path": "data/results/k8s_logs/orchestrator-api.log",
-        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-      },
-      {
-        "bytes": 0,
         "path": "data/results/k8s_logs/pods.txt",
-        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        "bytes": 585,
+        "sha256": "76103a83b0cdbcbff266de29931f8200c564edd539931dd55556657ae1867537"
       },
       {
-        "bytes": 0,
+        "path": "data/results/k8s_logs/jobs.txt",
+        "bytes": 507,
+        "sha256": "a33b034dda64281f9e504e9181243165d76059999c4f712e25c58cff7dd70610"
+      },
+      {
         "path": "data/results/k8s_logs/pvc.txt",
-        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        "bytes": 320,
+        "sha256": "182d870fb49abf82d9eb0df49f4b617208f8aa237644e53ac96075801abf52ef"
       },
       {
-        "bytes": 0,
-        "path": "data/results/k8s_logs/scaled-evaluation-job.log",
-        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-      },
-      {
-        "bytes": 0,
         "path": "data/results/k8s_logs/services.txt",
-        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        "bytes": 242,
+        "sha256": "e32c9fd2770fc6d1434a84d54ae9cfdbe4656147e5be2cfcefbb746b6c566baa"
+      },
+      {
+        "path": "data/results/k8s_logs/health_response.json",
+        "bytes": 106,
+        "sha256": "235f54360fe68d87f988c655eefc962971096e0ee4926b1ae93a09ac122183da"
+      },
+      {
+        "path": "data/results/k8s_logs/orchestrator.log",
+        "bytes": 24499,
+        "sha256": "6cfa1d7f302f897cd3012547f83ad2b98b35a3da1d619e8c7db81559036efe89"
+      },
+      {
+        "path": "data/results/k8s_logs/scaled-evaluation-job.log",
+        "bytes": 1458,
+        "sha256": "5d588d1d12248202e8becb379d39bde6b361280a56cd3cd770c97a13d2772593"
+      },
+      {
+        "path": "data/results/k8s_logs/crash-restart-demo-job.log",
+        "bytes": 1962,
+        "sha256": "14406b745c3bb6ec44c2712dd977eb34eed4487f420ab6e0d427957540194eb6"
+      },
+      {
+        "path": "data/results/k8s_logs/events.txt",
+        "bytes": 3516,
+        "sha256": "c6b9f23dd6eb634177f8ea66ccff35d663975f9f6c831af0e13eca29f5129014"
+      },
+      {
+        "path": "data/results/k8s_logs/orchestrator-deployment-describe.txt",
+        "bytes": 2299,
+        "sha256": "c15430d8aed15bfcc3ef297680c878da740dff42635c94a01f37bccdb126b1ad"
+      },
+      {
+        "path": "data/results/k8s_logs/orchestrator-service-describe.txt",
+        "bytes": 839,
+        "sha256": "394acf2842b3482dab79f712efbe18fe3e9f9b8df16a7fcca7050575093bcc56"
       }
     ],
-    "log_directory": "data/results/k8s_logs",
-    "notes": "Zero-byte log placeholders are not treated as log-level evidence.",
-    "status": "present_but_empty"
+    "empty_files_excluded_from_evidence": [
+      {
+        "path": "data/results/k8s_logs/orchestrator-api.log",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "explanation": "Captured with service name orchestrator-api as if it were a deployment name; the actual deployment is orchestrator."
+      }
+    ],
+    "notes": "Kubernetes evidence is actual local kind reproducibility evidence. Docker Desktop or kind control-plane/node logs are infrastructure logs, not application logs; application evidence comes from deployment/orchestrator, job logs, resource listings, events, describes, and the port-forwarded health response.",
+    "notfound_resolution": "The earlier zero-byte orchestrator-api.log came from using the service name as a deployment name. This was a naming mismatch, not a runtime failure."
   },
   "metadata_hardening": {
     "deployment_mode_comparison_with_metadata": "data/results/deployment_mode_comparison_with_metadata.csv",
@@ -142,6 +240,7 @@
     "No live PLC integration claim.",
     "No certified safety or regulatory compliance claim.",
     "Docker and Kubernetes evidence are local reproducibility and containerized deployment feasibility evidence only.",
+    "Docker Desktop or kind control-plane logs are infrastructure logs, not application logs.",
     "LangSmith evidence is observability/debugging support only, not industrial validation.",
     "Mock services are integration proxies, not real industrial controllers."
   ],
@@ -176,7 +275,13 @@
       "health_endpoint_available": true,
       "k8s_job_success": true,
       "p95_latency_ms": 2.235687,
-      "trace_completeness": 1.0
+      "trace_completeness": 1.0,
+      "actual_kind_execution": true,
+      "deployment_name": "orchestrator",
+      "service_name": "orchestrator-api",
+      "health_status": "ok",
+      "application_log_non_empty": true,
+      "job_logs_non_empty": true
     },
     "langsmith": {
       "trace_manifest_rows": 7
@@ -229,7 +334,10 @@
     },
     "kubernetes_kind": {
       "source_artifact": "data/results/k8s_reproducibility_summary.json",
-      "status": "actual_kind_run_passed"
+      "status": "actual_kind_run_passed_with_logs",
+      "application_log": "data/results/k8s_logs/orchestrator.log",
+      "health_response": "data/results/k8s_logs/health_response.json",
+      "events": "data/results/k8s_logs/events.txt"
     },
     "langsmith": {
       "source_artifact": "data/results/langsmith_trace_manifest.csv",
@@ -244,5 +352,10 @@
       "observed": "38 passed",
       "status": "passed"
     }
+  },
+  "langsmith_key_handling": {
+    "rotated_after_exposure": true,
+    "api_key_stored_in_repository": false,
+    "notes": "LangSmith tracing is valid after key rotation, but traces remain observability/debugging evidence only. Existing clean-revision trace rows are preferred; dirty revision rows are retained only where no cleaner replacement is available."
   }
 }

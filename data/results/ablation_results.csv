@@ -1,7 +1,7 @@
 variant_id,implemented,runtime_id,description,policy_compliance_rate,unsafe_execution_rate,final_outcome_accuracy,trace_completeness,recovery_success_rate,mean_latency_ms,run_count,not_implemented_reason
-full_system,True,reference_v1,Reference deterministic governance-aware runtime.,0.858333,0.0,0.883333,1.0,0.0,0.020267,120,
-without_governance,True,baseline_a_direct_without_governance,Existing direct execution baseline reuses mapped steps without governance enforcement.,0.0,0.583333,0.166667,0.0,0.0,0.017041,120,
-without_capability_matching,True,baseline_b_single_stage_execution,Existing single-stage baseline bypasses the planner/matcher separation.,0.083333,0.0,0.166667,0.0,0.0,0.009896,120,
+full_system,True,reference_v1,Reference deterministic governance-aware runtime.,0.858333,0.0,0.883333,1.0,0.0,0.046309,120,
+without_governance,True,baseline_a_direct_without_governance,Existing direct execution baseline reuses mapped steps without governance enforcement.,0.0,0.583333,0.166667,0.0,0.0,0.04274,120,
+without_capability_matching,True,baseline_b_single_stage_execution,Existing single-stage baseline bypasses the planner/matcher separation.,0.083333,0.0,0.166667,0.0,0.0,0.020548,120,
 without_approval_revalidation,False,,Conceptual ablation only; no implemented runtime removes approval revalidation while preserving continuation.,,,,,,,0,No supported runtime variant exists; reported as conceptual only.
 without_langgraph_persistence,False,,Conceptual ablation only in this package; scaled runs use in-memory LangGraph rather than restart persistence.,,,,,,,0,No supported runtime variant exists; reported as conceptual only.
 without_trace_observability,False,,"Conceptual ablation only; trace observability is instrumentation, not a separate behavior runtime.",,,,,,,0,No supported runtime variant exists; reported as conceptual only.

@@ -1,0 +1,2 @@
+NAME                    STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE     VOLUMEMODE
+langgraph-checkpoints   Bound    pvc-f44da442-1169-4438-bdac-16389146e148   1Gi        RWO            standard       <unset>                 4m11s   Filesystem

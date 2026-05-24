@@ -1,0 +1,23 @@
+LAST SEEN   TYPE     REASON                  OBJECT                                        MESSAGE
+45m         Normal   WaitForFirstConsumer    persistentvolumeclaim/langgraph-checkpoints   waiting for first consumer to be created before binding
+45m         Normal   ScalingReplicaSet       deployment/orchestrator                       Scaled up replica set orchestrator-68444c9c64 from 0 to 1
+45m         Normal   SuccessfulCreate        replicaset/orchestrator-68444c9c64            Created pod: orchestrator-68444c9c64-p98km
+45m         Normal   Provisioning            persistentvolumeclaim/langgraph-checkpoints   External provisioner is provisioning volume for claim "vendor-orchestrator/langgraph-checkpoints"
+45m         Normal   ExternalProvisioning    persistentvolumeclaim/langgraph-checkpoints   Waiting for a volume to be created either by the external provisioner 'rancher.io/local-path' or manually by the system administrator. If volume creation is delayed, please verify that the provisioner is running and correctly registered.
+45m         Normal   ProvisioningSucceeded   persistentvolumeclaim/langgraph-checkpoints   Successfully provisioned volume pvc-f44da442-1169-4438-bdac-16389146e148
+45m         Normal   Scheduled               pod/orchestrator-68444c9c64-p98km             Successfully assigned vendor-orchestrator/orchestrator-68444c9c64-p98km to vendor-orchestrator-control-plane
+45m         Normal   Pulled                  pod/orchestrator-68444c9c64-p98km             Container image "vendor-orchestrator:local" already present on machine and can be accessed by the pod
+45m         Normal   Started                 pod/orchestrator-68444c9c64-p98km             Container started
+45m         Normal   Created                 pod/orchestrator-68444c9c64-p98km             Container created
+44m         Normal   Scheduled               pod/scaled-evaluation-job-psngw               Successfully assigned vendor-orchestrator/scaled-evaluation-job-psngw to vendor-orchestrator-control-plane
+44m         Normal   SuccessfulCreate        job/scaled-evaluation-job                     Created pod: scaled-evaluation-job-psngw
+44m         Normal   Pulled                  pod/scaled-evaluation-job-psngw               Container image "vendor-orchestrator:local" already present on machine and can be accessed by the pod
+44m         Normal   Created                 pod/scaled-evaluation-job-psngw               Container created
+44m         Normal   Started                 pod/scaled-evaluation-job-psngw               Container started
+44m         Normal   Completed               job/scaled-evaluation-job                     Job completed
+44m         Normal   Scheduled               pod/crash-restart-demo-job-hn4rl              Successfully assigned vendor-orchestrator/crash-restart-demo-job-hn4rl to vendor-orchestrator-control-plane
+44m         Normal   SuccessfulCreate        job/crash-restart-demo-job                    Created pod: crash-restart-demo-job-hn4rl
+44m         Normal   Started                 pod/crash-restart-demo-job-hn4rl              Container started
+44m         Normal   Created                 pod/crash-restart-demo-job-hn4rl              Container created
+44m         Normal   Pulled                  pod/crash-restart-demo-job-hn4rl              Container image "vendor-orchestrator:local" already present on machine and can be accessed by the pod
+43m         Normal   Completed               job/crash-restart-demo-job                    Job completed

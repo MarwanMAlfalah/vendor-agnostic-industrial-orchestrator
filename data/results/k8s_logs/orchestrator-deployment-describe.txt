@@ -1,0 +1,53 @@
+Name:                   orchestrator
+Namespace:              vendor-orchestrator
+CreationTimestamp:      Sun, 24 May 2026 05:10:36 -0700
+Labels:                 app.kubernetes.io/component=api
+                        app.kubernetes.io/name=vendor-orchestrator
+                        app.kubernetes.io/part-of=local-kubernetes-reproducibility-demo
+Annotations:            deployment.kubernetes.io/revision: 1
+Selector:               app.kubernetes.io/component=api,app.kubernetes.io/name=vendor-orchestrator
+Replicas:               1 desired | 1 updated | 1 total | 1 available | 0 unavailable
+StrategyType:           RollingUpdate
+MinReadySeconds:        0
+RollingUpdateStrategy:  25% max unavailable, 25% max surge
+Pod Template:
+  Labels:  app.kubernetes.io/component=api
+           app.kubernetes.io/name=vendor-orchestrator
+  Containers:
+   orchestrator:
+    Image:      vendor-orchestrator:local
+    Port:       8000/TCP (http)
+    Host Port:  0/TCP (http)
+    Limits:
+      cpu:     500m
+      memory:  512Mi
+    Requests:
+      cpu:      100m
+      memory:   256Mi
+    Liveness:   http-get http://:http/health delay=15s timeout=2s period=20s #success=1 #failure=3
+    Readiness:  http-get http://:http/health delay=5s timeout=2s period=10s #success=1 #failure=3
+    Environment Variables from:
+      orchestrator-config  ConfigMap  Optional: false
+      langsmith-secret     Secret     Optional: true
+    Environment:
+      K8S_NAMESPACE:   (v1:metadata.namespace)
+    Mounts:
+      /app/data/langgraph from checkpoints (rw)
+  Volumes:
+   checkpoints:
+    Type:          PersistentVolumeClaim (a reference to a PersistentVolumeClaim in the same namespace)
+    ClaimName:     langgraph-checkpoints
+    ReadOnly:      false
+  Node-Selectors:  <none>
+  Tolerations:     <none>
+Conditions:
+  Type           Status  Reason
+  ----           ------  ------
+  Available      True    MinimumReplicasAvailable
+  Progressing    True    NewReplicaSetAvailable
+OldReplicaSets:  <none>
+NewReplicaSet:   orchestrator-68444c9c64 (1/1 replicas created)
+Events:
+  Type    Reason             Age   From                   Message
+  ----    ------             ----  ----                   -------
+  Normal  ScalingReplicaSet  45m   deployment-controller  Scaled up replica set orchestrator-68444c9c64 from 0 to 1

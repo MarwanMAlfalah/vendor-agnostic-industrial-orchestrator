@@ -1,0 +1,3 @@
+NAME                     STATUS     COMPLETIONS   DURATION   AGE     CONTAINERS           IMAGES                      SELECTOR
+crash-restart-demo-job   Complete   1/1           3s         2m10s   crash-restart-demo   vendor-orchestrator:local   batch.kubernetes.io/controller-uid=0a5878f3-840f-46fa-8d3a-ae7f8dbd68fd
+scaled-evaluation-job    Complete   1/1           4s         2m19s   scaled-evaluation    vendor-orchestrator:local   batch.kubernetes.io/controller-uid=62940598-062f-464e-8832-7a55d9cd3f7c
