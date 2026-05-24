@@ -12,6 +12,24 @@ import yaml
 RESULTS_DIR = Path("data/results")
 
 
+def test_repository_text_artifacts_are_not_collapsed_to_one_line() -> None:
+    """Key reviewer-facing artifacts should remain readable in raw GitHub views."""
+
+    expected_minimum_line_counts = {
+        Path("README.md"): 20,
+        Path("Makefile"): 8,
+        Path("pyproject.toml"): 20,
+        RESULTS_DIR / "deployment_mode_comparison_with_metadata.csv": 2,
+    }
+    expected_minimum_line_counts.update(
+        {path: 2 for path in sorted(Path("deploy/k8s/base").glob("*.yaml"))}
+    )
+
+    for path, minimum_line_count in expected_minimum_line_counts.items():
+        line_count = len(path.read_text(encoding="utf-8").splitlines())
+        assert line_count > minimum_line_count, path
+
+
 def test_kubernetes_yaml_manifests_parse() -> None:
     """All local Kubernetes manifests should be valid YAML documents."""
 
