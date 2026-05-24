@@ -1,2 +1,2 @@
 deployment_mode,k8s_namespace,k8s_job_name,git_sha,image_tag,k8s_job_success,health_endpoint_available,checkpoint_pvc_used,crash_restart_demo_success,trace_completeness,p95_latency_ms,evidence_scope
-kubernetes_local,vendor-orchestrator,k8s-reproducibility-summary,d2bee54,vendor-orchestrator:local,True,True,True,True,1.0,1.493592,local_kubernetes_reproducibility_demo
+kubernetes_local,vendor-orchestrator,scaled-evaluation-job+crash-restart-demo-job,36853bd,vendor-orchestrator:local,True,True,True,True,1.0,2.235687,actual_local_kind_reproducibility_demo

@@ -5,15 +5,15 @@
 The empirical evidence now combines deterministic local evaluation with containerized and local
 Kubernetes reproducibility artifacts. In the 240-scenario synthetic journal profile, the
 `reference_v1` runtime achieved policy compliance of `0.8542`, unsafe execution of `0.0`, final
-outcome accuracy of `0.875`, trace completeness of `1.0`, and p95 latency of `0.029968 ms`.
+outcome accuracy of `0.875`, trace completeness of `1.0`, and p95 latency of `0.075116 ms`.
 The `langgraph_runtime` achieved policy compliance of `0.9792`, unsafe execution of `0.0`, final
-outcome accuracy of `0.9792`, trace completeness of `1.0`, and p95 latency of `1.493592 ms`.
+outcome accuracy of `0.9792`, trace completeness of `1.0`, and p95 latency of `3.815129 ms`.
 The Docker Compose integration artifact adds five deterministic service-boundary cases using
 containerized OPC UA-style, REST, and legacy mock services, with adapter contract pass rate
 `1.0`, policy compliance `1.0`, unsafe execution `0.0`, final outcome accuracy `1.0`, and trace
-completeness `1.0`. The local Kubernetes reproducibility artifact records k8s job success,
-health endpoint availability, checkpoint PVC use, and crash/restart demo success as `true`, with
-trace completeness `1.0`. These artifacts strengthen the engineering reproducibility evidence
+completeness `1.0`. The actual local kind reproducibility artifact records completed Kubernetes
+jobs, health endpoint availability, checkpoint PVC use, and crash/restart demo success as `true`,
+with trace completeness `1.0`. These artifacts strengthen the engineering reproducibility evidence
 for the prototype while preserving the original scope: deterministic synthetic and mock-service
 experiments rather than production industrial deployment.
 
@@ -26,9 +26,8 @@ industrial certification. The OPC UA-style, REST, and legacy services used in th
 deterministic mock services and integration proxies, not live PLCs, SCADA systems, or vendor
 certified controllers. LangSmith traces and metadata support observability, debugging, and
 inspection of deterministic execution structure, but they do not validate industrial safety,
-regulatory compliance, physical process behavior, or live plant integration. GitHub Actions is
-configured for linting and tests, but no generated CI run-status artifact is included in the
-repository evidence manifest.
+regulatory compliance, physical process behavior, or live plant integration. GitHub Actions CI
+success is software quality automation evidence only and does not validate industrial operation.
 
 ## Recommended Manuscript Insertion Points
 
@@ -45,4 +44,3 @@ repository evidence manifest.
    production deployment, live PLCs, certified safety, and LangSmith observability.
 5. Appendix / Supplement: include the reproducibility evidence table from
    `docs/ijtech_reproducibility_evidence_table.md`.
-

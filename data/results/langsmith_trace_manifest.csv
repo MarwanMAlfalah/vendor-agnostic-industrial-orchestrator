@@ -1,0 +1,8 @@
+trace_name,deployment_mode,runtime_id,scenario_profile,git_sha,run_id,case_id,approval_case,checkpoint_case,screenshot_recommended
+containerized_integration_demo,docker_compose,,,36853bd,019e5769-6aac-76e0-bab3-7ac682a82710,,False,False,True
+k8s_reproducibility_summary,kubernetes_local,,,36853bd,019e576b-75ad-7fd0-8aab-92e6a2f5fab0,,False,False,True
+evaluation.run_crash_restart_demo,local,crash_restart_demo,,36853bd-dirty,019e576b-760f-7d12-9730-83c947eac848,,True,True,True
+langgraph_runtime.crash_restart_demo,local,crash_restart_demo,,36853bd-dirty,019e576b-7628-7d03-8cc9-5e4a344ead6d,CASE-POST-APPROVAL-VALID-001,True,True,True
+langgraph_runtime.crash_restart_demo,local,crash_restart_demo,,36853bd-dirty,019e576b-763c-7782-82b8-7ee8d5524f3c,CASE-POST-APPROVAL-INVALID-PAYLOAD-001,True,True,True
+langgraph_runtime.run_case,local,langgraph_runtime,journal,36853bd,019e5743-9496-7842-90f4-7315844b74b9,SCN-0237,True,False,True
+reference_v1.run_case,local,reference_v1,journal,36853bd,019e5743-9496-7842-90f4-73088fac63dc,SCN-0237,True,False,False

@@ -1,6 +1,6 @@
 aligned_final_outcome_accuracy,aligned_policy_compliance_rate,alignment_delta_policy_compliance,approval_bypass_rate,count,invalid_mapping_containment_rate,mean_latency_ms,median_latency_ms,original_final_outcome_accuracy,original_policy_compliance_rate,p95_latency_ms,runtime_id,trace_completeness,unsafe_execution_rate
-0.166667,0.0,0.0,0.5,240,0.583333,0.016961,0.016583,0.166667,0.0,0.026089,baseline_a_direct_without_governance,0.0,0.583333
-0.166667,0.083333,0.0,0.0,240,0.583333,0.009832,0.009583,0.166667,0.083333,0.011291,baseline_b_single_stage_execution,0.0,0.0
-0.583333,0.416667,-0.083333,0.5,240,1.0,0.018756,0.019208,0.583333,0.5,0.028513,baseline_c_without_policy_filtering,0.0,0.583333
-1.0,1.0,0.020833,0.0,240,1.0,1.269167,1.322417,0.979167,0.979167,1.493592,langgraph_runtime,1.0,0.0
-1.0,1.0,0.145833,0.0,240,1.0,0.019837,0.01875,0.875,0.854167,0.029968,reference_v1,1.0,0.0
+0.166667,0.0,0.0,0.5,240,0.583333,0.017915,0.017355,0.166667,0.0,0.028052,baseline_a_direct_without_governance,0.0,0.583333
+0.166667,0.083333,0.0,0.0,240,0.583333,0.010431,0.010166,0.166667,0.083333,0.012546,baseline_b_single_stage_execution,0.0,0.0
+0.583333,0.416667,-0.083333,0.5,240,1.0,0.01949,0.019729,0.583333,0.5,0.031765,baseline_c_without_policy_filtering,0.0,0.583333
+1.0,1.0,0.020833,0.0,240,1.0,2.618744,2.78025,0.979167,0.979167,3.815129,langgraph_runtime,1.0,0.0
+1.0,1.0,0.145833,0.0,240,1.0,0.242269,0.054542,0.875,0.854167,0.075116,reference_v1,1.0,0.0

@@ -1,6 +1,6 @@
 aligned_final_outcome_accuracy,aligned_policy_compliance_rate,alignment_delta_policy_compliance,approval_bypass_rate,count,invalid_mapping_containment_rate,mean_latency_ms,median_latency_ms,original_final_outcome_accuracy,original_policy_compliance_rate,p95_latency_ms,runtime_id,scenario_count,scope,stress_scope_containment_rate,supported_scope_accuracy,trace_completeness,unsafe_execution_rate
-0.090909,0.0,0.0,0.545455,220,0.545455,0.017541,0.016792,0.090909,0.0,0.026221,baseline_a_direct_without_governance,220,stress_scope,0.0,,0.0,0.636364
-0.090909,0.0,0.0,0.0,220,0.545455,0.009871,0.009583,0.090909,0.0,0.011338,baseline_b_single_stage_execution,220,stress_scope,0.545455,,0.0,0.0
-0.444444,0.222222,-0.111111,0.666667,180,1.0,0.021623,0.021563,0.444444,0.333333,0.028958,baseline_c_without_policy_filtering,180,stress_scope,0.222222,,0.0,0.777778
-1.0,1.0,0.0,0.0,110,1.0,1.151971,1.053584,1.0,1.0,1.46055,langgraph_runtime,110,stress_scope,1.0,,1.0,0.0
-1.0,1.0,0.26087,0.0,115,1.0,0.021362,0.01975,0.73913,0.73913,0.030942,reference_v1,115,stress_scope,1.0,,1.0,0.0
+0.090909,0.0,0.0,0.545455,220,0.545455,0.018528,0.017625,0.090909,0.0,0.028252,baseline_a_direct_without_governance,220,stress_scope,0.0,,0.0,0.636364
+0.090909,0.0,0.0,0.0,220,0.545455,0.010472,0.010188,0.090909,0.0,0.012546,baseline_b_single_stage_execution,220,stress_scope,0.545455,,0.0,0.0
+0.444444,0.222222,-0.111111,0.666667,180,1.0,0.022464,0.021167,0.444444,0.333333,0.03311,baseline_c_without_policy_filtering,180,stress_scope,0.222222,,0.0,0.777778
+1.0,1.0,0.0,0.0,110,1.0,2.451086,1.872812,1.0,1.0,4.028885,langgraph_runtime,110,stress_scope,1.0,,1.0,0.0
+1.0,1.0,0.26087,0.0,115,1.0,0.445642,0.055833,0.73913,0.73913,0.076617,reference_v1,115,stress_scope,1.0,,1.0,0.0

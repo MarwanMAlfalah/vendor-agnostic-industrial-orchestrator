@@ -19,40 +19,64 @@ industrial network validation, or operational readiness.
 
 ## Commands
 
+Commands from the final local kind verification pass:
+
 ```bash
 docker build -t vendor-orchestrator:local .
 kind create cluster --name vendor-orchestrator
 kind load docker-image vendor-orchestrator:local --name vendor-orchestrator
 kubectl apply -f deploy/k8s/base/
+kubectl apply -f deploy/k8s/base/
+kubectl wait --for=condition=available deployment/orchestrator -n vendor-orchestrator --timeout=180s
+kubectl wait --for=condition=complete job/scaled-evaluation-job -n vendor-orchestrator --timeout=300s
+kubectl wait --for=condition=complete job/crash-restart-demo-job -n vendor-orchestrator --timeout=300s
 kubectl get pods -n vendor-orchestrator
 kubectl logs job/scaled-evaluation-job -n vendor-orchestrator
 kubectl logs job/crash-restart-demo-job -n vendor-orchestrator
 kubectl port-forward svc/orchestrator-api 8001:8000 -n vendor-orchestrator
+curl -fsS http://localhost:8001/health
 ```
 
-## Expected Pod And Job Outputs
+The first directory apply created the namespace and some resources but returned namespace
+`NotFound` errors for resources submitted before namespace discovery had settled. A second
+`kubectl apply -f deploy/k8s/base/` completed successfully.
 
-`kubectl get pods -n vendor-orchestrator` should show one running API pod and completed job pods:
+## Observed Pod And Job Outputs
+
+`kubectl get pods -n vendor-orchestrator` showed one running API pod and two completed job pods:
 
 ```text
 NAME                            READY   STATUS      RESTARTS   AGE
-orchestrator-...                1/1     Running     0          ...
-scaled-evaluation-job-...       0/1     Completed   0          ...
-crash-restart-demo-job-...      0/1     Completed   0          ...
+crash-restart-demo-job-v6548    0/1     Completed   0          26s
+orchestrator-68444c9c64-f8nkj   1/1     Running     0          26s
+scaled-evaluation-job-m2jzl     0/1     Completed   0          26s
 ```
 
-`kubectl logs job/scaled-evaluation-job -n vendor-orchestrator` should include:
+`kubectl logs job/scaled-evaluation-job -n vendor-orchestrator` included:
 
 ```json
 {
   "profile": "journal",
   "scenario_count": 240,
-  "result_row_count": 504,
+  "result_row_count": 1200,
   "summary_path": "data/results/scaled_evaluation_summary_journal.json"
 }
 ```
 
-`kubectl logs job/crash-restart-demo-job -n vendor-orchestrator` should include:
+The same job emitted a Kubernetes reproducibility summary with:
+
+```json
+{
+  "k8s_job_success": true,
+  "health_endpoint_available": true,
+  "checkpoint_pvc_used": false,
+  "crash_restart_demo_success": false,
+  "trace_completeness": 1.0,
+  "p95_latency_ms": 2.235687
+}
+```
+
+`kubectl logs job/crash-restart-demo-job -n vendor-orchestrator` included:
 
 ```text
 Checkpoint DB: data/langgraph/checkpoints.db
@@ -61,6 +85,30 @@ Crash/restart metrics:
   restart_recovery_success_rate: 1.0
   post_restart_final_outcome_accuracy: 1.0
   restart_trace_completeness: 1.0
+```
+
+The crash/restart job emitted a Kubernetes reproducibility summary with checkpoint PVC and
+crash/restart success:
+
+```json
+{
+  "k8s_job_success": true,
+  "health_endpoint_available": true,
+  "checkpoint_pvc_used": true,
+  "crash_restart_demo_success": true,
+  "trace_completeness": 1.0,
+  "p95_latency_ms": 0.0
+}
+```
+
+The port-forwarded health check returned:
+
+```json
+{
+  "status": "ok",
+  "service": "vendor-agnostic-industrial-orchestrator",
+  "environment": "kubernetes-local-repro"
+}
 ```
 
 ## Result Artifacts
@@ -74,7 +122,7 @@ Sample CSV row:
 
 ```csv
 deployment_mode,k8s_namespace,k8s_job_name,git_sha,image_tag,k8s_job_success,health_endpoint_available,checkpoint_pvc_used,crash_restart_demo_success,trace_completeness,p95_latency_ms,evidence_scope
-kubernetes_local,vendor-orchestrator,k8s-reproducibility-summary,d2bee54,vendor-orchestrator:local,True,True,True,True,1.0,1.493592,local_kubernetes_reproducibility_demo
+kubernetes_local,vendor-orchestrator,scaled-evaluation-job+crash-restart-demo-job,36853bd,vendor-orchestrator:local,True,True,True,True,1.0,2.235687,actual_local_kind_reproducibility_demo
 ```
 
 Sample JSON metrics:
@@ -86,7 +134,7 @@ Sample JSON metrics:
   "checkpoint_pvc_used": true,
   "crash_restart_demo_success": true,
   "trace_completeness": 1.0,
-  "p95_latency_ms": 1.493592
+  "p95_latency_ms": 2.235687
 }
 ```
 
@@ -98,14 +146,16 @@ When LangSmith tracing is enabled, the Kubernetes summary attaches:
 {
   "deployment_mode": "kubernetes_local",
   "k8s_namespace": "vendor-orchestrator",
-  "k8s_job_name": "k8s-reproducibility-summary",
-  "git_sha": "d2bee54",
+  "k8s_job_name": "k8s-kind-actual-summary",
+  "git_sha": "36853bd",
   "image_tag": "vendor-orchestrator:local"
 }
 ```
 
-The Secret example intentionally contains no real API key. Add a local secret only outside
-blind-review or public artifacts.
+The Kubernetes jobs themselves used the ConfigMap default `GIT_SHA=unknown`; the host-side
+verification summary records the source checkout SHA used to build and load
+`vendor-orchestrator:local`. The Secret example intentionally contains no real API key. Add a
+local secret only outside blind-review or public artifacts.
 
 ## Limitations
 

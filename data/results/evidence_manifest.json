@@ -22,12 +22,17 @@
     },
     {
       "path": "data/results/k8s_reproducibility_summary.json",
-      "type": "local_kubernetes_reproducibility_summary",
+      "type": "actual_local_kind_reproducibility_summary",
       "used": true
     },
     {
       "path": "data/results/k8s_reproducibility_results.csv",
-      "type": "local_kubernetes_reproducibility_row",
+      "type": "actual_local_kind_reproducibility_row",
+      "used": true
+    },
+    {
+      "path": "data/results/langsmith_trace_manifest.csv",
+      "type": "queried_langsmith_trace_manifest",
       "used": true
     },
     {
@@ -41,21 +46,17 @@
       "used": true
     },
     {
-      "path": "docs/langsmith_setup.md",
-      "type": "langsmith_setup",
-      "used": true
-    },
-    {
       "path": ".github/workflows/ci.yml",
-      "run_status_artifact_available": false,
+      "run_status_artifact_available": true,
+      "run_url": "https://github.com/MarwanMAlfalah/vendor-agnostic-industrial-orchestrator/actions/runs/26346770533",
       "type": "github_actions_workflow_config",
       "used": true
     }
   ],
   "deployment_mode_comparison_csv": "data/results/deployment_mode_comparison.csv",
-  "evidence_scope": "IJTech engineering evidence consolidation for deterministic prototype artifacts",
+  "evidence_scope": "Final evidence verification pass for deterministic prototype artifacts",
   "generated_from_artifacts_only": true,
-  "git_sha": "d2bee54",
+  "git_sha": "36853bd",
   "non_claims": [
     "No production deployment claim.",
     "No live PLC integration claim.",
@@ -69,54 +70,46 @@
       "adapter_contract_pass_rate": 1.0,
       "final_outcome_accuracy": 1.0,
       "integration_case_count": 5,
-      "p95_latency_ms": 8.759392,
+      "p95_latency_ms": 8.625191,
       "policy_compliance_rate": 1.0,
       "service_topology": "orchestrator+opcua+rest+legacy",
       "trace_completeness": 1.0,
       "unsafe_execution_rate": 0.0
     },
     "github_actions": {
-      "run_status_artifact_available": false,
+      "latest_run": {
+        "conclusion": "success",
+        "created_at": "2026-05-23T23:50:18Z",
+        "head_branch": "main",
+        "head_sha": "36853bdc7363d6b587606ddd11f9cf5803accd37",
+        "html_url": "https://github.com/MarwanMAlfalah/vendor-agnostic-industrial-orchestrator/actions/runs/26346770533",
+        "name": "CI",
+        "status": "completed",
+        "updated_at": "2026-05-23T23:50:45Z"
+      },
+      "run_status_artifact_available": true,
       "workflow_config_available": true
     },
-    "kubernetes_local": {
+    "kubernetes_local_kind": {
       "checkpoint_pvc_used": true,
       "crash_restart_demo_success": true,
       "health_endpoint_available": true,
       "k8s_job_success": true,
-      "p95_latency_ms": 1.493592,
+      "p95_latency_ms": 2.235687,
       "trace_completeness": 1.0
     },
     "langsmith": {
-      "claim": "optional observability and debugging support",
-      "metadata_previews": [
-        {
-          "deployment_mode": "docker_compose",
-          "experiment": "containerized_integration_demo",
-          "git_sha": "d2bee54",
-          "legacy_endpoint": "http://mock-legacy:8003",
-          "maintenance_endpoint": "http://mock-maintenance-rest:8002",
-          "opcua_endpoint": "http://mock-opcua:8001",
-          "service_topology": "orchestrator+opcua+rest+legacy"
-        },
-        {
-          "deployment_mode": "kubernetes_local",
-          "git_sha": "d2bee54",
-          "image_tag": "vendor-orchestrator:local",
-          "k8s_job_name": "k8s-reproducibility-summary",
-          "k8s_namespace": "vendor-orchestrator"
-        }
-      ]
+      "trace_manifest_rows": 7
     },
     "local_synthetic_scaled": {
       "langgraph_runtime": {
         "approval_bypass_rate": 0.0,
         "final_outcome_accuracy": 0.9792,
         "governance_decision_accuracy": 1.0,
-        "mean_latency_ms": 1.269167,
-        "median_latency_ms": 1.322417,
-        "p50_latency_ms": 1.322417,
-        "p95_latency_ms": 1.493592,
+        "mean_latency_ms": 2.618744,
+        "median_latency_ms": 2.78025,
+        "p50_latency_ms": 2.78025,
+        "p95_latency_ms": 3.815129,
         "policy_compliance_rate": 0.9792,
         "runs": 240,
         "trace_completeness": 1.0,
@@ -126,10 +119,10 @@
         "approval_bypass_rate": 0.0,
         "final_outcome_accuracy": 0.875,
         "governance_decision_accuracy": 0.9583,
-        "mean_latency_ms": 0.019837,
-        "median_latency_ms": 0.01875,
-        "p50_latency_ms": 0.01875,
-        "p95_latency_ms": 0.029968,
+        "mean_latency_ms": 0.242269,
+        "median_latency_ms": 0.054542,
+        "p50_latency_ms": 0.054542,
+        "p95_latency_ms": 0.075116,
         "policy_compliance_rate": 0.8542,
         "runs": 240,
         "trace_completeness": 1.0,
@@ -137,6 +130,39 @@
       },
       "result_row_count": 1200,
       "scenario_count": 240
+    }
+  },
+  "verification_pass": {
+    "docker_compose_integration": {
+      "source_artifact": "data/results/containerized_integration_summary.json",
+      "status": "passed"
+    },
+    "github_actions": {
+      "conclusion": "success",
+      "created_at": "2026-05-23T23:50:18Z",
+      "head_branch": "main",
+      "head_sha": "36853bdc7363d6b587606ddd11f9cf5803accd37",
+      "html_url": "https://github.com/MarwanMAlfalah/vendor-agnostic-industrial-orchestrator/actions/runs/26346770533",
+      "name": "CI",
+      "status": "completed",
+      "updated_at": "2026-05-23T23:50:45Z"
+    },
+    "kubernetes_kind": {
+      "source_artifact": "data/results/k8s_reproducibility_summary.json",
+      "status": "actual_kind_run_passed"
+    },
+    "langsmith": {
+      "source_artifact": "data/results/langsmith_trace_manifest.csv",
+      "status": "traces_queried"
+    },
+    "local_lint": {
+      "command": "ruff check app tests",
+      "status": "passed"
+    },
+    "local_tests": {
+      "command": ".venv/bin/python -m pytest",
+      "observed": "38 passed",
+      "status": "passed"
     }
   }
 }

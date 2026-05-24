@@ -1,34 +1,110 @@
 {
+  "actual_kind_execution": true,
   "deployment_claim": "local Kubernetes reproducibility evidence only",
   "deterministic": true,
+  "git_sha": "36853bd",
+  "image_tag": "vendor-orchestrator:local",
+  "k8s_config_git_sha_observed_in_job_logs": "unknown",
+  "k8s_context": "kind-vendor-orchestrator",
+  "k8s_namespace": "vendor-orchestrator",
   "langsmith_trace_metadata_preview": {
     "deployment_mode": "kubernetes_local",
-    "git_sha": "d2bee54",
+    "git_sha": "36853bd",
     "image_tag": "vendor-orchestrator:local",
-    "k8s_job_name": "k8s-reproducibility-summary",
+    "k8s_job_name": "k8s-kind-actual-summary",
     "k8s_namespace": "vendor-orchestrator"
   },
+  "limitations": "Local kind reproducibility evidence only; not production deployment, not live PLC integration, and not certified safety evidence.",
   "metrics": {
     "checkpoint_pvc_used": true,
     "crash_restart_demo_success": true,
     "health_endpoint_available": true,
     "k8s_job_success": true,
-    "p95_latency_ms": 1.493592,
+    "p95_latency_ms": 2.235687,
     "trace_completeness": 1.0
   },
-  "row": {
-    "checkpoint_pvc_used": true,
-    "crash_restart_demo_success": true,
-    "deployment_mode": "kubernetes_local",
-    "evidence_scope": "local_kubernetes_reproducibility_demo",
-    "git_sha": "d2bee54",
-    "health_endpoint_available": true,
-    "image_tag": "vendor-orchestrator:local",
-    "k8s_job_name": "k8s-reproducibility-summary",
-    "k8s_job_success": true,
-    "k8s_namespace": "vendor-orchestrator",
-    "p95_latency_ms": 1.493592,
-    "trace_completeness": 1.0
+  "observed_commands": [
+    "docker build -t vendor-orchestrator:local .",
+    "kind create cluster --name vendor-orchestrator",
+    "kind load docker-image vendor-orchestrator:local --name vendor-orchestrator",
+    "kubectl apply -f deploy/k8s/base/",
+    "kubectl apply -f deploy/k8s/base/ # retry after namespace-ordering race on first apply",
+    "kubectl wait --for=condition=available deployment/orchestrator -n vendor-orchestrator --timeout=180s",
+    "kubectl wait --for=condition=complete job/scaled-evaluation-job -n vendor-orchestrator --timeout=300s",
+    "kubectl wait --for=condition=complete job/crash-restart-demo-job -n vendor-orchestrator --timeout=300s",
+    "kubectl get pods -n vendor-orchestrator",
+    "kubectl logs job/scaled-evaluation-job -n vendor-orchestrator",
+    "kubectl logs job/crash-restart-demo-job -n vendor-orchestrator",
+    "kubectl port-forward svc/orchestrator-api 8001:8000 -n vendor-orchestrator",
+    "curl -fsS http://localhost:8001/health"
+  ],
+  "observed_outputs": {
+    "crash_restart_job_summary": {
+      "checkpoint_resume_success_rate": 1.0,
+      "metrics": {
+        "checkpoint_pvc_used": true,
+        "crash_restart_demo_success": true,
+        "health_endpoint_available": true,
+        "k8s_job_success": true,
+        "p95_latency_ms": 0.0,
+        "trace_completeness": 1.0
+      },
+      "post_restart_final_outcome_accuracy": 1.0,
+      "restart_recovery_success_rate": 1.0,
+      "restart_trace_completeness": 1.0
+    },
+    "health": {
+      "environment": "kubernetes-local-repro",
+      "service": "vendor-agnostic-industrial-orchestrator",
+      "status": "ok"
+    },
+    "initial_apply_note": "First directory apply created the namespace and some resources but returned NotFound for resources applied before namespace discovery; a second apply succeeded.",
+    "jobs": [
+      {
+        "complete": true,
+        "name": "scaled-evaluation-job",
+        "succeeded": 1
+      },
+      {
+        "complete": true,
+        "name": "crash-restart-demo-job",
+        "succeeded": 1
+      }
+    ],
+    "pods": [
+      {
+        "name": "crash-restart-demo-job-v6548",
+        "ready": "0/1",
+        "restarts": 0,
+        "status": "Completed"
+      },
+      {
+        "name": "orchestrator-68444c9c64-f8nkj",
+        "ready": "1/1",
+        "restarts": 0,
+        "status": "Running"
+      },
+      {
+        "name": "scaled-evaluation-job-m2jzl",
+        "ready": "0/1",
+        "restarts": 0,
+        "status": "Completed"
+      }
+    ],
+    "scaled_job_summary": {
+      "metrics": {
+        "checkpoint_pvc_used": false,
+        "crash_restart_demo_success": false,
+        "health_endpoint_available": true,
+        "k8s_job_success": true,
+        "p95_latency_ms": 2.235687,
+        "trace_completeness": 1.0
+      },
+      "profile": "journal",
+      "result_row_count": 1200,
+      "scenario_count": 240,
+      "summary_path": "data/results/scaled_evaluation_summary_journal.json"
+    }
   },
   "source_artifacts": {
     "checkpoint_db": "data/langgraph/checkpoints.db",
