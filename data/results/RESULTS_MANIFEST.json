@@ -2,24 +2,24 @@
   "artifact_count": 69,
   "artifacts": [
     {
-      "bytes": 26501,
+      "bytes": 26433,
       "path": "data/results/RESULTS_METADATA_INDEX.csv",
-      "sha256": "834f87766e5796ba0b711a60e801eba2618a43868ed815965f31fc3608bd67bf"
+      "sha256": "df2b112cb89318ebbae64d66ba3d0d04c2dd04a362de3bf9226ee48c4e758015"
     },
     {
-      "bytes": 45298,
+      "bytes": 45299,
       "path": "data/results/RESULTS_METADATA_INDEX.json",
-      "sha256": "62a31f52a3acb9df23af2d0e096fecffc241be0b5a4a8d94bf09bc614d2c908a"
+      "sha256": "5d1f929a5990cbe510286d41774ae1a0ab93acc038ec9874a0bf5b3541bb5246"
     },
     {
       "bytes": 1363,
       "path": "data/results/ablation_results.csv",
-      "sha256": "c2a5c5f88d55bd613ee2c387d204f99c076a18fe185e34ff1814bbf62b113495"
+      "sha256": "9111f9e817badb2a452f6ccbeef6ccdcbdf974c2b59dceccf97ec6fe1aaaa40e"
     },
     {
       "bytes": 3693,
       "path": "data/results/ablation_summary.json",
-      "sha256": "25e9371025cf0d907cd14731542aac16944938ac479541852edb4bafb22fa0aa"
+      "sha256": "8ab310a998cb6d2b1307c8df7f825cbea4b0ac6b526a4bc0bfa6ab83a7d4a06e"
     },
     {
       "bytes": 6719,
@@ -34,22 +34,22 @@
     {
       "bytes": 896,
       "path": "data/results/aligned_scaled_metrics_by_runtime.csv",
-      "sha256": "9306f463df4517a9cee0130d046d9e1e8b7fda6d257abc6b6c9a644d323fea8e"
+      "sha256": "0d0bb8b8b401cf5b27fac2aceb29438863987298365b5b3125948d81fb0f4de7"
     },
     {
-      "bytes": 1697,
+      "bytes": 1688,
       "path": "data/results/aligned_scaled_metrics_by_scope.csv",
-      "sha256": "91ef1643c399ae4e24f8ad8ee7c6bea0ce3348cab6dc07ece2a9552332a9cce9"
+      "sha256": "558b3a8e1d16aa675ad1e507c3bd1038bbc6e2538029b6855c7ece53c2ff8cd0"
     },
     {
-      "bytes": 749159,
+      "bytes": 749115,
       "path": "data/results/aligned_scaled_results_journal.csv",
-      "sha256": "6e72099c4cdab3d43fcf782b120fdf63b55d628cca68588957a3b2b637f3767c"
+      "sha256": "cb6d6115154fafc2e2eb338d8be949188d27266ba19d7b4d4ce967c8f4eec9fb"
     },
     {
-      "bytes": 10765,
+      "bytes": 10756,
       "path": "data/results/aligned_scaled_summary_journal.json",
-      "sha256": "53b5163f313e326c903adae8682d08e4981cbc3da06d2a9695c9376175c69ac2"
+      "sha256": "a9405b196f00295507f95a099ec1b87ba0ad936a8cf13a0327fc7cfd6f53d37e"
     },
     {
       "bytes": 42029,
@@ -72,14 +72,14 @@
       "sha256": "52be6d7f02c229e40606440b28e7c5e3b46b372b19a8d9a42560413b535fb27e"
     },
     {
-      "bytes": 1062,
+      "bytes": 1057,
       "path": "data/results/containerized_integration_results.csv",
-      "sha256": "bdde26cc58337b247564e5d83fbf7dc6e7ab81e008a8e80d1e9ec09c5f0239c5"
+      "sha256": "39b380823fd7940cf17b925e3bd48c167ecd1608d6f794a819f9ce14e208a346"
     },
     {
-      "bytes": 2079,
+      "bytes": 2081,
       "path": "data/results/containerized_integration_summary.json",
-      "sha256": "49f99b1814d5655e22f2c6aaaa92e91b5a451e733193764c8d4d031d9419e960"
+      "sha256": "c548e95870dcfeaa8138e31573ed97ed0c31a1d6992ac84338a61bd79e68c5e6"
     },
     {
       "bytes": 1821,
@@ -87,14 +87,14 @@
       "sha256": "50aad1d57c0c08f17668b7ea9e09247d97a2c7f7c97e78e775c263334c5ea6fb"
     },
     {
-      "bytes": 2373,
+      "bytes": 2366,
       "path": "data/results/deployment_mode_comparison.csv",
-      "sha256": "e9533b9afb3b2ffa4fcca4418829c5a3ad6db70a7f04553883f761210d40954e"
+      "sha256": "ef9bce1b49e49e41a464a3a964f9bf067d57aab5f41220d2a17aa1a08900d46d"
     },
     {
-      "bytes": 2987,
+      "bytes": 2980,
       "path": "data/results/deployment_mode_comparison_with_metadata.csv",
-      "sha256": "e95fa8bcc4144d83d7ed15a109b74548cdf9535db9a115a03294596bbb89cf41"
+      "sha256": "b4f9369bd7dedb91fa179bea9237fcb88de38d3b07fa330287f2a8258dd12407"
     },
     {
       "bytes": 473,
@@ -127,9 +127,9 @@
       "sha256": "bc5bc041d2da7e6c5d72520f7bc347e48ff48b340d9839ca61cf47bfdf67c207"
     },
     {
-      "bytes": 3861,
+      "bytes": 3849,
       "path": "data/results/final_manuscript_results_with_metadata.csv",
-      "sha256": "7188c9a0e33119c691c1002607dd28729e54caac1b9d41edfa4a0111503322ec"
+      "sha256": "f424ca1d57306801bf124f41cdec807ee52179d14620c8e5759a20682a3aa0ab"
     },
     {
       "bytes": 340,
@@ -174,7 +174,7 @@
     {
       "bytes": 896,
       "path": "data/results/ijtech_table_2_main_results_aligned.csv",
-      "sha256": "9306f463df4517a9cee0130d046d9e1e8b7fda6d257abc6b6c9a644d323fea8e"
+      "sha256": "0d0bb8b8b401cf5b27fac2aceb29438863987298365b5b3125948d81fb0f4de7"
     },
     {
       "bytes": 593,
@@ -189,12 +189,12 @@
     {
       "bytes": 1363,
       "path": "data/results/ijtech_table_4_ablation_results.csv",
-      "sha256": "c2a5c5f88d55bd613ee2c387d204f99c076a18fe185e34ff1814bbf62b113495"
+      "sha256": "9111f9e817badb2a452f6ccbeef6ccdcbdf974c2b59dceccf97ec6fe1aaaa40e"
     },
     {
-      "bytes": 1697,
+      "bytes": 1688,
       "path": "data/results/ijtech_table_4_supported_vs_stress_aligned.csv",
-      "sha256": "91ef1643c399ae4e24f8ad8ee7c6bea0ce3348cab6dc07ece2a9552332a9cce9"
+      "sha256": "558b3a8e1d16aa675ad1e507c3bd1038bbc6e2538029b6855c7ece53c2ff8cd0"
     },
     {
       "bytes": 7515,
@@ -222,9 +222,9 @@
       "sha256": "c944c60897d82f32baf9f1d169bbb6242f45fe21aef7ee0dd09af6e522514bae"
     },
     {
-      "bytes": 1062,
+      "bytes": 1054,
       "path": "data/results/langsmith_trace_manifest.csv",
-      "sha256": "9f77b0a8a720a214a3543c6c285537011f3dafbd2252c7058902c8729ec4e2a6"
+      "sha256": "b05317a5099642b2ec25bb04e2c99072c1aa4e584cf2160b65eee3cd984e3e20"
     },
     {
       "bytes": 551,
@@ -257,14 +257,14 @@
       "sha256": "7b3c53270e1c405851353704cebc9c3736fb5d9660aafdf8e0ae80549f907f15"
     },
     {
-      "bytes": 178321,
+      "bytes": 178355,
       "path": "data/results/scaled_evaluation_results_default.csv",
-      "sha256": "d11e38715b19fbd7cfbde3b53365776085e60b91313b6d2429d573a9414e4a80"
+      "sha256": "2db38a62155a404c002102c2bbcfd41c445a65568b010972127b3decad4d8bb1"
     },
     {
-      "bytes": 657781,
+      "bytes": 657815,
       "path": "data/results/scaled_evaluation_results_default.json",
-      "sha256": "1c4d07884b7af51f928df0bca5051a48eead099ee59cd2c1b6c32413485df92d"
+      "sha256": "b23adf130949c30dd93d3d1b24dd9d27c9c407355814e796058afd851a7f6410"
     },
     {
       "bytes": 741754,
@@ -277,19 +277,19 @@
       "sha256": "15292cca43d4817c4947cbeb128a91d2b11493353eb0164311fe56f07a06bf54"
     },
     {
-      "bytes": 356411,
+      "bytes": 356367,
       "path": "data/results/scaled_evaluation_results_journal.csv",
-      "sha256": "c1accd89d0f91844340efcfc365700f19cb4a52c8bee729e28ccb2a921a6ea4a"
+      "sha256": "9255170b1cafecc5be39274541c23974b1b1dd489bb0909c72f0fb45178434ce"
     },
     {
-      "bytes": 1315871,
+      "bytes": 1315827,
       "path": "data/results/scaled_evaluation_results_journal.json",
-      "sha256": "619038ff3935eeef980d56d02a27bea0431047de6b78bcddcd479e6836a20866"
+      "sha256": "59e144a992869f0017722721ee42b46e23b42606c1dee772303b73264c19ce34"
     },
     {
-      "bytes": 8608,
+      "bytes": 8607,
       "path": "data/results/scaled_evaluation_summary_default.json",
-      "sha256": "8b9412966d286908d9658b3f42df52989c138039cdad25451d263946f9d3e1df"
+      "sha256": "8b6c1b9a725d545937f6a067936becc17ab63ef482cdd762eb795db00a4aca7c"
     },
     {
       "bytes": 8637,
@@ -297,9 +297,9 @@
       "sha256": "2b13b703e8dad699e73c3b1f1f9687cb13703340e6656ce0ae585f09590f1f5f"
     },
     {
-      "bytes": 8627,
+      "bytes": 8624,
       "path": "data/results/scaled_evaluation_summary_journal.json",
-      "sha256": "834b43c88e989a50a0077401b3e0425a803993a48b3c49acea170b13f940b44b"
+      "sha256": "873e09033f972d4a2044a9e5275e6b22c7dab88aa35041454297e24cfac6cc83"
     },
     {
       "bytes": 26250,
@@ -327,9 +327,9 @@
       "sha256": "b2e864c9683b7a20ae9a66e47f6fea1fd0c629ccf04fbf339c1afdaef58e7f4c"
     },
     {
-      "bytes": 1083,
+      "bytes": 1081,
       "path": "data/results/stress_scope_metrics_aligned_journal.csv",
-      "sha256": "842eee215d69a1ed86bf78af3b2488d8fbddf8788c9cfe2e35851c05cdedbdde"
+      "sha256": "0817b24afd28eca4a16505b93e9855df24ba9b45f3aea06126b49656f1694361"
     },
     {
       "bytes": 1394,
@@ -337,9 +337,9 @@
       "sha256": "bf41a9253d92e49b419cf313f8cd8aaada47cb02a2a241dd7cc17381a084a84e"
     },
     {
-      "bytes": 1012,
+      "bytes": 1005,
       "path": "data/results/supported_scope_metrics_aligned_journal.csv",
-      "sha256": "50116da19dc8596c22039d4eda6e7517d6b8719c5d931f7f719aef614e8fec6c"
+      "sha256": "6e6c94f6d02dd54cd732e918bc6e0339d462f3b404e54b4b788282ed507c6bdc"
     },
     {
       "bytes": 1458,

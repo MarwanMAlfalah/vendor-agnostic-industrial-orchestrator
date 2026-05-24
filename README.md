@@ -1,13 +1,16 @@
 # Vendor-Agnostic Industrial Orchestrator
 
 Research prototype for governance-aware, vendor-agnostic orchestration of industrial workflows.
+
 The repository contains a FastAPI service, deterministic mock adapters, governance-aware runtime
 paths, LangGraph continuation experiments, and reproducible evaluation artifacts used for an
 IJTech-oriented journal manuscript.
 
 The project is not production software. It does not claim certified safety, live PLC integration,
-regulatory compliance, or production deployment. All reported industrial evidence is based on
-deterministic scenarios and mock OPC UA, REST, and legacy adapters.
+regulatory compliance, or production deployment.
+
+All reported industrial evidence is based on deterministic scenarios and mock OPC UA, REST, and
+legacy adapters.
 
 ## Runtime Paths
 
@@ -58,6 +61,7 @@ make eval-crash-restart
 ```
 
 Generated outputs are stored under `data/results/` and supporting reports under `docs/`.
+
 Do not interpret these artifacts as production reliability, certified safety, or live plant evidence.
 
 ## LangSmith Observability
@@ -106,7 +110,7 @@ Format Python files:
 make format
 ```
 
-## Run The API
+## Run the API
 
 Start the FastAPI app:
 

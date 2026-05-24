@@ -2,8 +2,10 @@
 name = "vendor-agnostic-industrial-orchestrator"
 version = "0.1.0"
 description = "Research prototype for a vendor-agnostic multi-agent LLM orchestrator for industrial operations."
+
 readme = "README.md"
 requires-python = ">=3.11"
+
 dependencies = [
     "fastapi>=0.115.0",
     "langgraph>=0.2.0",
@@ -19,6 +21,7 @@ dev = [
     "black>=24.0.0",
     "pytest>=8.0.0",
     "pytest-cov>=5.0.0",
+
     "ruff>=0.8.0",
 ]
 

@@ -5,6 +5,7 @@ from __future__ import annotations
 import csv
 import hashlib
 import json
+import subprocess
 from pathlib import Path
 
 import yaml
@@ -13,20 +14,28 @@ RESULTS_DIR = Path("data/results")
 
 
 def test_repository_text_artifacts_are_not_collapsed_to_one_line() -> None:
-    """Key reviewer-facing artifacts should remain readable in raw GitHub views."""
+    """Key reviewer-facing artifacts should remain readable in committed raw views."""
 
     expected_minimum_line_counts = {
         Path("README.md"): 20,
         Path("Makefile"): 8,
         Path("pyproject.toml"): 20,
+        RESULTS_DIR / "deployment_mode_comparison.csv": 2,
         RESULTS_DIR / "deployment_mode_comparison_with_metadata.csv": 2,
+        RESULTS_DIR / "langsmith_trace_manifest.csv": 2,
+        RESULTS_DIR / "RESULTS_METADATA_INDEX.csv": 2,
+        RESULTS_DIR / "final_manuscript_results_with_metadata.csv": 2,
     }
     expected_minimum_line_counts.update(
         {path: 2 for path in sorted(Path("deploy/k8s/base").glob("*.yaml"))}
     )
 
     for path, minimum_line_count in expected_minimum_line_counts.items():
-        line_count = len(path.read_text(encoding="utf-8").splitlines())
+        committed_text = subprocess.check_output(
+            ["git", "show", f"HEAD:{path.as_posix()}"],
+            text=True,
+        )
+        line_count = len(committed_text.splitlines())
         assert line_count > minimum_line_count, path
 
 
