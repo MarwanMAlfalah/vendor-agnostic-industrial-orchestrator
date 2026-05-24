@@ -17,6 +17,7 @@ Keep:
 - governance decisions;
 - canonical governance comparison;
 - headline aligned journal-profile results;
+- one compact reproducibility evidence paragraph;
 - brief LangGraph continuation note;
 - concise limitations.
 
@@ -33,6 +34,7 @@ Move to IJTech journal version:
 - full original-versus-aligned methodology discussion;
 - full 240-scenario and 500-scenario evidence;
 - full supported-versus-stress tables;
+- full Docker/Kubernetes/LangSmith evidence table;
 - detailed latency table;
 - conceptual ablation discussion;
 - expanded threats to validity;
@@ -66,6 +68,14 @@ Industrial workflows often span OPC UA interfaces, REST services, and legacy ven
 - Baseline A and Baseline C: unsafe execution 0.583333 in the aligned journal profile.
 - Baseline B: aligned policy compliance 0.083333 and final outcome accuracy 0.166667.
 - LangGraph post-approval continuation: approval validation, approved step execution, post-resume final outcome accuracy, gated step policy compliance, and approved execution trace completeness are reported as 1.0 in the local deterministic continuation tests.
+- Reproducibility evidence: Docker Compose mock-service integration, actual local kind Kubernetes execution, frozen manifest validation, and LangSmith observability traces are available as supporting evidence, not as production or live-plant validation.
+
+## Suggested Figure And Screenshot Package
+
+- Main architecture figure: planning, capability matching, governance, execution, adapters, and trace recording.
+- Results table: compact original/aligned policy metrics for the two proposed runtimes and three baselines.
+- Optional reproducibility figure: local Docker/Kubernetes evidence with sanitized command output or topology.
+- Optional observability figure: redacted LangSmith trace screenshot showing planning, governance, approval, execution, and final-result spans.
 
 ## Shortened Limitations To Retain
 
@@ -75,3 +85,4 @@ Industrial workflows often span OPC UA interfaces, REST services, and legacy ven
 - No production deployment.
 - No live PLC integration.
 - LangSmith only as observability evidence.
+- Docker and Kubernetes evidence only as local reproducibility evidence.

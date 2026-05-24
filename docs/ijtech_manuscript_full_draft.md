@@ -6,7 +6,7 @@ Industrial operations often rely on heterogeneous vendor interfaces, including O
 
 The evaluation combines canonical governance cases, mixed multi-step workflows, post-approval continuation tests, a local crash/restart persistence demonstration, and scaled deterministic benchmarks. The main journal profile contains 240 scenarios, with a 500-scenario extended profile used for additional coverage. Because runtime capabilities differ, the analysis reports original global labels alongside runtime-specific aligned expectations. Under original labels in the 240-scenario profile, `reference_v1` reports policy compliance of 0.854167 and final outcome accuracy of 0.875, while `langgraph_runtime` reports 0.979167 for both metrics. Under documented aligned expectations within the deterministic mock-adapter scope, both governance-aware runtimes report policy compliance and final outcome accuracy of 1.0 with unsafe execution of 0.0. Direct execution without governance and execution without policy filtering each show unsafe execution of 0.583333, while the single-stage baseline reports aligned policy compliance of 0.083333.
 
-The results provide prototype-level evidence for policy-centric evaluation. The study does not claim production deployment, certified safety, or live PLC integration, and LangSmith traces are used only as observability evidence.
+The results provide prototype-level evidence for policy-centric evaluation. Additional reproducibility evidence is provided through Docker Compose mock-service integration, an actual local kind Kubernetes run, frozen evidence manifests, and LangSmith trace inspection. The study does not claim production deployment, certified safety, or live PLC integration, and LangSmith traces are used only as observability evidence.
 
 ## Keywords
 
@@ -74,6 +74,8 @@ Because the runtimes support different capabilities, both original and aligned m
 
 For reproducibility, the evaluation artifacts are organized around deterministic scenario profiles and generated result tables. The main manuscript uses the current 240-scenario journal profile, the 500-scenario extended profile, and the existing CSV/JSON summaries for baseline comparison, aligned metrics, latency, supported-versus-stress scope, and figure data. Reproduction should preserve the same deterministic scenario configuration, runtime profiles, and mock-adapter setting; regenerated outputs should be compared against the provided result summaries before being used in a revised manuscript.
 
+The final evidence package also includes engineering reproducibility artifacts that do not change the scientific metrics. Docker Compose evidence exercises the orchestrator against separate local mock OPC UA-style, REST, and legacy service containers. Kubernetes evidence comes from a successful local kind run with the `orchestrator` Deployment, `orchestrator-api` Service, completed evaluation and crash/restart jobs, a bound checkpoint PVC, non-empty application/job/event logs, Deployment and Service descriptions, and a port-forwarded health response with `status=ok`. LangSmith evidence provides trace-level observability for selected deterministic runs after API-key rotation; it is used for debugging, auditability, and figure preparation only. The final validation recorded `python -m ruff check app tests`, `python -m pytest` with 45 tests, `make lint`, `make test` with 45 tests and 56% coverage, and a passing `RESULTS_MANIFEST.json` hash check. The scaled evaluation tests now write generated artifacts to temporary pytest directories, so committed `data/results/` and `docs/` evidence files remain stable during local validation.
+
 ## 4. Results
 
 The canonical comparison evaluates 12 deterministic cases covering allowed actions, approval-required actions, blocked actions, and safe-abort conditions. In these controlled cases, the reference governance-aware execution path achieves policy compliance of 1.0, unsafe execution of 0.0, governance decision accuracy of 1.0, and final outcome accuracy of 1.0. The baselines show why raw execution success is insufficient: Baseline B reaches execution coverage of 1.0 in the unified table but has policy compliance of 0.25 and unsafe execution of 1.0.
@@ -97,6 +99,19 @@ The aligned supported/stress split is runtime-specific and should be read alongs
 The post-approval continuation experiment distinguishes stopping at an approval checkpoint from controlled continuation after explicit approval. `reference_v1` is policy-correct as a non-continuation runtime but does not execute gated steps after approval. `langgraph_runtime` supports approval interrupt/resume, approval validation, revalidation of mapping eligibility, and controlled execution of approved steps. In the unified report, the LangGraph post-approval comparison reports 1.0 for approval validation accuracy, approved step execution rate, post-resume final outcome accuracy, gated step policy compliance, and approved execution trace completeness within the local deterministic continuation tests.
 
 The crash/restart persistence demo uses a SQLite LangGraph checkpointer. It demonstrates that a workflow can reach an approval interrupt, persist checkpoint state, simulate process stop, reopen the runtime with the same checkpoint database and thread identifier, resume with approval input, and reach the expected final result. The unified report records checkpoint resume success, restart recovery success, post-restart final outcome accuracy, and restart trace completeness as 1.0 for this local demo, which is separate from the original scaled metrics and does not imply production recovery capability.
+
+## 4.1 Reproducibility And Observability Evidence
+
+The deterministic result tables are accompanied by engineering evidence that supports reproducibility of the prototype package without expanding the claim boundary. Table 2 summarizes the supporting evidence categories. These artifacts are used to show that the prototype can be exercised in local containerized and local Kubernetes settings, and that traces can be inspected, but they are not treated as production deployment or industrial safety evidence.
+
+| Evidence category | Artifact examples | Paper interpretation | Suggested figure or screenshot insertion |
+| --- | --- | --- | --- |
+| Docker Compose mock-service integration | `data/results/containerized_integration_summary.json`; `data/results/containerized_integration_results.csv`; `docker-compose.integration.yml` | Local service-boundary evidence using separate mock OPC UA-style, REST, and legacy service containers. | Optional architecture/deployment screenshot showing orchestrator plus mock service containers. |
+| Kubernetes local kind reproducibility | `data/results/k8s_reproducibility_summary.json`; `data/results/k8s_reproducibility_results.csv`; `data/results/k8s_logs/orchestrator.log`; job logs; events; health response | Actual local kind run with available Deployment, Service health response, completed jobs, checkpoint PVC, and non-empty logs. | Insert a screenshot or terminal capture of `kubectl get pods`, completed jobs, and the `status=ok` health response. |
+| LangSmith observability | `data/results/langsmith_trace_manifest.csv`; trace documentation under `docs/langsmith_*` | Trace inspection and debugging support only; not industrial validation. | Insert a redacted LangSmith trace screenshot showing planning, governance, approval, execution, and final-result spans. |
+| Manifest and validation closure | `data/results/RESULTS_MANIFEST.json`; `docs/final_evidence_closure_note.md`; integrity tests | Frozen evidence manifest and local validation status; tests no longer mutate committed result artifacts. | Optional supplementary screenshot of passing local validation commands. |
+
+The obsolete zero-byte `data/results/k8s_logs/orchestrator-api.log` is not used as application evidence because `orchestrator-api` is the Service name, not the Deployment name. The corrected application log is `data/results/k8s_logs/orchestrator.log`.
 
 ## 5. Discussion
 
@@ -123,6 +138,8 @@ The baselines are deterministic governance-ablated comparisons. They are useful 
 The crash/restart evidence is a local LangGraph checkpoint demonstration using SQLite persistence. It shows that checkpointed workflow state can be resumed in the prototype setting. It does not demonstrate distributed fault tolerance, production deployment, operational high availability, or plant recovery procedures.
 
 LangSmith traces support observability, debugging, and figure preparation. They are not industrial deployment evidence and do not independently validate safety, regulatory compliance, or live integration.
+
+Docker Compose and Kubernetes evidence are likewise local reproducibility evidence only. They show that the deterministic prototype can be packaged and exercised with mock services and a local kind cluster. They do not establish production deployment, live plant operation, industrial network behavior, cybersecurity readiness, certified safety, regulatory compliance, high availability, or operator acceptance.
 
 ## 7. Conclusion
 

@@ -44,6 +44,10 @@ The aligned evaluation keeps original scenario labels as descriptive labels but 
 
 For reproducibility, the evaluation artifacts are organized around deterministic scenario profiles and generated result tables. The main manuscript uses the current 240-scenario journal profile, the 500-scenario extended profile, and the existing CSV/JSON summaries for baseline comparison, aligned metrics, latency, supported-versus-stress scope, and figure data. Reproduction should preserve the same deterministic scenario configuration, runtime profiles, and mock-adapter setting; regenerated outputs should be compared against the provided result summaries before being used in a revised manuscript.
 
+The final validation package adds containerized and local Kubernetes reproducibility checks around the same deterministic prototype. Docker Compose runs the orchestrator against separate local mock OPC UA-style, REST, and legacy service containers. The local kind Kubernetes run uses the existing image, manifests, `orchestrator` Deployment, `orchestrator-api` Service, checkpoint PVC, scaled-evaluation job, crash/restart job, and health endpoint. Captured Kubernetes artifacts include non-empty deployment and job logs, events, Deployment/Service descriptions, and `health_response.json` with `status=ok`. These artifacts document reproducibility of the software package in local environments; they do not alter evaluation metrics or introduce production claims.
+
+Local validation closes the evidence package with `python -m ruff check app tests`, `python -m pytest` with 45 tests, `make lint`, `make test` with 45 tests and 56% coverage, and a passing `RESULTS_MANIFEST.json` hash check. Evaluation tests write generated outputs to temporary pytest directories, preventing accidental mutation of committed result artifacts. The frozen manifest therefore remains an integrity check for the committed evidence package.
+
 ## Supported And Stress Scope
 
 Supported-scope scenarios represent behavior within the intended implemented capability of a runtime. Stress-scope scenarios exercise edge conditions such as malformed payloads, unavailable capabilities, invalid mappings, invalid or missing approvals, invalidated post-approval mappings, and safe-abort paths. Stress cases are retained and reported separately. They are not removed from aggregate results.
@@ -55,3 +59,5 @@ The LangGraph runtime is evaluated for controlled approval continuation, approva
 ## Observability Evidence
 
 LangSmith is used only as observability evidence. Traces can support debugging, auditability, and figure preparation by recording stages such as planning, matching, governance, approval interrupt, approval resume, approved execution, execution, and final result. LangSmith traces do not validate industrial deployment, certified safety, or live PLC readiness.
+
+Recommended manuscript figure insertion points are: an architecture figure in the methodology section, a scenario-factor design figure after the scenario generator description, a Docker/Kubernetes reproducibility evidence figure or table after the reproducibility subsection, and a redacted LangSmith trace screenshot after the observability subsection. Screenshots should be sanitized to remove account identifiers, browser identity, API keys, and private URLs.

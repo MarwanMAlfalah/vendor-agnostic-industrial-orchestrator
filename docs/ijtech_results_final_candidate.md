@@ -47,3 +47,16 @@ The crash/restart persistence demo uses a SQLite LangGraph checkpointer. It demo
 ## LangSmith Observability
 
 LangSmith tracing is used as optional observability evidence. It records experiment-level and child span outputs for stages such as planning, matching, governance, approval interrupt, approval resume, approved execution, execution, and final result. These traces support debugging, auditability, and figure preparation. They do not validate industrial deployment, certified safety, or live PLC integration.
+
+## Reproducibility Evidence Integration
+
+The final evidence package adds reproducibility artifacts around the deterministic result tables without changing the scientific metrics. Docker Compose evidence shows local service-boundary execution against separate mock OPC UA-style, REST, and legacy service containers. Kubernetes evidence comes from an actual local kind run with the `orchestrator` Deployment, `orchestrator-api` Service, completed scaled-evaluation and crash/restart jobs, a bound checkpoint PVC, non-empty application/job/event logs, Deployment and Service descriptions, and a port-forwarded health response with `status=ok`. LangSmith trace evidence is available for observability and debugging after key rotation. The frozen manifest validation passes, and the scaled evaluation tests no longer mutate committed `data/results/` or `docs/` artifacts.
+
+| Evidence category | Representative artifacts | Result-section use | Figure or screenshot insertion point |
+| --- | --- | --- | --- |
+| Docker Compose integration | `containerized_integration_summary.json`; `containerized_integration_results.csv` | Supports local mock-service boundary evidence with policy compliance 1.0 and unsafe execution 0.0 in the recorded integration cases. | Optional container topology or command-output screenshot after the Docker evidence paragraph. |
+| Kubernetes local kind | `k8s_reproducibility_summary.json`; `k8s_logs/orchestrator.log`; job logs; events; health response | Supports local Kubernetes reproducibility with completed jobs, service health, checkpoint PVC, and non-empty logs. | Insert a compact screenshot of `kubectl get pods`, `kubectl get jobs`, and health response near the Kubernetes paragraph. |
+| LangSmith traces | `langsmith_trace_manifest.csv`; `docs/langsmith_trace_usage.md` | Supports observability, trace inspection, and figure preparation only. | Insert a redacted trace screenshot after the LangGraph continuation or observability paragraph. |
+| Manifest validation | `RESULTS_MANIFEST.json`; `RESULTS_METADATA_INDEX.*`; closure note | Supports artifact integrity and non-mutating test behavior. | Optional supplementary screenshot of passing validation commands. |
+
+These evidence sources should be described as reproducibility and observability support for a deterministic prototype. They should not be described as production deployment, live PLC integration, certified safety, regulatory compliance, or field validation.
