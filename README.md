@@ -1,5 +1,11 @@
 # Vendor-Agnostic Industrial Orchestrator
 
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.10+-blue?logo=python" />
+  <img src="https://img.shields.io/badge/LLM-AI-red" />
+  <img src="https://img.shields.io/badge/License-MIT-green" />
+</p>
+
 Research prototype for governance-aware, vendor-agnostic orchestration of industrial workflows.
 
 The repository contains a FastAPI service, deterministic mock adapters, governance-aware runtime
@@ -133,6 +139,13 @@ Expected response:
   "environment": "research"
 }
 ```
+---
+
+## ✨ Author
+
+#### 1. **Marwan M. Alfalah** MSc Student at SPbPU
+#### 2. Associate Professor **Elena S. Gebel** Master's degree programme director PhD
+
 
 ## Reviewer Notes
 
