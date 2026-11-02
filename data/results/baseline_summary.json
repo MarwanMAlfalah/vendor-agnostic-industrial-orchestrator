@@ -110,11 +110,11 @@
           "scenario_category": "ALLOW",
           "skipped_steps": 1,
           "stage_latencies_ms": {
-            "execution": 0.011792,
+            "execution": 0.0105,
             "governance": 0.0,
             "matching": 0.0,
             "planning": 0.0,
-            "total": 0.02075
+            "total": 0.018708
           }
         },
         {
@@ -132,11 +132,11 @@
           "scenario_category": "ALLOW",
           "skipped_steps": 1,
           "stage_latencies_ms": {
-            "execution": 0.005,
+            "execution": 0.005541,
             "governance": 0.0,
             "matching": 0.0,
             "planning": 0.0,
-            "total": 0.008875
+            "total": 0.009291
           }
         },
         {
@@ -154,11 +154,11 @@
           "scenario_category": "ALLOW",
           "skipped_steps": 1,
           "stage_latencies_ms": {
-            "execution": 0.004375,
+            "execution": 0.004125,
             "governance": 0.0,
             "matching": 0.0,
             "planning": 0.0,
-            "total": 0.008084
+            "total": 0.007875
           }
         },
         {
@@ -176,11 +176,11 @@
           "scenario_category": "REQUIRE_APPROVAL",
           "skipped_steps": 0,
           "stage_latencies_ms": {
-            "execution": 0.005959,
+            "execution": 0.005666,
             "governance": 0.0,
             "matching": 0.0,
             "planning": 0.0,
-            "total": 0.009417
+            "total": 0.009084
           }
         },
         {
@@ -198,11 +198,11 @@
           "scenario_category": "REQUIRE_APPROVAL",
           "skipped_steps": 0,
           "stage_latencies_ms": {
-            "execution": 0.004041,
+            "execution": 0.003666,
             "governance": 0.0,
             "matching": 0.0,
             "planning": 0.0,
-            "total": 0.007167
+            "total": 0.006875
           }
         },
         {
@@ -220,7 +220,7 @@
           "scenario_category": "REQUIRE_APPROVAL",
           "skipped_steps": 0,
           "stage_latencies_ms": {
-            "execution": 0.002917,
+            "execution": 0.00275,
             "governance": 0.0,
             "matching": 0.0,
             "planning": 0.0,
@@ -242,11 +242,11 @@
           "scenario_category": "BLOCK",
           "skipped_steps": 0,
           "stage_latencies_ms": {
-            "execution": 0.002709,
+            "execution": 0.002667,
             "governance": 0.0,
             "matching": 0.0,
             "planning": 0.0,
-            "total": 0.005958
+            "total": 0.005792
           }
         },
         {
@@ -264,11 +264,11 @@
           "scenario_category": "BLOCK",
           "skipped_steps": 0,
           "stage_latencies_ms": {
-            "execution": 0.004083,
+            "execution": 0.003917,
             "governance": 0.0,
             "matching": 0.0,
             "planning": 0.0,
-            "total": 0.009291
+            "total": 0.008792
           }
         },
         {
@@ -286,11 +286,11 @@
           "scenario_category": "BLOCK",
           "skipped_steps": 0,
           "stage_latencies_ms": {
-            "execution": 0.00775,
+            "execution": 0.002875,
             "governance": 0.0,
             "matching": 0.0,
             "planning": 0.0,
-            "total": 0.011125
+            "total": 0.006042
           }
         },
         {
@@ -306,11 +306,11 @@
           "scenario_category": "SAFE_ABORT",
           "skipped_steps": 0,
           "stage_latencies_ms": {
-            "execution": 0.002875,
+            "execution": 0.001791,
             "governance": 0.0,
             "matching": 0.0,
             "planning": 0.0,
-            "total": 0.006
+            "total": 0.004417
           }
         },
         {
@@ -326,11 +326,11 @@
           "scenario_category": "SAFE_ABORT",
           "skipped_steps": 0,
           "stage_latencies_ms": {
-            "execution": 0.001417,
+            "execution": 0.001584,
             "governance": 0.0,
             "matching": 0.0,
             "planning": 0.0,
-            "total": 0.004167
+            "total": 0.004041
           }
         },
         {
@@ -346,11 +346,11 @@
           "scenario_category": "SAFE_ABORT",
           "skipped_steps": 0,
           "stage_latencies_ms": {
-            "execution": 0.001583,
+            "execution": 0.0015,
             "governance": 0.0,
             "matching": 0.0,
             "planning": 0.0,
-            "total": 0.004042
+            "total": 0.004167
           }
         }
       ],
@@ -362,14 +362,16 @@
           "opcua_adapter": 0.3333,
           "rest_adapter": 0.0
         },
+        "approval_bypass_count": 3,
         "approval_bypass_rate": 1.0,
+        "approval_required_count": 3,
         "average_completed_steps": 0.75,
-        "average_execution_latency_ms": 0.004542,
+        "average_execution_latency_ms": 0.003882,
         "average_governance_latency_ms": 0.0,
         "average_matching_latency_ms": 0.0,
         "average_planning_latency_ms": 0.0,
         "average_skipped_steps": 0.25,
-        "average_total_latency_ms": 0.008392,
+        "average_total_latency_ms": 0.007576,
         "blocked_count": 0,
         "blocked_rate": 0.0,
         "execution_coverage_ratio": 0.6,
@@ -378,6 +380,8 @@
         "final_outcome_accuracy": 0.25,
         "governance_decision_accuracy": 0.0,
         "governance_intervention_rate": 0.0,
+        "invalid_mapping_case_count": 3,
+        "invalid_mapping_contained_count": 0,
         "invalid_mapping_containment_rate": 0.0,
         "partial_success_count": 0,
         "partial_success_rate": 0.0,
@@ -387,6 +391,8 @@
         "success_count": 9,
         "success_rate": 0.75,
         "total_runs": 12,
+        "unsafe_execution_count": 6,
+        "unsafe_execution_eligible_count": 6,
         "unsafe_execution_rate": 1.0
       }
     },
@@ -407,11 +413,11 @@
           "scenario_category": "ALLOW",
           "skipped_steps": 0,
           "stage_latencies_ms": {
-            "execution": 0.008583,
+            "execution": 0.007917,
             "governance": 0.0,
             "matching": 0.0,
-            "planning": 0.004,
-            "total": 0.01325
+            "planning": 0.003667,
+            "total": 0.012166
           }
         },
         {
@@ -429,11 +435,11 @@
           "scenario_category": "ALLOW",
           "skipped_steps": 0,
           "stage_latencies_ms": {
-            "execution": 0.006709,
+            "execution": 0.006375,
             "governance": 0.0,
             "matching": 0.0,
-            "planning": 0.002583,
-            "total": 0.009792
+            "planning": 0.002709,
+            "total": 0.009583
           }
         },
         {
@@ -451,11 +457,11 @@
           "scenario_category": "ALLOW",
           "skipped_steps": 0,
           "stage_latencies_ms": {
-            "execution": 0.005167,
+            "execution": 0.0055,
             "governance": 0.0,
             "matching": 0.0,
-            "planning": 0.00225,
-            "total": 0.007958
+            "planning": 0.002334,
+            "total": 0.008417
           }
         },
         {
@@ -473,11 +479,11 @@
           "scenario_category": "REQUIRE_APPROVAL",
           "skipped_steps": 0,
           "stage_latencies_ms": {
-            "execution": 0.00575,
+            "execution": 0.006167,
             "governance": 0.0,
             "matching": 0.0,
-            "planning": 0.002292,
-            "total": 0.0085
+            "planning": 0.002459,
+            "total": 0.009125
           }
         },
         {
@@ -495,11 +501,11 @@
           "scenario_category": "REQUIRE_APPROVAL",
           "skipped_steps": 0,
           "stage_latencies_ms": {
-            "execution": 0.005334,
+            "execution": 0.005833,
             "governance": 0.0,
             "matching": 0.0,
-            "planning": 0.002084,
-            "total": 0.007875
+            "planning": 0.002375,
+            "total": 0.008708
           }
         },
         {
@@ -517,11 +523,11 @@
           "scenario_category": "REQUIRE_APPROVAL",
           "skipped_steps": 0,
           "stage_latencies_ms": {
-            "execution": 0.004958,
+            "execution": 0.00525,
             "governance": 0.0,
             "matching": 0.0,
-            "planning": 0.002083,
-            "total": 0.007459
+            "planning": 0.002208,
+            "total": 0.008
           }
         },
         {
@@ -539,11 +545,11 @@
           "scenario_category": "BLOCK",
           "skipped_steps": 0,
           "stage_latencies_ms": {
-            "execution": 0.004875,
+            "execution": 0.005458,
             "governance": 0.0,
             "matching": 0.0,
-            "planning": 0.002,
-            "total": 0.007292
+            "planning": 0.00225,
+            "total": 0.008167
           }
         },
         {
@@ -561,11 +567,11 @@
           "scenario_category": "BLOCK",
           "skipped_steps": 0,
           "stage_latencies_ms": {
-            "execution": 0.004875,
+            "execution": 0.005292,
             "governance": 0.0,
             "matching": 0.0,
-            "planning": 0.003042,
-            "total": 0.008458
+            "planning": 0.003291,
+            "total": 0.009167
           }
         },
         {
@@ -583,11 +589,11 @@
           "scenario_category": "BLOCK",
           "skipped_steps": 0,
           "stage_latencies_ms": {
-            "execution": 0.0045,
+            "execution": 0.005,
             "governance": 0.0,
             "matching": 0.0,
-            "planning": 0.00225,
-            "total": 0.007375
+            "planning": 0.002459,
+            "total": 0.008
           }
         },
         {
@@ -605,11 +611,11 @@
           "scenario_category": "SAFE_ABORT",
           "skipped_steps": 0,
           "stage_latencies_ms": {
-            "execution": 0.00475,
+            "execution": 0.005042,
             "governance": 0.0,
             "matching": 0.0,
-            "planning": 0.002042,
-            "total": 0.00725
+            "planning": 0.002167,
+            "total": 0.00775
           }
         },
         {
@@ -627,11 +633,11 @@
           "scenario_category": "SAFE_ABORT",
           "skipped_steps": 0,
           "stage_latencies_ms": {
-            "execution": 0.004667,
+            "execution": 0.004875,
             "governance": 0.0,
             "matching": 0.0,
             "planning": 0.002,
-            "total": 0.007167
+            "total": 0.007333
           }
         },
         {
@@ -649,11 +655,11 @@
           "scenario_category": "SAFE_ABORT",
           "skipped_steps": 0,
           "stage_latencies_ms": {
-            "execution": 0.005,
+            "execution": 0.004833,
             "governance": 0.0,
             "matching": 0.0,
-            "planning": 0.002333,
-            "total": 0.007834
+            "planning": 0.002166,
+            "total": 0.007458
           }
         }
       ],
@@ -665,14 +671,16 @@
           "opcua_adapter": 0.5,
           "rest_adapter": 0.0
         },
+        "approval_bypass_count": 3,
         "approval_bypass_rate": 1.0,
+        "approval_required_count": 3,
         "average_completed_steps": 1.0,
-        "average_execution_latency_ms": 0.005431,
+        "average_execution_latency_ms": 0.005628,
         "average_governance_latency_ms": 0.0,
         "average_matching_latency_ms": 0.0,
-        "average_planning_latency_ms": 0.002413,
+        "average_planning_latency_ms": 0.002507,
         "average_skipped_steps": 0.0,
-        "average_total_latency_ms": 0.008351,
+        "average_total_latency_ms": 0.008656,
         "blocked_count": 0,
         "blocked_rate": 0.0,
         "execution_coverage_ratio": 1.0,
@@ -681,6 +689,8 @@
         "final_outcome_accuracy": 0.25,
         "governance_decision_accuracy": 0.25,
         "governance_intervention_rate": 0.0,
+        "invalid_mapping_case_count": 3,
+        "invalid_mapping_contained_count": 0,
         "invalid_mapping_containment_rate": 0.0,
         "partial_success_count": 0,
         "partial_success_rate": 0.0,
@@ -690,6 +700,8 @@
         "success_count": 12,
         "success_rate": 1.0,
         "total_runs": 12,
+        "unsafe_execution_count": 6,
+        "unsafe_execution_eligible_count": 6,
         "unsafe_execution_rate": 1.0
       }
     },
@@ -710,11 +722,11 @@
           "scenario_category": "ALLOW",
           "skipped_steps": 1,
           "stage_latencies_ms": {
-            "execution": 0.008792,
-            "governance": 0.006041,
+            "execution": 0.009208,
+            "governance": 0.005208,
             "matching": 0.0,
             "planning": 0.0,
-            "total": 0.015458
+            "total": 0.015041
           }
         },
         {
@@ -732,11 +744,11 @@
           "scenario_category": "ALLOW",
           "skipped_steps": 1,
           "stage_latencies_ms": {
-            "execution": 0.00725,
-            "governance": 0.002084,
+            "execution": 0.007,
+            "governance": 0.002041,
             "matching": 0.0,
             "planning": 0.0,
-            "total": 0.009834
+            "total": 0.009583
           }
         },
         {
@@ -754,11 +766,11 @@
           "scenario_category": "ALLOW",
           "skipped_steps": 1,
           "stage_latencies_ms": {
-            "execution": 0.006625,
-            "governance": 0.0025,
+            "execution": 0.0065,
+            "governance": 0.002375,
             "matching": 0.0,
             "planning": 0.0,
-            "total": 0.009792
+            "total": 0.009458
           }
         },
         {
@@ -776,11 +788,11 @@
           "scenario_category": "REQUIRE_APPROVAL",
           "skipped_steps": 0,
           "stage_latencies_ms": {
-            "execution": 0.005916,
-            "governance": 0.011042,
+            "execution": 0.005792,
+            "governance": 0.013417,
             "matching": 0.0,
             "planning": 0.0,
-            "total": 0.0175
+            "total": 0.01975
           }
         },
         {
@@ -799,10 +811,10 @@
           "skipped_steps": 0,
           "stage_latencies_ms": {
             "execution": 0.005625,
-            "governance": 0.004125,
+            "governance": 0.0045,
             "matching": 0.0,
             "planning": 0.0,
-            "total": 0.010292
+            "total": 0.010625
           }
         },
         {
@@ -820,11 +832,11 @@
           "scenario_category": "REQUIRE_APPROVAL",
           "skipped_steps": 0,
           "stage_latencies_ms": {
-            "execution": 0.005458,
-            "governance": 0.003083,
+            "execution": 0.00525,
+            "governance": 0.00425,
             "matching": 0.0,
             "planning": 0.0,
-            "total": 0.009042
+            "total": 0.009958
           }
         },
         {
@@ -842,11 +854,11 @@
           "scenario_category": "BLOCK",
           "skipped_steps": 0,
           "stage_latencies_ms": {
-            "execution": 0.004959,
-            "governance": 0.002625,
+            "execution": 0.004875,
+            "governance": 0.003167,
             "matching": 0.0,
             "planning": 0.0,
-            "total": 0.008042
+            "total": 0.0085
           }
         },
         {
@@ -864,11 +876,11 @@
           "scenario_category": "BLOCK",
           "skipped_steps": 0,
           "stage_latencies_ms": {
-            "execution": 0.004917,
-            "governance": 0.003458,
+            "execution": 0.00525,
+            "governance": 0.0035,
             "matching": 0.0,
             "planning": 0.0,
-            "total": 0.008917
+            "total": 0.009292
           }
         },
         {
@@ -886,11 +898,11 @@
           "scenario_category": "BLOCK",
           "skipped_steps": 0,
           "stage_latencies_ms": {
-            "execution": 0.005,
-            "governance": 0.002709,
+            "execution": 0.005125,
+            "governance": 0.003209,
             "matching": 0.0,
             "planning": 0.0,
-            "total": 0.00825
+            "total": 0.008833
           }
         },
         {
@@ -907,10 +919,10 @@
           "skipped_steps": 1,
           "stage_latencies_ms": {
             "execution": 0.004667,
-            "governance": 0.001792,
+            "governance": 0.001833,
             "matching": 0.0,
             "planning": 0.0,
-            "total": 0.006959
+            "total": 0.007
           }
         },
         {
@@ -926,11 +938,11 @@
           "scenario_category": "SAFE_ABORT",
           "skipped_steps": 1,
           "stage_latencies_ms": {
-            "execution": 0.004042,
-            "governance": 0.001542,
+            "execution": 0.003958,
+            "governance": 0.001584,
             "matching": 0.0,
             "planning": 0.0,
-            "total": 0.006083
+            "total": 0.006041
           }
         },
         {
@@ -946,11 +958,11 @@
           "scenario_category": "SAFE_ABORT",
           "skipped_steps": 1,
           "stage_latencies_ms": {
-            "execution": 0.003875,
-            "governance": 0.001542,
+            "execution": 0.003958,
+            "governance": 0.001541,
             "matching": 0.0,
             "planning": 0.0,
-            "total": 0.005791
+            "total": 0.005916
           }
         }
       ],
@@ -962,14 +974,16 @@
           "opcua_adapter": 0.3333,
           "rest_adapter": 0.0
         },
+        "approval_bypass_count": 3,
         "approval_bypass_rate": 1.0,
+        "approval_required_count": 3,
         "average_completed_steps": 0.75,
-        "average_execution_latency_ms": 0.005594,
-        "average_governance_latency_ms": 0.003545,
+        "average_execution_latency_ms": 0.005601,
+        "average_governance_latency_ms": 0.003885,
         "average_matching_latency_ms": 0.0,
         "average_planning_latency_ms": 0.0,
         "average_skipped_steps": 0.5,
-        "average_total_latency_ms": 0.009663,
+        "average_total_latency_ms": 0.01,
         "blocked_count": 0,
         "blocked_rate": 0.0,
         "execution_coverage_ratio": 0.6,
@@ -978,6 +992,8 @@
         "final_outcome_accuracy": 0.5,
         "governance_decision_accuracy": 0.5,
         "governance_intervention_rate": 0.25,
+        "invalid_mapping_case_count": 3,
+        "invalid_mapping_contained_count": 3,
         "invalid_mapping_containment_rate": 1.0,
         "partial_success_count": 0,
         "partial_success_rate": 0.0,
@@ -987,6 +1003,8 @@
         "success_count": 9,
         "success_rate": 0.75,
         "total_runs": 12,
+        "unsafe_execution_count": 6,
+        "unsafe_execution_eligible_count": 6,
         "unsafe_execution_rate": 1.0
       }
     },
@@ -1007,11 +1025,11 @@
           "scenario_category": "ALLOW",
           "skipped_steps": 1,
           "stage_latencies_ms": {
-            "execution": 0.044375,
-            "governance": 3.425875,
-            "matching": 4.187125,
-            "planning": 0.037167,
-            "total": 8.105917
+            "execution": 0.019625,
+            "governance": 3.2255,
+            "matching": 3.594875,
+            "planning": 0.007583,
+            "total": 6.903917
           }
         },
         {
@@ -1029,11 +1047,11 @@
           "scenario_category": "ALLOW",
           "skipped_steps": 1,
           "stage_latencies_ms": {
-            "execution": 0.01725,
-            "governance": 3.336834,
-            "matching": 3.389875,
-            "planning": 0.008125,
-            "total": 6.867917
+            "execution": 0.03075,
+            "governance": 3.661,
+            "matching": 3.242875,
+            "planning": 0.006,
+            "total": 6.957292
           }
         },
         {
@@ -1051,11 +1069,11 @@
           "scenario_category": "ALLOW",
           "skipped_steps": 1,
           "stage_latencies_ms": {
-            "execution": 0.015625,
-            "governance": 3.663375,
-            "matching": 3.330875,
-            "planning": 0.00675,
-            "total": 7.089041
+            "execution": 0.034,
+            "governance": 4.245958,
+            "matching": 3.82875,
+            "planning": 0.008667,
+            "total": 8.141708
           }
         },
         {
@@ -1071,11 +1089,11 @@
           "scenario_category": "REQUIRE_APPROVAL",
           "skipped_steps": 1,
           "stage_latencies_ms": {
-            "execution": 0.0115,
-            "governance": 3.328833,
-            "matching": 3.375,
-            "planning": 0.006875,
-            "total": 6.798167
+            "execution": 0.017,
+            "governance": 3.517875,
+            "matching": 3.656917,
+            "planning": 0.01125,
+            "total": 7.222125
           }
         },
         {
@@ -1091,11 +1109,11 @@
           "scenario_category": "REQUIRE_APPROVAL",
           "skipped_steps": 1,
           "stage_latencies_ms": {
-            "execution": 0.010416,
-            "governance": 3.300708,
-            "matching": 3.341333,
-            "planning": 0.005958,
-            "total": 6.718666
+            "execution": 0.017459,
+            "governance": 3.471167,
+            "matching": 3.316083,
+            "planning": 0.009041,
+            "total": 6.831958
           }
         },
         {
@@ -1111,11 +1129,11 @@
           "scenario_category": "REQUIRE_APPROVAL",
           "skipped_steps": 1,
           "stage_latencies_ms": {
-            "execution": 0.008541,
-            "governance": 3.407833,
-            "matching": 3.762917,
-            "planning": 0.006042,
-            "total": 7.240042
+            "execution": 0.018875,
+            "governance": 4.390375,
+            "matching": 3.358334,
+            "planning": 0.00825,
+            "total": 7.795417
           }
         },
         {
@@ -1131,11 +1149,11 @@
           "scenario_category": "BLOCK",
           "skipped_steps": 1,
           "stage_latencies_ms": {
-            "execution": 0.007875,
-            "governance": 3.302166,
-            "matching": 3.303208,
-            "planning": 0.006,
-            "total": 6.699542
+            "execution": 0.009792,
+            "governance": 3.250667,
+            "matching": 3.374167,
+            "planning": 0.006709,
+            "total": 6.660333
           }
         },
         {
@@ -1151,11 +1169,11 @@
           "scenario_category": "BLOCK",
           "skipped_steps": 1,
           "stage_latencies_ms": {
-            "execution": 0.018042,
-            "governance": 3.410791,
-            "matching": 3.325916,
-            "planning": 0.006458,
-            "total": 6.816833
+            "execution": 0.009792,
+            "governance": 3.25875,
+            "matching": 3.248416,
+            "planning": 0.006584,
+            "total": 6.534542
           }
         },
         {
@@ -1171,11 +1189,11 @@
           "scenario_category": "BLOCK",
           "skipped_steps": 1,
           "stage_latencies_ms": {
-            "execution": 0.015458,
-            "governance": 3.406875,
-            "matching": 4.026542,
-            "planning": 0.066833,
-            "total": 7.761458
+            "execution": 0.007,
+            "governance": 3.256792,
+            "matching": 3.246083,
+            "planning": 0.005666,
+            "total": 6.524583
           }
         },
         {
@@ -1191,11 +1209,11 @@
           "scenario_category": "SAFE_ABORT",
           "skipped_steps": 1,
           "stage_latencies_ms": {
-            "execution": 0.008542,
+            "execution": 0.006042,
             "governance": 0.0,
             "matching": 0.0,
             "planning": 0.0,
-            "total": 0.118458
+            "total": 0.012209
           }
         },
         {
@@ -1211,11 +1229,11 @@
           "scenario_category": "SAFE_ABORT",
           "skipped_steps": 1,
           "stage_latencies_ms": {
-            "execution": 0.006875,
+            "execution": 0.005084,
             "governance": 0.0,
             "matching": 0.0,
             "planning": 0.0,
-            "total": 0.050375
+            "total": 0.009375
           }
         },
         {
@@ -1231,11 +1249,11 @@
           "scenario_category": "SAFE_ABORT",
           "skipped_steps": 1,
           "stage_latencies_ms": {
-            "execution": 0.005917,
+            "execution": 0.0045,
             "governance": 0.0,
             "matching": 0.0,
             "planning": 0.0,
-            "total": 0.043333
+            "total": 0.008458
           }
         }
       ],
@@ -1247,14 +1265,16 @@
           "opcua_adapter": 1.0,
           "rest_adapter": 0.0
         },
+        "approval_bypass_count": 0,
         "approval_bypass_rate": 0.0,
+        "approval_required_count": 3,
         "average_completed_steps": 0.25,
-        "average_execution_latency_ms": 0.014201,
-        "average_governance_latency_ms": 2.548607,
-        "average_matching_latency_ms": 2.670233,
-        "average_planning_latency_ms": 0.012517,
+        "average_execution_latency_ms": 0.014993,
+        "average_governance_latency_ms": 2.68984,
+        "average_matching_latency_ms": 2.572208,
+        "average_planning_latency_ms": 0.005813,
         "average_skipped_steps": 1.0,
-        "average_total_latency_ms": 5.359146,
+        "average_total_latency_ms": 5.30016,
         "blocked_count": 3,
         "blocked_rate": 0.25,
         "execution_coverage_ratio": 0.2,
@@ -1263,6 +1283,8 @@
         "final_outcome_accuracy": 1.0,
         "governance_decision_accuracy": 1.0,
         "governance_intervention_rate": 0.75,
+        "invalid_mapping_case_count": 3,
+        "invalid_mapping_contained_count": 3,
         "invalid_mapping_containment_rate": 1.0,
         "partial_success_count": 3,
         "partial_success_rate": 0.25,
@@ -1272,6 +1294,8 @@
         "success_count": 3,
         "success_rate": 0.25,
         "total_runs": 12,
+        "unsafe_execution_count": 0,
+        "unsafe_execution_eligible_count": 6,
         "unsafe_execution_rate": 0.0
       }
     }

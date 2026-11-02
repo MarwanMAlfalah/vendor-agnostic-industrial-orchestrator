@@ -150,9 +150,9 @@ def _crash_restart_success(crash_summary: dict[str, Any]) -> bool:
     metrics = crash_summary.get("metrics", {})
     required = [
         "checkpoint_resume_success_rate",
-        "restart_recovery_success_rate",
-        "post_restart_final_outcome_accuracy",
-        "restart_trace_completeness",
+        "checkpoint_reopen_resume_success_rate",
+        "post_reopen_final_outcome_accuracy",
+        "checkpoint_reopen_trace_completeness",
     ]
     return bool(metrics) and all(float(metrics.get(key, 0.0)) == 1.0 for key in required)
 
@@ -164,11 +164,13 @@ def _trace_completeness(
     trace_values: list[float] = []
     runtime_summary = scaled_summary.get("runtime_summary", {})
     if "langgraph_runtime" in runtime_summary:
-        trace_values.append(float(runtime_summary["langgraph_runtime"].get("trace_completeness", 0.0)))
+        trace_values.append(
+            float(runtime_summary["langgraph_runtime"].get("trace_completeness", 0.0))
+        )
     if "reference_v1" in runtime_summary:
         trace_values.append(float(runtime_summary["reference_v1"].get("trace_completeness", 0.0)))
 
-    crash_trace = crash_summary.get("metrics", {}).get("restart_trace_completeness")
+    crash_trace = crash_summary.get("metrics", {}).get("checkpoint_reopen_trace_completeness")
     if crash_trace is not None:
         trace_values.append(float(crash_trace))
 

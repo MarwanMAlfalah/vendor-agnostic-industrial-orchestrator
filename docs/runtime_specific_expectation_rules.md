@@ -7,7 +7,7 @@ profile.
 Rules:
 
 - `reference_v1`: valid post-approval scenarios are expected to end in
-  `partial_success` with an approval-required checkpoint, not `success`,
+  `partial_success` with a recorded approval requirement, not `success`,
   because the runtime does not perform controlled post-approval continuation.
 - `reference_v1`: approval invalidation after resume is outside continuation
   scope; the expected decision is derived from the original governance plan

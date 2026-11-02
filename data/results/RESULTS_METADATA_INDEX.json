@@ -1,9 +1,9 @@
 {
-  "artifact_count": 84,
+  "artifact_count": 82,
   "artifacts": [
     {
       "artifact_path": "data/results/ablation_results.csv",
-      "sha256": "4c52d0bee55d9ac21bbefe44a3477c7cdaf1036dadfa0eafb6ea0653d8468a0e",
+      "sha256": "0d69e614aa74829b0fd24bfb58886b6cdac75ab7131043b624a5441c3b188c90",
       "artifact_type": "ablation_result",
       "generated_by_command": ".venv/bin/python -m app.evaluation.run_ablation_study",
       "run_id": "",
@@ -12,11 +12,11 @@
       "deployment_mode": "",
       "runtime_id_scope": "runtime_id",
       "timestamp_utc": "2026-05-24T01:19:17Z",
-      "notes": "run_id not present in artifact; git_sha not present in artifact; profile not present or inferable from filename; deployment_mode not present or inferable from filename; artifact timestamp not present; index timestamp records audit time"
+      "notes": "run_id not present in artifact; git_sha not present in artifact; profile not present or inferable from filename; deployment_mode not present or inferable from filename; artifact timestamp not present; index timestamp records audit time; P0 refresh: 2026-11-02T09:08:26Z; SHA-256 reflects corrected artifact; original indexing provenance retained"
     },
     {
       "artifact_path": "data/results/ablation_summary.json",
-      "sha256": "8ae18ed0467ee6a061e249d0b1e0ae7cde2b549d42cf53d039631ac565fb31ba",
+      "sha256": "48ed3151a509bea493cb9d28a2b54475a0a0cb457838a5d38eceb724f6c767b0",
       "artifact_type": "ablation_result",
       "generated_by_command": ".venv/bin/python -m app.evaluation.run_ablation_study",
       "run_id": "",
@@ -25,11 +25,11 @@
       "deployment_mode": "",
       "runtime_id_scope": "reference_v1",
       "timestamp_utc": "2026-05-24T01:19:17Z",
-      "notes": "run_id not present in artifact; git_sha not present in artifact; deployment_mode not present or inferable from filename; artifact timestamp not present; index timestamp records audit time"
+      "notes": "run_id not present in artifact; git_sha not present in artifact; deployment_mode not present or inferable from filename; artifact timestamp not present; index timestamp records audit time; P0 refresh: 2026-11-02T09:08:26Z; SHA-256 reflects corrected artifact; original indexing provenance retained"
     },
     {
       "artifact_path": "data/results/aligned_confusion_matrix_final_status_journal.csv",
-      "sha256": "aaba4c43120c3c0cc1fa714a8081c283a7f48aa5ef7978312fe77ad8c824dc11",
+      "sha256": "453d477a480a6c1b995de8060411bf30ac10447a1c23b4373681e934c7cb50ea",
       "artifact_type": "result_artifact",
       "generated_by_command": "",
       "run_id": "",
@@ -38,11 +38,11 @@
       "deployment_mode": "local_synthetic",
       "runtime_id_scope": "runtime_id",
       "timestamp_utc": "2026-05-24T01:19:17Z",
-      "notes": "run_id not present in artifact; git_sha not present in artifact; artifact timestamp not present; index timestamp records audit time"
+      "notes": "run_id not present in artifact; git_sha not present in artifact; artifact timestamp not present; index timestamp records audit time; P0 refresh: 2026-11-02T09:08:26Z; SHA-256 reflects corrected artifact; original indexing provenance retained"
     },
     {
       "artifact_path": "data/results/aligned_error_cases_journal.csv",
-      "sha256": "a664fd3b3b5887a9ca763d3cf46e0f111cc733c060bc0f5e16c12e65bda100a0",
+      "sha256": "7343ef6a60d07b2e1ba19ca66c387c2b4dcf1486f4579c538be331c112e12c76",
       "artifact_type": "result_artifact",
       "generated_by_command": "",
       "run_id": "",
@@ -51,11 +51,11 @@
       "deployment_mode": "",
       "runtime_id_scope": "runtime_id",
       "timestamp_utc": "2026-05-24T01:19:17Z",
-      "notes": "run_id not present in artifact; git_sha not present in artifact; deployment_mode not present or inferable from filename; artifact timestamp not present; index timestamp records audit time"
+      "notes": "run_id not present in artifact; git_sha not present in artifact; deployment_mode not present or inferable from filename; artifact timestamp not present; index timestamp records audit time; P0 refresh: 2026-11-02T09:08:26Z; SHA-256 reflects corrected artifact; original indexing provenance retained"
     },
     {
       "artifact_path": "data/results/aligned_scaled_metrics_by_runtime.csv",
-      "sha256": "0d0bb8b8b401cf5b27fac2aceb29438863987298365b5b3125948d81fb0f4de7",
+      "sha256": "24d75a67d4ba780cad4fd88784a201b5bcc3752cb57768b7862c1520ee77e4ad",
       "artifact_type": "scaled_analysis_result",
       "generated_by_command": "",
       "run_id": "",
@@ -64,11 +64,11 @@
       "deployment_mode": "local_synthetic",
       "runtime_id_scope": "runtime_id",
       "timestamp_utc": "2026-05-24T01:19:17Z",
-      "notes": "run_id not present in artifact; git_sha not present in artifact; profile not present or inferable from filename; artifact timestamp not present; index timestamp records audit time"
+      "notes": "run_id not present in artifact; git_sha not present in artifact; profile not present or inferable from filename; artifact timestamp not present; index timestamp records audit time; P0 refresh: 2026-11-02T09:08:26Z; SHA-256 reflects corrected artifact; original indexing provenance retained"
     },
     {
       "artifact_path": "data/results/aligned_scaled_metrics_by_scope.csv",
-      "sha256": "558b3a8e1d16aa675ad1e507c3bd1038bbc6e2538029b6855c7ece53c2ff8cd0",
+      "sha256": "fbf40c8dec78ca74f5676444799aaf5b0839ba32cd284d064b98a7bcf74f2289",
       "artifact_type": "scaled_analysis_result",
       "generated_by_command": "",
       "run_id": "",
@@ -77,11 +77,11 @@
       "deployment_mode": "local_synthetic",
       "runtime_id_scope": "runtime_id",
       "timestamp_utc": "2026-05-24T01:19:17Z",
-      "notes": "run_id not present in artifact; git_sha not present in artifact; profile not present or inferable from filename; artifact timestamp not present; index timestamp records audit time"
+      "notes": "run_id not present in artifact; git_sha not present in artifact; profile not present or inferable from filename; artifact timestamp not present; index timestamp records audit time; P0 refresh: 2026-11-02T09:08:26Z; SHA-256 reflects corrected artifact; original indexing provenance retained"
     },
     {
       "artifact_path": "data/results/aligned_scaled_results_journal.csv",
-      "sha256": "cb6d6115154fafc2e2eb338d8be949188d27266ba19d7b4d4ce967c8f4eec9fb",
+      "sha256": "0ca800ddd01f9ed338c99d75baf4270b4204d54e4ea80d803a4cfca78cca1cd6",
       "artifact_type": "scaled_analysis_result",
       "generated_by_command": "",
       "run_id": "",
@@ -90,11 +90,11 @@
       "deployment_mode": "local_synthetic",
       "runtime_id_scope": "runtime_id",
       "timestamp_utc": "2026-05-24T01:19:17Z",
-      "notes": "run_id not present in artifact; git_sha not present in artifact; artifact timestamp not present; index timestamp records audit time"
+      "notes": "run_id not present in artifact; git_sha not present in artifact; artifact timestamp not present; index timestamp records audit time; P0 refresh: 2026-11-02T09:10:07Z; SHA-256 reflects corrected artifact; original indexing provenance retained"
     },
     {
       "artifact_path": "data/results/aligned_scaled_summary_journal.json",
-      "sha256": "a9405b196f00295507f95a099ec1b87ba0ad936a8cf13a0327fc7cfd6f53d37e",
+      "sha256": "1788112d0c0f40a9ba7e964c5e1a4711c4814e141907b53ea26e103be0444a82",
       "artifact_type": "scaled_analysis_result",
       "generated_by_command": "",
       "run_id": "",
@@ -103,11 +103,11 @@
       "deployment_mode": "local_synthetic",
       "runtime_id_scope": "baseline_a_direct_without_governance",
       "timestamp_utc": "2026-05-24T01:19:17Z",
-      "notes": "run_id not present in artifact; git_sha not present in artifact; artifact timestamp not present; index timestamp records audit time"
+      "notes": "run_id not present in artifact; git_sha not present in artifact; artifact timestamp not present; index timestamp records audit time; P0 refresh: 2026-11-02T09:08:26Z; SHA-256 reflects corrected artifact; original indexing provenance retained"
     },
     {
       "artifact_path": "data/results/baseline_summary.json",
-      "sha256": "9e54deea15591dd79c5cc5a321ea531f2651223921aa705733f94b39a94c7e91",
+      "sha256": "e007c1611c6f207f254066bef22bf0d51aff6b18feb4a6534253ae435022cb36",
       "artifact_type": "result_artifact",
       "generated_by_command": "",
       "run_id": "",
@@ -116,11 +116,11 @@
       "deployment_mode": "",
       "runtime_id_scope": "baselines",
       "timestamp_utc": "2026-05-24T01:19:17Z",
-      "notes": "run_id not present in artifact; git_sha not present in artifact; profile not present or inferable from filename; deployment_mode not present or inferable from filename; artifact timestamp not present; index timestamp records audit time"
+      "notes": "run_id not present in artifact; git_sha not present in artifact; profile not present or inferable from filename; deployment_mode not present or inferable from filename; artifact timestamp not present; index timestamp records audit time; P0 refresh: 2026-11-02T09:08:26Z; SHA-256 reflects corrected artifact; original indexing provenance retained"
     },
     {
       "artifact_path": "data/results/comparison_results.csv",
-      "sha256": "1c2e1c929bc8ffe78a9d8d3d684d0accc1e14934f6d33e4e0f3ea8d22b47e610",
+      "sha256": "758726d18496cf2a62582d6538003c4a803dcafa75e24b1f4b1b301e8e69b925",
       "artifact_type": "comparison_result",
       "generated_by_command": "",
       "run_id": "",
@@ -129,11 +129,11 @@
       "deployment_mode": "",
       "runtime_id_scope": "mixed_runtime_comparison",
       "timestamp_utc": "2026-05-24T01:19:17Z",
-      "notes": "run_id not present in artifact; git_sha not present in artifact; profile not present or inferable from filename; deployment_mode not present or inferable from filename; artifact timestamp not present; index timestamp records audit time"
+      "notes": "run_id not present in artifact; git_sha not present in artifact; profile not present or inferable from filename; deployment_mode not present or inferable from filename; artifact timestamp not present; index timestamp records audit time; P0 refresh: 2026-11-02T09:08:26Z; SHA-256 reflects corrected artifact; original indexing provenance retained"
     },
     {
       "artifact_path": "data/results/confusion_matrix_final_status_journal.csv",
-      "sha256": "99526942eac0d1e71455010dc65b2cc33af0746aad425f6e222ed739a23998f8",
+      "sha256": "cf5bb946ec7b0af1b42c8b22e3bc7132cc888c70e0fa7938382624c145eb9822",
       "artifact_type": "result_artifact",
       "generated_by_command": "",
       "run_id": "",
@@ -142,11 +142,11 @@
       "deployment_mode": "local_synthetic",
       "runtime_id_scope": "runtime_id",
       "timestamp_utc": "2026-05-24T01:19:17Z",
-      "notes": "run_id not present in artifact; git_sha not present in artifact; artifact timestamp not present; index timestamp records audit time"
+      "notes": "run_id not present in artifact; git_sha not present in artifact; artifact timestamp not present; index timestamp records audit time; P0 refresh: 2026-11-02T09:08:26Z; SHA-256 reflects corrected artifact; original indexing provenance retained"
     },
     {
       "artifact_path": "data/results/confusion_matrix_governance_decision_journal.csv",
-      "sha256": "52be6d7f02c229e40606440b28e7c5e3b46b372b19a8d9a42560413b535fb27e",
+      "sha256": "24fafc476d066bf386293ab558acbeac5b6949d8858b8dfc70d8e09c59b586af",
       "artifact_type": "result_artifact",
       "generated_by_command": "",
       "run_id": "",
@@ -155,7 +155,7 @@
       "deployment_mode": "",
       "runtime_id_scope": "runtime_id",
       "timestamp_utc": "2026-05-24T01:19:17Z",
-      "notes": "run_id not present in artifact; git_sha not present in artifact; deployment_mode not present or inferable from filename; artifact timestamp not present; index timestamp records audit time"
+      "notes": "run_id not present in artifact; git_sha not present in artifact; deployment_mode not present or inferable from filename; artifact timestamp not present; index timestamp records audit time; P0 refresh: 2026-11-02T09:08:26Z; SHA-256 reflects corrected artifact; original indexing provenance retained"
     },
     {
       "artifact_path": "data/results/containerized_integration_results.csv",
@@ -185,7 +185,7 @@
     },
     {
       "artifact_path": "data/results/crash_restart_demo_summary.json",
-      "sha256": "50aad1d57c0c08f17668b7ea9e09247d97a2c7f7c97e78e775c263334c5ea6fb",
+      "sha256": "30ed4883970d3e7ad17b66efc04fc0193dc46f69d501a32b00f05b509f1b8f85",
       "artifact_type": "crash_restart_result",
       "generated_by_command": ".venv/bin/python -m app.evaluation.run_crash_restart_demo",
       "run_id": "",
@@ -194,11 +194,11 @@
       "deployment_mode": "",
       "runtime_id_scope": "",
       "timestamp_utc": "2026-05-24T01:19:17Z",
-      "notes": "run_id not present in artifact; git_sha not present in artifact; profile not present or inferable from filename; deployment_mode not present or inferable from filename; runtime_id scope not present or inferable; artifact timestamp not present; index timestamp records audit time"
+      "notes": "run_id not present in artifact; git_sha not present in artifact; profile not present or inferable from filename; deployment_mode not present or inferable from filename; runtime_id scope not present or inferable; artifact timestamp not present; index timestamp records audit time; P0 refresh: 2026-11-02T09:07:48Z; SHA-256 reflects corrected artifact; original indexing provenance retained"
     },
     {
       "artifact_path": "data/results/deployment_mode_comparison.csv",
-      "sha256": "ef9bce1b49e49e41a464a3a964f9bf067d57aab5f41220d2a17aa1a08900d46d",
+      "sha256": "0982afe5175e533ec1bd5794b90b73a28220ac8986768e79b82379687f8173ef",
       "artifact_type": "deployment_mode_comparison",
       "generated_by_command": "final evidence verification consolidation script",
       "run_id": "",
@@ -207,11 +207,11 @@
       "deployment_mode": "deployment_mode",
       "runtime_id_scope": "mixed_runtime_comparison",
       "timestamp_utc": "2026-05-24T01:19:17Z",
-      "notes": "run_id not present in artifact; git_sha not present in artifact; profile not present or inferable from filename; artifact timestamp not present; index timestamp records audit time"
+      "notes": "run_id not present in artifact; git_sha not present in artifact; profile not present or inferable from filename; artifact timestamp not present; index timestamp records audit time; P0 refresh: 2026-11-02T09:08:26Z; SHA-256 reflects corrected artifact; original indexing provenance retained"
     },
     {
       "artifact_path": "data/results/deployment_mode_comparison_with_metadata.csv",
-      "sha256": "b4f9369bd7dedb91fa179bea9237fcb88de38d3b07fa330287f2a8258dd12407",
+      "sha256": "4ea266c20d189ed630a3bb50de86f74d46aa1e8eb3becc096647010edbf903db",
       "artifact_type": "normalized_deployment_mode_comparison",
       "generated_by_command": "metadata hardening pass normalized table generation",
       "run_id": "run_id",
@@ -220,7 +220,7 @@
       "deployment_mode": "deployment_mode",
       "runtime_id_scope": "mixed_runtime_comparison",
       "timestamp_utc": "2026-05-24T01:19:17Z",
-      "notes": ""
+      "notes": "; P0 refresh: 2026-11-02T09:10:51Z; SHA-256 reflects corrected artifact; original indexing provenance retained"
     },
     {
       "artifact_path": "data/results/evaluation_results_20260513T023524Z.csv",
@@ -302,7 +302,7 @@
     },
     {
       "artifact_path": "data/results/final_manuscript_results_with_metadata.csv",
-      "sha256": "f424ca1d57306801bf124f41cdec807ee52179d14620c8e5759a20682a3aa0ab",
+      "sha256": "0877267e59469a4fa65f460062a62e30c2cf2c4a45154a6b74607a560a18f17d",
       "artifact_type": "normalized_final_manuscript_table",
       "generated_by_command": "metadata hardening pass normalized table generation",
       "run_id": "run_id",
@@ -311,7 +311,7 @@
       "deployment_mode": "deployment_mode",
       "runtime_id_scope": "",
       "timestamp_utc": "2026-05-24T01:19:17Z",
-      "notes": "runtime_id scope not present or inferable"
+      "notes": "runtime_id scope not present or inferable; P0 refresh: 2026-11-02T09:10:51Z; SHA-256 reflects corrected artifact; original indexing provenance retained"
     },
     {
       "artifact_path": "data/results/final_results_table.csv",
@@ -328,7 +328,7 @@
     },
     {
       "artifact_path": "data/results/final_unified_metrics.csv",
-      "sha256": "13b3189f68354fc008d30859f95dd85cd82390baddc8b1811065adb988a4b256",
+      "sha256": "58f649cd917fde0bac17f7fac217bd08bc5d2886ec16b1100707b440a3959b58",
       "artifact_type": "result_artifact",
       "generated_by_command": "",
       "run_id": "",
@@ -337,11 +337,11 @@
       "deployment_mode": "local_synthetic",
       "runtime_id_scope": "",
       "timestamp_utc": "2026-05-24T01:19:17Z",
-      "notes": "run_id not present in artifact; git_sha not present in artifact; profile not present or inferable from filename; runtime_id scope not present or inferable; artifact timestamp not present; index timestamp records audit time"
+      "notes": "run_id not present in artifact; git_sha not present in artifact; profile not present or inferable from filename; runtime_id scope not present or inferable; artifact timestamp not present; index timestamp records audit time; P0 refresh: 2026-11-02T09:08:26Z; SHA-256 reflects corrected artifact; original indexing provenance retained"
     },
     {
       "artifact_path": "data/results/final_unified_metrics.json",
-      "sha256": "120be89f9c822a7a1ceb60bdecd11ad01c80da4b2ed806197a48c555d8cb0434",
+      "sha256": "35da4a0c508811682a100e5fa22fae3d8dbff71c6b9f13821fed12283aaf5a41",
       "artifact_type": "result_artifact",
       "generated_by_command": "",
       "run_id": "",
@@ -350,11 +350,11 @@
       "deployment_mode": "local_synthetic",
       "runtime_id_scope": "",
       "timestamp_utc": "2026-05-24T01:19:17Z",
-      "notes": "run_id not present in artifact; git_sha not present in artifact; profile not present or inferable from filename; runtime_id scope not present or inferable; artifact timestamp not present; index timestamp records audit time"
+      "notes": "run_id not present in artifact; git_sha not present in artifact; profile not present or inferable from filename; runtime_id scope not present or inferable; artifact timestamp not present; index timestamp records audit time; P0 refresh: 2026-11-02T09:07:48Z; SHA-256 reflects corrected artifact; original indexing provenance retained"
     },
     {
       "artifact_path": "data/results/ijtech_figure_data_latency_distribution.csv",
-      "sha256": "f696b8b980efb59f935ee0dee30c0c2573a093497a1f53a7ea282472454aa527",
+      "sha256": "cbeae59c0ecf162095b3df78ee1addb098bf4312888a98dc22d7feb091e6c315",
       "artifact_type": "ijtech_derived_table_or_figure_data",
       "generated_by_command": "",
       "run_id": "",
@@ -363,11 +363,11 @@
       "deployment_mode": "local_synthetic",
       "runtime_id_scope": "runtime_id",
       "timestamp_utc": "2026-05-24T01:19:17Z",
-      "notes": "run_id not present in artifact; git_sha not present in artifact; profile not present or inferable from filename; artifact timestamp not present; index timestamp records audit time"
+      "notes": "run_id not present in artifact; git_sha not present in artifact; profile not present or inferable from filename; artifact timestamp not present; index timestamp records audit time; P0 refresh: 2026-11-02T09:08:26Z; SHA-256 reflects corrected artifact; original indexing provenance retained"
     },
     {
       "artifact_path": "data/results/ijtech_figure_data_policy_vs_unsafe.csv",
-      "sha256": "963c443a3dc6b8feee64d492292832bcd509891d4a96e5e87f62ff32f554ea1c",
+      "sha256": "cbebd0ef9a934176d5e66b3d5c3abff0202d71058a297b4b5791ce70127117c0",
       "artifact_type": "ijtech_derived_table_or_figure_data",
       "generated_by_command": "",
       "run_id": "",
@@ -376,11 +376,11 @@
       "deployment_mode": "local_synthetic",
       "runtime_id_scope": "runtime_id",
       "timestamp_utc": "2026-05-24T01:19:17Z",
-      "notes": "run_id not present in artifact; git_sha not present in artifact; profile not present or inferable from filename; artifact timestamp not present; index timestamp records audit time"
+      "notes": "run_id not present in artifact; git_sha not present in artifact; profile not present or inferable from filename; artifact timestamp not present; index timestamp records audit time; P0 refresh: 2026-11-02T09:08:26Z; SHA-256 reflects corrected artifact; original indexing provenance retained"
     },
     {
       "artifact_path": "data/results/ijtech_figure_data_trace_recovery.csv",
-      "sha256": "693c1a5e57c18aa9f0db422a3de12163ca7a5956d97bfddc4f63f1cf8983e81f",
+      "sha256": "699b5ed2453338a0026fe0b3a29f27705aa0177e82e7df21a5a81681c56d8392",
       "artifact_type": "ijtech_derived_table_or_figure_data",
       "generated_by_command": "",
       "run_id": "",
@@ -389,11 +389,11 @@
       "deployment_mode": "local_synthetic",
       "runtime_id_scope": "runtime_id",
       "timestamp_utc": "2026-05-24T01:19:17Z",
-      "notes": "run_id not present in artifact; git_sha not present in artifact; profile not present or inferable from filename; artifact timestamp not present; index timestamp records audit time"
+      "notes": "run_id not present in artifact; git_sha not present in artifact; profile not present or inferable from filename; artifact timestamp not present; index timestamp records audit time; P0 refresh: 2026-11-02T09:08:26Z; SHA-256 reflects corrected artifact; original indexing provenance retained"
     },
     {
       "artifact_path": "data/results/ijtech_table_1_scenario_design.csv",
-      "sha256": "0ce6a960e25236ce114cc05d5213c1a9687a1153ddfe7784375275005d6ebb76",
+      "sha256": "53412c65275df33589f9b6e8d9c8de5a472b27c6120f89eb2593b0e684153969",
       "artifact_type": "ijtech_derived_table_or_figure_data",
       "generated_by_command": "",
       "run_id": "",
@@ -402,11 +402,11 @@
       "deployment_mode": "local_synthetic",
       "runtime_id_scope": "",
       "timestamp_utc": "2026-05-24T01:19:17Z",
-      "notes": "run_id not present in artifact; git_sha not present in artifact; profile not present or inferable from filename; runtime_id scope not present or inferable; artifact timestamp not present; index timestamp records audit time"
+      "notes": "run_id not present in artifact; git_sha not present in artifact; profile not present or inferable from filename; runtime_id scope not present or inferable; artifact timestamp not present; index timestamp records audit time; P0 refresh: 2026-11-02T09:08:26Z; SHA-256 reflects corrected artifact; original indexing provenance retained"
     },
     {
       "artifact_path": "data/results/ijtech_table_2_main_results.csv",
-      "sha256": "f364e12376e09a60824007829ef90b066c4ce1dae5d9255e600426b01ef753dc",
+      "sha256": "e38087b94cda597e052927f22091450efa9aa6960d5e288b2aa236f5f7b0df85",
       "artifact_type": "ijtech_derived_table_or_figure_data",
       "generated_by_command": "",
       "run_id": "",
@@ -415,11 +415,11 @@
       "deployment_mode": "local_synthetic",
       "runtime_id_scope": "",
       "timestamp_utc": "2026-05-24T01:19:17Z",
-      "notes": "run_id not present in artifact; git_sha not present in artifact; profile not present or inferable from filename; runtime_id scope not present or inferable; artifact timestamp not present; index timestamp records audit time"
+      "notes": "run_id not present in artifact; git_sha not present in artifact; profile not present or inferable from filename; runtime_id scope not present or inferable; artifact timestamp not present; index timestamp records audit time; P0 refresh: 2026-11-02T09:08:26Z; SHA-256 reflects corrected artifact; original indexing provenance retained"
     },
     {
       "artifact_path": "data/results/ijtech_table_2_main_results_aligned.csv",
-      "sha256": "0d0bb8b8b401cf5b27fac2aceb29438863987298365b5b3125948d81fb0f4de7",
+      "sha256": "24d75a67d4ba780cad4fd88784a201b5bcc3752cb57768b7862c1520ee77e4ad",
       "artifact_type": "ijtech_derived_table_or_figure_data",
       "generated_by_command": "",
       "run_id": "",
@@ -428,11 +428,11 @@
       "deployment_mode": "local_synthetic",
       "runtime_id_scope": "runtime_id",
       "timestamp_utc": "2026-05-24T01:19:17Z",
-      "notes": "run_id not present in artifact; git_sha not present in artifact; profile not present or inferable from filename; artifact timestamp not present; index timestamp records audit time"
+      "notes": "run_id not present in artifact; git_sha not present in artifact; profile not present or inferable from filename; artifact timestamp not present; index timestamp records audit time; P0 refresh: 2026-11-02T09:08:26Z; SHA-256 reflects corrected artifact; original indexing provenance retained"
     },
     {
       "artifact_path": "data/results/ijtech_table_3_baseline_comparison.csv",
-      "sha256": "6874052077b17522ee5c1a7849d4f55d7861826430e67a9c3e8b1d59689bd7fa",
+      "sha256": "5f12d1aca799ccf9708ca4930724c1dfa5f233a90dda88f33cc0e15603eee2fc",
       "artifact_type": "ijtech_derived_table_or_figure_data",
       "generated_by_command": "",
       "run_id": "",
@@ -441,11 +441,11 @@
       "deployment_mode": "local_synthetic",
       "runtime_id_scope": "baselines",
       "timestamp_utc": "2026-05-24T01:19:17Z",
-      "notes": "run_id not present in artifact; git_sha not present in artifact; profile not present or inferable from filename; artifact timestamp not present; index timestamp records audit time"
+      "notes": "run_id not present in artifact; git_sha not present in artifact; profile not present or inferable from filename; artifact timestamp not present; index timestamp records audit time; P0 refresh: 2026-11-02T09:08:26Z; SHA-256 reflects corrected artifact; original indexing provenance retained"
     },
     {
       "artifact_path": "data/results/ijtech_table_3_baseline_comparison_aligned.csv",
-      "sha256": "413d97e81366a212aa7369bedf64ca91ea597a8310a23d26fe3b5a1eaf5b0670",
+      "sha256": "992f4fcf4b67c825b9d4ed2ecc394b00d034675ad844769331077dffb2c99730",
       "artifact_type": "ijtech_derived_table_or_figure_data",
       "generated_by_command": "",
       "run_id": "",
@@ -454,11 +454,11 @@
       "deployment_mode": "local_synthetic",
       "runtime_id_scope": "baselines",
       "timestamp_utc": "2026-05-24T01:19:17Z",
-      "notes": "run_id not present in artifact; git_sha not present in artifact; profile not present or inferable from filename; artifact timestamp not present; index timestamp records audit time"
+      "notes": "run_id not present in artifact; git_sha not present in artifact; profile not present or inferable from filename; artifact timestamp not present; index timestamp records audit time; P0 refresh: 2026-11-02T09:08:26Z; SHA-256 reflects corrected artifact; original indexing provenance retained"
     },
     {
       "artifact_path": "data/results/ijtech_table_4_ablation_results.csv",
-      "sha256": "4c52d0bee55d9ac21bbefe44a3477c7cdaf1036dadfa0eafb6ea0653d8468a0e",
+      "sha256": "0d69e614aa74829b0fd24bfb58886b6cdac75ab7131043b624a5441c3b188c90",
       "artifact_type": "ijtech_derived_table_or_figure_data",
       "generated_by_command": "",
       "run_id": "",
@@ -467,11 +467,11 @@
       "deployment_mode": "local_synthetic",
       "runtime_id_scope": "runtime_id",
       "timestamp_utc": "2026-05-24T01:19:17Z",
-      "notes": "run_id not present in artifact; git_sha not present in artifact; profile not present or inferable from filename; artifact timestamp not present; index timestamp records audit time"
+      "notes": "run_id not present in artifact; git_sha not present in artifact; profile not present or inferable from filename; artifact timestamp not present; index timestamp records audit time; P0 refresh: 2026-11-02T09:08:26Z; SHA-256 reflects corrected artifact; original indexing provenance retained"
     },
     {
       "artifact_path": "data/results/ijtech_table_4_supported_vs_stress_aligned.csv",
-      "sha256": "558b3a8e1d16aa675ad1e507c3bd1038bbc6e2538029b6855c7ece53c2ff8cd0",
+      "sha256": "fbf40c8dec78ca74f5676444799aaf5b0839ba32cd284d064b98a7bcf74f2289",
       "artifact_type": "ijtech_derived_table_or_figure_data",
       "generated_by_command": "",
       "run_id": "",
@@ -480,11 +480,11 @@
       "deployment_mode": "local_synthetic",
       "runtime_id_scope": "runtime_id",
       "timestamp_utc": "2026-05-24T01:19:17Z",
-      "notes": "run_id not present in artifact; git_sha not present in artifact; profile not present or inferable from filename; artifact timestamp not present; index timestamp records audit time"
+      "notes": "run_id not present in artifact; git_sha not present in artifact; profile not present or inferable from filename; artifact timestamp not present; index timestamp records audit time; P0 refresh: 2026-11-02T09:08:26Z; SHA-256 reflects corrected artifact; original indexing provenance retained"
     },
     {
       "artifact_path": "data/results/ijtech_table_5_latency_summary.csv",
-      "sha256": "4dc4861a11d7822e46ba4ef631b07086016fc59fb92844c07c9ad4217a011d64",
+      "sha256": "5627d7aac9e8a1f93a6efb8d262c8d4b0fe02a8ad9ed6eb20ee4368a2e9a5fdc",
       "artifact_type": "ijtech_derived_table_or_figure_data",
       "generated_by_command": "",
       "run_id": "",
@@ -493,7 +493,7 @@
       "deployment_mode": "local_synthetic",
       "runtime_id_scope": "runtime_id",
       "timestamp_utc": "2026-05-24T01:19:17Z",
-      "notes": "run_id not present in artifact; git_sha not present in artifact; profile not present or inferable from filename; artifact timestamp not present; index timestamp records audit time"
+      "notes": "run_id not present in artifact; git_sha not present in artifact; profile not present or inferable from filename; artifact timestamp not present; index timestamp records audit time; P0 refresh: 2026-11-02T09:08:26Z; SHA-256 reflects corrected artifact; original indexing provenance retained"
     },
     {
       "artifact_path": "data/results/k8s_reproducibility_results.csv",
@@ -523,7 +523,7 @@
     },
     {
       "artifact_path": "data/results/langgraph_comparison_results.csv",
-      "sha256": "782c598d0622471ddc75c675111db9a98658fea1be21db7cd3f4b51efdfe29a3",
+      "sha256": "ee9cbc64ee4d093786811f2770db2a31e35634932f03939f109c3585dcac4c09",
       "artifact_type": "langgraph_result",
       "generated_by_command": "",
       "run_id": "",
@@ -532,11 +532,11 @@
       "deployment_mode": "",
       "runtime_id_scope": "runtime_id",
       "timestamp_utc": "2026-05-24T01:19:17Z",
-      "notes": "run_id not present in artifact; git_sha not present in artifact; profile not present or inferable from filename; deployment_mode not present or inferable from filename; artifact timestamp not present; index timestamp records audit time"
+      "notes": "run_id not present in artifact; git_sha not present in artifact; profile not present or inferable from filename; deployment_mode not present or inferable from filename; artifact timestamp not present; index timestamp records audit time; P0 refresh: 2026-11-02T09:08:26Z; SHA-256 reflects corrected artifact; original indexing provenance retained"
     },
     {
       "artifact_path": "data/results/langgraph_summary.json",
-      "sha256": "c944c60897d82f32baf9f1d169bbb6242f45fe21aef7ee0dd09af6e522514bae",
+      "sha256": "0863d17b3fe762aaf446ad76a01fd00316f567fc466918e5820dc1441f498ed2",
       "artifact_type": "langgraph_result",
       "generated_by_command": "",
       "run_id": "",
@@ -545,7 +545,7 @@
       "deployment_mode": "",
       "runtime_id_scope": "langgraph_runtime",
       "timestamp_utc": "2026-05-24T01:19:17Z",
-      "notes": "run_id not present in artifact; git_sha not present in artifact; profile not present or inferable from filename; deployment_mode not present or inferable from filename; artifact timestamp not present; index timestamp records audit time"
+      "notes": "run_id not present in artifact; git_sha not present in artifact; profile not present or inferable from filename; deployment_mode not present or inferable from filename; artifact timestamp not present; index timestamp records audit time; P0 refresh: 2026-11-02T09:08:26Z; SHA-256 reflects corrected artifact; original indexing provenance retained"
     },
     {
       "artifact_path": "data/results/langsmith_trace_manifest.csv",
@@ -562,7 +562,7 @@
     },
     {
       "artifact_path": "data/results/mixed_comparison_results.csv",
-      "sha256": "1f15ab2ae8c55dbfab31c79cc720b272ad65e4bfd1fb73434aff7861f550a341",
+      "sha256": "7dffce1636dcfc89e84df6581f83849d2c1f465b7caeae2b7a9b3602b4638197",
       "artifact_type": "comparison_result",
       "generated_by_command": "",
       "run_id": "",
@@ -571,11 +571,11 @@
       "deployment_mode": "",
       "runtime_id_scope": "runtime_id",
       "timestamp_utc": "2026-05-24T01:19:17Z",
-      "notes": "run_id not present in artifact; git_sha not present in artifact; profile not present or inferable from filename; deployment_mode not present or inferable from filename; artifact timestamp not present; index timestamp records audit time"
+      "notes": "run_id not present in artifact; git_sha not present in artifact; profile not present or inferable from filename; deployment_mode not present or inferable from filename; artifact timestamp not present; index timestamp records audit time; P0 refresh: 2026-11-02T09:08:26Z; SHA-256 reflects corrected artifact; original indexing provenance retained"
     },
     {
       "artifact_path": "data/results/post_approval_comparison_results.csv",
-      "sha256": "977b77427d04c71e91796ded7638bfaca55ef30da7e2c456abddae4615e0e7ae",
+      "sha256": "895426b9d6eba87bb527ad66ba866b2be7c9d1de1089568c1ada1ef1d4ecd2f7",
       "artifact_type": "comparison_result",
       "generated_by_command": "",
       "run_id": "",
@@ -584,11 +584,11 @@
       "deployment_mode": "",
       "runtime_id_scope": "runtime_id",
       "timestamp_utc": "2026-05-24T01:19:17Z",
-      "notes": "run_id not present in artifact; git_sha not present in artifact; profile not present or inferable from filename; deployment_mode not present or inferable from filename; artifact timestamp not present; index timestamp records audit time"
+      "notes": "run_id not present in artifact; git_sha not present in artifact; profile not present or inferable from filename; deployment_mode not present or inferable from filename; artifact timestamp not present; index timestamp records audit time; P0 refresh: 2026-11-02T09:08:26Z; SHA-256 reflects corrected artifact; original indexing provenance retained"
     },
     {
       "artifact_path": "data/results/post_approval_summary.json",
-      "sha256": "634d0316e6d259925d0a9e2e1cf7de79578cade793250f9b66dde784f604e56a",
+      "sha256": "e7f934698981e2be8452bfb4f6b4bf060211d5740943780e2d13cec96ffcb5c5",
       "artifact_type": "result_artifact",
       "generated_by_command": "",
       "run_id": "",
@@ -597,11 +597,11 @@
       "deployment_mode": "",
       "runtime_id_scope": "langgraph_runtime",
       "timestamp_utc": "2026-05-24T01:19:17Z",
-      "notes": "run_id not present in artifact; git_sha not present in artifact; profile not present or inferable from filename; deployment_mode not present or inferable from filename; artifact timestamp not present; index timestamp records audit time"
+      "notes": "run_id not present in artifact; git_sha not present in artifact; profile not present or inferable from filename; deployment_mode not present or inferable from filename; artifact timestamp not present; index timestamp records audit time; P0 refresh: 2026-11-02T09:08:26Z; SHA-256 reflects corrected artifact; original indexing provenance retained"
     },
     {
       "artifact_path": "data/results/runtime_capability_profiles.json",
-      "sha256": "bc185c01850c5ef055c7f2b6001bf9b55b6d8caa9c1219ff998aac2c758f05ef",
+      "sha256": "4bc311dc8656a656976bbc66cb16c59102da63f3fb8aec47bea1dbf1b8b21815",
       "artifact_type": "result_artifact",
       "generated_by_command": "",
       "run_id": "",
@@ -610,11 +610,11 @@
       "deployment_mode": "",
       "runtime_id_scope": "baseline_a_direct_without_governance",
       "timestamp_utc": "2026-05-24T01:19:17Z",
-      "notes": "run_id not present in artifact; git_sha not present in artifact; profile not present or inferable from filename; deployment_mode not present or inferable from filename; artifact timestamp not present; index timestamp records audit time"
+      "notes": "run_id not present in artifact; git_sha not present in artifact; profile not present or inferable from filename; deployment_mode not present or inferable from filename; artifact timestamp not present; index timestamp records audit time; P0 refresh: 2026-11-02T09:07:48Z; SHA-256 reflects corrected artifact; original indexing provenance retained"
     },
     {
       "artifact_path": "data/results/scaled_error_cases_extended.csv",
-      "sha256": "78c5cb2ebb940b0a98ee4fe3d540981482d1ca3800a38faeb4e1029ab80e18e4",
+      "sha256": "8462b92471500de1edd7022f39505d39e939cd12be69ffb89e0d49b4be9b6940",
       "artifact_type": "scaled_analysis_result",
       "generated_by_command": "",
       "run_id": "",
@@ -623,11 +623,11 @@
       "deployment_mode": "local_synthetic",
       "runtime_id_scope": "runtime_id",
       "timestamp_utc": "2026-05-24T01:19:17Z",
-      "notes": "run_id not present in artifact; git_sha not present in artifact; artifact timestamp not present; index timestamp records audit time"
+      "notes": "run_id not present in artifact; git_sha not present in artifact; artifact timestamp not present; index timestamp records audit time; P0 refresh: 2026-11-02T09:08:26Z; SHA-256 reflects corrected artifact; original indexing provenance retained"
     },
     {
       "artifact_path": "data/results/scaled_error_cases_journal.csv",
-      "sha256": "7b3c53270e1c405851353704cebc9c3736fb5d9660aafdf8e0ae80549f907f15",
+      "sha256": "bf1a6f54aa3a5756a776a9024bb65ab880560e5be37d23a7f5b6d492da0d559c",
       "artifact_type": "scaled_analysis_result",
       "generated_by_command": "",
       "run_id": "",
@@ -636,11 +636,11 @@
       "deployment_mode": "local_synthetic",
       "runtime_id_scope": "runtime_id",
       "timestamp_utc": "2026-05-24T01:19:17Z",
-      "notes": "run_id not present in artifact; git_sha not present in artifact; artifact timestamp not present; index timestamp records audit time"
+      "notes": "run_id not present in artifact; git_sha not present in artifact; artifact timestamp not present; index timestamp records audit time; P0 refresh: 2026-11-02T09:08:26Z; SHA-256 reflects corrected artifact; original indexing provenance retained"
     },
     {
       "artifact_path": "data/results/scaled_evaluation_results_default.csv",
-      "sha256": "5e611dc6f01abc2706d4093e2a3b63e2b6e0a51a7595c087e2a3b4b6d6d3246e",
+      "sha256": "bd3d98ae5b42c5b264a780c21bb2a4ed2bc5b7f0a64188c644164b5793fef782",
       "artifact_type": "scaled_evaluation_result",
       "generated_by_command": ".venv/bin/python -m app.evaluation.run_scaled_evaluation --profile default",
       "run_id": "",
@@ -649,11 +649,11 @@
       "deployment_mode": "local_synthetic",
       "runtime_id_scope": "runtime_id",
       "timestamp_utc": "2026-05-24T01:19:17Z",
-      "notes": "run_id not present in artifact; git_sha not present in artifact; artifact timestamp not present; index timestamp records audit time"
+      "notes": "run_id not present in artifact; git_sha not present in artifact; artifact timestamp not present; index timestamp records audit time; P0 refresh: 2026-11-02T09:08:26Z; SHA-256 reflects corrected artifact; original indexing provenance retained"
     },
     {
       "artifact_path": "data/results/scaled_evaluation_results_default.json",
-      "sha256": "a1edfcbba369f5808dca9825cb28ecb2d019677389e08ddd04644011ccae10e8",
+      "sha256": "9594ea863308c651776deeb3b7e34d1f29506e9bec793fbec40ebd7dcbf664c0",
       "artifact_type": "scaled_evaluation_result",
       "generated_by_command": ".venv/bin/python -m app.evaluation.run_scaled_evaluation --profile default",
       "run_id": "",
@@ -662,11 +662,11 @@
       "deployment_mode": "local_synthetic",
       "runtime_id_scope": "reference_v1",
       "timestamp_utc": "2026-05-24T01:19:17Z",
-      "notes": "run_id not present in artifact; git_sha not present in artifact; artifact timestamp not present; index timestamp records audit time"
+      "notes": "run_id not present in artifact; git_sha not present in artifact; artifact timestamp not present; index timestamp records audit time; P0 refresh: 2026-11-02T09:08:26Z; SHA-256 reflects corrected artifact; original indexing provenance retained"
     },
     {
       "artifact_path": "data/results/scaled_evaluation_results_extended.csv",
-      "sha256": "25d5a37685fdeb7c7f757cf59426994e8d29bfe8f4e6b228e303a6d6745de778",
+      "sha256": "bf82b59241fdf89f86f24dddc2155009b4dd98cd062e855cdef884742d9c8612",
       "artifact_type": "scaled_evaluation_result",
       "generated_by_command": ".venv/bin/python -m app.evaluation.run_scaled_evaluation --profile extended",
       "run_id": "",
@@ -675,11 +675,11 @@
       "deployment_mode": "local_synthetic",
       "runtime_id_scope": "runtime_id",
       "timestamp_utc": "2026-05-24T01:19:17Z",
-      "notes": "run_id not present in artifact; git_sha not present in artifact; artifact timestamp not present; index timestamp records audit time"
+      "notes": "run_id not present in artifact; git_sha not present in artifact; artifact timestamp not present; index timestamp records audit time; P0 refresh: 2026-11-02T09:08:26Z; SHA-256 reflects corrected artifact; original indexing provenance retained"
     },
     {
       "artifact_path": "data/results/scaled_evaluation_results_extended.json",
-      "sha256": "15292cca43d4817c4947cbeb128a91d2b11493353eb0164311fe56f07a06bf54",
+      "sha256": "233e0a6d375638df3842aef74576b4298caae960d28d1632d87bca10ab8cf5d8",
       "artifact_type": "scaled_evaluation_result",
       "generated_by_command": ".venv/bin/python -m app.evaluation.run_scaled_evaluation --profile extended",
       "run_id": "",
@@ -688,11 +688,11 @@
       "deployment_mode": "local_synthetic",
       "runtime_id_scope": "reference_v1",
       "timestamp_utc": "2026-05-24T01:19:17Z",
-      "notes": "run_id not present in artifact; git_sha not present in artifact; artifact timestamp not present; index timestamp records audit time"
+      "notes": "run_id not present in artifact; git_sha not present in artifact; artifact timestamp not present; index timestamp records audit time; P0 refresh: 2026-11-02T09:08:26Z; SHA-256 reflects corrected artifact; original indexing provenance retained"
     },
     {
       "artifact_path": "data/results/scaled_evaluation_results_journal.csv",
-      "sha256": "9255170b1cafecc5be39274541c23974b1b1dd489bb0909c72f0fb45178434ce",
+      "sha256": "c562fa44092c2ab0e0074f98d1a1d3f23a3a5bff48ef2730895acb5fb20de705",
       "artifact_type": "scaled_evaluation_result",
       "generated_by_command": ".venv/bin/python -m app.evaluation.run_scaled_evaluation --profile journal",
       "run_id": "",
@@ -701,11 +701,11 @@
       "deployment_mode": "local_synthetic",
       "runtime_id_scope": "runtime_id",
       "timestamp_utc": "2026-05-24T01:19:17Z",
-      "notes": "run_id not present in artifact; git_sha not present in artifact; artifact timestamp not present; index timestamp records audit time"
+      "notes": "run_id not present in artifact; git_sha not present in artifact; artifact timestamp not present; index timestamp records audit time; P0 refresh: 2026-11-02T09:08:26Z; SHA-256 reflects corrected artifact; original indexing provenance retained"
     },
     {
       "artifact_path": "data/results/scaled_evaluation_results_journal.json",
-      "sha256": "59e144a992869f0017722721ee42b46e23b42606c1dee772303b73264c19ce34",
+      "sha256": "0950fb37adbca716b24a5a0a39e54eaaa36433f76ae59f42f252560c3a740f0f",
       "artifact_type": "scaled_evaluation_result",
       "generated_by_command": ".venv/bin/python -m app.evaluation.run_scaled_evaluation --profile journal",
       "run_id": "",
@@ -714,11 +714,11 @@
       "deployment_mode": "local_synthetic",
       "runtime_id_scope": "reference_v1",
       "timestamp_utc": "2026-05-24T01:19:17Z",
-      "notes": "run_id not present in artifact; git_sha not present in artifact; artifact timestamp not present; index timestamp records audit time"
+      "notes": "run_id not present in artifact; git_sha not present in artifact; artifact timestamp not present; index timestamp records audit time; P0 refresh: 2026-11-02T09:08:26Z; SHA-256 reflects corrected artifact; original indexing provenance retained"
     },
     {
       "artifact_path": "data/results/scaled_evaluation_summary_default.json",
-      "sha256": "694f14bf602b3cb543d08970f7b0f2ea4e7c3fdb5950b80b27c1a75e7428eee4",
+      "sha256": "8b4e007e6c22a560d237f974449f975d0d2d070c196d986dfd71ef7e6aca7e3f",
       "artifact_type": "scaled_evaluation_result",
       "generated_by_command": ".venv/bin/python -m app.evaluation.run_scaled_evaluation --profile default",
       "run_id": "",
@@ -727,11 +727,11 @@
       "deployment_mode": "local_synthetic",
       "runtime_id_scope": "",
       "timestamp_utc": "2026-05-24T01:19:17Z",
-      "notes": "run_id not present in artifact; git_sha not present in artifact; runtime_id scope not present or inferable; artifact timestamp not present; index timestamp records audit time"
+      "notes": "run_id not present in artifact; git_sha not present in artifact; runtime_id scope not present or inferable; artifact timestamp not present; index timestamp records audit time; P0 refresh: 2026-11-02T09:08:26Z; SHA-256 reflects corrected artifact; original indexing provenance retained"
     },
     {
       "artifact_path": "data/results/scaled_evaluation_summary_extended.json",
-      "sha256": "2b13b703e8dad699e73c3b1f1f9687cb13703340e6656ce0ae585f09590f1f5f",
+      "sha256": "9fa61ec80aa1925c90076abb1f87bfb45398da58ecf410bce82f6f01073de482",
       "artifact_type": "scaled_evaluation_result",
       "generated_by_command": ".venv/bin/python -m app.evaluation.run_scaled_evaluation --profile extended",
       "run_id": "",
@@ -740,11 +740,11 @@
       "deployment_mode": "local_synthetic",
       "runtime_id_scope": "",
       "timestamp_utc": "2026-05-24T01:19:17Z",
-      "notes": "run_id not present in artifact; git_sha not present in artifact; runtime_id scope not present or inferable; artifact timestamp not present; index timestamp records audit time"
+      "notes": "run_id not present in artifact; git_sha not present in artifact; runtime_id scope not present or inferable; artifact timestamp not present; index timestamp records audit time; P0 refresh: 2026-11-02T09:08:26Z; SHA-256 reflects corrected artifact; original indexing provenance retained"
     },
     {
       "artifact_path": "data/results/scaled_evaluation_summary_journal.json",
-      "sha256": "873e09033f972d4a2044a9e5275e6b22c7dab88aa35041454297e24cfac6cc83",
+      "sha256": "6d6fb228796f2fcd9a58e85c989ef01417da225b481300853ed5afb597d065b1",
       "artifact_type": "scaled_evaluation_result",
       "generated_by_command": ".venv/bin/python -m app.evaluation.run_scaled_evaluation --profile journal",
       "run_id": "",
@@ -753,11 +753,11 @@
       "deployment_mode": "local_synthetic",
       "runtime_id_scope": "",
       "timestamp_utc": "2026-05-24T01:19:17Z",
-      "notes": "run_id not present in artifact; git_sha not present in artifact; runtime_id scope not present or inferable; artifact timestamp not present; index timestamp records audit time"
+      "notes": "run_id not present in artifact; git_sha not present in artifact; runtime_id scope not present or inferable; artifact timestamp not present; index timestamp records audit time; P0 refresh: 2026-11-02T09:08:26Z; SHA-256 reflects corrected artifact; original indexing provenance retained"
     },
     {
       "artifact_path": "data/results/scaled_metrics_by_factor_extended.csv",
-      "sha256": "699b83db9c0e838a8b9a8bd0e09c1a3d41e413f919e898e344fe41796aa49f30",
+      "sha256": "f5585a949fa08c6d6a3dc31410fd2a6ba41f6abebb6a3c84b8fea9dc4f2cb090",
       "artifact_type": "scaled_analysis_result",
       "generated_by_command": "",
       "run_id": "",
@@ -766,11 +766,11 @@
       "deployment_mode": "local_synthetic",
       "runtime_id_scope": "runtime_id",
       "timestamp_utc": "2026-05-24T01:19:17Z",
-      "notes": "run_id not present in artifact; git_sha not present in artifact; artifact timestamp not present; index timestamp records audit time"
+      "notes": "run_id not present in artifact; git_sha not present in artifact; artifact timestamp not present; index timestamp records audit time; P0 refresh: 2026-11-02T09:08:26Z; SHA-256 reflects corrected artifact; original indexing provenance retained"
     },
     {
       "artifact_path": "data/results/scaled_metrics_by_factor_journal.csv",
-      "sha256": "a41a4a560c15b3d87307118ec2ae6608bd9d5dda8a9be322e062032f26df3d2c",
+      "sha256": "82d15aff5871be00cafdb9001061a4846640c047e9724acf583bf62ffb192b35",
       "artifact_type": "scaled_analysis_result",
       "generated_by_command": "",
       "run_id": "",
@@ -779,11 +779,11 @@
       "deployment_mode": "local_synthetic",
       "runtime_id_scope": "runtime_id",
       "timestamp_utc": "2026-05-24T01:19:17Z",
-      "notes": "run_id not present in artifact; git_sha not present in artifact; artifact timestamp not present; index timestamp records audit time"
+      "notes": "run_id not present in artifact; git_sha not present in artifact; artifact timestamp not present; index timestamp records audit time; P0 refresh: 2026-11-02T09:08:26Z; SHA-256 reflects corrected artifact; original indexing provenance retained"
     },
     {
       "artifact_path": "data/results/scaled_statistical_summary_journal.csv",
-      "sha256": "6493c5da4660616b02446a0aa920539b90353079fed1f24728b599e937802c7a",
+      "sha256": "8ad155fc8e037c64dee0dbf7265aa11af760f45fdd9d7616a74dab2cd6f45ac5",
       "artifact_type": "scaled_analysis_result",
       "generated_by_command": "",
       "run_id": "",
@@ -792,11 +792,11 @@
       "deployment_mode": "local_synthetic",
       "runtime_id_scope": "runtime_id",
       "timestamp_utc": "2026-05-24T01:19:17Z",
-      "notes": "run_id not present in artifact; git_sha not present in artifact; artifact timestamp not present; index timestamp records audit time"
+      "notes": "run_id not present in artifact; git_sha not present in artifact; artifact timestamp not present; index timestamp records audit time; P0 refresh: 2026-11-02T09:08:26Z; SHA-256 reflects corrected artifact; original indexing provenance retained"
     },
     {
       "artifact_path": "data/results/scaled_statistical_summary_journal.json",
-      "sha256": "c3f7b01fe259d07f3799897ff73b202797b745df158dfda6fdec91e1d01ce2a2",
+      "sha256": "1968b2fec5dcddcf717ba8203abc10550e1939a3096eaf08a8891229ed837079",
       "artifact_type": "scaled_analysis_result",
       "generated_by_command": "",
       "run_id": "",
@@ -805,11 +805,11 @@
       "deployment_mode": "local_synthetic",
       "runtime_id_scope": "baseline_a_direct_without_governance",
       "timestamp_utc": "2026-05-24T01:19:17Z",
-      "notes": "run_id not present in artifact; git_sha not present in artifact; artifact timestamp not present; index timestamp records audit time"
+      "notes": "run_id not present in artifact; git_sha not present in artifact; artifact timestamp not present; index timestamp records audit time; P0 refresh: 2026-11-02T09:08:26Z; SHA-256 reflects corrected artifact; original indexing provenance retained"
     },
     {
       "artifact_path": "data/results/scenario_factor_balance_journal.csv",
-      "sha256": "b2e864c9683b7a20ae9a66e47f6fea1fd0c629ccf04fbf339c1afdaef58e7f4c",
+      "sha256": "d3e06d9aa8fe678a35e4291636a1a3957c7048ba97b9cbc63ed61d1fbb104a08",
       "artifact_type": "result_artifact",
       "generated_by_command": "",
       "run_id": "",
@@ -818,11 +818,11 @@
       "deployment_mode": "",
       "runtime_id_scope": "",
       "timestamp_utc": "2026-05-24T01:19:17Z",
-      "notes": "run_id not present in artifact; git_sha not present in artifact; deployment_mode not present or inferable from filename; runtime_id scope not present or inferable; artifact timestamp not present; index timestamp records audit time"
+      "notes": "run_id not present in artifact; git_sha not present in artifact; deployment_mode not present or inferable from filename; runtime_id scope not present or inferable; artifact timestamp not present; index timestamp records audit time; P0 refresh: 2026-11-02T09:08:26Z; SHA-256 reflects corrected artifact; original indexing provenance retained"
     },
     {
       "artifact_path": "data/results/stress_scope_metrics_aligned_journal.csv",
-      "sha256": "0817b24afd28eca4a16505b93e9855df24ba9b45f3aea06126b49656f1694361",
+      "sha256": "cfef342f41e1d1cc57af650fd82523703c4c841af6d33ac8372b455a39d214cf",
       "artifact_type": "result_artifact",
       "generated_by_command": "",
       "run_id": "",
@@ -831,11 +831,11 @@
       "deployment_mode": "",
       "runtime_id_scope": "runtime_id",
       "timestamp_utc": "2026-05-24T01:19:17Z",
-      "notes": "run_id not present in artifact; git_sha not present in artifact; deployment_mode not present or inferable from filename; artifact timestamp not present; index timestamp records audit time"
+      "notes": "run_id not present in artifact; git_sha not present in artifact; deployment_mode not present or inferable from filename; artifact timestamp not present; index timestamp records audit time; P0 refresh: 2026-11-02T09:08:26Z; SHA-256 reflects corrected artifact; original indexing provenance retained"
     },
     {
       "artifact_path": "data/results/stress_scope_metrics_journal.csv",
-      "sha256": "68351df11c990d89933165fc585c17cd692074ce61aad71bbf177b125ba9b14f",
+      "sha256": "7758a98d02f0cdd0c5a355d1681eb23d3857495d1f6224d5de93585c50bfc21a",
       "artifact_type": "result_artifact",
       "generated_by_command": "",
       "run_id": "",
@@ -844,11 +844,11 @@
       "deployment_mode": "",
       "runtime_id_scope": "runtime_id",
       "timestamp_utc": "2026-05-24T01:19:17Z",
-      "notes": "run_id not present in artifact; git_sha not present in artifact; deployment_mode not present or inferable from filename; artifact timestamp not present; index timestamp records audit time"
+      "notes": "run_id not present in artifact; git_sha not present in artifact; deployment_mode not present or inferable from filename; artifact timestamp not present; index timestamp records audit time; P0 refresh: 2026-11-02T09:08:26Z; SHA-256 reflects corrected artifact; original indexing provenance retained"
     },
     {
       "artifact_path": "data/results/supported_scope_metrics_aligned_journal.csv",
-      "sha256": "6e6c94f6d02dd54cd732e918bc6e0339d462f3b404e54b4b788282ed507c6bdc",
+      "sha256": "fbfe493bb2bc041add00c1a4b89febda4f5d4f1f0d9ea8305f3885150fbc6d10",
       "artifact_type": "result_artifact",
       "generated_by_command": "",
       "run_id": "",
@@ -857,11 +857,11 @@
       "deployment_mode": "",
       "runtime_id_scope": "runtime_id",
       "timestamp_utc": "2026-05-24T01:19:17Z",
-      "notes": "run_id not present in artifact; git_sha not present in artifact; deployment_mode not present or inferable from filename; artifact timestamp not present; index timestamp records audit time"
+      "notes": "run_id not present in artifact; git_sha not present in artifact; deployment_mode not present or inferable from filename; artifact timestamp not present; index timestamp records audit time; P0 refresh: 2026-11-02T09:08:26Z; SHA-256 reflects corrected artifact; original indexing provenance retained"
     },
     {
       "artifact_path": "data/results/supported_scope_metrics_journal.csv",
-      "sha256": "4b06da9d3896ef28639ecd6dae060eeaa8a14da8d495facaf9f172da9a94d71e",
+      "sha256": "66b9e91f74e316de4c6fc54cb2f7d7f01a277f3a00a96623d7bfb0f78a54b18d",
       "artifact_type": "result_artifact",
       "generated_by_command": "",
       "run_id": "",
@@ -870,33 +870,7 @@
       "deployment_mode": "",
       "runtime_id_scope": "runtime_id",
       "timestamp_utc": "2026-05-24T01:19:17Z",
-      "notes": "run_id not present in artifact; git_sha not present in artifact; deployment_mode not present or inferable from filename; artifact timestamp not present; index timestamp records audit time"
-    },
-    {
-      "artifact_path": "data/results/RESULTS_METADATA_INDEX.csv",
-      "sha256": "df2b112cb89318ebbae64d66ba3d0d04c2dd04a362de3bf9226ee48c4e758015",
-      "artifact_type": "result_artifact",
-      "generated_by_command": "",
-      "run_id": "",
-      "git_sha": "",
-      "profile": "",
-      "deployment_mode": "",
-      "runtime_id_scope": "",
-      "timestamp_utc": "2026-05-24T13:23:50Z",
-      "notes": "metadata row added during evidence manifest refresh"
-    },
-    {
-      "artifact_path": "data/results/RESULTS_METADATA_INDEX.json",
-      "sha256": "5d1f929a5990cbe510286d41774ae1a0ab93acc038ec9874a0bf5b3541bb5246",
-      "artifact_type": "result_artifact",
-      "generated_by_command": "",
-      "run_id": "",
-      "git_sha": "",
-      "profile": "",
-      "deployment_mode": "",
-      "runtime_id_scope": "",
-      "timestamp_utc": "2026-05-24T13:23:50Z",
-      "notes": "metadata row added during evidence manifest refresh"
+      "notes": "run_id not present in artifact; git_sha not present in artifact; deployment_mode not present or inferable from filename; artifact timestamp not present; index timestamp records audit time; P0 refresh: 2026-11-02T09:08:26Z; SHA-256 reflects corrected artifact; original indexing provenance retained"
     },
     {
       "artifact_path": "data/results/k8s_logs/crash-restart-demo-job.log",
@@ -1056,7 +1030,7 @@
     },
     {
       "artifact_path": "docs/kubernetes_reproducibility_demo.md",
-      "sha256": "0583f89917d2e64509b1d424cb2c84e9a0a576e4c152b8a088f6ef9f34c7584f",
+      "sha256": "ee9008b3e99c47db72ac2591d2e7b7051e2921cc9ed2939bd95811eb215dd059",
       "artifact_type": "evidence_documentation",
       "generated_by_command": "",
       "run_id": "",
@@ -1065,7 +1039,7 @@
       "deployment_mode": "",
       "runtime_id_scope": "",
       "timestamp_utc": "2026-05-24T13:27:10Z",
-      "notes": "documentation updated from corrected local kind evidence; no metric recalculation"
+      "notes": "documentation updated from corrected local kind evidence; no metric recalculation; P0 refresh: 2026-11-02T09:07:48Z; SHA-256 reflects corrected artifact; original indexing provenance retained"
     },
     {
       "artifact_path": "docs/ijtech_engineering_evidence_report.md",
@@ -1102,5 +1076,6 @@
     "RESULTS_MANIFEST.json",
     "RESULTS_METADATA_INDEX.csv",
     "RESULTS_METADATA_INDEX.json"
-  ]
+  ],
+  "refreshed_at_utc": "2026-11-02T09:10:51Z"
 }

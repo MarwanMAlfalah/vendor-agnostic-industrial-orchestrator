@@ -10,6 +10,10 @@ from pathlib import Path
 from statistics import mean, median
 from typing import Any
 
+from app.evaluation.conditional_metrics import (
+    ELIGIBILITY_FIELDS,
+    conditional_metrics,
+)
 from app.evaluation.run_scaled_evaluation import run_scaled_evaluation
 from app.evaluation.runtime_expectations import (
     RUNTIME_CAPABILITY_PROFILES,
@@ -23,6 +27,7 @@ RESULTS_DIR = Path("data/results")
 DOCS_DIR = Path("docs")
 
 BOOL_FIELDS = {
+    *ELIGIBILITY_FIELDS,
     "governance_decision_correct",
     "policy_compliant",
     "unsafe_execution",
@@ -105,7 +110,7 @@ def _load_original_rows(profile: str) -> list[dict[str, Any]]:
 def _parse_row(row: dict[str, str]) -> dict[str, Any]:
     parsed: dict[str, Any] = dict(row)
     for field in BOOL_FIELDS:
-        parsed[field] = row.get(field) == "True"
+        parsed[field] = row[field] == "True"
     for field in INT_FIELDS:
         parsed[field] = int(row[field])
     parsed["latency_ms"] = float(row["latency_ms"])
@@ -251,12 +256,7 @@ def _aggregate_rows(runtime_id: str, rows: list[dict[str, Any]]) -> dict[str, An
             sum(row["aligned_final_outcome_correct"] for row in rows),
             len(rows),
         ),
-        "unsafe_execution_rate": _rate(sum(row["unsafe_execution"] for row in rows), len(rows)),
-        "approval_bypass_rate": _rate(sum(row["approval_bypass"] for row in rows), len(rows)),
-        "invalid_mapping_containment_rate": _rate(
-            sum(row["invalid_mapping_contained"] for row in rows),
-            len(rows),
-        ),
+        **conditional_metrics(rows),
         "trace_completeness": _rate(sum(row["trace_complete"] for row in rows), len(rows)),
         "mean_latency_ms": round(mean(latencies), 6) if latencies else 0.0,
         "median_latency_ms": round(median(latencies), 6) if latencies else 0.0,
@@ -469,7 +469,7 @@ separate columns.
 
 The original metric used one global expected final status per scenario. The
 aligned metric compares each runtime against documented capabilities. For
-example, `reference_v1` is expected to stop at approval-required checkpoints,
+example, `reference_v1` records approval-required steps and may execute later allowed steps,
 while `langgraph_runtime` may reach `success` after valid controlled approval
 continuation. Unsafe execution and approval bypass are never excused by
 alignment.
@@ -508,7 +508,7 @@ Runtime-specific expectations are used for fair comparison. Baselines remain
 intentionally weak in governance to reveal policy risk. LangGraph value is
 evaluated only for capabilities it actually supports, including controlled
 approval continuation. `reference_v1` remains useful as a policy-correct
-non-continuation runtime that stops at approval-required checkpoints.
+non-continuation runtime that records approval requirements without a workflow-wide pause.
 
 ## Main Runtime Results
 
@@ -555,7 +555,7 @@ profile.
 Rules:
 
 - `reference_v1`: valid post-approval scenarios are expected to end in
-  `partial_success` with an approval-required checkpoint, not `success`,
+  `partial_success` with a recorded approval requirement, not `success`,
   because the runtime does not perform controlled post-approval continuation.
 - `reference_v1`: approval invalidation after resume is outside continuation
   scope; the expected decision is derived from the original governance plan
@@ -595,7 +595,7 @@ def _write_csv(path: Path, rows: list[dict[str, Any]]) -> None:
     with path.open("w", newline="", encoding="utf-8") as csv_file:
         if not fieldnames:
             return
-        writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
+        writer = csv.DictWriter(csv_file, fieldnames=fieldnames, lineterminator="\n")
         writer.writeheader()
         writer.writerows(rows)
 

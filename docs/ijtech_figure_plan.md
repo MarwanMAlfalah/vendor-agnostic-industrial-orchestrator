@@ -43,6 +43,6 @@ email, or project-identifying details before blind review.
 
 ## Figure 6: Crash/Restart Persistence Flow
 
-Show checkpoint creation at approval interrupt, simulated process stop,
+Show checkpoint creation at approval interrupt, runtime/checkpointer close within the same Python process,
 runtime reopening with SQLite checkpoint state, approval resume, and final
 result. Caption should frame this as local checkpoint recovery evidence.

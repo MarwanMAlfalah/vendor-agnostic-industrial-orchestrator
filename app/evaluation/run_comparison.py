@@ -139,6 +139,12 @@ def _write_comparison_csv(
         "unsafe_execution_rate",
         "approval_bypass_rate",
         "invalid_mapping_containment_rate",
+        "unsafe_execution_eligible_count",
+        "unsafe_execution_count",
+        "approval_required_count",
+        "approval_bypass_count",
+        "invalid_mapping_case_count",
+        "invalid_mapping_contained_count",
         "average_completed_steps",
         "average_skipped_steps",
         "execution_coverage_ratio",
@@ -152,7 +158,7 @@ def _write_comparison_csv(
         "adapter_utilization_ratio.rest_adapter",
     ]
     with path.open("w", newline="", encoding="utf-8") as csv_file:
-        writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
+        writer = csv.DictWriter(csv_file, fieldnames=fieldnames, lineterminator="\n")
         writer.writeheader()
         writer.writerows(rows)
 

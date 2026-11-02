@@ -1,6 +1,6 @@
 policy_compliance_rate,policy_compliance_wilson_high,policy_compliance_wilson_low,runtime_id,unsafe_execution_rate,unsafe_execution_wilson_high,unsafe_execution_wilson_low
-0.0,0.015754,0.0,baseline_a_direct_without_governance,0.583333,0.643914,0.520127
-0.083333,0.125203,0.054591,baseline_b_single_stage_execution,0.0,0.015754,0.0
-0.5,0.562757,0.437243,baseline_c_without_policy_filtering,0.583333,0.643914,0.520127
-0.979167,0.991069,0.952167,langgraph_runtime,0.0,0.015754,0.0
-0.854167,0.893236,0.803938,reference_v1,0.0,0.015754,0.0
+0.0,0.015754,0.0,baseline_a_direct_without_governance,1.0,1.0,0.973294
+0.083333,0.125203,0.054591,baseline_b_single_stage_execution,0.0,0.026706,0.0
+0.5,0.562757,0.437243,baseline_c_without_policy_filtering,1.0,1.0,0.973294
+0.979167,0.991069,0.952167,langgraph_runtime,0.0,0.026706,0.0
+0.854167,0.893236,0.803938,reference_v1,0.0,0.026706,0.0

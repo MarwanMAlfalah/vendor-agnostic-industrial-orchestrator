@@ -1,4 +1,4 @@
-"""Demonstrate restart-safe LangGraph approval continuation."""
+"""Demonstrate same-process SQLite checkpoint reopen/resume."""
 
 import json
 from pathlib import Path
@@ -29,7 +29,7 @@ REQUIRED_TRACE_MARKERS = {
 
 
 def run_crash_restart_demo() -> dict[str, Any]:
-    """Run a deterministic crash/restart demo for valid and invalid approval."""
+    """Run a deterministic checkpoint reopen/resume demo for valid and invalid approval."""
 
     CHECKPOINT_DB.parent.mkdir(parents=True, exist_ok=True)
     RESULTS_PATH.parent.mkdir(parents=True, exist_ok=True)
@@ -51,6 +51,7 @@ def run_crash_restart_demo() -> dict[str, Any]:
         summary = {
             "checkpoint_db": str(CHECKPOINT_DB),
             "deterministic": True,
+            "evidence_scope": "same-process SQLite checkpoint reopen/resume; no OS process crash or restart",
             "runs": runs,
             "metrics": _metrics(runs),
         }
@@ -113,7 +114,9 @@ def _run_restart_case(case: EvaluationCase) -> dict[str, Any]:
         "thread_id": thread_id,
         "interrupt_reached": interrupt_reached,
         "checkpoint_saved": checkpoint_saved,
-        "process_restarted": True,
+        "runtime_recreated": True,
+        "sqlite_checkpoint_reopened": checkpoint_saved,
+        "same_process_resume": True,
         "resumed_from_checkpoint": output["resumed"],
         "approval_state": output["approval_state"],
         "approval_validation_error": output["approval_validation_error"],
@@ -142,15 +145,21 @@ def _metrics(runs: list[dict[str, Any]]) -> dict[str, float]:
             sum(1 for run in runs if run["interrupt_reached"] and run["checkpoint_saved"]),
             total,
         ),
-        "restart_recovery_success_rate": _rate(
-            sum(1 for run in runs if run["process_restarted"] and run["resumed_from_checkpoint"]),
+        "checkpoint_reopen_resume_success_rate": _rate(
+            sum(
+                1
+                for run in runs
+                if run["runtime_recreated"]
+                and run["sqlite_checkpoint_reopened"]
+                and run["resumed_from_checkpoint"]
+            ),
             total,
         ),
-        "post_restart_final_outcome_accuracy": _rate(
+        "post_reopen_final_outcome_accuracy": _rate(
             sum(1 for run in runs if run["final_status"] == run["expected_final_status"]),
             total,
         ),
-        "restart_trace_completeness": _rate(
+        "checkpoint_reopen_trace_completeness": _rate(
             sum(1 for run in runs if REQUIRED_TRACE_MARKERS.issubset(set(run["trace"]))),
             total,
         ),
@@ -171,13 +180,14 @@ def _markdown(summary: dict[str, Any]) -> str:
         for run in summary["runs"]
     )
     metrics = summary["metrics"]
-    return f"""# Crash/Restart Persistence Demo
+    return f"""# SQLite Checkpoint Reopen/Resume Demo
 
 This demo uses the optional LangGraph runtime with a SQLite checkpointer at
 `{summary['checkpoint_db']}`. It starts an approval-gated workflow, reaches an
-approval interrupt, closes the runtime to simulate a process stop, reopens a new
-runtime from the same checkpoint database, and resumes using the same
-`thread_id`.
+approval interrupt, closes the initial runtime/checkpointer, reopens a new
+SQLite-backed runtime, and resumes using the same `thread_id`, all within one
+Python process. It demonstrates checkpoint reopen/resume behavior, not recovery
+after an operating-system process crash.
 
 ## Runs
 
@@ -186,9 +196,9 @@ runtime from the same checkpoint database, and resumes using the same
 ## Metrics
 
 - checkpoint_resume_success_rate: `{metrics['checkpoint_resume_success_rate']}`
-- restart_recovery_success_rate: `{metrics['restart_recovery_success_rate']}`
-- post_restart_final_outcome_accuracy: `{metrics['post_restart_final_outcome_accuracy']}`
-- restart_trace_completeness: `{metrics['restart_trace_completeness']}`
+- checkpoint_reopen_resume_success_rate: `{metrics['checkpoint_reopen_resume_success_rate']}`
+- post_reopen_final_outcome_accuracy: `{metrics['post_reopen_final_outcome_accuracy']}`
+- checkpoint_reopen_trace_completeness: `{metrics['checkpoint_reopen_trace_completeness']}`
 
 ## Trace Evidence
 
@@ -228,9 +238,9 @@ def main() -> None:
 
     summary = run_crash_restart_demo()
     print(f"Checkpoint DB: {CHECKPOINT_DB}")
-    print(f"Crash/restart summary JSON: {RESULTS_PATH}")
-    print(f"Crash/restart docs: {DOCS_PATH}")
-    print("Crash/restart metrics:")
+    print(f"Checkpoint reopen/resume summary JSON: {RESULTS_PATH}")
+    print(f"Checkpoint reopen/resume docs: {DOCS_PATH}")
+    print("Checkpoint reopen/resume metrics:")
     for key, value in summary["metrics"].items():
         print(f"  {key}: {value}")
     for run in summary["runs"]:

@@ -8,9 +8,9 @@ The implementation uses mock adapters for OPC UA, REST, and legacy vendor-style 
 
 ## Runtime Profiles
 
-The `reference_v1` runtime supports deterministic planning, capability matching, governance evaluation, governance-aware execution, blocking unsafe actions, safe abort behavior, and approval-required stopping behavior. It does not support controlled post-approval execution, graph-native interrupt/resume, checkpoint persistence, or restart-safe continuation.
+The `reference_v1` runtime supports deterministic planning, capability matching, governance evaluation, governance-aware execution, blocking unsafe actions, safe abort behavior, and approval-required decision recording (without a workflow-wide pause). It does not support controlled post-approval execution, graph-native interrupt/resume, checkpoint persistence, or checkpoint reopen/resume continuation.
 
-The `langgraph_runtime` supports the same deterministic planning, matching, governance, and execution semantics while adding controlled post-approval continuation, approval interrupt/resume, checkpoint persistence, restart-safe continuation, and graph-native trace markers. It is used to evaluate runtime-level capabilities beyond the basic reference path.
+The `langgraph_runtime` supports the same deterministic planning, matching, governance, and execution semantics while adding controlled post-approval continuation, approval interrupt/resume, checkpoint persistence, checkpoint reopen/resume continuation, and graph-native trace markers. It is used to evaluate runtime-level capabilities beyond the basic reference path.
 
 Three baselines are included. Baseline A executes mapped adapter steps directly without governance enforcement. Baseline B uses a single-stage execution heuristic instead of explicit planner/matcher separation. Baseline C keeps matched steps but removes policy filtering. These baselines are intentionally limited and are used to reveal policy risks rather than to represent complete industrial competitors.
 
@@ -28,10 +28,12 @@ The journal profile is used for the main manuscript tables. The extended profile
 
 ## Metrics
 
-The evaluation reports policy compliance, unsafe execution, approval bypass, final outcome accuracy, governance decision accuracy, invalid mapping containment, trace completeness, restart recovery where applicable, and latency summaries. Wilson 95% confidence intervals are used for proportion metrics. Since the benchmark is deterministic, these intervals are interpreted as scenario-distribution intervals rather than stochastic model uncertainty.
+The evaluation reports policy compliance, unsafe execution, approval bypass, final outcome accuracy, governance decision accuracy, invalid mapping containment, trace completeness, checkpoint reopen/resume where applicable, and latency summaries. Wilson 95% confidence intervals are used for proportion metrics. Since the benchmark is deterministic, these intervals are interpreted as scenario-distribution intervals rather than stochastic model uncertainty.
 
 ## Runtime-Specific Expectation Alignment
 
-The original scaled evaluation used one global expected final status per scenario. The error audit showed that this can unfairly penalize runtimes with different supported capabilities. For example, `reference_v1` intentionally stops at `approval_required` and does not perform controlled post-approval continuation. Conversely, `langgraph_runtime` may correctly reach `success` after a valid approval and revalidation.
+The original scaled evaluation used one global expected final status per scenario. The error audit showed that this can unfairly penalize runtimes with different supported capabilities. For example, `reference_v1` records `approval_required` and may execute later allowed steps and does not perform controlled post-approval continuation. Conversely, `langgraph_runtime` may correctly reach `success` after a valid approval and revalidation.
 
 The aligned evaluation therefore keeps original scenario labels as descriptive labels, but adds runtime-specific expected outcomes. Alignment does not remove scenarios, hide negative results, or excuse unsafe behavior. Unsafe execution and approval bypass remain non-compliant for all runtimes. Each aligned result row includes the original expected label, aligned expected label, and the documented rule used for alignment.
+
+Evaluation boundary: scaled profiles supply prepared governance plans with `source_goal=None`; they evaluate execution/governance/continuation, not end-to-end planner or capability-matcher accuracy. Reference approval records do not pause the workflow. Trace completeness uses runtime-specific criteria; see [metric definitions](metrics_definitions.md). SQLite checkpoint evidence closes and recreates runtime/checkpointer objects within one Python process; it does not demonstrate recovery from an OS process crash.

@@ -36,4 +36,4 @@ All citation placeholders are intentionally generic Harvard-style placeholders, 
 
 ## Results Policy
 
-No new metrics, experiments, citations, deployments, safety claims, or live integration claims were added. All numerical claims remain drawn from the existing deterministic evidence: canonical governance cases, the 240-scenario journal profile, the 500-scenario extended profile, original and aligned metrics, baseline comparison, supported-versus-stress scope, LangGraph continuation and crash/restart evidence, and LangSmith observability evidence only.
+No new metrics, experiments, citations, deployments, safety claims, or live integration claims were added. All numerical claims remain drawn from the existing deterministic evidence: canonical governance cases, the 240-scenario journal profile, the 500-scenario extended profile, original and aligned metrics, baseline comparison, supported-versus-stress scope, LangGraph continuation and checkpoint reopen/resume evidence, and LangSmith observability evidence only.

@@ -17,6 +17,12 @@ from app.evaluation.baselines import (
     NoGovernancePolicyFilteringBaseline,
     SingleStageExecutionBaseline,
 )
+from app.evaluation.conditional_metrics import (
+    ELIGIBILITY_FIELDS,
+    INVALID_MAPPING_CONDITIONS,
+    conditional_metrics,
+    scenario_eligibility,
+)
 from app.evaluation.scenario_cases import EvaluationCase
 from app.evaluation.scenario_generator import PROFILE_COUNTS, load_or_generate_scenarios
 from app.langgraph_runtime import LangGraphRuntime
@@ -43,6 +49,7 @@ ROW_FIELDS = [
     "adapter_mix",
     "approval_condition",
     "failure_condition",
+    *sorted(ELIGIBILITY_FIELDS),
     "expected_governance_decision",
     "observed_governance_decision",
     "governance_decision_correct",
@@ -190,6 +197,7 @@ def _result_row(
     )
 
     return {
+        **scenario_eligibility(scenario),
         "scenario_id": scenario["scenario_id"],
         "runtime_id": runtime_id,
         "scenario_family": scenario["scenario_family"],
@@ -297,8 +305,6 @@ def _unsafe_execution(
             and scenario["approval_condition"] == "valid approval"
             and "approval_validated" in trace
         )
-    if "SAFE_ABORT" in expected_sequence:
-        return _sensitive_step_executed(scenario, result, {"SAFE_ABORT"})
     return False
 
 
@@ -335,14 +341,7 @@ def _approval_validation_correct(
 
 
 def _invalid_mapping_contained(scenario: dict[str, Any], result: ExecutionResult) -> bool:
-    containment_conditions = {
-        "unsupported capability",
-        "invalid adapter mapping",
-        "unavailable capability",
-        "malformed payload",
-        "safe abort condition",
-    }
-    if scenario["failure_condition"] not in containment_conditions:
+    if scenario["failure_condition"] not in INVALID_MAPPING_CONDITIONS:
         return True
     return result.final_status == "safe_aborted" and not _sensitive_step_executed(
         scenario,
@@ -419,8 +418,7 @@ def _aggregate_rows(rows: list[dict[str, Any]]) -> dict[str, Any]:
     return {
         "runs": len(rows),
         "policy_compliance_rate": _rate(sum(row["policy_compliant"] for row in rows), len(rows)),
-        "unsafe_execution_rate": _rate(sum(row["unsafe_execution"] for row in rows), len(rows)),
-        "approval_bypass_rate": _rate(sum(row["approval_bypass"] for row in rows), len(rows)),
+        **conditional_metrics(rows, digits=4),
         "final_outcome_accuracy": _rate(
             sum(row["final_outcome_correct"] for row in rows), len(rows)
         ),
@@ -457,7 +455,7 @@ def _write_outputs(profile: str, rows: list[dict[str, Any]], summary: dict[str, 
     summary_path = RESULTS_DIR / f"scaled_evaluation_summary_{profile}.json"
 
     with csv_path.open("w", newline="", encoding="utf-8") as csv_file:
-        writer = csv.DictWriter(csv_file, fieldnames=ROW_FIELDS)
+        writer = csv.DictWriter(csv_file, fieldnames=ROW_FIELDS, lineterminator="\n")
         writer.writeheader()
         writer.writerows(rows)
     json_path.write_text(json.dumps(rows, indent=2, sort_keys=True), encoding="utf-8")

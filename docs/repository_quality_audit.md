@@ -1,5 +1,7 @@
 # Repository Quality Audit
 
+Historical audit snapshot: numeric checks below predate the P0 denominator correction. Current values and limitations are in [P0 correction report](p0_correction_report.md); the earlier audit is not a current numerical validation.
+
 This audit summarizes the repository hardening pass for reviewer readability and reproducibility.
 It documents quality gates only; it does not change runtime behavior, business logic, evaluation
 logic, or reported metrics.
@@ -14,7 +16,7 @@ orchestration. It contains:
 - Mock OPC UA, REST, and legacy adapters.
 - `reference_v1`, a deterministic governance-aware reference runtime.
 - `langgraph_runtime`, an optional LangGraph runtime for approval interrupt/resume, controlled
-  continuation, checkpointing, and local crash/restart evidence.
+  continuation, checkpointing, and local checkpoint reopen/resume evidence.
 - Deterministic scaled evaluation scripts and generated result artifacts.
 - IJTech-oriented manuscript and citation-mapping documentation.
 

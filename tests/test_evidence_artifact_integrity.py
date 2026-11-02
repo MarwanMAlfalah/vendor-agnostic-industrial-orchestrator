@@ -109,7 +109,9 @@ def test_kubernetes_log_evidence_uses_correct_deployment_log() -> None:
 def test_results_metadata_index_covers_result_artifacts() -> None:
     """The metadata index should cover stable result artifacts."""
 
-    with (RESULTS_DIR / "RESULTS_METADATA_INDEX.csv").open(newline="", encoding="utf-8") as csv_file:
+    with (RESULTS_DIR / "RESULTS_METADATA_INDEX.csv").open(
+        newline="", encoding="utf-8"
+    ) as csv_file:
         indexed_paths = {row["artifact_path"] for row in csv.DictReader(csv_file)}
 
     expected_paths = {
@@ -135,3 +137,18 @@ def test_results_manifest_hashes_match_files() -> None:
         assert path.exists(), path
         digest = hashlib.sha256(path.read_bytes()).hexdigest()
         assert digest == artifact["sha256"], path
+
+
+def test_metadata_index_hashes_match_and_exclude_self_references() -> None:
+    """Metadata indexes cannot contain valid hashes of their own final bytes."""
+
+    document = json.loads((RESULTS_DIR / "RESULTS_METADATA_INDEX.json").read_text())
+    artifacts = document["artifacts"]
+    assert document["artifact_count"] == len(artifacts)
+    exclusions = set(document["self_referential_exclusions"])
+    for artifact in artifacts:
+        path = Path(artifact["artifact_path"])
+        assert path.name not in exclusions
+        assert hashlib.sha256(path.read_bytes()).hexdigest() == artifact["sha256"]
+    with (RESULTS_DIR / "RESULTS_METADATA_INDEX.csv").open(newline="") as stream:
+        assert list(csv.DictReader(stream)) == artifacts

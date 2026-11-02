@@ -11,6 +11,12 @@ from pathlib import Path
 from statistics import mean, median, stdev
 from typing import Any
 
+from app.evaluation.conditional_metrics import (
+    CONDITIONAL_METRICS,
+    ELIGIBILITY_FIELDS,
+    conditional_metrics,
+    eligible_rows,
+)
 from app.evaluation.run_scaled_evaluation import run_scaled_evaluation
 from app.evaluation.scenario_generator import PROFILE_COUNTS, load_or_generate_scenarios
 
@@ -26,6 +32,7 @@ BASELINE_RUNTIMES = [
 PROPORTION_METRICS = {
     "policy_compliance_rate": "policy_compliant",
     "unsafe_execution_rate": "unsafe_execution",
+    "approval_bypass_rate": "approval_bypass",
     "final_outcome_accuracy": "final_outcome_correct",
     "governance_decision_accuracy": "governance_decision_correct",
     "approval_validation_accuracy": "approval_validation_correct",
@@ -93,6 +100,7 @@ def _load_scaled_rows(profile: str) -> list[dict[str, Any]]:
 def _parse_row(row: dict[str, str]) -> dict[str, Any]:
     parsed: dict[str, Any] = dict(row)
     for key in [
+        *ELIGIBILITY_FIELDS,
         "governance_decision_correct",
         "policy_compliant",
         "unsafe_execution",
@@ -104,7 +112,12 @@ def _parse_row(row: dict[str, str]) -> dict[str, Any]:
         "final_outcome_correct",
     ]:
         parsed[key] = row[key] == "True"
-    for key in ["workflow_step_count", "completed_steps", "skipped_steps", "failed_steps"]:
+    for key in [
+        "workflow_step_count",
+        "completed_steps",
+        "skipped_steps",
+        "failed_steps",
+    ]:
         parsed[key] = int(row[key])
     parsed["latency_ms"] = float(row["latency_ms"])
     return parsed
@@ -122,7 +135,11 @@ def _proportion_summary(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
             denominator_rows = _denominator_rows(metric_name, group_rows)
             numerator = sum(1 for row in denominator_rows if row[column])
             denominator = len(denominator_rows)
-            ci_low, ci_high = wilson_interval(numerator, denominator)
+            ci_low, ci_high = (
+                (None, None)
+                if not denominator and metric_name in CONDITIONAL_METRICS
+                else wilson_interval(numerator, denominator)
+            )
             summary_rows.append(
                 {
                     "group_type": group_type,
@@ -130,7 +147,11 @@ def _proportion_summary(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
                     "metric": metric_name,
                     "numerator": numerator,
                     "denominator": denominator,
-                    "rate": _rate(numerator, denominator),
+                    "rate": (
+                        None
+                        if not denominator and metric_name in CONDITIONAL_METRICS
+                        else _rate(numerator, denominator)
+                    ),
                     "wilson_95_low": ci_low,
                     "wilson_95_high": ci_high,
                 }
@@ -141,19 +162,8 @@ def _proportion_summary(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
 def _denominator_rows(metric_name: str, rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
     if metric_name == "approval_validation_accuracy":
         return [row for row in rows if row["approval_condition"] != "no approval required"]
-    if metric_name == "invalid_mapping_containment_rate":
-        return [
-            row
-            for row in rows
-            if row["failure_condition"]
-            in {
-                "unsupported capability",
-                "invalid adapter mapping",
-                "unavailable capability",
-                "malformed payload",
-                "safe abort condition",
-            }
-        ]
+    if metric_name in CONDITIONAL_METRICS:
+        return eligible_rows(metric_name, rows)
     if metric_name == "restart_recovery_success_rate":
         return [row for row in rows if row["restart_recovered"]]
     return rows
@@ -170,6 +180,11 @@ def _effect_sizes(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
         baseline = _metric_rates(by_runtime.get(baseline_id, []))
         baseline_unsafe = baseline["unsafe_execution_rate"]
         proposed_unsafe = proposed["unsafe_execution_rate"]
+        unsafe_difference = (
+            None
+            if baseline_unsafe is None or proposed_unsafe is None
+            else round(baseline_unsafe - proposed_unsafe, 6)
+        )
         effect_rows.append(
             {
                 "comparison": f"{PROPOSED_RUNTIME}_vs_{baseline_id}",
@@ -179,35 +194,41 @@ def _effect_sizes(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
                     proposed["policy_compliance_rate"] - baseline["policy_compliance_rate"],
                     6,
                 ),
-                "delta_unsafe_execution": round(baseline_unsafe - proposed_unsafe, 6),
+                "delta_unsafe_execution": unsafe_difference,
                 "relative_risk_unsafe_execution": _relative_risk(proposed_unsafe, baseline_unsafe),
-                "absolute_risk_reduction": round(baseline_unsafe - proposed_unsafe, 6),
-                "number_needed_to_prevent_unsafe_execution": _nnt(
-                    baseline_unsafe - proposed_unsafe
-                ),
+                "absolute_risk_reduction": unsafe_difference,
+                "number_needed_to_prevent_unsafe_execution": _nnt(unsafe_difference),
             }
         )
     return effect_rows
 
 
-def _metric_rates(rows: list[dict[str, Any]]) -> dict[str, float]:
+def _metric_rates(rows: list[dict[str, Any]]) -> dict[str, float | None]:
     return {
-        metric: _rate(
-            sum(1 for row in _denominator_rows(metric, rows) if row[column]),
-            len(_denominator_rows(metric, rows)),
-        )
-        for metric, column in PROPORTION_METRICS.items()
+        **{
+            metric: value
+            for metric, value in conditional_metrics(rows).items()
+            if metric in CONDITIONAL_METRICS
+        },
+        **{
+            metric: _rate(
+                sum(1 for row in _denominator_rows(metric, rows) if row[column]),
+                len(_denominator_rows(metric, rows)),
+            )
+            for metric, column in PROPORTION_METRICS.items()
+            if metric not in CONDITIONAL_METRICS
+        },
     }
 
 
-def _relative_risk(proposed_rate: float, baseline_rate: float) -> float | None:
-    if baseline_rate == 0:
+def _relative_risk(proposed_rate: float | None, baseline_rate: float | None) -> float | None:
+    if proposed_rate is None or baseline_rate is None or baseline_rate == 0:
         return None
     return round(proposed_rate / baseline_rate, 6)
 
 
-def _nnt(absolute_risk_reduction: float) -> float | None:
-    if absolute_risk_reduction <= 0:
+def _nnt(absolute_risk_reduction: float | None) -> float | None:
+    if absolute_risk_reduction is None or absolute_risk_reduction <= 0:
         return None
     return round(1 / absolute_risk_reduction, 6)
 
@@ -256,7 +277,7 @@ def _paired_comparisons(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
                     pairs,
                     "final_outcome_correct",
                 ),
-                "paired_unsafe_execution_difference": _mean_difference(
+                "paired_unsafe_execution_incidence_difference": _mean_difference(
                     pairs,
                     "unsafe_execution",
                     invert=True,
@@ -312,7 +333,7 @@ def _write_statistical_outputs(
 
     fieldnames = sorted({key for row in flat_rows for key in row})
     with csv_path.open("w", newline="", encoding="utf-8") as csv_file:
-        writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
+        writer = csv.DictWriter(csv_file, fieldnames=fieldnames, lineterminator="\n")
         writer.writeheader()
         writer.writerows(flat_rows)
     json_path.write_text(json.dumps(summary, indent=2, sort_keys=True), encoding="utf-8")
@@ -437,7 +458,7 @@ def _write_csv(path: Path, rows: list[dict[str, Any]]) -> None:
     with path.open("w", newline="", encoding="utf-8") as csv_file:
         if not fieldnames:
             return
-        writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
+        writer = csv.DictWriter(csv_file, fieldnames=fieldnames, lineterminator="\n")
         writer.writeheader()
         writer.writerows(rows)
 

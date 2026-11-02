@@ -19,7 +19,7 @@
 - State that the adapters are mock implementations.
 - State that scenarios are deterministic and synthetic.
 - State that LangSmith is observability evidence only.
-- State that crash/restart recovery is local checkpoint evidence only.
+- State that checkpoint reopen/resume is local checkpoint evidence only.
 
 ## Evidence Audit
 

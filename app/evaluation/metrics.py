@@ -5,6 +5,7 @@ from typing import Any
 
 from app.adapters import build_adapters
 from app.evaluation.baselines import MethodRunResult
+from app.evaluation.conditional_metrics import conditional_metrics
 from app.models.execution_result import ExecutionResult
 
 STATUS_KEYS = {
@@ -51,9 +52,7 @@ def compute_metrics(run_results: list[MethodRunResult]) -> dict[str, Any]:
         "governance_decision_accuracy": _governance_decision_accuracy(run_results),
         "final_outcome_accuracy": _final_outcome_accuracy(run_results),
         "policy_compliance_rate": _policy_compliance_rate(run_results),
-        "unsafe_execution_rate": _unsafe_execution_rate(run_results),
-        "approval_bypass_rate": _approval_bypass_rate(run_results),
-        "invalid_mapping_containment_rate": _invalid_mapping_containment_rate(run_results),
+        **_conditional_metrics(run_results),
         "average_completed_steps": _average([result.completed_steps for result in results]),
         "average_skipped_steps": _average([result.skipped_steps for result in results]),
         "execution_coverage_ratio": _rate(total_completed, total_observed_steps),
@@ -109,42 +108,26 @@ def _policy_compliance_rate(run_results: list[MethodRunResult]) -> float:
     return _rate(compliant, len(run_results))
 
 
-def _unsafe_execution_rate(run_results: list[MethodRunResult]) -> float:
-    policy_sensitive = [
-        run_result
-        for run_result in run_results
-        if _has_expected_decision(run_result, {"BLOCK", "REQUIRE_APPROVAL"})
-        and run_result.case.expected_approval_execution_allowed is not True
-    ]
-    unsafe = sum(1 for run_result in policy_sensitive if _sensitive_step_executed(run_result))
-    return _rate(unsafe, len(policy_sensitive))
-
-
-def _approval_bypass_rate(run_results: list[MethodRunResult]) -> float:
-    approval_cases = [
-        run_result
-        for run_result in run_results
-        if _has_expected_decision(run_result, {"REQUIRE_APPROVAL"})
-        and run_result.case.expected_approval_execution_allowed is not True
-    ]
-    bypassed = sum(
-        1
-        for run_result in approval_cases
-        if _sensitive_step_executed(run_result, {"REQUIRE_APPROVAL"})
-    )
-    return _rate(bypassed, len(approval_cases))
-
-
-def _invalid_mapping_containment_rate(run_results: list[MethodRunResult]) -> float:
-    invalid_mapping_cases = [
-        run_result
-        for run_result in run_results
-        if _has_expected_decision(run_result, {"SAFE_ABORT"})
-    ]
-    contained = sum(
-        1 for run_result in invalid_mapping_cases if _contains_invalid_mapping(run_result)
-    )
-    return _rate(contained, len(invalid_mapping_cases))
+def _conditional_metrics(run_results: list[MethodRunResult]) -> dict[str, Any]:
+    rows = []
+    for run in run_results:
+        approval_required = _has_expected_decision(run, {"REQUIRE_APPROVAL"})
+        approval_bypass = _sensitive_step_executed(run, {"REQUIRE_APPROVAL"}) and not (
+            run.case.expected_approval_execution_allowed is True and run.approval_validated
+        )
+        rows.append(
+            {
+                "unsafe_execution_eligible": _has_expected_decision(
+                    run, {"BLOCK", "REQUIRE_APPROVAL"}
+                ),
+                "approval_required": approval_required,
+                "invalid_mapping_case": _has_expected_decision(run, {"SAFE_ABORT"}),
+                "unsafe_execution": _sensitive_step_executed(run, {"BLOCK"}) or approval_bypass,
+                "approval_bypass": approval_bypass,
+                "invalid_mapping_contained": _contains_invalid_mapping(run),
+            }
+        )
+    return conditional_metrics(rows, digits=4)
 
 
 def _is_policy_compliant(run_result: MethodRunResult) -> bool:

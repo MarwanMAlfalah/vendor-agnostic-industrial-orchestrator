@@ -6,7 +6,7 @@ This repository implements a deterministic supervisory orchestration prototype
 for vendor-agnostic industrial operations. The evaluation now covers a stable
 custom reference runtime (`reference_v1`), deterministic baselines, an optional
 LangGraph runtime, mixed multi-step workflows, controlled post-approval
-continuation, restart-safe checkpoint recovery, and optional hosted LangSmith
+continuation, same-process checkpoint reopen/resume, and optional hosted LangSmith
 observability.
 
 Across the canonical governance cases, the reference method achieves perfect
@@ -25,7 +25,7 @@ and checkpoint recovery.
 | LangGraph canonical comparison | 12 | `data/results/langgraph_comparison_results.csv` | Compare `reference_v1` and `langgraph_runtime` on policy correctness parity. |
 | Mixed workflow comparison | 12 | `data/results/mixed_comparison_results.csv` | Evaluate multi-step combinations such as allow-then-block and approval-then-allow. |
 | Post-approval continuation | 6 | `data/results/post_approval_comparison_results.csv` | Evaluate controlled execution of approval-gated steps after valid approval. |
-| Crash/restart persistence demo | 2 | `data/results/crash_restart_demo_summary.json` | Demonstrate restart-safe continuation from a persisted approval checkpoint. |
+| Checkpoint reopen/resume demo | 2 | `data/results/crash_restart_demo_summary.json` | Demonstrate checkpoint reopen/resume continuation from a persisted approval checkpoint. |
 | LangSmith observability | N/A | `docs/langsmith_trace_examples.md` | Document trace categories and screenshot candidates. |
 
 ## Metric Summary
@@ -42,7 +42,7 @@ and checkpoint recovery.
 | Mixed workflows | langgraph_runtime | 1.0 | 0.0 | 1.0 | 1.0 | Trace stage coverage 1.0; interrupt quality 1.0 |
 | Post-approval | reference_v1 | 0.3333 | 0.0 | 0.8333 | 0.3333 | No controlled continuation |
 | Post-approval | langgraph_runtime | 1.0 | 0.0 | 1.0 | 1.0 | Approval validation, gated execution, trace completeness all 1.0 |
-| Crash/restart | LangGraph SQLite checkpoint | N/A | N/A | N/A | N/A | Checkpoint resume, restart recovery, post-restart outcome, trace completeness all 1.0 |
+| Crash/restart | LangGraph SQLite checkpoint | N/A | N/A | N/A | N/A | Checkpoint resume, checkpoint reopen/resume, post-reopen outcome, trace completeness all 1.0 |
 
 The complete machine-readable table is available in
 `data/results/final_unified_metrics.csv` and
@@ -56,7 +56,7 @@ The complete machine-readable table is available in
 | Raw execution success alone is misleading. | Baseline B has success rate 1.0 and coverage 1.0 but policy compliance 0.25 and unsafe execution 1.0. | Safety-oriented metrics are required. |
 | LangGraph preserves policy correctness. | LangGraph canonical and mixed rows show policy compliance 1.0 and unsafe execution 0.0. | Strong within current deterministic cases. |
 | LangGraph adds runtime-level value. | Mixed and post-approval rows show trace stage coverage, interrupt quality, approval validation, and controlled continuation. | Strong for runtime semantics, not industrial deployment. |
-| Restart-safe continuation is demonstrated. | Crash/restart demo metrics are 1.0 across checkpoint resume, restart recovery, post-restart outcome, and trace completeness. | Strong demonstration at approval-checkpoint level. |
+| Restart-safe continuation is demonstrated. | Crash/restart demo metrics are 1.0 across checkpoint resume, checkpoint reopen/resume, post-reopen outcome, and trace completeness. | Strong demonstration at approval-checkpoint level. |
 | Observability supports inspection. | LangSmith docs and trace outputs define structured top-level outputs and child spans. | Useful for debugging and paper figures. |
 
 ## Canonical Governance Comparison
@@ -94,12 +94,12 @@ not execute the gated step. In this experiment, `langgraph_runtime` achieves
 outcome accuracy, gated step policy compliance, and approved execution trace
 completeness.
 
-## Crash/Restart Persistence Demo
+## SQLite Checkpoint Reopen/Resume Demo
 
 The crash/restart demo uses a SQLite LangGraph checkpointer at
 `data/langgraph/checkpoints.db`. It demonstrates recovery at the approval
 checkpoint level: the workflow reaches `approval_interrupt`, saves a checkpoint,
-simulates process stop by closing the runtime, reopens the runtime using the
+closes the runtime/checkpointer within the same Python process, reopens the runtime using the
 same checkpoint database and `thread_id`, resumes with approval input, and
 produces the expected final result. The demo includes both a valid approval and
 an invalid approval case.
@@ -127,7 +127,7 @@ increasing unsafe execution. The governance-aware reference method prevents
 unsafe execution in the controlled case set, and the LangGraph runtime preserves
 this correctness while adding stateful runtime capabilities such as
 interrupt/resume, controlled post-approval continuation, and checkpoint-based
-restart recovery.
+reopen/resume within one process.
 
 The evidence should be framed as prototype-level and deterministic. It supports
 claims about feasibility, architecture, evaluation methodology, and runtime

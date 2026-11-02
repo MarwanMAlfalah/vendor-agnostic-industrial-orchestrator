@@ -1,6 +1,6 @@
-aligned_final_outcome_accuracy,aligned_policy_compliance_rate,alignment_delta_policy_compliance,approval_bypass_rate,count,invalid_mapping_containment_rate,mean_latency_ms,median_latency_ms,original_final_outcome_accuracy,original_policy_compliance_rate,p95_latency_ms,runtime_id,scenario_count,scope,stress_scope_containment_rate,supported_scope_accuracy,trace_completeness,unsafe_execution_rate
-0.090909,0.0,0.0,0.545455,220,0.545455,0.018595,0.017729,0.090909,0.0,0.027888,baseline_a_direct_without_governance,220,stress_scope,0.0,,0.0,0.636364
-0.090909,0.0,0.0,0.0,220,0.545455,0.010616,0.010375,0.090909,0.0,0.012086,baseline_b_single_stage_execution,220,stress_scope,0.545455,,0.0,0.0
-0.444444,0.222222,-0.111111,0.666667,180,1.0,0.022443,0.021625,0.444444,0.333333,0.029919,baseline_c_without_policy_filtering,180,stress_scope,0.222222,,0.0,0.777778
-1.0,1.0,0.0,0.0,110,1.0,2.341139,1.870958,1.0,1.0,3.225206,langgraph_runtime,110,stress_scope,1.0,,1.0,0.0
-1.0,1.0,0.26087,0.0,115,1.0,0.33722,0.056375,0.73913,0.73913,0.0704,reference_v1,115,stress_scope,1.0,,1.0,0.0
+aligned_final_outcome_accuracy,aligned_policy_compliance_rate,alignment_delta_policy_compliance,approval_bypass_count,approval_bypass_rate,approval_required_count,count,invalid_mapping_case_count,invalid_mapping_contained_count,invalid_mapping_containment_rate,mean_latency_ms,median_latency_ms,original_final_outcome_accuracy,original_policy_compliance_rate,p95_latency_ms,runtime_id,scenario_count,scope,stress_scope_containment_rate,supported_scope_accuracy,trace_completeness,unsafe_execution_count,unsafe_execution_eligible_count,unsafe_execution_rate
+0.090909,0.0,0.0,120,1.0,120,220,100,0,0.0,0.018225,0.017333,0.090909,0.0,0.027557,baseline_a_direct_without_governance,220,stress_scope,0.0,,0.0,140,140,1.0
+0.090909,0.0,0.0,0,0.0,120,220,100,0,0.0,0.010002,0.00975,0.090909,0.0,0.011504,baseline_b_single_stage_execution,220,stress_scope,0.545455,,0.0,0,140,0.0
+0.444444,0.222222,-0.111111,120,1.0,120,180,60,60,1.0,0.0216,0.02025,0.444444,0.333333,0.029523,baseline_c_without_policy_filtering,180,stress_scope,0.222222,,0.0,140,140,1.0
+1.0,1.0,0.0,0,0.0,30,110,100,100,1.0,1.120527,1.025605,1.0,1.0,1.419302,langgraph_runtime,110,stress_scope,1.0,,1.0,0,30,0.0
+1.0,1.0,0.26087,0,0.0,75,115,45,45,1.0,0.021532,0.019875,0.73913,0.73913,0.031371,reference_v1,115,stress_scope,1.0,,1.0,0,75,0.0

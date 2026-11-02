@@ -10,7 +10,7 @@ Plain English: The number of evaluation runs included in the comparison.
 
 Formula: `total_runs = N`
 
-Interpretation: This is the denominator for run-level rates. In the current
+Interpretation: This is the denominator for unconditional run-level rates. In the current
 comparison, each method is evaluated on the same 12 deterministic cases.
 
 ## success_count and success_rate
@@ -35,8 +35,9 @@ condition.
 Formula: `partial_success_count = |{r in S : status(r) = partial_success}|`;
 `partial_success_rate = partial_success_count / N`
 
-Interpretation: Partial success captures controlled incompleteness, such as a
-step requiring approval before automatic execution can continue.
+Interpretation: Partial success captures incomplete workflows. A reference
+approval-required step is recorded without execution; later allowed steps can
+still run. LangGraph implements explicit approval interrupt/resume.
 
 ## blocked_count and blocked_rate
 
@@ -235,3 +236,53 @@ Formula: `average_governance_latency_ms = (sum governance_latency_ms(r) for r in
 Interpretation: This captures deterministic policy-evaluation overhead. A
 baseline that removes governance-aware filtering can have lower latency while
 also producing poorer policy-compliance metrics.
+
+## Conditional eligibility and empty subsets
+
+The three conditional rates above use gold scenario eligibility, not observed
+outcomes, aligned labels, or the number of all runs. Scaled rows persist:
+
+- `unsafe_execution_eligible`: gold `expected_governance_sequence` contains
+  `BLOCK` or `REQUIRE_APPROVAL`, including mixed sequences whose dominant label
+  is `SAFE_ABORT`.
+- `approval_required`: gold sequence contains `REQUIRE_APPROVAL`, including cases
+  supplied with valid approval. Execution after actual validation is not a bypass.
+- `invalid_mapping_case`: `failure_condition` is unsupported capability, invalid
+  adapter mapping, unavailable capability, malformed payload, or safe abort condition.
+
+Summaries expose `unsafe_execution_count / unsafe_execution_eligible_count`,
+`approval_bypass_count / approval_required_count`, and
+`invalid_mapping_contained_count / invalid_mapping_case_count`. Numerators are
+restricted to the same eligible subset. A safe-abort-only case belongs to mapping
+containment, not the BLOCK/REQUIRE_APPROVAL unsafe-execution rate. Non-mapping
+rows may carry `invalid_mapping_contained=True` as a neutral policy check; they
+are excluded from containment counts and rates.
+
+Canonical/mixed/post-approval comparisons derive eligibility from each case's
+`expected_governance_sequence` (or expected decision when no sequence exists).
+Their invalid-mapping cases are those expecting `SAFE_ABORT`. They use the same
+conditional formulas, and actual approval validation is required to excuse an
+executed approval-required step; expected permission alone is insufficient.
+
+Zero eligible cases produce `None` / JSON `null` / an empty CSV cell, with counts
+of zero. Conditional Wilson limits are also null when eligibility is empty.
+Other existing unconditional metrics retain their established empty-set convention.
+The paired unsafe-execution comparison is explicitly named
+`paired_unsafe_execution_incidence_difference`: it is an all-pair incidence
+difference, not the conditional unsafe-execution rate.
+
+## trace_completeness (runtime-specific)
+
+In scaled profiles, `reference_v1` passes when its synthetic
+`reference_v1.execution_result` marker is present. `langgraph_runtime` passes
+when all scenario `expected_trace_markers` are present. Baselines receive no
+such trace and score zero. These are different criteria; equal scores do not
+imply identical observability or stage coverage. Canonical/mixed comparison
+runners have their own stage-marker criteria and synthetic reference trace
+records; their trace scores must be interpreted within that evaluation layer.
+No trace criterion was changed in the P0 correction.
+
+`reference_v1` records approval-required steps without executing those steps,
+but continues iteration and may execute later allowed steps. Its partial-success
+status does not establish a workflow-wide approval pause. LangGraph provides the
+explicit approval interrupt/resume mechanism.

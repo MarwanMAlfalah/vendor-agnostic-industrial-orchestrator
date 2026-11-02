@@ -19,17 +19,18 @@ RUNTIME_CAPABILITY_PROFILES: dict[str, dict[str, Any]] = {
             "governance-aware execution",
             "blocking unsafe actions",
             "safe abort behavior",
-            "approval_required stopping behavior",
+            "approval_required decision recording",
         ],
         "does_not_support": [
+            "workflow-wide approval pause/resume",
             "controlled post-approval execution",
             "graph-native interrupt/resume",
             "checkpoint persistence",
-            "restart-safe continuation",
+            "SQLite checkpoint reopen/resume",
         ],
         "interpretation_note": (
-            "Approval-required steps are expected to stop automatic governed "
-            "execution rather than continue through a controlled approval resume."
+            "Approval-required steps are recorded without execution; later allowed steps "
+            "may execute. There is no workflow-wide approval pause/resume mechanism."
         ),
     },
     "langgraph_runtime": {
@@ -43,7 +44,7 @@ RUNTIME_CAPABILITY_PROFILES: dict[str, dict[str, Any]] = {
             "controlled post-approval continuation",
             "approval interrupt/resume",
             "checkpoint persistence",
-            "restart-safe continuation",
+            "SQLite checkpoint reopen/resume",
             "graph-native trace markers",
         ],
         "does_not_support": [
@@ -148,8 +149,8 @@ def _reference_expectation(
             "aligned_expected_final_status": final_status,
             "aligned_expected_governance_decision": governance_decision,
             "expectation_basis": (
-                "reference_v1 supports approval_required stopping behavior, "
-                "not controlled post-approval continuation or resume-time "
+                "reference_v1 records approval_required decisions and may execute later allowed steps; "
+                "it does not support controlled post-approval continuation or resume-time "
                 "mapping invalidation."
             ),
             "runtime_supports_expected_behavior": True,

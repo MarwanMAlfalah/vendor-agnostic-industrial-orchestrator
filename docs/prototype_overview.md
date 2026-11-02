@@ -1,4 +1,9 @@
-# Prototype Overview
+# Prototype Overview (Historical)
+
+This document describes the earlier reference-only prototype. It is retained as
+historical context: the current repository includes LangGraph, SQLite checkpoint
+persistence, and Docker/Kubernetes configuration. See [README](../README.md)
+for current runtime capabilities.
 
 This project implements a minimal supervisory research prototype for a
 vendor-agnostic industrial orchestrator. The prototype studies how a high-level

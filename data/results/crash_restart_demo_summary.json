@@ -1,11 +1,12 @@
 {
   "checkpoint_db": "data/langgraph/checkpoints.db",
   "deterministic": true,
+  "evidence_scope": "same-process SQLite checkpoint reopen/resume; no OS process crash or restart",
   "metrics": {
+    "checkpoint_reopen_resume_success_rate": 1.0,
+    "checkpoint_reopen_trace_completeness": 1.0,
     "checkpoint_resume_success_rate": 1.0,
-    "post_restart_final_outcome_accuracy": 1.0,
-    "restart_recovery_success_rate": 1.0,
-    "restart_trace_completeness": 1.0
+    "post_reopen_final_outcome_accuracy": 1.0
   },
   "runs": [
     {
@@ -18,8 +19,10 @@
       "final_status": "success",
       "gated_step_executed": true,
       "interrupt_reached": true,
-      "process_restarted": true,
       "resumed_from_checkpoint": true,
+      "runtime_recreated": true,
+      "same_process_resume": true,
+      "sqlite_checkpoint_reopened": true,
       "thread_id": "crash-restart-CASE-POST-APPROVAL-VALID-001",
       "trace": [
         "planner_node",
@@ -43,8 +46,10 @@
       "final_status": "partial_success",
       "gated_step_executed": false,
       "interrupt_reached": true,
-      "process_restarted": true,
       "resumed_from_checkpoint": true,
+      "runtime_recreated": true,
+      "same_process_resume": true,
+      "sqlite_checkpoint_reopened": true,
       "thread_id": "crash-restart-CASE-POST-APPROVAL-INVALID-PAYLOAD-001",
       "trace": [
         "planner_node",

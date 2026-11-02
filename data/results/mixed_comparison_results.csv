@@ -1,3 +1,3 @@
-runtime_id,runtime_name,policy_compliance_rate,unsafe_execution_rate,governance_decision_accuracy,final_outcome_accuracy,trace_completeness,trace_stage_coverage,interrupt_trace_quality,average_total_latency_ms,average_execution_latency_ms,approval_resume_correctness,resume_success_rate,post_resume_final_outcome_accuracy
-reference_v1,Reference v1 custom deterministic orchestration,1.0,0.0,1.0,1.0,0.0,0.0,0.0,0.087923,0.016997,0.0,0.0,0.0
-langgraph_runtime,Experimental LangGraph runtime,1.0,0.0,1.0,1.0,1.0,1.0,1.0,2.630215,0.248969,1.0,1.0,1.0
+runtime_id,runtime_name,policy_compliance_rate,unsafe_execution_rate,unsafe_execution_eligible_count,unsafe_execution_count,approval_required_count,approval_bypass_count,invalid_mapping_case_count,invalid_mapping_contained_count,governance_decision_accuracy,final_outcome_accuracy,trace_completeness,trace_stage_coverage,interrupt_trace_quality,average_total_latency_ms,average_execution_latency_ms,approval_resume_correctness,resume_success_rate,post_resume_final_outcome_accuracy
+reference_v1,Reference v1 custom deterministic orchestration,1.0,0.0,10,0,5,0,2,2,1.0,1.0,0.0,0.0,0.0,0.016604,0.011861,0.0,0.0,0.0
+langgraph_runtime,Experimental LangGraph runtime,1.0,0.0,10,0,5,0,2,2,1.0,1.0,1.0,1.0,1.0,1.410358,0.038406,1.0,1.0,1.0

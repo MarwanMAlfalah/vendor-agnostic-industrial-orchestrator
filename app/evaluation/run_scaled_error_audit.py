@@ -10,6 +10,11 @@ from pathlib import Path
 from statistics import mean
 from typing import Any
 
+from app.evaluation.conditional_metrics import (
+    ELIGIBILITY_FIELDS,
+    conditional_metrics,
+    eligible_rows,
+)
 from app.evaluation.run_scaled_evaluation import run_scaled_evaluation
 from app.evaluation.scenario_generator import (
     FAILURE_CONDITIONS,
@@ -133,6 +138,7 @@ def _load_rows(profile: str) -> list[dict[str, Any]]:
 def _parse_row(row: dict[str, str]) -> dict[str, Any]:
     parsed: dict[str, Any] = dict(row)
     for key in [
+        *ELIGIBILITY_FIELDS,
         "governance_decision_correct",
         "policy_compliant",
         "unsafe_execution",
@@ -143,8 +149,13 @@ def _parse_row(row: dict[str, str]) -> dict[str, Any]:
         "restart_recovered",
         "final_outcome_correct",
     ]:
-        parsed[key] = row.get(key) == "True"
-    for key in ["workflow_step_count", "completed_steps", "skipped_steps", "failed_steps"]:
+        parsed[key] = row[key] == "True"
+    for key in [
+        "workflow_step_count",
+        "completed_steps",
+        "skipped_steps",
+        "failed_steps",
+    ]:
         parsed[key] = int(row[key])
     parsed["latency_ms"] = float(row["latency_ms"])
     return parsed
@@ -280,8 +291,13 @@ def _scope_metrics(
             ("final_outcome_accuracy", "final_outcome_correct"),
             ("trace_completeness", "trace_complete"),
         ]:
-            numerator = sum(1 for row in group_rows if row[column])
-            low, high = wilson_interval(numerator, len(group_rows))
+            subset = (
+                eligible_rows("unsafe_execution_rate", group_rows)
+                if metric_name == "unsafe_execution"
+                else group_rows
+            )
+            numerator = sum(1 for row in subset if row[column])
+            low, high = wilson_interval(numerator, len(subset)) if subset else (None, None)
             metric_row[f"{metric_name}_wilson_95_low"] = low
             metric_row[f"{metric_name}_wilson_95_high"] = high
         metric_row["scope"] = scope
@@ -334,16 +350,11 @@ def _metric_row(
         "factor_value": factor_value,
         "count": len(rows),
         "policy_compliance_rate": _rate(sum(row["policy_compliant"] for row in rows), len(rows)),
-        "unsafe_execution_rate": _rate(sum(row["unsafe_execution"] for row in rows), len(rows)),
+        **conditional_metrics(rows),
         "final_outcome_accuracy": _rate(
             sum(row["final_outcome_correct"] for row in rows), len(rows)
         ),
         "trace_completeness": _rate(sum(row["trace_complete"] for row in rows), len(rows)),
-        "approval_bypass_rate": _rate(sum(row["approval_bypass"] for row in rows), len(rows)),
-        "invalid_mapping_containment_rate": _rate(
-            sum(row["invalid_mapping_contained"] for row in rows),
-            len(rows),
-        ),
         "mean_latency_ms": round(mean(latencies), 6) if latencies else 0.0,
         "p95_latency_ms": _percentile(latencies, 95),
     }
@@ -819,7 +830,7 @@ def _write_csv(
     with path.open("w", newline="", encoding="utf-8") as csv_file:
         if not fieldnames:
             return
-        writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
+        writer = csv.DictWriter(csv_file, fieldnames=fieldnames, lineterminator="\n")
         writer.writeheader()
         writer.writerows(rows)
 

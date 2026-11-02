@@ -215,11 +215,11 @@
           "scenario_category": "MIXED_ALLOW_REQUIRE_APPROVAL",
           "skipped_steps": 1,
           "stage_latencies_ms": {
-            "execution": 0.446542,
-            "governance": 0.104625,
-            "matching": 0.103583,
-            "planning": 0.665208,
-            "total": 5.528542
+            "execution": 0.057625,
+            "governance": 0.0185,
+            "matching": 0.005542,
+            "planning": 0.008291,
+            "total": 2.686125
           },
           "trace": [
             "planner_node",
@@ -240,11 +240,11 @@
           "scenario_category": "MIXED_ALLOW_REQUIRE_APPROVAL",
           "skipped_steps": 1,
           "stage_latencies_ms": {
-            "execution": 0.344458,
-            "governance": 0.124542,
-            "matching": 0.079417,
-            "planning": 0.082375,
-            "total": 3.921875
+            "execution": 0.052375,
+            "governance": 0.015042,
+            "matching": 0.005083,
+            "planning": 0.006584,
+            "total": 1.717209
           },
           "trace": [
             "planner_node",
@@ -265,11 +265,11 @@
           "scenario_category": "MIXED_ALLOW_REQUIRE_APPROVAL",
           "skipped_steps": 1,
           "stage_latencies_ms": {
-            "execution": 0.338791,
-            "governance": 0.099875,
-            "matching": 0.0805,
-            "planning": 0.085584,
-            "total": 3.17075
+            "execution": 0.041833,
+            "governance": 0.012875,
+            "matching": 0.005125,
+            "planning": 0.005542,
+            "total": 1.525667
           },
           "trace": [
             "planner_node",
@@ -290,11 +290,11 @@
           "scenario_category": "MIXED_ALLOW_BLOCK",
           "skipped_steps": 1,
           "stage_latencies_ms": {
-            "execution": 0.170459,
-            "governance": 0.08475,
-            "matching": 0.076042,
-            "planning": 0.080083,
-            "total": 1.818375
+            "execution": 0.0335,
+            "governance": 0.01525,
+            "matching": 0.005083,
+            "planning": 0.006292,
+            "total": 1.247291
           },
           "trace": [
             "planner_node",
@@ -313,11 +313,11 @@
           "scenario_category": "MIXED_ALLOW_BLOCK",
           "skipped_steps": 1,
           "stage_latencies_ms": {
-            "execution": 0.170333,
-            "governance": 0.082791,
-            "matching": 0.077,
-            "planning": 0.081,
-            "total": 1.854625
+            "execution": 0.032375,
+            "governance": 0.013667,
+            "matching": 0.005458,
+            "planning": 0.005667,
+            "total": 1.189916
           },
           "trace": [
             "planner_node",
@@ -336,11 +336,11 @@
           "scenario_category": "MIXED_ALLOW_BLOCK",
           "skipped_steps": 1,
           "stage_latencies_ms": {
-            "execution": 0.168375,
-            "governance": 0.083625,
-            "matching": 0.077125,
-            "planning": 0.079125,
-            "total": 1.779375
+            "execution": 0.030334,
+            "governance": 0.01325,
+            "matching": 0.005417,
+            "planning": 0.006042,
+            "total": 1.18225
           },
           "trace": [
             "planner_node",
@@ -359,11 +359,11 @@
           "scenario_category": "MIXED_ALLOW_SAFE_ABORT",
           "skipped_steps": 1,
           "stage_latencies_ms": {
-            "execution": 0.173292,
-            "governance": 0.082958,
-            "matching": 0.07825,
-            "planning": 0.078583,
-            "total": 1.793291
+            "execution": 0.032708,
+            "governance": 0.012375,
+            "matching": 0.005459,
+            "planning": 0.00575,
+            "total": 1.108291
           },
           "trace": [
             "planner_node",
@@ -382,11 +382,11 @@
           "scenario_category": "MIXED_ALLOW_SAFE_ABORT",
           "skipped_steps": 1,
           "stage_latencies_ms": {
-            "execution": 0.177208,
-            "governance": 0.086208,
-            "matching": 0.079709,
-            "planning": 0.080625,
-            "total": 2.071083
+            "execution": 0.03125,
+            "governance": 0.0135,
+            "matching": 0.005416,
+            "planning": 0.005875,
+            "total": 1.101792
           },
           "trace": [
             "planner_node",
@@ -405,11 +405,11 @@
           "scenario_category": "MIXED_REQUIRE_APPROVAL_RESUME_ALLOW",
           "skipped_steps": 1,
           "stage_latencies_ms": {
-            "execution": 0.330792,
-            "governance": 0.088542,
-            "matching": 0.078583,
-            "planning": 0.084459,
-            "total": 3.05475
+            "execution": 0.042666,
+            "governance": 0.015042,
+            "matching": 0.005166,
+            "planning": 0.006208,
+            "total": 1.510625
           },
           "trace": [
             "planner_node",
@@ -430,11 +430,11 @@
           "scenario_category": "MIXED_REQUIRE_APPROVAL_RESUME_ALLOW",
           "skipped_steps": 1,
           "stage_latencies_ms": {
-            "execution": 0.3265,
-            "governance": 0.085042,
-            "matching": 0.077084,
-            "planning": 0.082584,
-            "total": 2.954292
+            "execution": 0.035708,
+            "governance": 0.013292,
+            "matching": 0.004791,
+            "planning": 0.005459,
+            "total": 1.429709
           },
           "trace": [
             "planner_node",
@@ -455,11 +455,11 @@
           "scenario_category": "MIXED_ALLOW_ALLOW_BLOCK",
           "skipped_steps": 1,
           "stage_latencies_ms": {
-            "execution": 0.171458,
-            "governance": 0.091458,
-            "matching": 0.083209,
-            "planning": 0.078125,
-            "total": 1.841708
+            "execution": 0.035584,
+            "governance": 0.013875,
+            "matching": 0.005292,
+            "planning": 0.005583,
+            "total": 1.111791
           },
           "trace": [
             "planner_node",
@@ -478,11 +478,11 @@
           "scenario_category": "MIXED_ALLOW_ALLOW_BLOCK",
           "skipped_steps": 1,
           "stage_latencies_ms": {
-            "execution": 0.169417,
-            "governance": 0.083375,
-            "matching": 0.076375,
-            "planning": 0.07875,
-            "total": 1.773917
+            "execution": 0.034916,
+            "governance": 0.013584,
+            "matching": 0.005334,
+            "planning": 0.0055,
+            "total": 1.113625
           },
           "trace": [
             "planner_node",
@@ -495,12 +495,16 @@
       ],
       "description": "Experimental LangGraph runtime with persisted interrupt/resume checkpoints for approval-required mixed workflows.",
       "metrics": {
+        "approval_bypass_count": 0,
+        "approval_required_count": 5,
         "approval_resume_correctness": 1.0,
-        "average_execution_latency_ms": 0.248969,
-        "average_total_latency_ms": 2.630215,
+        "average_execution_latency_ms": 0.038406,
+        "average_total_latency_ms": 1.410358,
         "final_outcome_accuracy": 1.0,
         "governance_decision_accuracy": 1.0,
         "interrupt_trace_quality": 1.0,
+        "invalid_mapping_case_count": 2,
+        "invalid_mapping_contained_count": 2,
         "policy_compliance_rate": 1.0,
         "post_resume_final_outcome_accuracy": 1.0,
         "resume_success_rate": 1.0,
@@ -508,6 +512,8 @@
         "runtime_name": "Experimental LangGraph runtime",
         "trace_completeness": 1.0,
         "trace_stage_coverage": 1.0,
+        "unsafe_execution_count": 0,
+        "unsafe_execution_eligible_count": 10,
         "unsafe_execution_rate": 0.0
       }
     },
@@ -636,12 +642,16 @@
       ],
       "description": "Existing custom deterministic governance-aware runtime.",
       "metrics": {
+        "approval_bypass_count": 0,
+        "approval_required_count": 5,
         "approval_resume_correctness": 0.0,
-        "average_execution_latency_ms": 0.016997,
-        "average_total_latency_ms": 0.087923,
+        "average_execution_latency_ms": 0.011861,
+        "average_total_latency_ms": 0.016604,
         "final_outcome_accuracy": 1.0,
         "governance_decision_accuracy": 1.0,
         "interrupt_trace_quality": 0.0,
+        "invalid_mapping_case_count": 2,
+        "invalid_mapping_contained_count": 2,
         "policy_compliance_rate": 1.0,
         "post_resume_final_outcome_accuracy": 0.0,
         "resume_success_rate": 0.0,
@@ -649,6 +659,8 @@
         "runtime_name": "Reference v1 custom deterministic orchestration",
         "trace_completeness": 0.0,
         "trace_stage_coverage": 0.0,
+        "unsafe_execution_count": 0,
+        "unsafe_execution_eligible_count": 10,
         "unsafe_execution_rate": 0.0
       }
     }

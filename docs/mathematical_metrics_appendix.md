@@ -21,7 +21,7 @@ Level: run-level.
 
 ## unsafe_execution_rate
 
-Formula: `|{r in R_sensitive : sensitive_step_executed(r)}| / |R_sensitive|`
+Formula: `|{r in R_sensitive : sensitive_step_executed_without_required_authorization(r)}| / |R_sensitive|`
 
 Interpretation: Fraction of forbidden or approval-required cases where the
 sensitive step executed automatically.
@@ -42,7 +42,7 @@ High values mean: approval control failed.
 
 High values are not good.
 
-Level: approval-step level.
+Level: approval-case level.
 
 ## governance_decision_accuracy
 
@@ -186,21 +186,21 @@ High values are not necessarily good unless resume also succeeds.
 
 Level: recovery-level.
 
-## restart_recovery_success_rate
+## checkpoint_reopen_resume_success_rate
 
-Formula: `resumed_after_process_restart_runs / restart_demo_runs`
+Formula: `resumed_after_runtime_reopen_runs / restart_demo_runs`
 
 Interpretation: Fraction of demo runs that resume from persisted checkpoint
-state after simulated restart.
+state after runtime/checkpointer reopen in the same Python process.
 
-High values mean: restart recovery works in the demo configuration.
+High values mean: checkpoint reopen/resume works in the same-process demo.
 
 High values are not necessarily good when: only one narrow checkpoint type is
 tested.
 
 Level: recovery-level.
 
-## post_restart_final_outcome_accuracy
+## post_reopen_final_outcome_accuracy
 
 Formula: `|{r in R_restart : status(r) = post_restart_status*(r)}| / |R_restart|`
 
@@ -212,3 +212,5 @@ High values are not necessarily good when: restart cases are too few.
 
 Level: recovery-level.
 
+
+Conditional eligibility, counts, null empty-subset handling, and runtime-specific trace criteria are specified in [metric definitions](metrics_definitions.md). Valid approval cases remain eligible; validated execution is excluded from unsafe/bypass numerators.

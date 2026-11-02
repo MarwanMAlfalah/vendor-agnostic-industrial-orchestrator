@@ -1,10 +1,11 @@
-# Crash/Restart Persistence Demo
+# SQLite Checkpoint Reopen/Resume Demo
 
 This demo uses the optional LangGraph runtime with a SQLite checkpointer at
 `data/langgraph/checkpoints.db`. It starts an approval-gated workflow, reaches an
-approval interrupt, closes the runtime to simulate a process stop, reopens a new
-runtime from the same checkpoint database, and resumes using the same
-`thread_id`.
+approval interrupt, closes the initial runtime/checkpointer, reopens a new
+SQLite-backed runtime, and resumes using the same `thread_id`, all within one
+Python process. It demonstrates checkpoint reopen/resume behavior, not recovery
+after an operating-system process crash.
 
 ## Runs
 
@@ -14,9 +15,9 @@ runtime from the same checkpoint database, and resumes using the same
 ## Metrics
 
 - checkpoint_resume_success_rate: `1.0`
-- restart_recovery_success_rate: `1.0`
-- post_restart_final_outcome_accuracy: `1.0`
-- restart_trace_completeness: `1.0`
+- checkpoint_reopen_resume_success_rate: `1.0`
+- post_reopen_final_outcome_accuracy: `1.0`
+- checkpoint_reopen_trace_completeness: `1.0`
 
 ## Trace Evidence
 

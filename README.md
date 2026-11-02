@@ -1,16 +1,14 @@
 # Vendor-Agnostic Industrial Orchestrator
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Python-3.10+-blue?logo=python" />
-  <img src="https://img.shields.io/badge/LLM-AI-red" />
-  <img src="https://img.shields.io/badge/License-MIT-green" />
+  <img src="https://img.shields.io/badge/Python-3.11+-blue?logo=python" />
 </p>
 
 Research prototype for governance-aware, vendor-agnostic orchestration of industrial workflows.
 
 The repository contains a FastAPI service, deterministic mock adapters, governance-aware runtime
-paths, LangGraph continuation experiments, and reproducible evaluation artifacts used for an
-IJTech-oriented journal manuscript.
+paths, LangGraph continuation experiments, and reproducible evaluation artifacts for an
+in-progress research manuscript.
 
 The project is not production software. It does not claim certified safety, live PLC integration,
 regulatory compliance, or production deployment.
@@ -22,13 +20,16 @@ legacy adapters.
 
 `reference_v1` is the deterministic governance-aware reference runtime. It separates planning,
 capability matching, governance evaluation, and adapter-mediated execution. It supports blocking,
-approval-required stopping, safe-abort behavior, invalid mapping containment, and trace recording.
-It intentionally does not perform controlled post-approval continuation.
+safe-abort behavior, invalid mapping containment, and trace recording. It records
+`approval_required` decisions without executing those steps, but later allowed executable steps
+may still execute. It does not implement a workflow-wide approval pause/resume mechanism or
+controlled post-approval continuation.
 
-`langgraph_runtime` preserves the governed execution semantics while adding graph-native
-approval interrupt/resume, controlled post-approval continuation, checkpoint persistence, and
-restart-resume evidence. The crash/restart demonstration uses a local SQLite checkpointer and is
-prototype recovery evidence only.
+`langgraph_runtime` adds graph-native approval interrupt/resume, controlled post-approval
+continuation, and checkpoint persistence. The checkpoint demonstration closes the initial
+runtime/checkpointer, reopens the SQLite-backed runtime, and resumes within the same Python
+process. It demonstrates checkpoint reopen/resume behavior, not recovery after an
+operating-system process crash.
 
 The evaluation also includes deterministic baselines that remove governance or architectural
 protections so policy risk can be measured explicitly.
@@ -38,7 +39,9 @@ protections so policy risk can be measured explicitly.
 The orchestration pipeline evaluates mapped plan steps with governance decisions:
 
 - `ALLOW`: execute the mapped adapter step.
-- `REQUIRE_APPROVAL`: stop or interrupt until approval is supplied.
+- `REQUIRE_APPROVAL`: classify a step as requiring approval. `reference_v1` records the
+  decision without a workflow-wide pause; `langgraph_runtime` provides explicit interrupt/resume
+  for controlled approval continuation.
 - `BLOCK`: prevent execution of prohibited actions.
 - `FALLBACK`: record fallback behavior where supported.
 - `SAFE_ABORT`: stop execution to contain invalid mappings or malformed payloads.
@@ -47,14 +50,15 @@ Correct behavior may be non-execution. For that reason, the repository reports p
 unsafe execution, approval bypass, invalid mapping containment, trace completeness, and final
 outcome accuracy rather than raw task success alone.
 
-## Scaled Evaluation
+## Evaluation Evidence
 
 The deterministic scaled evaluation includes:
 
 - a 240-scenario journal profile used for main manuscript evidence;
 - a 500-scenario extended profile for additional deterministic coverage;
 - original global-label metrics and runtime-specific aligned metrics;
-- baseline comparison;
+- five paths: `reference_v1`, `langgraph_runtime`, and baselines A, B, and C;
+- baseline comparison and implemented/conceptual ablation reporting;
 - supported-versus-stress scope reporting;
 - latency summaries interpreted as local prototype measurements.
 
@@ -66,7 +70,22 @@ make eval-aligned
 make eval-crash-restart
 ```
 
-Generated outputs are stored under `data/results/` and supporting reports under `docs/`.
+The scaled profiles use prepared governance plans (`source_goal=None`) to isolate runtime
+execution, governance, containment, and continuation behavior. They do not independently
+benchmark planner or capability-matcher accuracy across all 240/500 scenarios.
+
+Principal committed evidence: [journal summary](data/results/scaled_evaluation_summary_journal.json),
+[extended summary](data/results/scaled_evaluation_summary_extended.json),
+[aligned runtime metrics](data/results/aligned_scaled_metrics_by_runtime.csv),
+[aligned baseline comparison](data/results/ijtech_table_3_baseline_comparison_aligned.csv), and
+[ablation summary](data/results/ablation_summary.json). Generated results are under `data/results/`
+and reports under `docs/`.
+
+Conditional safety rates include explicit eligible counts; empty subsets are `null` in JSON
+and blank in CSV. See [metric definitions](docs/metrics_definitions.md) and the
+[P0 correction report](docs/p0_correction_report.md). Scaled `trace_completeness` checks a
+reference execution-result marker versus scenario-specific graph markers for LangGraph; equal
+scores do not establish identical trace coverage.
 
 Do not interpret these artifacts as production reliability, certified safety, or live plant evidence.
 
@@ -79,7 +98,7 @@ blind-review materials unless account, workspace, URL, and browser identity are 
 
 ## Docker Demo
 
-The Docker demo runs the crash/restart persistence demonstration and mounts local `data/` and
+The Docker demo runs the same-process checkpoint reopen/resume demonstration and mounts local `data/` and
 `docs/` directories so generated summaries remain on the host:
 
 ```bash
@@ -141,11 +160,13 @@ Expected response:
 ```
 ---
 
-## ✨ Author
+## Authors
 
-#### 1. **Marwan M. Alfalah** MSc Student at SPbPU
-#### 2. Associate Professor **Elena S. Gebel** Master's degree programme director PhD
+**Marwan M. Al-Falah**<br>
+MSc Researcher in Intelligent Systems<br>
+Peter the Great St. Petersburg Polytechnic University
 
+**Elena S. Gebel — Co-author / academic collaborator**
 
 ## Reviewer Notes
 

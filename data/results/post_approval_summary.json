@@ -160,11 +160,11 @@
           "resumed": true,
           "skipped_steps": 0,
           "stage_latencies_ms": {
-            "execution": 0.659834,
-            "governance": 0.135542,
-            "matching": 0.098709,
-            "planning": 0.630625,
-            "total": 5.844208
+            "execution": 0.092791,
+            "governance": 0.018375,
+            "matching": 0.006084,
+            "planning": 0.007458,
+            "total": 2.738709
           },
           "trace": [
             "planner_node",
@@ -189,11 +189,11 @@
           "resumed": true,
           "skipped_steps": 0,
           "stage_latencies_ms": {
-            "execution": 0.591334,
-            "governance": 0.101,
-            "matching": 0.087083,
-            "planning": 0.105833,
-            "total": 3.959875
+            "execution": 0.057667,
+            "governance": 0.0115,
+            "matching": 0.005292,
+            "planning": 0.0055,
+            "total": 1.638459
           },
           "trace": [
             "planner_node",
@@ -218,11 +218,11 @@
           "resumed": true,
           "skipped_steps": 0,
           "stage_latencies_ms": {
-            "execution": 0.488209,
-            "governance": 0.093417,
-            "matching": 0.083041,
-            "planning": 0.085167,
-            "total": 3.339042
+            "execution": 0.072167,
+            "governance": 0.017458,
+            "matching": 0.005292,
+            "planning": 0.006291,
+            "total": 1.590042
           },
           "trace": [
             "planner_node",
@@ -247,11 +247,11 @@
           "resumed": true,
           "skipped_steps": 1,
           "stage_latencies_ms": {
-            "execution": 0.315333,
-            "governance": 0.087959,
-            "matching": 0.080792,
-            "planning": 0.087291,
-            "total": 3.083
+            "execution": 0.041916,
+            "governance": 0.013875,
+            "matching": 0.005625,
+            "planning": 0.0055,
+            "total": 1.537875
           },
           "trace": [
             "planner_node",
@@ -275,11 +275,11 @@
           "resumed": true,
           "skipped_steps": 1,
           "stage_latencies_ms": {
-            "execution": 0.317125,
-            "governance": 0.097583,
-            "matching": 0.076875,
-            "planning": 0.084458,
-            "total": 2.955583
+            "execution": 0.035958,
+            "governance": 0.012875,
+            "matching": 0.005458,
+            "planning": 0.005875,
+            "total": 1.406375
           },
           "trace": [
             "planner_node",
@@ -303,11 +303,11 @@
           "resumed": true,
           "skipped_steps": 1,
           "stage_latencies_ms": {
-            "execution": 0.407084,
-            "governance": 0.117584,
-            "matching": 0.078167,
-            "planning": 0.082,
-            "total": 3.0835
+            "execution": 0.068375,
+            "governance": 0.013292,
+            "matching": 0.005459,
+            "planning": 0.005833,
+            "total": 1.4475
           },
           "trace": [
             "planner_node",
@@ -322,20 +322,26 @@
         }
       ],
       "metrics": {
+        "approval_bypass_count": 0,
+        "approval_required_count": 6,
         "approval_resume_correctness": 1.0,
         "approval_validation_accuracy": 1.0,
         "approved_execution_trace_completeness": 1.0,
         "approved_step_execution_rate": 1.0,
-        "average_execution_latency_ms": 0.463153,
-        "average_total_latency_ms": 3.710868,
+        "average_execution_latency_ms": 0.061479,
+        "average_total_latency_ms": 1.726493,
         "final_outcome_accuracy": 1.0,
         "gated_step_policy_compliance_rate": 1.0,
         "governance_decision_accuracy": 1.0,
+        "invalid_mapping_case_count": 0,
+        "invalid_mapping_contained_count": 0,
         "policy_compliance_rate": 1.0,
         "post_resume_final_outcome_accuracy": 1.0,
         "resume_success_rate": 1.0,
         "runtime_id": "langgraph_runtime",
         "runtime_name": "Experimental LangGraph controlled approval continuation",
+        "unsafe_execution_count": 0,
+        "unsafe_execution_eligible_count": 6,
         "unsafe_execution_rate": 0.0
       }
     },
@@ -397,20 +403,26 @@
         }
       ],
       "metrics": {
+        "approval_bypass_count": 0,
+        "approval_required_count": 6,
         "approval_resume_correctness": 0.0,
         "approval_validation_accuracy": 0.0,
         "approved_execution_trace_completeness": 0.0,
         "approved_step_execution_rate": 0.0,
-        "average_execution_latency_ms": 0.021361,
-        "average_total_latency_ms": 0.116034,
+        "average_execution_latency_ms": 0.013493,
+        "average_total_latency_ms": 0.018458,
         "final_outcome_accuracy": 0.3333,
         "gated_step_policy_compliance_rate": 0.0,
         "governance_decision_accuracy": 0.8333,
+        "invalid_mapping_case_count": 0,
+        "invalid_mapping_contained_count": 0,
         "policy_compliance_rate": 0.3333,
         "post_resume_final_outcome_accuracy": 0.0,
         "resume_success_rate": 0.0,
         "runtime_id": "reference_v1",
         "runtime_name": "Reference v1 custom deterministic orchestration",
+        "unsafe_execution_count": 0,
+        "unsafe_execution_eligible_count": 6,
         "unsafe_execution_rate": 0.0
       }
     }

@@ -24,7 +24,7 @@ Industrial orchestration; governance-aware agents; vendor-agnostic integration; 
 - Summarize key evidence:
   - canonical reference policy compliance 1.0 and unsafe execution 0.0;
   - aligned journal policy compliance 1.0 and unsafe execution 0.0 for `reference_v1` and `langgraph_runtime`;
-  - baselines expose policy risk, with unsafe execution up to 0.583333 in the aligned journal table.
+  - baselines expose policy risk, with conditional unsafe execution up to 1.0 in the aligned journal table.
 
 ## 2. Related Work / Background
 
@@ -52,7 +52,7 @@ Industrial orchestration; governance-aware agents; vendor-agnostic integration; 
   - single-stage execution;
   - execution without policy filtering.
 - `langgraph_runtime` for graph-native interrupt/resume and controlled approval continuation.
-- Crash/restart persistence demo using SQLite checkpointing.
+- Checkpoint reopen/resume demo using SQLite checkpointing.
 - LangSmith trace examples as observability evidence only.
 
 ## 5. Empirical Evaluation Methodology
@@ -60,7 +60,7 @@ Industrial orchestration; governance-aware agents; vendor-agnostic integration; 
 - Canonical 12-case comparison.
 - Mixed workflow evaluation.
 - Post-approval continuation evaluation.
-- Crash/restart persistence demo.
+- Checkpoint reopen/resume demo.
 - Scaled deterministic scenario generator:
   - default profile: 120 scenarios;
   - journal profile: 240 scenarios;

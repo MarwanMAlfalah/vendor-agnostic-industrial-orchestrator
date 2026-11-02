@@ -26,7 +26,7 @@ Latency measurements are local runtime measurements. They should not be interpre
 
 ## Recovery Demonstration Scope
 
-The crash/restart evidence is a local LangGraph checkpoint demonstration using SQLite persistence. It shows that checkpointed workflow state can be resumed in the prototype setting. It does not demonstrate distributed fault tolerance, production deployment, operational high availability, or plant recovery procedures.
+The checkpoint reopen/resume evidence is a local LangGraph checkpoint demonstration using SQLite persistence. It shows that checkpointed workflow state can be resumed in the prototype setting. It does not demonstrate distributed fault tolerance, production deployment, operational high availability, or plant recovery procedures.
 
 ## LangSmith Evidence
 

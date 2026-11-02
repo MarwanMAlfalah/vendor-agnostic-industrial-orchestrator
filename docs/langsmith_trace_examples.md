@@ -12,7 +12,7 @@ paper/presentation screenshots.
 | `evaluation.run_langgraph_comparison` | Runtime parity between `reference_v1` and `langgraph_runtime`. | Top-level outputs for both runtimes. |
 | `evaluation.run_mixed_workflow_comparison` | LangGraph trace value beyond correctness parity. | Outputs showing `trace_stage_coverage` and `interrupt_trace_quality`. |
 | `evaluation.run_post_approval_comparison` | Controlled post-approval continuation. | Outputs showing `approved_step_execution_rate`, `approval_validation_accuracy`, and `gated_step_policy_compliance_rate`. |
-| `evaluation.run_crash_restart_demo` | SQLite checkpoint restart-safe approval continuation. | Outputs showing checkpoint and restart metrics. |
+| `evaluation.run_crash_restart_demo` | SQLite checkpoint checkpoint reopen/resume approval continuation. | Outputs showing checkpoint and restart metrics. |
 | `langgraph_runtime.run_case` | One graph execution with approval state and final result. | Child span tree with approval markers. |
 
 ## Approval Trace Shape

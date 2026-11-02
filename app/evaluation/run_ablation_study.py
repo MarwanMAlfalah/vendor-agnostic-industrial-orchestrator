@@ -7,6 +7,10 @@ import json
 from pathlib import Path
 from typing import Any
 
+from app.evaluation.conditional_metrics import (
+    ELIGIBILITY_FIELDS,
+    conditional_metrics,
+)
 from app.evaluation.run_scaled_evaluation import run_scaled_evaluation
 
 RESULTS_DIR = Path("data/results")
@@ -96,6 +100,9 @@ def _load_default_rows() -> list[dict[str, Any]]:
 def _parse_row(row: dict[str, str]) -> dict[str, Any]:
     parsed: dict[str, Any] = dict(row)
     for key in [
+        *ELIGIBILITY_FIELDS,
+        "approval_bypass",
+        "invalid_mapping_contained",
         "policy_compliant",
         "unsafe_execution",
         "final_outcome_correct",
@@ -110,7 +117,7 @@ def _parse_row(row: dict[str, str]) -> dict[str, Any]:
 def _variant_metrics(rows: list[dict[str, Any]]) -> dict[str, Any]:
     return {
         "policy_compliance_rate": _rate(sum(row["policy_compliant"] for row in rows), len(rows)),
-        "unsafe_execution_rate": _rate(sum(row["unsafe_execution"] for row in rows), len(rows)),
+        **conditional_metrics(rows),
         "final_outcome_accuracy": _rate(
             sum(row["final_outcome_correct"] for row in rows), len(rows)
         ),
@@ -156,10 +163,11 @@ def _write_outputs(rows: list[dict[str, Any]], summary: dict[str, Any]) -> None:
         "mean_latency_ms",
         "run_count",
         "not_implemented_reason",
+        *sorted(conditional_metrics([]).keys() - {"unsafe_execution_rate"}),
     ]
     for path in [csv_path, table4_path]:
         with path.open("w", newline="", encoding="utf-8") as csv_file:
-            writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
+            writer = csv.DictWriter(csv_file, fieldnames=fieldnames, lineterminator="\n")
             writer.writeheader()
             writer.writerows(rows)
     summary_path.write_text(json.dumps(summary, indent=2, sort_keys=True), encoding="utf-8")

@@ -57,19 +57,20 @@
       "controlled post-approval continuation",
       "approval interrupt/resume",
       "checkpoint persistence",
-      "restart-safe continuation",
+      "SQLite checkpoint reopen/resume",
       "graph-native trace markers"
     ]
   },
   "reference_v1": {
     "description": "Reference deterministic governance-aware runtime.",
     "does_not_support": [
+      "workflow-wide approval pause/resume",
       "controlled post-approval execution",
       "graph-native interrupt/resume",
       "checkpoint persistence",
-      "restart-safe continuation"
+      "SQLite checkpoint reopen/resume"
     ],
-    "interpretation_note": "Approval-required steps are expected to stop automatic governed execution rather than continue through a controlled approval resume.",
+    "interpretation_note": "Approval-required steps are recorded without execution; later allowed steps may execute. There is no workflow-wide approval pause/resume mechanism.",
     "runtime_id": "reference_v1",
     "supports": [
       "deterministic planning",
@@ -78,7 +79,7 @@
       "governance-aware execution",
       "blocking unsafe actions",
       "safe abort behavior",
-      "approval_required stopping behavior"
+      "approval_required decision recording"
     ]
   }
 }

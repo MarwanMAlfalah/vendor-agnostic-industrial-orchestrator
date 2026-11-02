@@ -114,9 +114,9 @@ The same job emitted a Kubernetes reproducibility summary with:
 Checkpoint DB: data/langgraph/checkpoints.db
 Crash/restart metrics:
   checkpoint_resume_success_rate: 1.0
-  restart_recovery_success_rate: 1.0
-  post_restart_final_outcome_accuracy: 1.0
-  restart_trace_completeness: 1.0
+  checkpoint_reopen_resume_success_rate: 1.0
+  post_reopen_final_outcome_accuracy: 1.0
+  checkpoint_reopen_trace_completeness: 1.0
 ```
 
 The crash/restart job emitted a Kubernetes reproducibility summary with checkpoint PVC and

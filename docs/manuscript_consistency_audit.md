@@ -1,5 +1,7 @@
 # Manuscript Consistency Audit
 
+Historical audit snapshot: numeric checks below predate the P0 denominator correction. Current values and limitations are in [P0 correction report](p0_correction_report.md); the earlier audit is not a current numerical validation.
+
 Audit date: 2026-05-24
 
 Scope: IJTech and SEDM manuscript-facing documents only. This audit did not change code,

@@ -8,9 +8,9 @@ The adapter layer contains mock OPC UA, REST, and legacy vendor-style capabiliti
 
 ## Runtime Profiles
 
-The `reference_v1` runtime supports deterministic planning, capability matching, governance evaluation, governance-aware execution, blocking unsafe actions, safe-abort behavior, approval-required stopping behavior, and trace recording. It does not support controlled post-approval execution, graph-native interrupt/resume, checkpoint persistence, or restart-safe continuation.
+The `reference_v1` runtime supports deterministic planning, capability matching, governance evaluation, governance-aware execution, blocking unsafe actions, safe-abort behavior, approval-required decision recording (without a workflow-wide pause), and trace recording. It does not support controlled post-approval execution, graph-native interrupt/resume, checkpoint persistence, or checkpoint reopen/resume continuation.
 
-The `langgraph_runtime` supports the same deterministic planning, matching, governance, and execution semantics while adding controlled post-approval continuation, approval interrupt/resume, checkpoint persistence, restart-safe continuation, and graph-native trace markers. It is used to evaluate runtime-level capabilities beyond the basic reference path.
+The `langgraph_runtime` supports the same deterministic planning, matching, governance, and execution semantics while adding controlled post-approval continuation, approval interrupt/resume, checkpoint persistence, checkpoint reopen/resume continuation, and graph-native trace markers. It is used to evaluate runtime-level capabilities beyond the basic reference path.
 
 Three baselines are included. Baseline A executes mapped adapter steps directly without governance enforcement. Baseline B uses a single-stage execution heuristic instead of explicit planner/matcher separation. Baseline C keeps matched steps but removes policy filtering. These baselines are intentionally limited and are used to reveal policy risks rather than to represent complete industrial competitors.
 
@@ -30,13 +30,13 @@ The 240-scenario journal profile is the main source for the manuscript tables. T
 
 ## Metrics
 
-The evaluation reports policy compliance, unsafe execution, approval bypass, final outcome accuracy, governance decision accuracy, invalid mapping containment, trace completeness, restart recovery where applicable, and latency summaries. Wilson 95% confidence intervals are used for proportion metrics. Since the benchmark is deterministic, these intervals are interpreted as scenario-distribution intervals over a finite generated benchmark, not as stochastic model uncertainty (Author, year).
+The evaluation reports policy compliance, unsafe execution, approval bypass, final outcome accuracy, governance decision accuracy, invalid mapping containment, trace completeness, checkpoint reopen/resume where applicable, and latency summaries. Wilson 95% confidence intervals are used for proportion metrics. Since the benchmark is deterministic, these intervals are interpreted as scenario-distribution intervals over a finite generated benchmark, not as stochastic model uncertainty (Author, year).
 
 The main manuscript emphasizes policy-centric metrics. In governed industrial workflows, the correct outcome may be non-execution: a workflow can be correct when it stops for approval, blocks a prohibited step, or safe-aborts after invalid mapping or malformed payload detection. Therefore, raw execution coverage or apparent task completion is insufficient.
 
 ## Runtime-Specific Expectation Alignment
 
-The original scaled evaluation used one global expected final status per scenario. The error audit showed that this can unfairly penalize runtimes with different supported capabilities. For example, `reference_v1` intentionally stops at `approval_required` and does not perform controlled post-approval continuation. Conversely, `langgraph_runtime` may correctly reach `success` after valid approval and revalidation.
+The original scaled evaluation used one global expected final status per scenario. The error audit showed that this can unfairly penalize runtimes with different supported capabilities. For example, `reference_v1` records `approval_required` and may execute later allowed steps and does not perform controlled post-approval continuation. Conversely, `langgraph_runtime` may correctly reach `success` after valid approval and revalidation.
 
 The aligned evaluation keeps original scenario labels as descriptive labels but adds runtime-specific expected outcomes. Alignment does not remove scenarios, hide negative results, or excuse unsafe behavior. Unsafe execution and approval bypass remain non-compliant for all runtimes. Each aligned result row includes the original expected label, aligned expected label, and the documented rule used for alignment.
 
@@ -54,10 +54,12 @@ Supported-scope scenarios represent behavior within the intended implemented cap
 
 ## LangGraph Continuation And Recovery Evaluation
 
-The LangGraph runtime is evaluated for controlled approval continuation, approval validation, revalidation after approval, graph-native trace markers, and checkpoint-based recovery. The crash/restart demonstration uses local SQLite checkpoint persistence: the workflow reaches an approval interrupt, state is persisted, a process stop is simulated, the runtime is reopened with the same checkpoint database and thread identifier, approval input is supplied, and the workflow reaches the expected final result. This is local prototype recovery evidence, not production deployment evidence.
+The LangGraph runtime is evaluated for controlled approval continuation, approval validation, revalidation after approval, graph-native trace markers, and checkpoint-based recovery. The crash/restart demonstration uses local SQLite checkpoint persistence: the workflow reaches an approval interrupt, state is persisted, the runtime/checkpointer is closed within the same Python process, the runtime is reopened with the same checkpoint database and thread identifier, approval input is supplied, and the workflow reaches the expected final result. This is local prototype recovery evidence, not production deployment evidence.
 
 ## Observability Evidence
 
 LangSmith is used only as observability evidence. Traces can support debugging, auditability, and figure preparation by recording stages such as planning, matching, governance, approval interrupt, approval resume, approved execution, execution, and final result. LangSmith traces do not validate industrial deployment, certified safety, or live PLC readiness.
 
 Recommended manuscript figure insertion points are: an architecture figure in the methodology section, a scenario-factor design figure after the scenario generator description, a Docker/Kubernetes reproducibility evidence figure or table after the reproducibility subsection, and a redacted LangSmith trace screenshot after the observability subsection. Screenshots should be sanitized to remove account identifiers, browser identity, API keys, and private URLs.
+
+Evaluation boundary: scaled profiles supply prepared governance plans with `source_goal=None`; they evaluate execution/governance/continuation, not end-to-end planner or capability-matcher accuracy. Reference approval records do not pause the workflow. Trace completeness uses runtime-specific criteria; see [metric definitions](metrics_definitions.md). SQLite checkpoint evidence closes and recreates runtime/checkpointer objects within one Python process; it does not demonstrate recovery from an OS process crash.

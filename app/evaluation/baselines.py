@@ -26,6 +26,7 @@ class MethodRunResult:
     case: EvaluationCase
     result: ExecutionResult
     stage_latencies_ms: dict[str, float]
+    approval_validated: bool = False
 
 
 class EvaluationMethod(ABC):

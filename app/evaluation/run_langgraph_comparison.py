@@ -6,6 +6,7 @@ from pathlib import Path
 from typing import Any
 
 from app.evaluation.baselines import GovernanceAwareReference, MethodRunResult
+from app.evaluation.conditional_metrics import CONDITIONAL_COUNT_FIELDS
 from app.evaluation.metrics import compute_metrics
 from app.evaluation.scenario_cases import load_evaluation_cases
 from app.langgraph_runtime import LangGraphRuntime
@@ -46,6 +47,7 @@ def run_langgraph_comparison() -> tuple[list[dict[str, Any]], dict[str, Any]]:
                 case=run["case"],
                 result=run["result"],
                 stage_latencies_ms=run["stage_latencies_ms"],
+                approval_validated="approval_validated" in run["trace"],
             )
             for run in langgraph_raw_runs
         ]
@@ -114,6 +116,7 @@ def _comparison_row(
         "runtime_name": runtime_name,
         "policy_compliance_rate": metrics["policy_compliance_rate"],
         "unsafe_execution_rate": metrics["unsafe_execution_rate"],
+        **{key: value for key, value in metrics.items() if key in CONDITIONAL_COUNT_FIELDS},
         "governance_decision_accuracy": metrics["governance_decision_accuracy"],
         "final_outcome_accuracy": metrics["final_outcome_accuracy"],
         "trace_completeness": _trace_completeness(trace_records),
@@ -215,6 +218,12 @@ def _write_csv(path: Path, rows: list[dict[str, Any]]) -> None:
         "runtime_name",
         "policy_compliance_rate",
         "unsafe_execution_rate",
+        "unsafe_execution_eligible_count",
+        "unsafe_execution_count",
+        "approval_required_count",
+        "approval_bypass_count",
+        "invalid_mapping_case_count",
+        "invalid_mapping_contained_count",
         "governance_decision_accuracy",
         "final_outcome_accuracy",
         "trace_completeness",
@@ -224,7 +233,7 @@ def _write_csv(path: Path, rows: list[dict[str, Any]]) -> None:
         "resume_success_rate",
     ]
     with path.open("w", newline="", encoding="utf-8") as csv_file:
-        writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
+        writer = csv.DictWriter(csv_file, fieldnames=fieldnames, lineterminator="\n")
         writer.writeheader()
         writer.writerows(rows)
 

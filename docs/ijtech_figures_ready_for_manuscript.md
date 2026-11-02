@@ -41,11 +41,11 @@ Purpose: show why correct non-execution matters.
 Suggested content:
 
 - `ALLOW -> execute adapter step`;
-- `REQUIRE_APPROVAL -> stop or interrupt until approval`;
+- `REQUIRE_APPROVAL -> record requirement in reference_v1; interrupt/resume in LangGraph`;
 - `BLOCK -> do not execute prohibited step`;
 - `SAFE_ABORT -> stop workflow and contain invalid mapping or malformed payload`.
 
-Caption: Governance decision pipeline. In governed workflows, blocking, approval-required stopping, and safe aborts can be correct outcomes.
+Caption: Governance decision pipeline. In governed workflows, blocking, approval-required decision recording, and safe aborts can be correct outcomes.
 
 ## Figure 4. Policy Compliance Versus Unsafe Execution
 
@@ -94,9 +94,9 @@ Purpose: show local checkpoint recovery.
 
 Suggested content:
 
-`approval interrupt -> SQLite checkpoint -> simulated process stop -> runtime reopen -> resume with approval input -> final result`
+`approval interrupt -> SQLite checkpoint -> runtime/checkpointer close within the same Python process -> runtime reopen -> resume with approval input -> final result`
 
-Caption: Local crash/restart persistence demonstration using LangGraph checkpointing. This is prototype recovery evidence and not a production deployment claim.
+Caption: Local same-process checkpoint reopen/resume demonstration using LangGraph checkpointing. This is prototype recovery evidence and not a production deployment claim.
 
 ## Figure 8. Latency Distribution
 

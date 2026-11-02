@@ -10,8 +10,8 @@ checkpoints.
 
 | Runtime | Policy Compliance | Unsafe Exec. | Gov. Decision Acc. | Final Outcome Acc. | Trace Completeness | Total ms | Execution ms | Approval Resume Correctness | Resume Success |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Reference v1 custom deterministic orchestration | 1.0 | 0.0 | 1.0 | 1.0 | 1.0 | 5.015024 | 0.01258 | 1.0 | 1.0 |
-| Experimental LangGraph runtime | 1.0 | 0.0 | 1.0 | 1.0 | 1.0 | 5.545788 | 0.221382 | 1.0 | 1.0 |
+| Reference v1 custom deterministic orchestration | 1.0 | 0.0 | 1.0 | 1.0 | 1.0 | 4.965955 | 0.010004 | 1.0 | 1.0 |
+| Experimental LangGraph runtime | 1.0 | 0.0 | 1.0 | 1.0 | 1.0 | 4.051358 | 0.031813 | 1.0 | 1.0 |
 
 ## Interpretation
 

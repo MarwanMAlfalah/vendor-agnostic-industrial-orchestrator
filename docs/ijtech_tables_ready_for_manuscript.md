@@ -24,9 +24,9 @@ Source: `data/results/ijtech_table_2_main_results_aligned.csv`.
 
 | Runtime | Original policy compliance | Aligned policy compliance | Aligned final outcome accuracy | Unsafe execution | Approval bypass | Invalid mapping containment | Trace completeness |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| `baseline_a_direct_without_governance` | 0.0 | 0.0 | 0.166667 | 0.583333 | 0.5 | 0.583333 | 0.0 |
-| `baseline_b_single_stage_execution` | 0.083333 | 0.083333 | 0.166667 | 0.0 | 0.0 | 0.583333 | 0.0 |
-| `baseline_c_without_policy_filtering` | 0.5 | 0.416667 | 0.583333 | 0.583333 | 0.5 | 1.0 | 0.0 |
+| `baseline_a_direct_without_governance` | 0.0 | 0.0 | 0.166667 | 1.0 | 1.0 | 0.0 | 0.0 |
+| `baseline_b_single_stage_execution` | 0.083333 | 0.083333 | 0.166667 | 0.0 | 0.0 | 0.0 | 0.0 |
+| `baseline_c_without_policy_filtering` | 0.5 | 0.416667 | 0.583333 | 1.0 | 1.0 | 1.0 | 0.0 |
 | `langgraph_runtime` | 0.979167 | 1.0 | 1.0 | 0.0 | 0.0 | 1.0 | 1.0 |
 | `reference_v1` | 0.854167 | 1.0 | 1.0 | 0.0 | 0.0 | 1.0 | 1.0 |
 
@@ -38,12 +38,12 @@ Source: `data/results/ijtech_table_3_baseline_comparison_aligned.csv`.
 
 | Proposed runtime | Baseline runtime | Delta aligned policy compliance | Delta unsafe execution |
 | --- | --- | ---: | ---: |
-| `reference_v1` | `baseline_a_direct_without_governance` | 1.0 | 0.583333 |
+| `reference_v1` | `baseline_a_direct_without_governance` | 1.0 | 1.0 |
 | `reference_v1` | `baseline_b_single_stage_execution` | 0.916667 | 0.0 |
-| `reference_v1` | `baseline_c_without_policy_filtering` | 0.583333 | 0.583333 |
-| `langgraph_runtime` | `baseline_a_direct_without_governance` | 1.0 | 0.583333 |
+| `reference_v1` | `baseline_c_without_policy_filtering` | 0.583333 | 1.0 |
+| `langgraph_runtime` | `baseline_a_direct_without_governance` | 1.0 | 1.0 |
 | `langgraph_runtime` | `baseline_b_single_stage_execution` | 0.916667 | 0.0 |
-| `langgraph_runtime` | `baseline_c_without_policy_filtering` | 0.583333 | 0.583333 |
+| `langgraph_runtime` | `baseline_c_without_policy_filtering` | 0.583333 | 1.0 |
 
 Suggested caption: Aligned policy-compliance improvement and unsafe-execution reduction relative to deterministic governance-ablated baselines.
 
@@ -53,14 +53,14 @@ Source: `data/results/ijtech_table_4_supported_vs_stress_aligned.csv`.
 
 | Runtime | Scope | Scenario count | Aligned policy compliance | Aligned final outcome accuracy | Unsafe execution | Trace completeness |
 | --- | --- | ---: | ---: | ---: | ---: | ---: |
-| `baseline_a_direct_without_governance` | stress | 220 | 0.0 | 0.090909 | 0.636364 | 0.0 |
+| `baseline_a_direct_without_governance` | stress | 220 | 0.0 | 0.090909 | 1.0 | 0.0 |
 | `baseline_b_single_stage_execution` | stress | 220 | 0.0 | 0.090909 | 0.0 | 0.0 |
-| `baseline_c_without_policy_filtering` | stress | 180 | 0.222222 | 0.444444 | 0.777778 | 0.0 |
+| `baseline_c_without_policy_filtering` | stress | 180 | 0.222222 | 0.444444 | 1.0 | 0.0 |
 | `langgraph_runtime` | stress | 110 | 1.0 | 1.0 | 0.0 | 1.0 |
 | `reference_v1` | stress | 115 | 1.0 | 1.0 | 0.0 | 1.0 |
-| `baseline_a_direct_without_governance` | supported | 20 | 0.0 | 1.0 | 0.0 | 0.0 |
-| `baseline_b_single_stage_execution` | supported | 20 | 1.0 | 1.0 | 0.0 | 0.0 |
-| `baseline_c_without_policy_filtering` | supported | 60 | 1.0 | 1.0 | 0.0 | 0.0 |
+| `baseline_a_direct_without_governance` | supported | 20 | 0.0 | 1.0 | N/A | 0.0 |
+| `baseline_b_single_stage_execution` | supported | 20 | 1.0 | 1.0 | N/A | 0.0 |
+| `baseline_c_without_policy_filtering` | supported | 60 | 1.0 | 1.0 | N/A | 0.0 |
 | `langgraph_runtime` | supported | 130 | 1.0 | 1.0 | 0.0 | 1.0 |
 | `reference_v1` | supported | 125 | 1.0 | 1.0 | 0.0 | 1.0 |
 
@@ -87,10 +87,10 @@ Source: `data/results/ijtech_table_4_ablation_results.csv`.
 | Variant | Implemented | Runtime | Policy compliance | Unsafe execution | Trace completeness | Note |
 | --- | --- | --- | ---: | ---: | ---: | --- |
 | `full_system` | True | `reference_v1` | 0.858333 | 0.0 | 1.0 | Reference deterministic governance-aware runtime on default profile |
-| `without_governance` | True | `baseline_a_direct_without_governance` | 0.0 | 0.583333 | 0.0 | Existing direct execution baseline |
+| `without_governance` | True | `baseline_a_direct_without_governance` | 0.0 | 1.0 | 0.0 | Existing direct execution baseline |
 | `without_capability_matching` | True | `baseline_b_single_stage_execution` | 0.083333 | 0.0 | 0.0 | Existing single-stage baseline |
-| `without_approval_revalidation` | False | n/a | n/a | n/a | n/a | Conceptual only |
-| `without_langgraph_persistence` | False | n/a | n/a | n/a | n/a | Conceptual only |
-| `without_trace_observability` | False | n/a | n/a | n/a | n/a | Conceptual only |
+| `without_approval_revalidation` | False | n/a | N/A | N/A | N/A | Conceptual only |
+| `without_langgraph_persistence` | False | n/a | N/A | N/A | N/A | Conceptual only |
+| `without_trace_observability` | False | n/a | N/A | N/A | N/A | Conceptual only |
 
 Suggested caption: Implemented and conceptual ablation variants. Conceptual variants should not be reported as executed experiments.
