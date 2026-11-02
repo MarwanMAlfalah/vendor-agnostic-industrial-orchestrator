@@ -31,7 +31,7 @@ def comparison_summary(rows: list[dict[str, Any]]) -> dict[str, Any]:
                 "approval_resume_correctness",
                 "resume_success_rate",
                 "checkpoint_resume_success_rate",
-                "restart_recovery_success_rate",
+                "checkpoint_reopen_resume_success_rate",
             )
             if key in row
         }
@@ -59,9 +59,11 @@ def crash_restart_summary(summary: dict[str, Any]) -> dict[str, Any]:
     metrics = summary.get("metrics", {})
     return {
         "checkpoint_resume_success_rate": metrics.get("checkpoint_resume_success_rate"),
-        "restart_recovery_success_rate": metrics.get("restart_recovery_success_rate"),
-        "post_restart_final_outcome_accuracy": metrics.get("post_restart_final_outcome_accuracy"),
-        "restart_trace_completeness": metrics.get("restart_trace_completeness"),
+        "checkpoint_reopen_resume_success_rate": metrics.get(
+            "checkpoint_reopen_resume_success_rate"
+        ),
+        "post_reopen_final_outcome_accuracy": metrics.get("post_reopen_final_outcome_accuracy"),
+        "checkpoint_reopen_trace_completeness": metrics.get("checkpoint_reopen_trace_completeness"),
         "runs": [
             {
                 "case_id": run["case_id"],
