@@ -1,0 +1,93 @@
+{
+  "code_revision": {
+    "anchor_is_ancestor_or_head": true,
+    "branch": "research/elcon2027-recovery",
+    "frozen_anchor": "33ea97cc6585caf9ea294317b82f93d813c40d21",
+    "git_status_porcelain": [
+      "?? docs/sedm_2026_figures_and_table_plan.md",
+      "?? docs/sedm_2026_paper_draft.md",
+      "?? docs/sedm_2026_reference_list_12.md"
+    ],
+    "head": "fb77698ff8db4fc271774b9d8711af8b496f29fd",
+    "tracked_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "uncommitted_code_sha256": {}
+  },
+  "command": ".venv/bin/python -m app.integration.recovery_experiment",
+  "configuration": {
+    "pipeline_crosscheck": {
+      "cases": [
+        "C03",
+        "C04",
+        "C05",
+        "C08b",
+        "C08c",
+        "C09"
+      ],
+      "policies": [
+        "B0",
+        "B2",
+        "P"
+      ]
+    },
+    "policies": [
+      "B0",
+      "B1",
+      "B2",
+      "P"
+    ],
+    "primary_cases": [
+      "C01",
+      "C02",
+      "C03",
+      "C04",
+      "C05",
+      "C06",
+      "C07",
+      "C08a",
+      "C08b",
+      "C08c",
+      "C09",
+      "C10",
+      "C11b"
+    ],
+    "replays": 5,
+    "revalidation": "GovernanceAgent re-run (read-only) on the harness one-step plan",
+    "stress_cases": [
+      "C11a",
+      "C12"
+    ],
+    "time_model": {
+      "clock": "one SimulatedClock per trial, shared by every service/client of the trial, single OS process",
+      "horizon_end": 1070.0,
+      "initial_dispatch_at": 1000.0,
+      "recovery_horizon_s": 60.0,
+      "resume_at": 1010.0
+    }
+  },
+  "created_utc": "2026-11-10T13:29:42.788894+00:00",
+  "environment": {
+    "platform": "macOS-26.5.1-arm64-arm-64bit",
+    "python": "3.11.0",
+    "sqlite": "3.38.4"
+  },
+  "evidence_label": "In-repository, service-level deterministic simulation",
+  "frozen_protocol": {
+    "frozen_service_sha256": "72b7fd57173da05c15d5df5103025b458275a6a35e74ab150d25d81f973370ac",
+    "oracle_sha256": "381e3bee6045d96c51dba2ed2845a0cc9cbdef894fd0f493197cd8e6969911a9",
+    "protocol_files": {
+      "README.md": "1e31f4fc5e6626fb2004e3fd0af4d63f7146e832d560077c3303043762012b03",
+      "oracle_table.json": "381e3bee6045d96c51dba2ed2845a0cc9cbdef894fd0f493197cd8e6969911a9",
+      "protocol.md": "a9daa3879ccd2545a3a34890946ea29fd0b1d128fcdcabfe9eee373961835474",
+      "service_review.md": "24618a97f75bf29555699c2413a7ebc77686d23837c79cfdc8a9d5103338afc1"
+    },
+    "sha256sums_sha256": "53f0d9a39b150840e7ce1e51b3bdc4a4c0e313b56bbf399aae90c072d18cee05"
+  },
+  "outputs_sha256": {
+    "REPORT.md": "1aa69039dfdf20a3976fbbe4f6ddade60bb55c9d12d540e332d78257c0219dbe",
+    "pipeline_crosscheck.csv": "4c673150aecc5e887b38d66c1c526fea01587b5a02bae355f62e792cd42412ff",
+    "raw_trials.jsonl": "0894fc84de6d162baae7d728fd4ed1611be6dcce01099ba635133f76efe99d69",
+    "summary.json": "eac4c06a300d690fbb1fece920f771513c832d2b195914ed664a2296c28e1de6",
+    "trials.csv": "865550f902baae049fb1e26ccc06af9ed4490dfdd5010089b15801357b38e2c6"
+  },
+  "run_id": "20261110T132939Z-fb77698"
+}

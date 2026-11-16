@@ -1,0 +1,114 @@
+{
+  "code_revision": {
+    "anchor_is_ancestor_or_head": true,
+    "branch": "research/elcon2027-recovery",
+    "frozen_anchor": "33ea97cc6585caf9ea294317b82f93d813c40d21",
+    "git_status_porcelain": [
+      " M app/agents/execution_agent.py",
+      "?? app/integration/maintenance_effect_adapter.py",
+      "?? app/integration/recovery_experiment.py",
+      "?? app/integration/recovery_guard.py",
+      "?? app/integration/recovery_journal.py",
+      "?? app/integration/recovery_policies.py",
+      "?? docs/sedm_2026_figures_and_table_plan.md",
+      "?? docs/sedm_2026_paper_draft.md",
+      "?? docs/sedm_2026_reference_list_12.md",
+      "?? tests/test_elcon_langgraph_recovery.py",
+      "?? tests/test_elcon_recovery_experiment.py",
+      "?? tests/test_elcon_recovery_guard.py",
+      "?? tests/test_elcon_recovery_policies.py"
+    ],
+    "head": "33ea97cc6585caf9ea294317b82f93d813c40d21",
+    "tracked_diff_sha256": "bdc63d770995ed10d946782553e67ba89d52f9998affa59072df4127f42b07c6",
+    "uncommitted_code_sha256": {
+      "app/agents/execution_agent.py": "0895fc97b371b51d3d55f795a12f2cd7f504f5d85913b418a4f28b22cca8851c",
+      "app/integration/maintenance_effect_adapter.py": "86e7eb4f59b5e2d56e72e2af576f79a62da857c2b3699de34be8870913b37a2e",
+      "app/integration/recovery_experiment.py": "a22e0403903dda34dedff6f69be080a79ef4a6cc029a7ab3601eb7a81e93922b",
+      "app/integration/recovery_guard.py": "24cd5892f6a041a48456edc20268311c3018d55c84ffe01446fa10bb8ec2203c",
+      "app/integration/recovery_journal.py": "9569bc5697aff66a6703c9486d91ad4638d597127c26623b910afc6a5b885566",
+      "app/integration/recovery_policies.py": "27932dc2464468204aa668c796712eee8d1e26c94576d01440d42675b3d40f7e",
+      "tests/test_elcon_langgraph_recovery.py": "26443e83907734c0ca1b1b826e5cc9e26d2a27b52ac5254cccf4c2e33bf0ad39",
+      "tests/test_elcon_recovery_experiment.py": "abba93cb4331960508bc65812ef83b7b0a0bf4e92a55e0936208b7bfc89e97f8",
+      "tests/test_elcon_recovery_guard.py": "5c3bfdd5e078c852b4964b68e2ef26e00b83ace4a6d996bcfd461932d39196e7",
+      "tests/test_elcon_recovery_policies.py": "92cfed433a000552bf3f97f2311cc8bb6f94f36b11c7e017f4d6ccd58cb8ef47"
+    }
+  },
+  "command": ".venv/bin/python -m app.integration.recovery_experiment",
+  "configuration": {
+    "pipeline_crosscheck": {
+      "cases": [
+        "C03",
+        "C04",
+        "C05",
+        "C08b",
+        "C08c",
+        "C09"
+      ],
+      "policies": [
+        "B0",
+        "B2",
+        "P"
+      ]
+    },
+    "policies": [
+      "B0",
+      "B1",
+      "B2",
+      "P"
+    ],
+    "primary_cases": [
+      "C01",
+      "C02",
+      "C03",
+      "C04",
+      "C05",
+      "C06",
+      "C07",
+      "C08a",
+      "C08b",
+      "C08c",
+      "C09",
+      "C10",
+      "C11b"
+    ],
+    "replays": 5,
+    "revalidation": "GovernanceAgent re-run (read-only) on the harness one-step plan",
+    "stress_cases": [
+      "C11a",
+      "C12"
+    ],
+    "time_model": {
+      "clock": "one SimulatedClock per trial, shared by every service/client of the trial, single OS process",
+      "horizon_end": 1070.0,
+      "initial_dispatch_at": 1000.0,
+      "recovery_horizon_s": 60.0,
+      "resume_at": 1010.0
+    }
+  },
+  "created_utc": "2026-11-10T12:42:25.555326+00:00",
+  "environment": {
+    "platform": "macOS-26.5.1-arm64-arm-64bit",
+    "python": "3.11.0",
+    "sqlite": "3.38.4"
+  },
+  "evidence_label": "In-repository, service-level deterministic simulation",
+  "frozen_protocol": {
+    "frozen_service_sha256": "72b7fd57173da05c15d5df5103025b458275a6a35e74ab150d25d81f973370ac",
+    "oracle_sha256": "381e3bee6045d96c51dba2ed2845a0cc9cbdef894fd0f493197cd8e6969911a9",
+    "protocol_files": {
+      "README.md": "1e31f4fc5e6626fb2004e3fd0af4d63f7146e832d560077c3303043762012b03",
+      "oracle_table.json": "381e3bee6045d96c51dba2ed2845a0cc9cbdef894fd0f493197cd8e6969911a9",
+      "protocol.md": "a9daa3879ccd2545a3a34890946ea29fd0b1d128fcdcabfe9eee373961835474",
+      "service_review.md": "24618a97f75bf29555699c2413a7ebc77686d23837c79cfdc8a9d5103338afc1"
+    },
+    "sha256sums_sha256": "53f0d9a39b150840e7ce1e51b3bdc4a4c0e313b56bbf399aae90c072d18cee05"
+  },
+  "outputs_sha256": {
+    "REPORT.md": "76092f1eb79221628185469cbfc58112ae11a3dd9906d658cc89c46dbaca91d9",
+    "pipeline_crosscheck.csv": "5e0c6a751f47d48a22ccf8d7ab174ab970ab6dc772b43df1f78ea9839a3b1f69",
+    "raw_trials.jsonl": "46195e42117fbb3d27bcc255f3d080206ac0b0242566efe484153d8f731a372a",
+    "summary.json": "bf67ff0aef2b7ff816d5d86e4b3431be2a398c36e732d69c11ee985f1c40b116",
+    "trials.csv": "0d8bc91e03c6672c2b07ff22f4f2628f73c6d330f6a37602dc9cc15451063b47"
+  },
+  "run_id": "20261110T124221Z-33ea97c"
+}

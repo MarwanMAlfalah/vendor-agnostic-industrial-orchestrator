@@ -1,0 +1,90 @@
+{
+ "records": 300,
+ "combinations": 60,
+ "primary": 52,
+ "stress": 8,
+ "metrics_per_policy": {
+  "B0": {
+   "duplicate_effect_rate": "6/13",
+   "correct_recovery_decision_rate": "4/13",
+   "recovery_completion_rate": "6/11",
+   "hindsight_completion_rate": "7/12",
+   "unnecessary_hold_rate": "0/10",
+   "required_hold_compliance": "0/2",
+   "information_forced_holds": "0/1",
+   "dispatches": 27,
+   "committed_effects": 19,
+   "adopted": 0,
+   "holds": 0,
+   "simulated_wait_s": 0.0
+  },
+  "B1": {
+   "duplicate_effect_rate": "6/13",
+   "correct_recovery_decision_rate": "4/13",
+   "recovery_completion_rate": "6/11",
+   "hindsight_completion_rate": "7/12",
+   "unnecessary_hold_rate": "0/10",
+   "required_hold_compliance": "0/2",
+   "information_forced_holds": "0/1",
+   "dispatches": 27,
+   "committed_effects": 19,
+   "adopted": 0,
+   "holds": 0,
+   "simulated_wait_s": 0.0
+  },
+  "B2": {
+   "duplicate_effect_rate": "2/13",
+   "correct_recovery_decision_rate": "10/13",
+   "recovery_completion_rate": "9/11",
+   "hindsight_completion_rate": "9/12",
+   "unnecessary_hold_rate": "0/10",
+   "required_hold_compliance": "2/2",
+   "information_forced_holds": "1/1",
+   "dispatches": 22,
+   "committed_effects": 14,
+   "adopted": 3,
+   "holds": 2,
+   "simulated_wait_s": 0.0
+  },
+  "P": {
+   "duplicate_effect_rate": "0/13",
+   "correct_recovery_decision_rate": "13/13",
+   "recovery_completion_rate": "10/11",
+   "hindsight_completion_rate": "10/12",
+   "unnecessary_hold_rate": "0/10",
+   "required_hold_compliance": "2/2",
+   "information_forced_holds": "1/1",
+   "dispatches": 20,
+   "committed_effects": 12,
+   "adopted": 4,
+   "holds": 3,
+   "simulated_wait_s": 40.0
+  }
+ },
+ "b2_p_identical_primary_cases": "10/13",
+ "b2_p_differing": [
+  "C08b",
+  "C08c",
+  "C09"
+ ],
+ "stress_effects": {
+  "C11a/B0": 2,
+  "C11a/B1": 2,
+  "C11a/B2": 2,
+  "C11a/P": 2,
+  "C12/B0": 1,
+  "C12/B1": 1,
+  "C12/B2": 1,
+  "C12/P": 1
+ },
+ "pipeline_rows": 18,
+ "pipeline_graph_success_with_two_effects": [
+  "C03/B0",
+  "C05/B0",
+  "C08b/B0",
+  "C08b/B2",
+  "C09/B0",
+  "C09/B2"
+ ],
+ "problems": []
+}
