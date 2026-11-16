@@ -1,0 +1,493 @@
+{
+ "by_set": {
+  "compliant": {
+   "B0": {
+    "adopted": 0,
+    "censored": 1,
+    "commits_after_hold": 0,
+    "completed_single_effect": {
+     "N": 16,
+     "n": 5
+    },
+    "dispatches": 32,
+    "dispatches_while_invalid": 0,
+    "duplicate_eventual": {
+     "N": 15,
+     "n": 10
+    },
+    "effects_while_invalid": 0,
+    "executions": 16,
+    "held": 0,
+    "late_duplicate": {
+     "N": 15,
+     "n": 6
+    },
+    "missing_effect": 0,
+    "policy_errors": 0,
+    "queries": 0,
+    "simulated_wait_s": 0.0
+   },
+   "B1": {
+    "adopted": 0,
+    "censored": 1,
+    "commits_after_hold": 0,
+    "completed_single_effect": {
+     "N": 16,
+     "n": 5
+    },
+    "dispatches": 32,
+    "dispatches_while_invalid": 0,
+    "duplicate_eventual": {
+     "N": 15,
+     "n": 10
+    },
+    "effects_while_invalid": 0,
+    "executions": 16,
+    "held": 0,
+    "late_duplicate": {
+     "N": 15,
+     "n": 6
+    },
+    "missing_effect": 0,
+    "policy_errors": 0,
+    "queries": 0,
+    "simulated_wait_s": 0.0
+   },
+   "B2": {
+    "adopted": 3,
+    "censored": 1,
+    "commits_after_hold": 0,
+    "completed_single_effect": {
+     "N": 16,
+     "n": 8
+    },
+    "dispatches": 29,
+    "dispatches_while_invalid": 0,
+    "duplicate_eventual": {
+     "N": 15,
+     "n": 7
+    },
+    "effects_while_invalid": 0,
+    "executions": 16,
+    "held": 0,
+    "late_duplicate": {
+     "N": 15,
+     "n": 6
+    },
+    "missing_effect": 0,
+    "policy_errors": 0,
+    "queries": 14,
+    "simulated_wait_s": 0.0
+   },
+   "P": {
+    "adopted": 8,
+    "censored": 1,
+    "commits_after_hold": 2,
+    "completed_single_effect": {
+     "N": 16,
+     "n": 12
+    },
+    "dispatches": 20,
+    "dispatches_while_invalid": 0,
+    "duplicate_eventual": {
+     "N": 15,
+     "n": 0
+    },
+    "effects_while_invalid": 0,
+    "executions": 16,
+    "held": 4,
+    "late_duplicate": {
+     "N": 15,
+     "n": 0
+    },
+    "missing_effect": 0,
+    "policy_errors": 0,
+    "queries": 21,
+    "simulated_wait_s": 121.0
+   },
+   "P_A": {
+    "adopted": 8,
+    "censored": 1,
+    "commits_after_hold": 2,
+    "completed_single_effect": {
+     "N": 16,
+     "n": 12
+    },
+    "dispatches": 20,
+    "dispatches_while_invalid": 0,
+    "duplicate_eventual": {
+     "N": 15,
+     "n": 0
+    },
+    "effects_while_invalid": 0,
+    "executions": 16,
+    "held": 4,
+    "late_duplicate": {
+     "N": 15,
+     "n": 0
+    },
+    "missing_effect": 0,
+    "policy_errors": 0,
+    "queries": 21,
+    "simulated_wait_s": 121.0
+   },
+   "R_LI": {
+    "adopted": 8,
+    "censored": 1,
+    "commits_after_hold": 2,
+    "completed_single_effect": {
+     "N": 16,
+     "n": 12
+    },
+    "dispatches": 20,
+    "dispatches_while_invalid": 0,
+    "duplicate_eventual": {
+     "N": 15,
+     "n": 0
+    },
+    "effects_while_invalid": 0,
+    "executions": 16,
+    "held": 4,
+    "late_duplicate": {
+     "N": 15,
+     "n": 0
+    },
+    "missing_effect": 0,
+    "policy_errors": 0,
+    "queries": 10,
+    "simulated_wait_s": 141.0
+   }
+  },
+  "governance": {
+   "B0": {
+    "adopted": 0,
+    "censored": 0,
+    "commits_after_hold": 0,
+    "completed_single_effect": {
+     "N": 6,
+     "n": 1
+    },
+    "dispatches": 12,
+    "dispatches_while_invalid": 6,
+    "duplicate_eventual": {
+     "N": 6,
+     "n": 2
+    },
+    "effects_while_invalid": 5,
+    "executions": 6,
+    "held": 0,
+    "late_duplicate": {
+     "N": 6,
+     "n": 1
+    },
+    "missing_effect": 0,
+    "policy_errors": 0,
+    "queries": 0,
+    "simulated_wait_s": 0.0
+   },
+   "B1": {
+    "adopted": 0,
+    "censored": 0,
+    "commits_after_hold": 2,
+    "completed_single_effect": {
+     "N": 6,
+     "n": 0
+    },
+    "dispatches": 6,
+    "dispatches_while_invalid": 0,
+    "duplicate_eventual": {
+     "N": 6,
+     "n": 0
+    },
+    "effects_while_invalid": 2,
+    "executions": 6,
+    "held": 6,
+    "late_duplicate": {
+     "N": 6,
+     "n": 0
+    },
+    "missing_effect": 0,
+    "policy_errors": 0,
+    "queries": 0,
+    "simulated_wait_s": 0.0
+   },
+   "B2": {
+    "adopted": 0,
+    "censored": 0,
+    "commits_after_hold": 2,
+    "completed_single_effect": {
+     "N": 6,
+     "n": 0
+    },
+    "dispatches": 6,
+    "dispatches_while_invalid": 0,
+    "duplicate_eventual": {
+     "N": 6,
+     "n": 0
+    },
+    "effects_while_invalid": 2,
+    "executions": 6,
+    "held": 6,
+    "late_duplicate": {
+     "N": 6,
+     "n": 0
+    },
+    "missing_effect": 0,
+    "policy_errors": 0,
+    "queries": 0,
+    "simulated_wait_s": 0.0
+   },
+   "P": {
+    "adopted": 0,
+    "censored": 0,
+    "commits_after_hold": 2,
+    "completed_single_effect": {
+     "N": 6,
+     "n": 0
+    },
+    "dispatches": 6,
+    "dispatches_while_invalid": 0,
+    "duplicate_eventual": {
+     "N": 6,
+     "n": 0
+    },
+    "effects_while_invalid": 2,
+    "executions": 6,
+    "held": 6,
+    "late_duplicate": {
+     "N": 6,
+     "n": 0
+    },
+    "missing_effect": 0,
+    "policy_errors": 0,
+    "queries": 0,
+    "simulated_wait_s": 0.0
+   },
+   "P_A": {
+    "adopted": 2,
+    "censored": 0,
+    "commits_after_hold": 2,
+    "completed_single_effect": {
+     "N": 6,
+     "n": 2
+    },
+    "dispatches": 6,
+    "dispatches_while_invalid": 0,
+    "duplicate_eventual": {
+     "N": 6,
+     "n": 0
+    },
+    "effects_while_invalid": 2,
+    "executions": 6,
+    "held": 4,
+    "late_duplicate": {
+     "N": 6,
+     "n": 0
+    },
+    "missing_effect": 0,
+    "policy_errors": 0,
+    "queries": 6,
+    "simulated_wait_s": 0.0
+   },
+   "R_LI": {
+    "adopted": 0,
+    "censored": 0,
+    "commits_after_hold": 2,
+    "completed_single_effect": {
+     "N": 6,
+     "n": 0
+    },
+    "dispatches": 6,
+    "dispatches_while_invalid": 0,
+    "duplicate_eventual": {
+     "N": 6,
+     "n": 0
+    },
+    "effects_while_invalid": 2,
+    "executions": 6,
+    "held": 6,
+    "late_duplicate": {
+     "N": 6,
+     "n": 0
+    },
+    "missing_effect": 0,
+    "policy_errors": 0,
+    "queries": 0,
+    "simulated_wait_s": 0.0
+   }
+  },
+  "violation": {
+   "B0": {
+    "adopted": 0,
+    "censored": 0,
+    "commits_after_hold": 0,
+    "completed_single_effect": {
+     "N": 2,
+     "n": 0
+    },
+    "dispatches": 4,
+    "dispatches_while_invalid": 0,
+    "duplicate_eventual": {
+     "N": 2,
+     "n": 2
+    },
+    "effects_while_invalid": 0,
+    "executions": 2,
+    "held": 0,
+    "late_duplicate": {
+     "N": 2,
+     "n": 2
+    },
+    "missing_effect": 0,
+    "policy_errors": 0,
+    "queries": 0,
+    "simulated_wait_s": 0.0
+   },
+   "B1": {
+    "adopted": 0,
+    "censored": 0,
+    "commits_after_hold": 0,
+    "completed_single_effect": {
+     "N": 2,
+     "n": 0
+    },
+    "dispatches": 4,
+    "dispatches_while_invalid": 0,
+    "duplicate_eventual": {
+     "N": 2,
+     "n": 2
+    },
+    "effects_while_invalid": 0,
+    "executions": 2,
+    "held": 0,
+    "late_duplicate": {
+     "N": 2,
+     "n": 2
+    },
+    "missing_effect": 0,
+    "policy_errors": 0,
+    "queries": 0,
+    "simulated_wait_s": 0.0
+   },
+   "B2": {
+    "adopted": 0,
+    "censored": 0,
+    "commits_after_hold": 0,
+    "completed_single_effect": {
+     "N": 2,
+     "n": 0
+    },
+    "dispatches": 4,
+    "dispatches_while_invalid": 0,
+    "duplicate_eventual": {
+     "N": 2,
+     "n": 2
+    },
+    "effects_while_invalid": 0,
+    "executions": 2,
+    "held": 0,
+    "late_duplicate": {
+     "N": 2,
+     "n": 2
+    },
+    "missing_effect": 0,
+    "policy_errors": 0,
+    "queries": 2,
+    "simulated_wait_s": 0.0
+   },
+   "P": {
+    "adopted": 0,
+    "censored": 0,
+    "commits_after_hold": 0,
+    "completed_single_effect": {
+     "N": 2,
+     "n": 0
+    },
+    "dispatches": 4,
+    "dispatches_while_invalid": 0,
+    "duplicate_eventual": {
+     "N": 2,
+     "n": 2
+    },
+    "effects_while_invalid": 0,
+    "executions": 2,
+    "held": 0,
+    "late_duplicate": {
+     "N": 2,
+     "n": 1
+    },
+    "missing_effect": 0,
+    "policy_errors": 0,
+    "queries": 4,
+    "simulated_wait_s": 40.0
+   },
+   "P_A": {
+    "adopted": 0,
+    "censored": 0,
+    "commits_after_hold": 0,
+    "completed_single_effect": {
+     "N": 2,
+     "n": 0
+    },
+    "dispatches": 4,
+    "dispatches_while_invalid": 0,
+    "duplicate_eventual": {
+     "N": 2,
+     "n": 2
+    },
+    "effects_while_invalid": 0,
+    "executions": 2,
+    "held": 0,
+    "late_duplicate": {
+     "N": 2,
+     "n": 1
+    },
+    "missing_effect": 0,
+    "policy_errors": 0,
+    "queries": 4,
+    "simulated_wait_s": 40.0
+   },
+   "R_LI": {
+    "adopted": 0,
+    "censored": 0,
+    "commits_after_hold": 0,
+    "completed_single_effect": {
+     "N": 2,
+     "n": 0
+    },
+    "dispatches": 4,
+    "dispatches_while_invalid": 0,
+    "duplicate_eventual": {
+     "N": 2,
+     "n": 2
+    },
+    "effects_while_invalid": 0,
+    "executions": 2,
+    "held": 0,
+    "late_duplicate": {
+     "N": 2,
+     "n": 1
+    },
+    "missing_effect": 0,
+    "policy_errors": 0,
+    "queries": 2,
+    "simulated_wait_s": 40.0
+   }
+  }
+ },
+ "determinism": {
+  "replay_identical_across_replays": true,
+  "service_level_identical_across_replays": true
+ },
+ "executions": {
+  "errors": 0,
+  "replay_runs": 100,
+  "service_level": 720
+ },
+ "label": "ElCon-EE 2027 extension x1.0 (separate from the original frozen study)",
+ "regression_original_cases": {
+  "compared": 44,
+  "matches": 44
+ },
+ "replays_are_independent_samples": false
+}

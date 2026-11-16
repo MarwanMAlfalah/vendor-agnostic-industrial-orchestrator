@@ -1,0 +1,33 @@
+PASS manifest hash executions.csv
+PASS manifest hash raw_executions.jsonl
+PASS manifest hash raw_replay.jsonl
+PASS manifest hash regression_original_cases.csv
+PASS manifest hash replay.csv
+PASS manifest hash summary.json
+PASS service-level executions = 24 x 6 x 5 | 720
+PASS no execution errors
+PASS required per-execution fields present
+PASS every execution carries the freeze-manifest hash
+PASS independent re-assessment equals recorded assessment (11 fields x 720) | []
+PASS summary.json recomputed from raw records
+PASS deterministic across 5 replays (service level)
+PASS replay runs: 100, deterministic
+PASS regression: 44/44 original cases reproduced
+
+# Protocol §7 expected properties
+HOLDS    1a B2 duplicates in E02, E03, E05, E06, E08, E11, E13
+HOLDS    1b ...as late duplicates in E02-E06 (excl. E04), E11, E13
+HOLDS    2a P and R_LI: no duplicate in E01-E16
+HOLDS    2b P and R_LI hold in E11, E12, E13, E16
+HOLDS    2c pending request commits after the hold in E11, E13
+HOLDS    3 E14/E15: one effect for every policy
+HOLDS    4 P and R_LI duplicate under violated contracts V01, V02
+HOLDS    5a B1/B2/P/R_LI hold in every G case
+HOLDS    5b B0 dispatches while invalid in every G case
+HOLDS    5c P_A adopts exactly in G01, G06 | ['G01', 'G06']
+HOLDS    5d pending request commits after P's hold in G02, G04; aborted under commit-time check in G03
+HOLDS    6a unprotected replay repeats completed step s1 without deduplication
+HOLDS    6b guard adopts s1 in every guarded run
+HOLDS    6c operation IDs stable across resume and distinct per step
+
+ALL CHECKS PASSED
