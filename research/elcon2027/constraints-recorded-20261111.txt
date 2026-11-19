@@ -1,0 +1,69 @@
+# Dependency constraints for verifying the ElCon-EE 2027 recovery study (publication file; NOT part
+# of the frozen experiment). pyproject.toml, which is frozen, is unchanged and keeps its >= ranges.
+#
+# HISTORICALLY RECORDED: every pin below is copied verbatim from
+#   research/elcon2027/submission_v2/release_candidate/verification/test_and_environment_record.txt
+# (recorded 2026-11-11 on the environment that ran the test suite; Python 3.11.0, SQLite 3.38.4,
+# macOS 26.5.1 arm64). The extension run of 2026-11-12 used the same environment.
+# SELECTED NOW: nothing is pinned here beyond the record. pip and setuptools are whatever the new
+# virtual environment provides; the installed versions are logged by the publication check.
+#
+# Use:  python3.11 -m venv .venv && .venv/bin/pip install -c research/elcon2027/constraints-recorded-20261111.txt -e ".[dev]"
+aiosqlite==0.22.1
+annotated-doc==0.0.4
+annotated-types==0.7.0
+anyio==4.13.0
+black==26.5.1
+certifi==2026.5.20
+charset-normalizer==3.4.7
+click==8.4.1
+coverage==7.14.0
+fastapi==0.136.3
+h11==0.16.0
+httpcore==1.0.9
+httptools==0.7.1
+httpx==0.28.1
+idna==3.16
+iniconfig==2.3.0
+jsonpatch==1.33
+jsonpointer==3.1.1
+langchain-core==1.4.0
+langchain-protocol==0.0.15
+langgraph==1.2.1
+langgraph-checkpoint==4.1.1
+langgraph-checkpoint-sqlite==3.1.0
+langgraph-prebuilt==1.1.0
+langgraph-sdk==0.3.15
+langsmith==0.8.5
+mypy_extensions==1.1.0
+orjson==3.11.9
+ormsgpack==1.12.2
+packaging==26.2
+pathspec==1.1.1
+platformdirs==4.9.6
+pluggy==1.6.0
+pydantic==2.13.4
+pydantic-settings==2.14.1
+pydantic_core==2.46.4
+Pygments==2.20.0
+pytest==9.0.3
+pytest-cov==7.1.0
+python-dotenv==1.2.2
+pytokens==0.4.1
+PyYAML==6.0.3
+requests==2.34.2
+requests-toolbelt==1.0.0
+ruff==0.15.14
+sqlite-vec==0.1.9
+starlette==1.1.0
+tenacity==9.1.4
+typing-inspection==0.4.2
+typing_extensions==4.15.0
+urllib3==2.7.0
+uuid_utils==0.16.0
+uvicorn==0.48.0
+uvloop==0.22.1
+watchfiles==1.2.0
+websockets==16.0
+xxhash==3.7.0
+zstandard==0.25.0

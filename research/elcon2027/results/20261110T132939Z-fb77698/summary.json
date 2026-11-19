@@ -1,0 +1,653 @@
+{
+  "comparison_with_protocol_v1_inferred": {
+    "matches": 52,
+    "mismatches": [],
+    "total": 52
+  },
+  "decision_latency_ns_descriptive": {
+    "per_policy": {
+      "B0": {
+        "executions": 65,
+        "max_ns": 1375,
+        "median_ns": 584
+      },
+      "B1": {
+        "executions": 65,
+        "max_ns": 3626,
+        "median_ns": 1333
+      },
+      "B2": {
+        "executions": 65,
+        "max_ns": 5416,
+        "median_ns": 2167
+      },
+      "P": {
+        "executions": 65,
+        "max_ns": 12125,
+        "median_ns": 2375
+      }
+    },
+    "scope": "wall-clock inside policy calls, summed per trial; all primary executions incl. replays; excludes harness I/O and simulated waits; descriptive only"
+  },
+  "denominators_verified_against": "oracle_table.json metrics.denominators_per_policy",
+  "determinism": {
+    "excluded_fields": [
+      "latency_ns",
+      "replay"
+    ],
+    "identical_across_replays": true,
+    "nondeterministic_trials": []
+  },
+  "evidence_label": "In-repository, service-level deterministic simulation",
+  "executions_total": 300,
+  "metrics_per_policy": {
+    "B0": {
+      "acks_delivered_total": 15,
+      "adopted_total": 0,
+      "committed_effects_total": 19,
+      "correct_recovery_decision_rate": {
+        "N": 13,
+        "n": 4,
+        "rate": 0.3076923076923077
+      },
+      "dispatches_total": 27,
+      "duplicate_effect_rate": {
+        "N": 13,
+        "n": 6,
+        "rate": 0.46153846153846156
+      },
+      "hindsight_completion_rate": {
+        "N": 12,
+        "n": 7,
+        "rate": 0.5833333333333334
+      },
+      "holds_total": 0,
+      "information_forced_holds": {
+        "N": 1,
+        "n": 0,
+        "rate": 0.0
+      },
+      "recovery_completion_rate": {
+        "N": 11,
+        "n": 6,
+        "rate": 0.5454545454545454
+      },
+      "recovery_dispatches_total": 14,
+      "required_hold_compliance": {
+        "N": 2,
+        "n": 0,
+        "rate": 0.0
+      },
+      "simulated_wait_s_total": 0.0,
+      "unauthorized_effect_rate": {
+        "eligible_trials": 0,
+        "reason": "No case can invalidate authorization; requires F7.",
+        "report_as": "not evaluated"
+      },
+      "unnecessary_hold_rate": {
+        "N": 10,
+        "n": 0,
+        "rate": 0.0
+      }
+    },
+    "B1": {
+      "acks_delivered_total": 15,
+      "adopted_total": 0,
+      "committed_effects_total": 19,
+      "correct_recovery_decision_rate": {
+        "N": 13,
+        "n": 4,
+        "rate": 0.3076923076923077
+      },
+      "dispatches_total": 27,
+      "duplicate_effect_rate": {
+        "N": 13,
+        "n": 6,
+        "rate": 0.46153846153846156
+      },
+      "hindsight_completion_rate": {
+        "N": 12,
+        "n": 7,
+        "rate": 0.5833333333333334
+      },
+      "holds_total": 0,
+      "information_forced_holds": {
+        "N": 1,
+        "n": 0,
+        "rate": 0.0
+      },
+      "recovery_completion_rate": {
+        "N": 11,
+        "n": 6,
+        "rate": 0.5454545454545454
+      },
+      "recovery_dispatches_total": 14,
+      "required_hold_compliance": {
+        "N": 2,
+        "n": 0,
+        "rate": 0.0
+      },
+      "simulated_wait_s_total": 0.0,
+      "unauthorized_effect_rate": {
+        "eligible_trials": 0,
+        "reason": "No case can invalidate authorization; requires F7.",
+        "report_as": "not evaluated"
+      },
+      "unnecessary_hold_rate": {
+        "N": 10,
+        "n": 0,
+        "rate": 0.0
+      }
+    },
+    "B2": {
+      "acks_delivered_total": 10,
+      "adopted_total": 3,
+      "committed_effects_total": 14,
+      "correct_recovery_decision_rate": {
+        "N": 13,
+        "n": 10,
+        "rate": 0.7692307692307693
+      },
+      "dispatches_total": 22,
+      "duplicate_effect_rate": {
+        "N": 13,
+        "n": 2,
+        "rate": 0.15384615384615385
+      },
+      "hindsight_completion_rate": {
+        "N": 12,
+        "n": 9,
+        "rate": 0.75
+      },
+      "holds_total": 2,
+      "information_forced_holds": {
+        "N": 1,
+        "n": 1,
+        "rate": 1.0
+      },
+      "recovery_completion_rate": {
+        "N": 11,
+        "n": 9,
+        "rate": 0.8181818181818182
+      },
+      "recovery_dispatches_total": 9,
+      "required_hold_compliance": {
+        "N": 2,
+        "n": 2,
+        "rate": 1.0
+      },
+      "simulated_wait_s_total": 0.0,
+      "unauthorized_effect_rate": {
+        "eligible_trials": 0,
+        "reason": "No case can invalidate authorization; requires F7.",
+        "report_as": "not evaluated"
+      },
+      "unnecessary_hold_rate": {
+        "N": 10,
+        "n": 0,
+        "rate": 0.0
+      }
+    },
+    "P": {
+      "acks_delivered_total": 8,
+      "adopted_total": 4,
+      "committed_effects_total": 12,
+      "correct_recovery_decision_rate": {
+        "N": 13,
+        "n": 13,
+        "rate": 1.0
+      },
+      "dispatches_total": 20,
+      "duplicate_effect_rate": {
+        "N": 13,
+        "n": 0,
+        "rate": 0.0
+      },
+      "hindsight_completion_rate": {
+        "N": 12,
+        "n": 10,
+        "rate": 0.8333333333333334
+      },
+      "holds_total": 3,
+      "information_forced_holds": {
+        "N": 1,
+        "n": 1,
+        "rate": 1.0
+      },
+      "recovery_completion_rate": {
+        "N": 11,
+        "n": 10,
+        "rate": 0.9090909090909091
+      },
+      "recovery_dispatches_total": 7,
+      "required_hold_compliance": {
+        "N": 2,
+        "n": 2,
+        "rate": 1.0
+      },
+      "simulated_wait_s_total": 40.0,
+      "unauthorized_effect_rate": {
+        "eligible_trials": 0,
+        "reason": "No case can invalidate authorization; requires F7.",
+        "report_as": "not evaluated"
+      },
+      "unnecessary_hold_rate": {
+        "N": 10,
+        "n": 0,
+        "rate": 0.0
+      }
+    }
+  },
+  "pipeline_crosscheck": {
+    "all_match_service_level": true,
+    "executed": true,
+    "label": "Opt-in LangGraph pipeline integration cross-check (not the 52-trial evaluation)",
+    "rows": [
+      {
+        "acks_delivered": 1,
+        "case_id": "C03",
+        "committed_effects": 2,
+        "dispatches": 2,
+        "first_attempt": "AcknowledgmentLost",
+        "graph_outcome": "graph_success",
+        "has_execution_result": true,
+        "hold_reason": "",
+        "matches_service_level": true,
+        "pending_tasks": "",
+        "policy": "B0",
+        "recovery_basis": "blind",
+        "recovery_decision": "REDISPATCH",
+        "service_level_effects": 2,
+        "service_level_terminal": "REDISPATCH",
+        "single_effect_completion": false
+      },
+      {
+        "acks_delivered": 0,
+        "case_id": "C03",
+        "committed_effects": 1,
+        "dispatches": 1,
+        "first_attempt": "AcknowledgmentLost",
+        "graph_outcome": "graph_success",
+        "has_execution_result": true,
+        "hold_reason": "",
+        "matches_service_level": true,
+        "pending_tasks": "",
+        "policy": "B2",
+        "recovery_basis": "query_found",
+        "recovery_decision": "ADOPT",
+        "service_level_effects": 1,
+        "service_level_terminal": "ADOPT",
+        "single_effect_completion": true
+      },
+      {
+        "acks_delivered": 0,
+        "case_id": "C03",
+        "committed_effects": 1,
+        "dispatches": 1,
+        "first_attempt": "AcknowledgmentLost",
+        "graph_outcome": "graph_success",
+        "has_execution_result": true,
+        "hold_reason": "",
+        "matches_service_level": true,
+        "pending_tasks": "",
+        "policy": "P",
+        "recovery_basis": "query_found",
+        "recovery_decision": "ADOPT",
+        "service_level_effects": 1,
+        "service_level_terminal": "ADOPT",
+        "single_effect_completion": true
+      },
+      {
+        "acks_delivered": 1,
+        "case_id": "C04",
+        "committed_effects": 1,
+        "dispatches": 2,
+        "first_attempt": "AcknowledgmentLost",
+        "graph_outcome": "graph_success",
+        "has_execution_result": true,
+        "hold_reason": "",
+        "matches_service_level": true,
+        "pending_tasks": "",
+        "policy": "B0",
+        "recovery_basis": "blind",
+        "recovery_decision": "REDISPATCH",
+        "service_level_effects": 1,
+        "service_level_terminal": "REDISPATCH",
+        "single_effect_completion": true
+      },
+      {
+        "acks_delivered": 1,
+        "case_id": "C04",
+        "committed_effects": 1,
+        "dispatches": 2,
+        "first_attempt": "AcknowledgmentLost",
+        "graph_outcome": "graph_success",
+        "has_execution_result": true,
+        "hold_reason": "",
+        "matches_service_level": true,
+        "pending_tasks": "",
+        "policy": "B2",
+        "recovery_basis": "dedup_contract",
+        "recovery_decision": "REDISPATCH",
+        "service_level_effects": 1,
+        "service_level_terminal": "REDISPATCH",
+        "single_effect_completion": true
+      },
+      {
+        "acks_delivered": 1,
+        "case_id": "C04",
+        "committed_effects": 1,
+        "dispatches": 2,
+        "first_attempt": "AcknowledgmentLost",
+        "graph_outcome": "graph_success",
+        "has_execution_result": true,
+        "hold_reason": "",
+        "matches_service_level": true,
+        "pending_tasks": "",
+        "policy": "P",
+        "recovery_basis": "dedup_contract",
+        "recovery_decision": "REDISPATCH",
+        "service_level_effects": 1,
+        "service_level_terminal": "REDISPATCH",
+        "single_effect_completion": true
+      },
+      {
+        "acks_delivered": 1,
+        "case_id": "C05",
+        "committed_effects": 2,
+        "dispatches": 2,
+        "first_attempt": "AcknowledgmentLost",
+        "graph_outcome": "graph_success",
+        "has_execution_result": true,
+        "hold_reason": "",
+        "matches_service_level": true,
+        "pending_tasks": "",
+        "policy": "B0",
+        "recovery_basis": "blind",
+        "recovery_decision": "REDISPATCH",
+        "service_level_effects": 2,
+        "service_level_terminal": "REDISPATCH",
+        "single_effect_completion": false
+      },
+      {
+        "acks_delivered": 0,
+        "case_id": "C05",
+        "committed_effects": 1,
+        "dispatches": 1,
+        "first_attempt": "AcknowledgmentLost",
+        "graph_outcome": "interrupted_hold",
+        "has_execution_result": false,
+        "hold_reason": "RECOVERY_HOLD",
+        "matches_service_level": true,
+        "pending_tasks": "execution",
+        "policy": "B2",
+        "recovery_basis": "outcome_unverifiable",
+        "recovery_decision": "HOLD",
+        "service_level_effects": 1,
+        "service_level_terminal": "HOLD",
+        "single_effect_completion": false
+      },
+      {
+        "acks_delivered": 0,
+        "case_id": "C05",
+        "committed_effects": 1,
+        "dispatches": 1,
+        "first_attempt": "AcknowledgmentLost",
+        "graph_outcome": "interrupted_hold",
+        "has_execution_result": false,
+        "hold_reason": "RECOVERY_HOLD",
+        "matches_service_level": true,
+        "pending_tasks": "execution",
+        "policy": "P",
+        "recovery_basis": "outcome_unverifiable",
+        "recovery_decision": "HOLD",
+        "service_level_effects": 1,
+        "service_level_terminal": "HOLD",
+        "single_effect_completion": false
+      },
+      {
+        "acks_delivered": 1,
+        "case_id": "C08b",
+        "committed_effects": 2,
+        "dispatches": 2,
+        "first_attempt": "AcknowledgmentLost",
+        "graph_outcome": "graph_success",
+        "has_execution_result": true,
+        "hold_reason": "",
+        "matches_service_level": true,
+        "pending_tasks": "",
+        "policy": "B0",
+        "recovery_basis": "blind",
+        "recovery_decision": "REDISPATCH",
+        "service_level_effects": 2,
+        "service_level_terminal": "REDISPATCH",
+        "single_effect_completion": false
+      },
+      {
+        "acks_delivered": 1,
+        "case_id": "C08b",
+        "committed_effects": 2,
+        "dispatches": 2,
+        "first_attempt": "AcknowledgmentLost",
+        "graph_outcome": "graph_success",
+        "has_execution_result": true,
+        "hold_reason": "",
+        "matches_service_level": true,
+        "pending_tasks": "",
+        "policy": "B2",
+        "recovery_basis": "not_found_read_as_absence",
+        "recovery_decision": "REDISPATCH",
+        "service_level_effects": 2,
+        "service_level_terminal": "REDISPATCH",
+        "single_effect_completion": false
+      },
+      {
+        "acks_delivered": 0,
+        "case_id": "C08b",
+        "committed_effects": 1,
+        "dispatches": 1,
+        "first_attempt": "AcknowledgmentLost",
+        "graph_outcome": "graph_success",
+        "has_execution_result": true,
+        "hold_reason": "",
+        "matches_service_level": true,
+        "pending_tasks": "",
+        "policy": "P",
+        "recovery_basis": "query_found",
+        "recovery_decision": "ADOPT",
+        "service_level_effects": 1,
+        "service_level_terminal": "ADOPT",
+        "single_effect_completion": true
+      },
+      {
+        "acks_delivered": 1,
+        "case_id": "C08c",
+        "committed_effects": 1,
+        "dispatches": 2,
+        "first_attempt": "AcknowledgmentLost",
+        "graph_outcome": "graph_success",
+        "has_execution_result": true,
+        "hold_reason": "",
+        "matches_service_level": true,
+        "pending_tasks": "",
+        "policy": "B0",
+        "recovery_basis": "blind",
+        "recovery_decision": "REDISPATCH",
+        "service_level_effects": 1,
+        "service_level_terminal": "REDISPATCH",
+        "single_effect_completion": true
+      },
+      {
+        "acks_delivered": 1,
+        "case_id": "C08c",
+        "committed_effects": 1,
+        "dispatches": 2,
+        "first_attempt": "AcknowledgmentLost",
+        "graph_outcome": "graph_success",
+        "has_execution_result": true,
+        "hold_reason": "",
+        "matches_service_level": true,
+        "pending_tasks": "",
+        "policy": "B2",
+        "recovery_basis": "not_found_read_as_absence",
+        "recovery_decision": "REDISPATCH",
+        "service_level_effects": 1,
+        "service_level_terminal": "REDISPATCH",
+        "single_effect_completion": true
+      },
+      {
+        "acks_delivered": 1,
+        "case_id": "C08c",
+        "committed_effects": 1,
+        "dispatches": 2,
+        "first_attempt": "AcknowledgmentLost",
+        "graph_outcome": "graph_success",
+        "has_execution_result": true,
+        "hold_reason": "",
+        "matches_service_level": true,
+        "pending_tasks": "",
+        "policy": "P",
+        "recovery_basis": "authoritative_absence",
+        "recovery_decision": "REDISPATCH",
+        "service_level_effects": 1,
+        "service_level_terminal": "REDISPATCH",
+        "single_effect_completion": true
+      },
+      {
+        "acks_delivered": 1,
+        "case_id": "C09",
+        "committed_effects": 2,
+        "dispatches": 2,
+        "first_attempt": "AcknowledgmentLost",
+        "graph_outcome": "graph_success",
+        "has_execution_result": true,
+        "hold_reason": "",
+        "matches_service_level": true,
+        "pending_tasks": "",
+        "policy": "B0",
+        "recovery_basis": "blind",
+        "recovery_decision": "REDISPATCH",
+        "service_level_effects": 2,
+        "service_level_terminal": "REDISPATCH",
+        "single_effect_completion": false
+      },
+      {
+        "acks_delivered": 1,
+        "case_id": "C09",
+        "committed_effects": 2,
+        "dispatches": 2,
+        "first_attempt": "AcknowledgmentLost",
+        "graph_outcome": "graph_success",
+        "has_execution_result": true,
+        "hold_reason": "",
+        "matches_service_level": true,
+        "pending_tasks": "",
+        "policy": "B2",
+        "recovery_basis": "not_found_read_as_absence",
+        "recovery_decision": "REDISPATCH",
+        "service_level_effects": 2,
+        "service_level_terminal": "REDISPATCH",
+        "single_effect_completion": false
+      },
+      {
+        "acks_delivered": 0,
+        "case_id": "C09",
+        "committed_effects": 1,
+        "dispatches": 1,
+        "first_attempt": "AcknowledgmentLost",
+        "graph_outcome": "interrupted_hold",
+        "has_execution_result": false,
+        "hold_reason": "RECOVERY_HOLD",
+        "matches_service_level": true,
+        "pending_tasks": "execution",
+        "policy": "P",
+        "recovery_basis": "not_found_not_authoritative",
+        "recovery_decision": "HOLD",
+        "service_level_effects": 1,
+        "service_level_terminal": "HOLD",
+        "single_effect_completion": false
+      }
+    ]
+  },
+  "primary_trials": 52,
+  "protocol_version": "1.0",
+  "replays_are_independent_samples": false,
+  "replays_per_trial": 5,
+  "stress_cases": {
+    "label": "Concurrency stress (C11a, C12): excluded from primary metrics",
+    "rows": [
+      {
+        "case_id": "C11a",
+        "committed_effects": 2,
+        "dispatches": 3,
+        "oracle_valid": false,
+        "policy": "B0",
+        "terminal_actions": "REDISPATCH,REDISPATCH",
+        "workflow_status": "not_completed"
+      },
+      {
+        "case_id": "C11a",
+        "committed_effects": 2,
+        "dispatches": 3,
+        "oracle_valid": false,
+        "policy": "B1",
+        "terminal_actions": "REDISPATCH,REDISPATCH",
+        "workflow_status": "not_completed"
+      },
+      {
+        "case_id": "C11a",
+        "committed_effects": 2,
+        "dispatches": 3,
+        "oracle_valid": true,
+        "policy": "B2",
+        "terminal_actions": "REDISPATCH,REDISPATCH",
+        "workflow_status": "not_completed"
+      },
+      {
+        "case_id": "C11a",
+        "committed_effects": 2,
+        "dispatches": 3,
+        "oracle_valid": true,
+        "policy": "P",
+        "terminal_actions": "REDISPATCH,REDISPATCH",
+        "workflow_status": "not_completed"
+      },
+      {
+        "case_id": "C12",
+        "committed_effects": 1,
+        "dispatches": 3,
+        "oracle_valid": true,
+        "policy": "B0",
+        "terminal_actions": "REDISPATCH,REDISPATCH",
+        "workflow_status": "completed"
+      },
+      {
+        "case_id": "C12",
+        "committed_effects": 1,
+        "dispatches": 3,
+        "oracle_valid": true,
+        "policy": "B1",
+        "terminal_actions": "REDISPATCH,REDISPATCH",
+        "workflow_status": "completed"
+      },
+      {
+        "case_id": "C12",
+        "committed_effects": 1,
+        "dispatches": 3,
+        "oracle_valid": true,
+        "policy": "B2",
+        "terminal_actions": "REDISPATCH,REDISPATCH",
+        "workflow_status": "completed"
+      },
+      {
+        "case_id": "C12",
+        "committed_effects": 1,
+        "dispatches": 3,
+        "oracle_valid": true,
+        "policy": "P",
+        "terminal_actions": "REDISPATCH,REDISPATCH",
+        "workflow_status": "completed"
+      }
+    ]
+  }
+}

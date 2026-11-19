@@ -1,0 +1,1045 @@
+{
+  "protocol_version": "1.0",
+  "status": "FROZEN 2026-11-09. Results may be generated only by a runner that verifies SHA256SUMS at the anchor commit.",
+  "evidence_label": "In-repository, service-level deterministic simulation",
+  "operation": {
+    "capability": "create_maintenance_ticket",
+    "adapter": "maintenance_effect_service (simulator)",
+    "machine_id": "M1",
+    "at_most_once": true,
+    "at_most_once_reason": "Each committed effect creates a distinct ticket; the operation is not idempotent, so more than one committed effect per operation_id violates the safety property."
+  },
+  "safety_property": "Ledger committed_effect_count(operation_id) <= 1 at trial end.",
+  "time_semantics": {
+    "commit_time": "When the external effect is committed (a committed_effects row). Hidden from policies.",
+    "visibility_time": "When an outcome query can first see a committed effect: commit_time + visibility lag. Hidden from policies.",
+    "request_terminal_state": "A dispatch is terminal once it has either committed or can no longer commit.",
+    "in_flight_request": "A dispatch that is not yet terminal; it may still commit later. A query cannot rule out a later commit of an in-flight request.",
+    "visibility_bound_s": "Declared upper bound on visibility lag AFTER a commit. It says nothing about whether a dispatched request may still commit.",
+    "completion_bound_s": "Declared upper bound on time from dispatch to terminal state. With it, a dispatch older than completion_bound_s can no longer commit.",
+    "authoritative_absence": "not_found is authoritative only when query_time >= last_dispatch_at + completion_bound_s + visibility_bound_s, with BOTH bounds declared.",
+    "simulator_guarantee": "The simulator commits inside the dispatch transaction or never, so completion_bound_s = 0 is truthful for every case (executed test test_dispatch_is_terminal_when_submit_returns). Late or in-flight commits (F5c) are not modelled, so this matrix never exercises a case where the completion bound is what separates safe from unsafe."
+  },
+  "oracle_preconditions": {
+    "single_active_resumer": "The oracle judges each decision under the assumption that at most one resumer acts on a step at a time. The current orchestrator has NO atomic recovery-claim or in-flight lease mechanism, so this assumption is not enforced. Cases with overlapping resumers are therefore stress cases outside the primary comparison.",
+    "governance": "The capability is ALLOWed without approval and F7/F8 are not implemented, so revalidation cannot change the decision in this matrix. Not revalidating is not penalised. If a revalidation is performed and returns anything other than ALLOW, HOLD is the only valid action (R8)."
+  },
+  "time_model": {
+    "clock": "one SimulatedClock per trial, shared by every service/client of the trial, single OS process",
+    "initial_dispatch_at": 1000.0,
+    "resume_at": 1010.0,
+    "recovery_horizon_s": 60.0,
+    "horizon_end": 1070.0
+  },
+  "actions": {
+    "terminal": [
+      "ADOPT",
+      "REDISPATCH",
+      "HOLD"
+    ],
+    "non_terminal": [
+      "REVALIDATE",
+      "QUERY",
+      "WAIT_UNTIL"
+    ],
+    "ADOPT": "Record the step complete with the ticket_id from the latest query result; no dispatch.",
+    "REDISPATCH": "Submit again with the same operation_id and identical parameters.",
+    "HOLD": "Stop and escalate; no dispatch; step not complete.",
+    "REVALIDATE": "Harness re-runs GovernanceAgent for the step (read-only) and records the decision.",
+    "QUERY": "Harness calls the outcome query and records (status, ticket_id, query_time). Rejected if contract.outcome_query != 'available'.",
+    "WAIT_UNTIL": "Harness advances the simulated clock to t; t must be <= horizon_end."
+  },
+  "evidence_predicates": {
+    "note": "Evaluated by the harness at the moment of the terminal decision, from the Observation and the resumer's own harness-recorded queries. Never from a policy's explanation. 'latest query' = the most recent QUERY this resumer issued.",
+    "any": "Always true.",
+    "failure_response_sole_attempt": "Observation.ack.state == 'failure_received' and Observation.dispatch.attempts == 1. The contract scopes a failed reply to that attempt and makes it terminal non-execution of that attempt; with one attempt it covers the whole operation.",
+    "dedup_contract": "Observation.contract.deduplicates_by_operation_id is true.",
+    "query_found": "Latest query returned 'found'.",
+    "query_not_found_authoritative": "Latest query returned 'not_found', contract.visibility_bound_s AND contract.completion_bound_s are both declared, and query_time >= Observation.dispatch.last_dispatch_at + completion_bound_s + visibility_bound_s."
+  },
+  "validity_rule": "A terminal decision is valid iff some entry in the case's valid_actions has the same action and its evidence predicate is true at decision time. Every other terminal decision is invalid. Trials that end without a terminal decision (step budget, rejected action) are invalid.",
+  "rules": {
+    "R1": "ADOPT is valid only with query_found (positive evidence). Adopting without it could record a ticket that does not exist.",
+    "R2": "REDISPATCH is valid with failure_response_sole_attempt or query_not_found_authoritative (authoritative absence). An elapsed visibility bound alone is NOT authoritative absence: without a declared completion bound the earlier dispatch may still be in flight.",
+    "R3": "Without dedup_contract and without authoritative absence, REDISPATCH is invalid whatever the hidden state: the evidence cannot rule out a committed effect.",
+    "R4": "REDISPATCH is valid with dedup_contract: the service atomically commits at most one effect per operation_id and binds it to the request fingerprint.",
+    "R5": "Missing contract fields are read in the worst case: deduplicates=false, outcome_query=unavailable, visibility_bound undeclared.",
+    "R6": "HOLD is valid iff the information class offers no evidence path that can authorise a completing action under every hidden state consistent with the observation: no dedup_contract, no failure_response_sole_attempt, and either no outcome query or a missing visibility or completion bound. A positively confirmed effect (query_found) may still be adopted (R1).",
+    "R7": "Valid actions are a function of the information class (observation + declared contract) and evidence predicates only. Cases in the same information class have identical valid_actions; hidden state determines only which evidence a query can return.",
+    "R8": "If a revalidation is performed and does not return ALLOW, HOLD is the only valid action; recovery may only restrict a governance ALLOW.",
+    "R9": "A 'conflict' reply (operation_id bound to a different request fingerprint) permits only HOLD. Not exercised by the matrix."
+  },
+  "information_classes": {
+    "IC1": "ack failure_received, attempts 1, no dedup, query available, bound 0, completion bound 0",
+    "IC2": "ack missing, attempts 1, no dedup, query available, bound 0, completion bound 0",
+    "IC3": "ack missing, attempts 1, dedup, query available, bound 0, completion bound 0",
+    "IC4": "ack missing, attempts 1, no dedup, query unavailable",
+    "IC5": "ack missing, attempts 1, dedup, query unavailable",
+    "IC6": "ack missing, attempts 1, no dedup, query available, bound 30, completion bound 0",
+    "IC7": "ack missing, attempts 1, no dedup, query available, visibility bound undeclared, completion bound 0",
+    "IC8": "ack missing, attempts 1, dedup, query available, bound 30, completion bound 0"
+  },
+  "denominators": {
+    "policies": 4,
+    "primary_cases": 13,
+    "stress_cases": 2,
+    "hindsight_recoverable_cases": 12,
+    "safely_recoverable_cases": 11,
+    "hold_required_cases": 2,
+    "unnecessary_hold_eligible_cases": 10,
+    "information_forced_hold_cases": 1
+  },
+  "cases": [
+    {
+      "id": "C01",
+      "set": "primary",
+      "fault_class": "F1",
+      "information_class": "IC1",
+      "name": "fail before commit, failure reply delivered",
+      "harness_only": {
+        "service_deduplicate": false,
+        "fault_schedule": [
+          {
+            "commit": false,
+            "ack_delivered": true,
+            "visibility_delay": 0.0
+          }
+        ],
+        "resumers": 1
+      },
+      "declared_contract": {
+        "deduplicates_by_operation_id": false,
+        "binds_request_fingerprint": true,
+        "outcome_query": "available",
+        "visibility_bound_s": 0.0,
+        "completion_bound_s": 0.0,
+        "failure_response_scope": "attempt"
+      },
+      "visible_at_resume": {
+        "attempts": 1,
+        "last_dispatch_at": 1000.0,
+        "ack_state": "failure_received"
+      },
+      "hidden_state": {
+        "committed_effects_at_resume": 0,
+        "visible_from": null
+      },
+      "obtainable_evidence": "failure_response_sole_attempt; a query returns not_found (authoritative).",
+      "valid_actions": [
+        {
+          "action": "REDISPATCH",
+          "evidence": "failure_response_sole_attempt"
+        },
+        {
+          "action": "REDISPATCH",
+          "evidence": "query_not_found_authoritative"
+        },
+        {
+          "action": "ADOPT",
+          "evidence": "query_found"
+        }
+      ],
+      "unsafe_actions": [
+        {
+          "action": "ADOPT",
+          "evidence": "no query_found",
+          "consequence": "records a ticket that does not exist"
+        }
+      ],
+      "eligibility": {
+        "hindsight_recoverable": true,
+        "safely_recoverable": true,
+        "hold_valid": false,
+        "hold_class": "unnecessary",
+        "unnecessary_hold_eligible": true
+      },
+      "completion_requirement": "committed_effects == 1 and the step recorded complete with that effect's ticket_id",
+      "justification": "With one attempt, an attempt-scoped failure reply covers the whole operation: nothing was committed, so one redispatch yields exactly one effect."
+    },
+    {
+      "id": "C02",
+      "set": "primary",
+      "fault_class": "F1",
+      "information_class": "IC2",
+      "name": "fail before commit, no reply, immediately consistent query",
+      "harness_only": {
+        "service_deduplicate": false,
+        "fault_schedule": [
+          {
+            "commit": false,
+            "ack_delivered": false,
+            "visibility_delay": 0.0
+          }
+        ],
+        "resumers": 1
+      },
+      "declared_contract": {
+        "deduplicates_by_operation_id": false,
+        "binds_request_fingerprint": true,
+        "outcome_query": "available",
+        "visibility_bound_s": 0.0,
+        "completion_bound_s": 0.0,
+        "failure_response_scope": "attempt"
+      },
+      "visible_at_resume": {
+        "attempts": 1,
+        "last_dispatch_at": 1000.0,
+        "ack_state": "missing"
+      },
+      "hidden_state": {
+        "committed_effects_at_resume": 0,
+        "visible_from": null
+      },
+      "obtainable_evidence": "A query returns not_found, authoritative because bound is 0.",
+      "valid_actions": [
+        {
+          "action": "ADOPT",
+          "evidence": "query_found"
+        },
+        {
+          "action": "REDISPATCH",
+          "evidence": "query_not_found_authoritative"
+        }
+      ],
+      "unsafe_actions": [
+        {
+          "action": "REDISPATCH",
+          "evidence": "no authoritative absence",
+          "consequence": "invalid (R3): outcome-safe here only by luck; the same decision duplicates in C03"
+        }
+      ],
+      "eligibility": {
+        "hindsight_recoverable": true,
+        "safely_recoverable": true,
+        "hold_valid": false,
+        "hold_class": "unnecessary",
+        "unnecessary_hold_eligible": true
+      },
+      "completion_requirement": "committed_effects == 1 and the step recorded complete with that effect's ticket_id",
+      "justification": "Same information class as C03. A missing ack cannot rule out a commit; an immediately consistent query can."
+    },
+    {
+      "id": "C03",
+      "set": "primary",
+      "fault_class": "F2",
+      "information_class": "IC2",
+      "name": "commit, ack lost, outcome queryable",
+      "harness_only": {
+        "service_deduplicate": false,
+        "fault_schedule": [
+          {
+            "commit": true,
+            "ack_delivered": false,
+            "visibility_delay": 0.0
+          }
+        ],
+        "resumers": 1
+      },
+      "declared_contract": {
+        "deduplicates_by_operation_id": false,
+        "binds_request_fingerprint": true,
+        "outcome_query": "available",
+        "visibility_bound_s": 0.0,
+        "completion_bound_s": 0.0,
+        "failure_response_scope": "attempt"
+      },
+      "visible_at_resume": {
+        "attempts": 1,
+        "last_dispatch_at": 1000.0,
+        "ack_state": "missing"
+      },
+      "hidden_state": {
+        "committed_effects_at_resume": 1,
+        "visible_from": 1000.0
+      },
+      "obtainable_evidence": "A query returns found.",
+      "valid_actions": [
+        {
+          "action": "ADOPT",
+          "evidence": "query_found"
+        },
+        {
+          "action": "REDISPATCH",
+          "evidence": "query_not_found_authoritative"
+        }
+      ],
+      "unsafe_actions": [
+        {
+          "action": "REDISPATCH",
+          "evidence": "no authoritative absence",
+          "consequence": "second committed effect (duplicate)"
+        }
+      ],
+      "eligibility": {
+        "hindsight_recoverable": true,
+        "safely_recoverable": true,
+        "hold_valid": false,
+        "hold_class": "unnecessary",
+        "unnecessary_hold_eligible": true
+      },
+      "completion_requirement": "committed_effects == 1 and the step recorded complete with that effect's ticket_id",
+      "justification": "The query shows the committed effect, so it can be adopted; holding is unnecessary."
+    },
+    {
+      "id": "C04",
+      "set": "primary",
+      "fault_class": "F3",
+      "information_class": "IC3",
+      "name": "commit, ack lost, service deduplicates",
+      "harness_only": {
+        "service_deduplicate": true,
+        "fault_schedule": [
+          {
+            "commit": true,
+            "ack_delivered": false,
+            "visibility_delay": 0.0
+          }
+        ],
+        "resumers": 1
+      },
+      "declared_contract": {
+        "deduplicates_by_operation_id": true,
+        "binds_request_fingerprint": true,
+        "outcome_query": "available",
+        "visibility_bound_s": 0.0,
+        "completion_bound_s": 0.0,
+        "failure_response_scope": "attempt"
+      },
+      "visible_at_resume": {
+        "attempts": 1,
+        "last_dispatch_at": 1000.0,
+        "ack_state": "missing"
+      },
+      "hidden_state": {
+        "committed_effects_at_resume": 1,
+        "visible_from": 1000.0
+      },
+      "obtainable_evidence": "dedup_contract; a query returns found.",
+      "valid_actions": [
+        {
+          "action": "ADOPT",
+          "evidence": "query_found"
+        },
+        {
+          "action": "REDISPATCH",
+          "evidence": "dedup_contract"
+        },
+        {
+          "action": "REDISPATCH",
+          "evidence": "query_not_found_authoritative"
+        }
+      ],
+      "unsafe_actions": [],
+      "eligibility": {
+        "hindsight_recoverable": true,
+        "safely_recoverable": true,
+        "hold_valid": false,
+        "hold_class": "unnecessary",
+        "unnecessary_hold_eligible": true
+      },
+      "completion_requirement": "committed_effects == 1 and the step recorded complete with that effect's ticket_id",
+      "justification": "Two equally safe paths: adopt the visible effect, or redispatch the identical request, which the service answers 'deduplicated' with the existing ticket."
+    },
+    {
+      "id": "C05",
+      "set": "primary",
+      "fault_class": "F4",
+      "information_class": "IC4",
+      "name": "commit, ack lost, outcome unverifiable",
+      "harness_only": {
+        "service_deduplicate": false,
+        "fault_schedule": [
+          {
+            "commit": true,
+            "ack_delivered": false,
+            "visibility_delay": 0.0
+          }
+        ],
+        "resumers": 1
+      },
+      "declared_contract": {
+        "deduplicates_by_operation_id": false,
+        "binds_request_fingerprint": true,
+        "outcome_query": "unavailable",
+        "visibility_bound_s": null,
+        "completion_bound_s": 0.0,
+        "failure_response_scope": "attempt"
+      },
+      "visible_at_resume": {
+        "attempts": 1,
+        "last_dispatch_at": 1000.0,
+        "ack_state": "missing"
+      },
+      "hidden_state": {
+        "committed_effects_at_resume": 1,
+        "visible_from": 1000.0
+      },
+      "obtainable_evidence": "None beyond the observation.",
+      "valid_actions": [
+        {
+          "action": "HOLD",
+          "evidence": "any"
+        }
+      ],
+      "unsafe_actions": [
+        {
+          "action": "REDISPATCH",
+          "evidence": "any",
+          "consequence": "second committed effect (duplicate)"
+        }
+      ],
+      "eligibility": {
+        "hindsight_recoverable": false,
+        "safely_recoverable": false,
+        "hold_valid": true,
+        "hold_class": "required",
+        "unnecessary_hold_eligible": false
+      },
+      "completion_requirement": "not applicable: HOLD is the only valid action",
+      "justification": "Indistinguishable from C06. Redispatch duplicates here, and without a query the ticket_id cannot be learnt to adopt it, so even with hindsight no interface action completes the step safely."
+    },
+    {
+      "id": "C06",
+      "set": "primary",
+      "fault_class": "F4-control",
+      "information_class": "IC4",
+      "name": "fail before commit, no reply, outcome unverifiable",
+      "harness_only": {
+        "service_deduplicate": false,
+        "fault_schedule": [
+          {
+            "commit": false,
+            "ack_delivered": false,
+            "visibility_delay": 0.0
+          }
+        ],
+        "resumers": 1
+      },
+      "declared_contract": {
+        "deduplicates_by_operation_id": false,
+        "binds_request_fingerprint": true,
+        "outcome_query": "unavailable",
+        "visibility_bound_s": null,
+        "completion_bound_s": 0.0,
+        "failure_response_scope": "attempt"
+      },
+      "visible_at_resume": {
+        "attempts": 1,
+        "last_dispatch_at": 1000.0,
+        "ack_state": "missing"
+      },
+      "hidden_state": {
+        "committed_effects_at_resume": 0,
+        "visible_from": null
+      },
+      "obtainable_evidence": "None beyond the observation.",
+      "valid_actions": [
+        {
+          "action": "HOLD",
+          "evidence": "any"
+        }
+      ],
+      "unsafe_actions": [
+        {
+          "action": "REDISPATCH",
+          "evidence": "any",
+          "consequence": "outcome-safe here (one effect) but the same decision duplicates in C05; invalid by R3/R7"
+        }
+      ],
+      "eligibility": {
+        "hindsight_recoverable": true,
+        "safely_recoverable": false,
+        "hold_valid": true,
+        "hold_class": "information_forced",
+        "unnecessary_hold_eligible": false
+      },
+      "completion_requirement": "not applicable: HOLD is the only valid action",
+      "justification": "Hindsight would allow redispatch, but the observation equals C05's. HOLD is epistemically necessary and counted correct. The forgone completion is reported as the cost of safety, not as an error."
+    },
+    {
+      "id": "C07",
+      "set": "primary",
+      "fault_class": "F4+F3",
+      "information_class": "IC5",
+      "name": "commit, ack lost, unverifiable, service deduplicates",
+      "harness_only": {
+        "service_deduplicate": true,
+        "fault_schedule": [
+          {
+            "commit": true,
+            "ack_delivered": false,
+            "visibility_delay": 0.0
+          }
+        ],
+        "resumers": 1
+      },
+      "declared_contract": {
+        "deduplicates_by_operation_id": true,
+        "binds_request_fingerprint": true,
+        "outcome_query": "unavailable",
+        "visibility_bound_s": null,
+        "completion_bound_s": 0.0,
+        "failure_response_scope": "attempt"
+      },
+      "visible_at_resume": {
+        "attempts": 1,
+        "last_dispatch_at": 1000.0,
+        "ack_state": "missing"
+      },
+      "hidden_state": {
+        "committed_effects_at_resume": 1,
+        "visible_from": 1000.0
+      },
+      "obtainable_evidence": "dedup_contract.",
+      "valid_actions": [
+        {
+          "action": "REDISPATCH",
+          "evidence": "dedup_contract"
+        }
+      ],
+      "unsafe_actions": [],
+      "eligibility": {
+        "hindsight_recoverable": true,
+        "safely_recoverable": true,
+        "hold_valid": false,
+        "hold_class": "unnecessary",
+        "unnecessary_hold_eligible": true
+      },
+      "completion_requirement": "committed_effects == 1 and the step recorded complete with that effect's ticket_id",
+      "justification": "Deduplication makes redispatch safe without a query; the deduplicated reply returns the existing ticket."
+    },
+    {
+      "id": "C08a",
+      "set": "primary",
+      "fault_class": "F5v",
+      "information_class": "IC6",
+      "name": "commit, ack lost, post-commit visibility lag 5 s, declared bound 30 s",
+      "harness_only": {
+        "service_deduplicate": false,
+        "fault_schedule": [
+          {
+            "commit": true,
+            "ack_delivered": false,
+            "visibility_delay": 5.0
+          }
+        ],
+        "resumers": 1
+      },
+      "declared_contract": {
+        "deduplicates_by_operation_id": false,
+        "binds_request_fingerprint": true,
+        "outcome_query": "available",
+        "visibility_bound_s": 30.0,
+        "completion_bound_s": 0.0,
+        "failure_response_scope": "attempt"
+      },
+      "visible_at_resume": {
+        "attempts": 1,
+        "last_dispatch_at": 1000.0,
+        "ack_state": "missing"
+      },
+      "hidden_state": {
+        "committed_effects_at_resume": 1,
+        "visible_from": 1005.0
+      },
+      "obtainable_evidence": "A query at any time >= 1005 returns found.",
+      "valid_actions": [
+        {
+          "action": "ADOPT",
+          "evidence": "query_found"
+        },
+        {
+          "action": "REDISPATCH",
+          "evidence": "query_not_found_authoritative"
+        }
+      ],
+      "unsafe_actions": [
+        {
+          "action": "REDISPATCH",
+          "evidence": "no authoritative absence",
+          "consequence": "second committed effect (duplicate)"
+        }
+      ],
+      "eligibility": {
+        "hindsight_recoverable": true,
+        "safely_recoverable": true,
+        "hold_valid": false,
+        "hold_class": "unnecessary",
+        "unnecessary_hold_eligible": true
+      },
+      "completion_requirement": "committed_effects == 1 and the step recorded complete with that effect's ticket_id",
+      "justification": "Timing schedule in which an immediate read-back already sees the commit; it pairs with C08b."
+    },
+    {
+      "id": "C08b",
+      "set": "primary",
+      "fault_class": "F5v",
+      "information_class": "IC6",
+      "name": "commit, ack lost, post-commit visibility lag 30 s, declared bound 30 s",
+      "harness_only": {
+        "service_deduplicate": false,
+        "fault_schedule": [
+          {
+            "commit": true,
+            "ack_delivered": false,
+            "visibility_delay": 30.0
+          }
+        ],
+        "resumers": 1
+      },
+      "declared_contract": {
+        "deduplicates_by_operation_id": false,
+        "binds_request_fingerprint": true,
+        "outcome_query": "available",
+        "visibility_bound_s": 30.0,
+        "completion_bound_s": 0.0,
+        "failure_response_scope": "attempt"
+      },
+      "visible_at_resume": {
+        "attempts": 1,
+        "last_dispatch_at": 1000.0,
+        "ack_state": "missing"
+      },
+      "hidden_state": {
+        "committed_effects_at_resume": 1,
+        "visible_from": 1030.0
+      },
+      "obtainable_evidence": "A query before 1030 returns not_found (non-authoritative); a query at or after 1030 returns found.",
+      "valid_actions": [
+        {
+          "action": "ADOPT",
+          "evidence": "query_found"
+        },
+        {
+          "action": "REDISPATCH",
+          "evidence": "query_not_found_authoritative"
+        }
+      ],
+      "unsafe_actions": [
+        {
+          "action": "REDISPATCH",
+          "evidence": "not_found before 1030",
+          "consequence": "second committed effect (duplicate)"
+        }
+      ],
+      "eligibility": {
+        "hindsight_recoverable": true,
+        "safely_recoverable": true,
+        "hold_valid": false,
+        "hold_class": "unnecessary",
+        "unnecessary_hold_eligible": true
+      },
+      "completion_requirement": "committed_effects == 1 and the step recorded complete with that effect's ticket_id",
+      "justification": "A read-back at resume (1010) cannot rule out the commit. With completion bound 0 and visibility bound 30, not_found becomes authoritative at 1000 + 0 + 30 = 1030 (inside the horizon); waiting until then and querying again resolves it."
+    },
+    {
+      "id": "C08c",
+      "set": "primary",
+      "fault_class": "F5v-control",
+      "information_class": "IC6",
+      "name": "fail before commit, no reply, declared bound 30 s",
+      "harness_only": {
+        "service_deduplicate": false,
+        "fault_schedule": [
+          {
+            "commit": false,
+            "ack_delivered": false,
+            "visibility_delay": 0.0
+          }
+        ],
+        "resumers": 1
+      },
+      "declared_contract": {
+        "deduplicates_by_operation_id": false,
+        "binds_request_fingerprint": true,
+        "outcome_query": "available",
+        "visibility_bound_s": 30.0,
+        "completion_bound_s": 0.0,
+        "failure_response_scope": "attempt"
+      },
+      "visible_at_resume": {
+        "attempts": 1,
+        "last_dispatch_at": 1000.0,
+        "ack_state": "missing"
+      },
+      "hidden_state": {
+        "committed_effects_at_resume": 0,
+        "visible_from": null
+      },
+      "obtainable_evidence": "Every query returns not_found; it is authoritative only at or after 1030.",
+      "valid_actions": [
+        {
+          "action": "ADOPT",
+          "evidence": "query_found"
+        },
+        {
+          "action": "REDISPATCH",
+          "evidence": "query_not_found_authoritative"
+        }
+      ],
+      "unsafe_actions": [
+        {
+          "action": "REDISPATCH",
+          "evidence": "not_found before 1030",
+          "consequence": "invalid (R3): outcome-safe here only by luck; the same decision duplicates in C08b"
+        }
+      ],
+      "eligibility": {
+        "hindsight_recoverable": true,
+        "safely_recoverable": true,
+        "hold_valid": false,
+        "hold_class": "unnecessary",
+        "unnecessary_hold_eligible": true
+      },
+      "completion_requirement": "committed_effects == 1 and the step recorded complete with that effect's ticket_id",
+      "justification": "At resume the observation equals C08b's. Redispatch is justified only by not_found at or after 1000 + completion 0 + visibility 30 = 1030. This control penalises both never redispatching (HOLD invalid) and redispatching early (lucky)."
+    },
+    {
+      "id": "C09",
+      "set": "primary",
+      "fault_class": "F5v",
+      "information_class": "IC7",
+      "name": "commit, ack lost, post-commit visibility lag 30 s, bound undeclared",
+      "harness_only": {
+        "service_deduplicate": false,
+        "fault_schedule": [
+          {
+            "commit": true,
+            "ack_delivered": false,
+            "visibility_delay": 30.0
+          }
+        ],
+        "resumers": 1
+      },
+      "declared_contract": {
+        "deduplicates_by_operation_id": false,
+        "binds_request_fingerprint": true,
+        "outcome_query": "available",
+        "visibility_bound_s": null,
+        "completion_bound_s": 0.0,
+        "failure_response_scope": "attempt"
+      },
+      "visible_at_resume": {
+        "attempts": 1,
+        "last_dispatch_at": 1000.0,
+        "ack_state": "missing"
+      },
+      "hidden_state": {
+        "committed_effects_at_resume": 1,
+        "visible_from": 1030.0
+      },
+      "obtainable_evidence": "Queries before 1030 return not_found (never authoritative: no bound); at or after 1030 they return found.",
+      "valid_actions": [
+        {
+          "action": "HOLD",
+          "evidence": "any"
+        },
+        {
+          "action": "ADOPT",
+          "evidence": "query_found"
+        }
+      ],
+      "unsafe_actions": [
+        {
+          "action": "REDISPATCH",
+          "evidence": "any",
+          "consequence": "second committed effect (duplicate)"
+        }
+      ],
+      "eligibility": {
+        "hindsight_recoverable": true,
+        "safely_recoverable": true,
+        "hold_valid": true,
+        "hold_class": "acceptable",
+        "unnecessary_hold_eligible": false
+      },
+      "completion_requirement": "committed_effects == 1 and the step recorded complete with that effect's ticket_id (reachable only by polling until found)",
+      "justification": "With no visibility bound, no not_found is authoritative, so redispatch is never justified. HOLD is valid because under the same observation with an uncommitted operation no evidence could authorise completion (R6). A later found may be adopted (R1)."
+    },
+    {
+      "id": "C10",
+      "set": "primary",
+      "fault_class": "F5v+F3",
+      "information_class": "IC8",
+      "name": "commit, ack lost, post-commit visibility lag 30 s, service deduplicates",
+      "harness_only": {
+        "service_deduplicate": true,
+        "fault_schedule": [
+          {
+            "commit": true,
+            "ack_delivered": false,
+            "visibility_delay": 30.0
+          }
+        ],
+        "resumers": 1
+      },
+      "declared_contract": {
+        "deduplicates_by_operation_id": true,
+        "binds_request_fingerprint": true,
+        "outcome_query": "available",
+        "visibility_bound_s": 30.0,
+        "completion_bound_s": 0.0,
+        "failure_response_scope": "attempt"
+      },
+      "visible_at_resume": {
+        "attempts": 1,
+        "last_dispatch_at": 1000.0,
+        "ack_state": "missing"
+      },
+      "hidden_state": {
+        "committed_effects_at_resume": 1,
+        "visible_from": 1030.0
+      },
+      "obtainable_evidence": "dedup_contract; a query at or after 1030 returns found.",
+      "valid_actions": [
+        {
+          "action": "ADOPT",
+          "evidence": "query_found"
+        },
+        {
+          "action": "REDISPATCH",
+          "evidence": "dedup_contract"
+        },
+        {
+          "action": "REDISPATCH",
+          "evidence": "query_not_found_authoritative"
+        }
+      ],
+      "unsafe_actions": [],
+      "eligibility": {
+        "hindsight_recoverable": true,
+        "safely_recoverable": true,
+        "hold_valid": false,
+        "hold_class": "unnecessary",
+        "unnecessary_hold_eligible": true
+      },
+      "completion_requirement": "committed_effects == 1 and the step recorded complete with that effect's ticket_id",
+      "justification": "Deduplication protects redispatch inside the visibility window. Modelling decision S3: the dedup store is strongly consistent, so the deduplicated reply carries the ticket before the query index shows it."
+    },
+    {
+      "id": "C11b",
+      "set": "primary",
+      "fault_class": "F6",
+      "information_class": "IC2",
+      "name": "duplicate resume request, sequential, no deduplication",
+      "harness_only": {
+        "service_deduplicate": false,
+        "fault_schedule": [
+          {
+            "commit": false,
+            "ack_delivered": false,
+            "visibility_delay": 0.0
+          }
+        ],
+        "resumers": 2,
+        "interleaving": "sequential: R1 runs to its terminal action and the harness executes it; then R2 starts with the same, now stale, observation"
+      },
+      "declared_contract": {
+        "deduplicates_by_operation_id": false,
+        "binds_request_fingerprint": true,
+        "outcome_query": "available",
+        "visibility_bound_s": 0.0,
+        "completion_bound_s": 0.0,
+        "failure_response_scope": "attempt"
+      },
+      "visible_at_resume": {
+        "attempts": 1,
+        "last_dispatch_at": 1000.0,
+        "ack_state": "missing"
+      },
+      "hidden_state": {
+        "committed_effects_at_resume": 0,
+        "visible_from": null,
+        "note": "If R1 redispatched, R2 starts with 1 committed, visible effect."
+      },
+      "obtainable_evidence": "R1: not_found (authoritative). R2: found if R1 redispatched.",
+      "valid_actions": [
+        {
+          "action": "ADOPT",
+          "evidence": "query_found"
+        },
+        {
+          "action": "REDISPATCH",
+          "evidence": "query_not_found_authoritative"
+        }
+      ],
+      "unsafe_actions": [
+        {
+          "action": "REDISPATCH",
+          "evidence": "no authoritative absence",
+          "consequence": "R2 commits a second effect"
+        }
+      ],
+      "eligibility": {
+        "hindsight_recoverable": true,
+        "safely_recoverable": true,
+        "hold_valid": false,
+        "hold_class": "unnecessary",
+        "unnecessary_hold_eligible": true
+      },
+      "completion_requirement": "committed_effects == 1 and both resumers recorded complete with the same ticket_id",
+      "justification": "Non-overlapping duplicate resumes satisfy the single-active-resumer precondition. Each resumer is judged on its own evidence. The stale observation is safe here only because the bound is 0 (see limitation in protocol.md)."
+    }
+  ],
+  "stress_cases": [
+    {
+      "id": "C11a",
+      "set": "stress",
+      "fault_class": "F6",
+      "information_class": "IC2",
+      "name": "duplicate resume, overlapping (phase-locked), no deduplication",
+      "harness_only": {
+        "service_deduplicate": false,
+        "fault_schedule": [
+          {
+            "commit": false,
+            "ack_delivered": false,
+            "visibility_delay": 0.0
+          }
+        ],
+        "resumers": 2,
+        "interleaving": "phase-locked: both resumers finish their non-terminal steps before either terminal action executes; terminal actions then run in order R1, R2"
+      },
+      "declared_contract": {
+        "deduplicates_by_operation_id": false,
+        "binds_request_fingerprint": true,
+        "outcome_query": "available",
+        "visibility_bound_s": 0.0,
+        "completion_bound_s": 0.0,
+        "failure_response_scope": "attempt"
+      },
+      "visible_at_resume": {
+        "attempts": 1,
+        "last_dispatch_at": 1000.0,
+        "ack_state": "missing"
+      },
+      "hidden_state": {
+        "committed_effects_at_resume": 0,
+        "visible_from": null
+      },
+      "atomic_recovery_claim_mechanism": "none in the current design",
+      "per_decision_valid_actions": [
+        {
+          "action": "ADOPT",
+          "evidence": "query_found"
+        },
+        {
+          "action": "REDISPATCH",
+          "evidence": "query_not_found_authoritative"
+        }
+      ],
+      "required_safety_property": "committed_effects <= 1",
+      "safety_guaranteed_by_design": false,
+      "reported_as": "observed committed-effect count and per-decision validity for each policy; excluded from primary metrics",
+      "justification": "Overlapping resumers violate the oracle's single-active-resumer precondition, and no mechanism enforces it. A duplicate here is a documented limitation of the design, not an expected or correct outcome. No synchronisation guarantee is claimed."
+    },
+    {
+      "id": "C12",
+      "set": "stress",
+      "fault_class": "F6+F3",
+      "information_class": "IC3",
+      "name": "duplicate resume, overlapping (phase-locked), service deduplicates",
+      "harness_only": {
+        "service_deduplicate": true,
+        "fault_schedule": [
+          {
+            "commit": false,
+            "ack_delivered": false,
+            "visibility_delay": 0.0
+          }
+        ],
+        "resumers": 2,
+        "interleaving": "phase-locked (as C11a)"
+      },
+      "declared_contract": {
+        "deduplicates_by_operation_id": true,
+        "binds_request_fingerprint": true,
+        "outcome_query": "available",
+        "visibility_bound_s": 0.0,
+        "completion_bound_s": 0.0,
+        "failure_response_scope": "attempt"
+      },
+      "visible_at_resume": {
+        "attempts": 1,
+        "last_dispatch_at": 1000.0,
+        "ack_state": "missing"
+      },
+      "hidden_state": {
+        "committed_effects_at_resume": 0,
+        "visible_from": null
+      },
+      "atomic_recovery_claim_mechanism": "none in the orchestrator; the service's atomic deduplication is the only protection",
+      "per_decision_valid_actions": [
+        {
+          "action": "ADOPT",
+          "evidence": "query_found"
+        },
+        {
+          "action": "REDISPATCH",
+          "evidence": "dedup_contract"
+        },
+        {
+          "action": "REDISPATCH",
+          "evidence": "query_not_found_authoritative"
+        }
+      ],
+      "required_safety_property": "committed_effects <= 1",
+      "safety_guaranteed_by_design": "only through the service's atomic per-operation_id deduplication (executed test test_deduplication_is_atomic_under_concurrent_submits)",
+      "reported_as": "observed committed-effect count and per-decision validity; excluded from primary metrics",
+      "justification": "Shows that overlapping resumers are made safe by the service capability, not by the recovery policy."
+    }
+  ],
+  "deferred_not_implemented": {
+    "F5c-late-commit": "Not implemented. The service commits at dispatch time or never and only delays visibility (F5v). No schedule lets a commit land after a later read-back or redispatch. In-flight/late-commit behaviour is not validated, and the completion-bound rule is not exercised as a discriminating factor.",
+    "F7": "Approval expiry/revocation needs approval binding (workflow/step, expiry, policy version); the current approval is an 'APPROVED-' prefix check.",
+    "F8": "Equipment-state change needs a stateful equipment mock; none exists.",
+    "cross-process-simulated-time": "Not in scope. Separate OS processes cannot share a SimulatedClock; ClockRegression only detects a clock running behind recorded time. Ledger and fault-queue persistence across processes is tested; simulated-time behaviour across processes is not claimed.",
+    "operation-id-conflict": "The service answers 'conflict' for a reused operation_id with different parameters (executed tests). No matrix case exercises it; policies must HOLD on a conflict reply."
+  },
+  "metrics": {
+    "unit": "operation trial = (primary case, policy)",
+    "primary_trials": 52,
+    "denominators_per_policy": {
+      "duplicate_effect_rate": 13,
+      "correct_recovery_decision_rate": 13,
+      "recovery_completion_rate": 11,
+      "hindsight_completion_rate": 12,
+      "unnecessary_hold_rate": 10,
+      "required_hold_compliance": 2,
+      "information_forced_holds": 1
+    },
+    "eligibility_sources": {
+      "duplicate_effect_rate": "all primary cases",
+      "correct_recovery_decision_rate": "all primary cases",
+      "recovery_completion_rate": "eligibility.safely_recoverable",
+      "hindsight_completion_rate": "eligibility.hindsight_recoverable",
+      "unnecessary_hold_rate": "eligibility.unnecessary_hold_eligible",
+      "required_hold_compliance": "eligibility.hold_class in {required, information_forced}",
+      "information_forced_holds": "eligibility.hold_class == information_forced"
+    },
+    "unauthorized_effect_rate": {
+      "eligible_trials": 0,
+      "report_as": "not evaluated",
+      "reason": "No case can invalidate authorization; requires F7."
+    },
+    "stress_cases_in_primary_denominators": false,
+    "replays": {
+      "k": 5,
+      "are_independent_samples": false,
+      "use": "determinism check: outcome rows must hash identically across replays"
+    },
+    "decision_vs_effect": "Decision correctness (oracle) and committed effects (ledger) are reported separately; neither is inferred from the other."
+  },
+  "claims": {
+    "supported_if_observed": [
+      "Within this simulator and F5v fault model, which recovery decisions keep at most one committed effect per operation_id, and at what completion and wait cost.",
+      "Whether declared capability-contract fields (deduplication, outcome query, visibility and completion bounds) change recovery decisions relative to an idempotency-and-read-back baseline (B2)."
+    ],
+    "not_claimed": [
+      "Behaviour under late or in-flight commits (F5c).",
+      "Concurrent-resume safety without service deduplication (C11a/C12 are stress cases).",
+      "Pipeline-integrated, LangGraph-default, live industrial, OPC UA, PLC, production, exactly-once or certified-safety evidence.",
+      "That bounded waiting on a declared visibility bound is a new general-purpose algorithm."
+    ]
+  }
+}

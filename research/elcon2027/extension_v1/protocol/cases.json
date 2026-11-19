@@ -1,0 +1,948 @@
+{
+ "extension_protocol_version": "x1.0",
+ "policies": [
+  "B0",
+  "B1",
+  "B2",
+  "P",
+  "R_LI",
+  "P_A"
+ ],
+ "replays": 5,
+ "machine_id": "M-1",
+ "cases": [
+  {
+   "id": "E01",
+   "set": "compliant",
+   "rq": "RQ1",
+   "description": "Delta=30, lambda=0; commits at +5 s, before recovery",
+   "declared_contract": {
+    "deduplicates_by_operation_id": false,
+    "binds_request_fingerprint": true,
+    "outcome_query": "available",
+    "visibility_bound_s": 0.0,
+    "completion_bound_s": 30.0,
+    "failure_response_scope": "attempt"
+   },
+   "provider": {
+    "deduplicate": false,
+    "auth_check": "none"
+   },
+   "first_dispatch_fault": {
+    "commit_after": 5.0,
+    "visibility_after": 0.0,
+    "ack_delivered": false,
+    "abort_after": null
+   },
+   "times": {
+    "dispatch_at": 1000.0,
+    "resume_at": 1010.0,
+    "horizon_s": 60.0,
+    "assessment_until": 1600.0
+   },
+   "authorization": {
+    "invalid_from": null
+   },
+   "observational_twin_of": null
+  },
+  {
+   "id": "E02",
+   "set": "compliant",
+   "rq": "RQ1",
+   "description": "Delta=30, lambda=0; commits at +20 s, during recovery",
+   "declared_contract": {
+    "deduplicates_by_operation_id": false,
+    "binds_request_fingerprint": true,
+    "outcome_query": "available",
+    "visibility_bound_s": 0.0,
+    "completion_bound_s": 30.0,
+    "failure_response_scope": "attempt"
+   },
+   "provider": {
+    "deduplicate": false,
+    "auth_check": "none"
+   },
+   "first_dispatch_fault": {
+    "commit_after": 20.0,
+    "visibility_after": 0.0,
+    "ack_delivered": false,
+    "abort_after": null
+   },
+   "times": {
+    "dispatch_at": 1000.0,
+    "resume_at": 1010.0,
+    "horizon_s": 60.0,
+    "assessment_until": 1600.0
+   },
+   "authorization": {
+    "invalid_from": null
+   },
+   "observational_twin_of": null
+  },
+  {
+   "id": "E03",
+   "set": "compliant",
+   "rq": "RQ1",
+   "description": "Delta=30, lambda=0; commits at +30 s, exactly at the bound",
+   "declared_contract": {
+    "deduplicates_by_operation_id": false,
+    "binds_request_fingerprint": true,
+    "outcome_query": "available",
+    "visibility_bound_s": 0.0,
+    "completion_bound_s": 30.0,
+    "failure_response_scope": "attempt"
+   },
+   "provider": {
+    "deduplicate": false,
+    "auth_check": "none"
+   },
+   "first_dispatch_fault": {
+    "commit_after": 30.0,
+    "visibility_after": 0.0,
+    "ack_delivered": false,
+    "abort_after": null
+   },
+   "times": {
+    "dispatch_at": 1000.0,
+    "resume_at": 1010.0,
+    "horizon_s": 60.0,
+    "assessment_until": 1600.0
+   },
+   "authorization": {
+    "invalid_from": null
+   },
+   "observational_twin_of": null
+  },
+  {
+   "id": "E04",
+   "set": "compliant",
+   "rq": "RQ1",
+   "description": "Delta=30, lambda=0; accepted, never commits (aborted at +30 s)",
+   "declared_contract": {
+    "deduplicates_by_operation_id": false,
+    "binds_request_fingerprint": true,
+    "outcome_query": "available",
+    "visibility_bound_s": 0.0,
+    "completion_bound_s": 30.0,
+    "failure_response_scope": "attempt"
+   },
+   "provider": {
+    "deduplicate": false,
+    "auth_check": "none"
+   },
+   "first_dispatch_fault": {
+    "commit_after": null,
+    "visibility_after": 0.0,
+    "ack_delivered": false,
+    "abort_after": 30.0
+   },
+   "times": {
+    "dispatch_at": 1000.0,
+    "resume_at": 1010.0,
+    "horizon_s": 60.0,
+    "assessment_until": 1600.0
+   },
+   "authorization": {
+    "invalid_from": null
+   },
+   "observational_twin_of": "E02,E03"
+  },
+  {
+   "id": "E05",
+   "set": "compliant",
+   "rq": "RQ1",
+   "description": "Delta=20, lambda=10; commits at +15 s, visible at +25 s",
+   "declared_contract": {
+    "deduplicates_by_operation_id": false,
+    "binds_request_fingerprint": true,
+    "outcome_query": "available",
+    "visibility_bound_s": 10.0,
+    "completion_bound_s": 20.0,
+    "failure_response_scope": "attempt"
+   },
+   "provider": {
+    "deduplicate": false,
+    "auth_check": "none"
+   },
+   "first_dispatch_fault": {
+    "commit_after": 15.0,
+    "visibility_after": 10.0,
+    "ack_delivered": false,
+    "abort_after": null
+   },
+   "times": {
+    "dispatch_at": 1000.0,
+    "resume_at": 1010.0,
+    "horizon_s": 60.0,
+    "assessment_until": 1600.0
+   },
+   "authorization": {
+    "invalid_from": null
+   },
+   "observational_twin_of": null
+  },
+  {
+   "id": "E06",
+   "set": "compliant",
+   "rq": "RQ1",
+   "description": "Delta=20, lambda=10; commits at +20 s, visible at +30 s (both at their bounds)",
+   "declared_contract": {
+    "deduplicates_by_operation_id": false,
+    "binds_request_fingerprint": true,
+    "outcome_query": "available",
+    "visibility_bound_s": 10.0,
+    "completion_bound_s": 20.0,
+    "failure_response_scope": "attempt"
+   },
+   "provider": {
+    "deduplicate": false,
+    "auth_check": "none"
+   },
+   "first_dispatch_fault": {
+    "commit_after": 20.0,
+    "visibility_after": 10.0,
+    "ack_delivered": false,
+    "abort_after": null
+   },
+   "times": {
+    "dispatch_at": 1000.0,
+    "resume_at": 1010.0,
+    "horizon_s": 60.0,
+    "assessment_until": 1600.0
+   },
+   "authorization": {
+    "invalid_from": null
+   },
+   "observational_twin_of": null
+  },
+  {
+   "id": "E07",
+   "set": "compliant",
+   "rq": "RQ1",
+   "description": "Delta=20, lambda=10; accepted, never commits (aborted at +20 s)",
+   "declared_contract": {
+    "deduplicates_by_operation_id": false,
+    "binds_request_fingerprint": true,
+    "outcome_query": "available",
+    "visibility_bound_s": 10.0,
+    "completion_bound_s": 20.0,
+    "failure_response_scope": "attempt"
+   },
+   "provider": {
+    "deduplicate": false,
+    "auth_check": "none"
+   },
+   "first_dispatch_fault": {
+    "commit_after": null,
+    "visibility_after": 0.0,
+    "ack_delivered": false,
+    "abort_after": 20.0
+   },
+   "times": {
+    "dispatch_at": 1000.0,
+    "resume_at": 1010.0,
+    "horizon_s": 60.0,
+    "assessment_until": 1600.0
+   },
+   "authorization": {
+    "invalid_from": null
+   },
+   "observational_twin_of": "E05,E06"
+  },
+  {
+   "id": "E08",
+   "set": "compliant",
+   "rq": "RQ1",
+   "description": "as E06; resume 1 s before t_d+Delta+lambda",
+   "declared_contract": {
+    "deduplicates_by_operation_id": false,
+    "binds_request_fingerprint": true,
+    "outcome_query": "available",
+    "visibility_bound_s": 10.0,
+    "completion_bound_s": 20.0,
+    "failure_response_scope": "attempt"
+   },
+   "provider": {
+    "deduplicate": false,
+    "auth_check": "none"
+   },
+   "first_dispatch_fault": {
+    "commit_after": 20.0,
+    "visibility_after": 10.0,
+    "ack_delivered": false,
+    "abort_after": null
+   },
+   "times": {
+    "dispatch_at": 1000.0,
+    "resume_at": 1029.0,
+    "horizon_s": 60.0,
+    "assessment_until": 1600.0
+   },
+   "authorization": {
+    "invalid_from": null
+   },
+   "observational_twin_of": null
+  },
+  {
+   "id": "E09",
+   "set": "compliant",
+   "rq": "RQ1",
+   "description": "as E06; resume exactly at t_d+Delta+lambda",
+   "declared_contract": {
+    "deduplicates_by_operation_id": false,
+    "binds_request_fingerprint": true,
+    "outcome_query": "available",
+    "visibility_bound_s": 10.0,
+    "completion_bound_s": 20.0,
+    "failure_response_scope": "attempt"
+   },
+   "provider": {
+    "deduplicate": false,
+    "auth_check": "none"
+   },
+   "first_dispatch_fault": {
+    "commit_after": 20.0,
+    "visibility_after": 10.0,
+    "ack_delivered": false,
+    "abort_after": null
+   },
+   "times": {
+    "dispatch_at": 1000.0,
+    "resume_at": 1030.0,
+    "horizon_s": 60.0,
+    "assessment_until": 1600.0
+   },
+   "authorization": {
+    "invalid_from": null
+   },
+   "observational_twin_of": null
+  },
+  {
+   "id": "E10",
+   "set": "compliant",
+   "rq": "RQ1",
+   "description": "as E06; resume 1 s after t_d+Delta+lambda",
+   "declared_contract": {
+    "deduplicates_by_operation_id": false,
+    "binds_request_fingerprint": true,
+    "outcome_query": "available",
+    "visibility_bound_s": 10.0,
+    "completion_bound_s": 20.0,
+    "failure_response_scope": "attempt"
+   },
+   "provider": {
+    "deduplicate": false,
+    "auth_check": "none"
+   },
+   "first_dispatch_fault": {
+    "commit_after": 20.0,
+    "visibility_after": 10.0,
+    "ack_delivered": false,
+    "abort_after": null
+   },
+   "times": {
+    "dispatch_at": 1000.0,
+    "resume_at": 1031.0,
+    "horizon_s": 60.0,
+    "assessment_until": 1600.0
+   },
+   "authorization": {
+    "invalid_from": null
+   },
+   "observational_twin_of": null
+  },
+  {
+   "id": "E11",
+   "set": "compliant",
+   "rq": "RQ1",
+   "description": "Delta undeclared, lambda=0; commits at +20 s",
+   "declared_contract": {
+    "deduplicates_by_operation_id": false,
+    "binds_request_fingerprint": true,
+    "outcome_query": "available",
+    "visibility_bound_s": 0.0,
+    "completion_bound_s": null,
+    "failure_response_scope": "attempt"
+   },
+   "provider": {
+    "deduplicate": false,
+    "auth_check": "none"
+   },
+   "first_dispatch_fault": {
+    "commit_after": 20.0,
+    "visibility_after": 0.0,
+    "ack_delivered": false,
+    "abort_after": null
+   },
+   "times": {
+    "dispatch_at": 1000.0,
+    "resume_at": 1010.0,
+    "horizon_s": 60.0,
+    "assessment_until": 1600.0
+   },
+   "authorization": {
+    "invalid_from": null
+   },
+   "observational_twin_of": null
+  },
+  {
+   "id": "E12",
+   "set": "compliant",
+   "rq": "RQ1",
+   "description": "Delta undeclared, lambda=0; never commits (aborted at +40 s)",
+   "declared_contract": {
+    "deduplicates_by_operation_id": false,
+    "binds_request_fingerprint": true,
+    "outcome_query": "available",
+    "visibility_bound_s": 0.0,
+    "completion_bound_s": null,
+    "failure_response_scope": "attempt"
+   },
+   "provider": {
+    "deduplicate": false,
+    "auth_check": "none"
+   },
+   "first_dispatch_fault": {
+    "commit_after": null,
+    "visibility_after": 0.0,
+    "ack_delivered": false,
+    "abort_after": 40.0
+   },
+   "times": {
+    "dispatch_at": 1000.0,
+    "resume_at": 1010.0,
+    "horizon_s": 60.0,
+    "assessment_until": 1600.0
+   },
+   "authorization": {
+    "invalid_from": null
+   },
+   "observational_twin_of": "E11"
+  },
+  {
+   "id": "E13",
+   "set": "compliant",
+   "rq": "RQ1",
+   "description": "Delta=90 (bound beyond the 60 s horizon), lambda=0; commits at +80 s",
+   "declared_contract": {
+    "deduplicates_by_operation_id": false,
+    "binds_request_fingerprint": true,
+    "outcome_query": "available",
+    "visibility_bound_s": 0.0,
+    "completion_bound_s": 90.0,
+    "failure_response_scope": "attempt"
+   },
+   "provider": {
+    "deduplicate": false,
+    "auth_check": "none"
+   },
+   "first_dispatch_fault": {
+    "commit_after": 80.0,
+    "visibility_after": 0.0,
+    "ack_delivered": false,
+    "abort_after": null
+   },
+   "times": {
+    "dispatch_at": 1000.0,
+    "resume_at": 1010.0,
+    "horizon_s": 60.0,
+    "assessment_until": 1600.0
+   },
+   "authorization": {
+    "invalid_from": null
+   },
+   "observational_twin_of": null
+  },
+  {
+   "id": "E14",
+   "set": "compliant",
+   "rq": "RQ1",
+   "description": "deduplication; Delta=30, lambda=0; commits at +20 s",
+   "declared_contract": {
+    "deduplicates_by_operation_id": true,
+    "binds_request_fingerprint": true,
+    "outcome_query": "available",
+    "visibility_bound_s": 0.0,
+    "completion_bound_s": 30.0,
+    "failure_response_scope": "attempt"
+   },
+   "provider": {
+    "deduplicate": true,
+    "auth_check": "none"
+   },
+   "first_dispatch_fault": {
+    "commit_after": 20.0,
+    "visibility_after": 0.0,
+    "ack_delivered": false,
+    "abort_after": null
+   },
+   "times": {
+    "dispatch_at": 1000.0,
+    "resume_at": 1010.0,
+    "horizon_s": 60.0,
+    "assessment_until": 1600.0
+   },
+   "authorization": {
+    "invalid_from": null
+   },
+   "observational_twin_of": null
+  },
+  {
+   "id": "E15",
+   "set": "compliant",
+   "rq": "RQ1",
+   "description": "deduplication; Delta=30, lambda=0; commits at +5 s",
+   "declared_contract": {
+    "deduplicates_by_operation_id": true,
+    "binds_request_fingerprint": true,
+    "outcome_query": "available",
+    "visibility_bound_s": 0.0,
+    "completion_bound_s": 30.0,
+    "failure_response_scope": "attempt"
+   },
+   "provider": {
+    "deduplicate": true,
+    "auth_check": "none"
+   },
+   "first_dispatch_fault": {
+    "commit_after": 5.0,
+    "visibility_after": 0.0,
+    "ack_delivered": false,
+    "abort_after": null
+   },
+   "times": {
+    "dispatch_at": 1000.0,
+    "resume_at": 1010.0,
+    "horizon_s": 60.0,
+    "assessment_until": 1600.0
+   },
+   "authorization": {
+    "invalid_from": null
+   },
+   "observational_twin_of": null
+  },
+  {
+   "id": "E16",
+   "set": "compliant",
+   "rq": "RQ1",
+   "description": "Delta undeclared, lambda=0; never resolved within the assessment horizon (censored)",
+   "declared_contract": {
+    "deduplicates_by_operation_id": false,
+    "binds_request_fingerprint": true,
+    "outcome_query": "available",
+    "visibility_bound_s": 0.0,
+    "completion_bound_s": null,
+    "failure_response_scope": "attempt"
+   },
+   "provider": {
+    "deduplicate": false,
+    "auth_check": "none"
+   },
+   "first_dispatch_fault": {
+    "commit_after": null,
+    "visibility_after": 0.0,
+    "ack_delivered": false,
+    "abort_after": null
+   },
+   "times": {
+    "dispatch_at": 1000.0,
+    "resume_at": 1010.0,
+    "horizon_s": 60.0,
+    "assessment_until": 1600.0
+   },
+   "authorization": {
+    "invalid_from": null
+   },
+   "observational_twin_of": "E11,E12"
+  },
+  {
+   "id": "V01",
+   "set": "violation",
+   "rq": "RQ1",
+   "description": "declared Delta=30, lambda=0; actual commit at +40 s (violates Delta)",
+   "declared_contract": {
+    "deduplicates_by_operation_id": false,
+    "binds_request_fingerprint": true,
+    "outcome_query": "available",
+    "visibility_bound_s": 0.0,
+    "completion_bound_s": 30.0,
+    "failure_response_scope": "attempt"
+   },
+   "provider": {
+    "deduplicate": false,
+    "auth_check": "none"
+   },
+   "first_dispatch_fault": {
+    "commit_after": 40.0,
+    "visibility_after": 0.0,
+    "ack_delivered": false,
+    "abort_after": null
+   },
+   "times": {
+    "dispatch_at": 1000.0,
+    "resume_at": 1010.0,
+    "horizon_s": 60.0,
+    "assessment_until": 1600.0
+   },
+   "authorization": {
+    "invalid_from": null
+   },
+   "observational_twin_of": null
+  },
+  {
+   "id": "V02",
+   "set": "violation",
+   "rq": "RQ1",
+   "description": "declared Delta=30, lambda=0; commits at +20 s but visible only at +35 s (violates lambda)",
+   "declared_contract": {
+    "deduplicates_by_operation_id": false,
+    "binds_request_fingerprint": true,
+    "outcome_query": "available",
+    "visibility_bound_s": 0.0,
+    "completion_bound_s": 30.0,
+    "failure_response_scope": "attempt"
+   },
+   "provider": {
+    "deduplicate": false,
+    "auth_check": "none"
+   },
+   "first_dispatch_fault": {
+    "commit_after": 20.0,
+    "visibility_after": 15.0,
+    "ack_delivered": false,
+    "abort_after": null
+   },
+   "times": {
+    "dispatch_at": 1000.0,
+    "resume_at": 1010.0,
+    "horizon_s": 60.0,
+    "assessment_until": 1600.0
+   },
+   "authorization": {
+    "invalid_from": null
+   },
+   "observational_twin_of": null
+  },
+  {
+   "id": "G01",
+   "set": "governance",
+   "rq": "RQ2",
+   "description": "provider auth_check=none; committed at +2 s before the change",
+   "declared_contract": {
+    "deduplicates_by_operation_id": false,
+    "binds_request_fingerprint": true,
+    "outcome_query": "available",
+    "visibility_bound_s": 0.0,
+    "completion_bound_s": 30.0,
+    "failure_response_scope": "attempt"
+   },
+   "provider": {
+    "deduplicate": false,
+    "auth_check": "none"
+   },
+   "first_dispatch_fault": {
+    "commit_after": 2.0,
+    "visibility_after": 0.0,
+    "ack_delivered": false,
+    "abort_after": null
+   },
+   "times": {
+    "dispatch_at": 1000.0,
+    "resume_at": 1010.0,
+    "horizon_s": 60.0,
+    "assessment_until": 1600.0
+   },
+   "authorization": {
+    "invalid_from": 1005.0
+   },
+   "observational_twin_of": null
+  },
+  {
+   "id": "G02",
+   "set": "governance",
+   "rq": "RQ2",
+   "description": "provider auth_check=acceptance; pending, commits at +20 s after the change",
+   "declared_contract": {
+    "deduplicates_by_operation_id": false,
+    "binds_request_fingerprint": true,
+    "outcome_query": "available",
+    "visibility_bound_s": 0.0,
+    "completion_bound_s": 30.0,
+    "failure_response_scope": "attempt"
+   },
+   "provider": {
+    "deduplicate": false,
+    "auth_check": "acceptance"
+   },
+   "first_dispatch_fault": {
+    "commit_after": 20.0,
+    "visibility_after": 0.0,
+    "ack_delivered": false,
+    "abort_after": null
+   },
+   "times": {
+    "dispatch_at": 1000.0,
+    "resume_at": 1010.0,
+    "horizon_s": 60.0,
+    "assessment_until": 1600.0
+   },
+   "authorization": {
+    "invalid_from": 1005.0
+   },
+   "observational_twin_of": null
+  },
+  {
+   "id": "G03",
+   "set": "governance",
+   "rq": "RQ2",
+   "description": "provider auth_check=commit; pending, due at +20 s after the change",
+   "declared_contract": {
+    "deduplicates_by_operation_id": false,
+    "binds_request_fingerprint": true,
+    "outcome_query": "available",
+    "visibility_bound_s": 0.0,
+    "completion_bound_s": 30.0,
+    "failure_response_scope": "attempt"
+   },
+   "provider": {
+    "deduplicate": false,
+    "auth_check": "commit"
+   },
+   "first_dispatch_fault": {
+    "commit_after": 20.0,
+    "visibility_after": 0.0,
+    "ack_delivered": false,
+    "abort_after": null
+   },
+   "times": {
+    "dispatch_at": 1000.0,
+    "resume_at": 1010.0,
+    "horizon_s": 60.0,
+    "assessment_until": 1600.0
+   },
+   "authorization": {
+    "invalid_from": 1005.0
+   },
+   "observational_twin_of": null
+  },
+  {
+   "id": "G04",
+   "set": "governance",
+   "rq": "RQ2",
+   "description": "provider auth_check=none; pending, commits at +20 s after the change",
+   "declared_contract": {
+    "deduplicates_by_operation_id": false,
+    "binds_request_fingerprint": true,
+    "outcome_query": "available",
+    "visibility_bound_s": 0.0,
+    "completion_bound_s": 30.0,
+    "failure_response_scope": "attempt"
+   },
+   "provider": {
+    "deduplicate": false,
+    "auth_check": "none"
+   },
+   "first_dispatch_fault": {
+    "commit_after": 20.0,
+    "visibility_after": 0.0,
+    "ack_delivered": false,
+    "abort_after": null
+   },
+   "times": {
+    "dispatch_at": 1000.0,
+    "resume_at": 1010.0,
+    "horizon_s": 60.0,
+    "assessment_until": 1600.0
+   },
+   "authorization": {
+    "invalid_from": 1005.0
+   },
+   "observational_twin_of": null
+  },
+  {
+   "id": "G05",
+   "set": "governance",
+   "rq": "RQ2",
+   "description": "provider auth_check=none; accepted, never commits (aborted at +30 s)",
+   "declared_contract": {
+    "deduplicates_by_operation_id": false,
+    "binds_request_fingerprint": true,
+    "outcome_query": "available",
+    "visibility_bound_s": 0.0,
+    "completion_bound_s": 30.0,
+    "failure_response_scope": "attempt"
+   },
+   "provider": {
+    "deduplicate": false,
+    "auth_check": "none"
+   },
+   "first_dispatch_fault": {
+    "commit_after": null,
+    "visibility_after": 0.0,
+    "ack_delivered": false,
+    "abort_after": 30.0
+   },
+   "times": {
+    "dispatch_at": 1000.0,
+    "resume_at": 1010.0,
+    "horizon_s": 60.0,
+    "assessment_until": 1600.0
+   },
+   "authorization": {
+    "invalid_from": 1005.0
+   },
+   "observational_twin_of": "G04"
+  },
+  {
+   "id": "G06",
+   "set": "governance",
+   "rq": "RQ2",
+   "description": "provider auth_check=acceptance; committed at +2 s before the change",
+   "declared_contract": {
+    "deduplicates_by_operation_id": false,
+    "binds_request_fingerprint": true,
+    "outcome_query": "available",
+    "visibility_bound_s": 0.0,
+    "completion_bound_s": 30.0,
+    "failure_response_scope": "attempt"
+   },
+   "provider": {
+    "deduplicate": false,
+    "auth_check": "acceptance"
+   },
+   "first_dispatch_fault": {
+    "commit_after": 2.0,
+    "visibility_after": 0.0,
+    "ack_delivered": false,
+    "abort_after": null
+   },
+   "times": {
+    "dispatch_at": 1000.0,
+    "resume_at": 1010.0,
+    "horizon_s": 60.0,
+    "assessment_until": 1600.0
+   },
+   "authorization": {
+    "invalid_from": 1005.0
+   },
+   "observational_twin_of": null
+  }
+ ],
+ "replay_cases": [
+  {
+   "id": "R01",
+   "description": "two-step plan; s1 committed and acknowledged; s2 committed at dispatch, acknowledgment lost; no deduplication",
+   "declared_contract": {
+    "deduplicates_by_operation_id": false,
+    "binds_request_fingerprint": true,
+    "outcome_query": "available",
+    "visibility_bound_s": 0.0,
+    "completion_bound_s": 30.0,
+    "failure_response_scope": "attempt"
+   },
+   "provider": {
+    "deduplicate": false
+   },
+   "step2_fault": {
+    "commit_after": 0.0,
+    "visibility_after": 0.0,
+    "ack_delivered": false,
+    "abort_after": null
+   },
+   "times": {
+    "dispatch_at": 1000.0,
+    "resume_at": 1010.0,
+    "horizon_s": 60.0,
+    "assessment_until": 1600.0
+   }
+  },
+  {
+   "id": "R02",
+   "description": "as R01 with service deduplication",
+   "declared_contract": {
+    "deduplicates_by_operation_id": true,
+    "binds_request_fingerprint": true,
+    "outcome_query": "available",
+    "visibility_bound_s": 0.0,
+    "completion_bound_s": 30.0,
+    "failure_response_scope": "attempt"
+   },
+   "provider": {
+    "deduplicate": true
+   },
+   "step2_fault": {
+    "commit_after": 0.0,
+    "visibility_after": 0.0,
+    "ack_delivered": false,
+    "abort_after": null
+   },
+   "times": {
+    "dispatch_at": 1000.0,
+    "resume_at": 1010.0,
+    "horizon_s": 60.0,
+    "assessment_until": 1600.0
+   }
+  },
+  {
+   "id": "R03",
+   "description": "two-step plan; s1 committed and acknowledged; s2 pending, commits at +20 s, acknowledgment lost; no deduplication",
+   "declared_contract": {
+    "deduplicates_by_operation_id": false,
+    "binds_request_fingerprint": true,
+    "outcome_query": "available",
+    "visibility_bound_s": 0.0,
+    "completion_bound_s": 30.0,
+    "failure_response_scope": "attempt"
+   },
+   "provider": {
+    "deduplicate": false
+   },
+   "step2_fault": {
+    "commit_after": 20.0,
+    "visibility_after": 0.0,
+    "ack_delivered": false,
+    "abort_after": null
+   },
+   "times": {
+    "dispatch_at": 1000.0,
+    "resume_at": 1010.0,
+    "horizon_s": 60.0,
+    "assessment_until": 1600.0
+   }
+  },
+  {
+   "id": "R04",
+   "description": "as R03 with service deduplication",
+   "declared_contract": {
+    "deduplicates_by_operation_id": true,
+    "binds_request_fingerprint": true,
+    "outcome_query": "available",
+    "visibility_bound_s": 0.0,
+    "completion_bound_s": 30.0,
+    "failure_response_scope": "attempt"
+   },
+   "provider": {
+    "deduplicate": true
+   },
+   "step2_fault": {
+    "commit_after": 20.0,
+    "visibility_after": 0.0,
+    "ack_delivered": false,
+    "abort_after": null
+   },
+   "times": {
+    "dispatch_at": 1000.0,
+    "resume_at": 1010.0,
+    "horizon_s": 60.0,
+    "assessment_until": 1600.0
+   }
+  }
+ ],
+ "replay_modes": [
+  "UNPROTECTED",
+  "B0",
+  "B2",
+  "P",
+  "R_LI"
+ ]
+}

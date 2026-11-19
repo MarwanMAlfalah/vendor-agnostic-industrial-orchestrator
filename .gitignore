@@ -12,9 +12,17 @@ __pycache__/
 # Build metadata
 *.egg-info/
 
+# Tool caches
+.ruff_cache/
+.mypy_cache/
+
+# Personal Claude Code settings
+.claude/settings.local.json
+
 # Local persistence / demo artifacts
 data/langgraph/checkpoints.db
 
+# Do not ignore data/results or research/elcon2027 JSON, JSONL, CSV, or logs: they are evidence.
 # Optional: ignore transient generated outputs
 # data/results/*.json
 # data/results/*.csv

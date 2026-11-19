@@ -94,7 +94,16 @@ class ExecutionAgent:
         step_start = perf_counter()
         try:
             adapter = get_adapter(step.selected_adapter)
-            result = adapter.invoke(step.selected_capability, payload)
+            # Explicit opt-in (ElCon recovery study): only adapter classes that
+            # declare requires_step_identity = True receive the plan step
+            # identity via invoke_step. Every other adapter, including test
+            # doubles and adapters that merely define invoke_step, keeps invoke.
+            if getattr(type(adapter), "requires_step_identity", False) is True:
+                result = adapter.invoke_step(
+                    step.selected_capability, payload, step_id=step.step_id
+                )
+            else:
+                result = adapter.invoke(step.selected_capability, payload)
         except AdapterError as exc:
             return StepExecutionResult(
                 step_id=step.step_id,
